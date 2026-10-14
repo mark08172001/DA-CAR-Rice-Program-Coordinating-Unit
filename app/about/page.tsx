@@ -10,7 +10,7 @@ export default function AboutPage() {
   return (
     <>
       <PageHero
-        eyebrow="Rice Program Coordinating Unit"
+        eyebrow="Module 01: General Portal"
         heading="About Rice Program Coordinating Unit"
         description="Learn about the Rice Program Coordinating Unit’s work coordinating rice programs, farmer services, and regional monitoring across the Cordillera Administrative Region."
         parent={{ label: 'Home', href: '/' }}

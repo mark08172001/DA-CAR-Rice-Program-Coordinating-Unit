@@ -19,7 +19,7 @@ export default function WeatherPage() {
   return (
     <>
       <PageHero
-        eyebrow="Weather Information"
+        eyebrow="Module 01: General Portal"
         heading="Weather"
         description="Agriculture-focused weather information for the Cordillera Administrative Region."
         parent={{ label: 'Home', href: '/' }}

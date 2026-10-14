@@ -1,3 +1,5 @@
+import RiceHeroHeader from '@/components/RiceHeroHeader';
+
 export default function RiceLayout({
   children,
 }: {
@@ -5,14 +7,7 @@ export default function RiceLayout({
 }) {
   return (
     <>
-      <section className="page-hero">
-        <div className="page-container">
-          <h1>Rice Program Coordinating Unit</h1>
-          <p>
-            Official monitoring of current rice program activities, fund releases, farmer services, and reports.
-          </p>
-        </div>
-      </section>
+      <RiceHeroHeader />
       {children}
     </>
   );

@@ -39,7 +39,7 @@ export default async function MarketPricesPage() {
   return (
     <>
       <PageHero
-        eyebrow="Market Information"
+        eyebrow="Module 01: General Portal"
         heading="Market Prices"
         description="View commodity prices reported through the Department of Agriculture – Cordillera Administrative Region."
         parent={{ label: 'Home', href: '/' }}

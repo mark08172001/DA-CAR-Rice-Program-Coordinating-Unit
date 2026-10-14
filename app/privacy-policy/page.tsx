@@ -10,7 +10,7 @@ export default function PrivacyPolicyPage() {
   return (
     <>
       <PageHero
-        eyebrow="Privacy"
+        eyebrow="Module 01: General Portal"
         heading="Privacy Policy"
         description="Information about how this portal handles personal information and public data."
         parent={{ label: 'Home', href: '/' }}

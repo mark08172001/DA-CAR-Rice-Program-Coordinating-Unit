@@ -37,7 +37,7 @@ export default async function ProvincesPage() {
   return (
     <>
       <PageHero
-        eyebrow="Regional Directory"
+        eyebrow="Module 01: General Portal"
         heading="Provinces"
         description="Province directory for the Cordillera Administrative Region."
         parent={{ label: 'Home', href: '/' }}

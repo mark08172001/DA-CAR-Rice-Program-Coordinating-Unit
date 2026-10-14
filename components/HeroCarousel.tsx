@@ -6,7 +6,7 @@ import { ArrowDown, ArrowRight, Pause, Play } from 'lucide-react';
 
 const slides = [
   {
-    eyebrow: 'Official information portal',
+    eyebrow: 'Module 01: General Portal',
     title: (
       <>
         Rice Program Coordinating Unit<span>Portal</span>
@@ -27,7 +27,7 @@ const slides = [
     ),
   },
   {
-    eyebrow: 'Rice Program Coordinating Unit',
+    eyebrow: 'Module 02: Rice Program Operations',
     title: (
       <>
         Track rice program<span>operations</span>
@@ -43,7 +43,7 @@ const slides = [
     ),
   },
   {
-    eyebrow: 'Public agricultural information',
+    eyebrow: 'Module 01: General Portal',
     title: (
       <>
         Services for<span>Cordillera communities</span>

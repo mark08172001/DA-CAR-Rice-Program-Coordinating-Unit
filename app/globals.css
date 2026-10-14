@@ -1857,6 +1857,8 @@ button { color: inherit; }
   position: sticky;
   top: 0;
   height: 100vh;
+  max-height: 100vh;
+  overflow: hidden;
   z-index: 1050;
   box-shadow: 4px 0 24px rgba(0, 0, 0, 0.22), 1px 0 0 rgba(212, 169, 55, 0.08);
   backdrop-filter: blur(14px);
@@ -1865,6 +1867,7 @@ button { color: inherit; }
 }
 
 .sidebar-brand-box {
+  flex-shrink: 0;
   padding: 18px 16px 14px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.07);
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, transparent 100%);
@@ -1974,6 +1977,7 @@ button { color: inherit; }
 
 /* REGIONAL KPI PILL - SHIMMER & RADAR EFFECT */
 .sidebar-kpi-pill {
+  flex-shrink: 0;
   margin: 10px 14px 6px;
   padding: 6px 12px;
   background: linear-gradient(90deg, rgba(212, 169, 55, 0.14) 0%, rgba(34, 197, 94, 0.09) 100%);
@@ -2035,8 +2039,10 @@ button { color: inherit; }
 
 /* STYLIZED SCROLLBAR CONTAINER */
 .sidebar-modules-scroll {
-  flex: 1;
+  flex: 1 1 0%;
+  min-height: 0;
   overflow-y: auto;
+  overflow-x: hidden;
   padding: 8px 10px 16px;
   display: flex;
   flex-direction: column;
@@ -2061,6 +2067,7 @@ button { color: inherit; }
 
 /* MODULE SECTION ACCORDION WITH GLASS ELEVATION */
 .module-section {
+  flex-shrink: 0;
   border-radius: 9px;
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.06);
@@ -2251,10 +2258,13 @@ button { color: inherit; }
 
 /* SIDEBAR FOOTER USER / AUTH - GLASS ELEVATION */
 .sidebar-user-footer {
+  flex-shrink: 0;
   padding: 14px 14px;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.18) 0%, rgba(0, 0, 0, 0.38) 100%);
+  background: linear-gradient(180deg, rgba(9, 30, 23, 0.95) 0%, rgba(8, 25, 19, 0.98) 100%);
   backdrop-filter: blur(10px);
+  position: relative;
+  z-index: 10;
 }
 
 .sidebar-user-card {

@@ -68,7 +68,7 @@ export default async function AdminManagementPage() {
   return (
     <>
       <PageHero
-        eyebrow="Authorized Personnel Only"
+        eyebrow="Module 05: Super Admin Suite"
         heading="Department Administrative Management"
         description="Restricted executive tools for staff access control, profile database, COA audit logs, and database records."
       />

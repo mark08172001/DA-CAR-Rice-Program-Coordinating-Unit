@@ -9,7 +9,7 @@ export default function TermsOfUsePage() {
   return (
     <>
       <PageHero
-        eyebrow="Terms"
+        eyebrow="Module 01: General Portal"
         heading="Terms of Use"
         description="Terms for accessing and using this official information portal."
         parent={{ label: 'Home', href: '/' }}
