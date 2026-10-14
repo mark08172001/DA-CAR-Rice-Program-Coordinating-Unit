@@ -13,10 +13,10 @@
         "mod-beneficiary",
         "mod-finance"
       ],
-      "last_sign_in_at": "2026-10-14 07:42:58",
-      "login_count": 123,
+      "last_sign_in_at": "2026-10-14 07:48:18",
+      "login_count": 124,
       "created_at": "2026-09-01T08:00:00Z",
-      "updated_at": "2026-10-14T07:42:58.493Z",
+      "updated_at": "2026-10-14T07:48:18.832Z",
       "notes": "Super Admin clearance. Unrestricted system-wide privileges."
     },
     {
@@ -49,14 +49,12 @@
       "role": "officer",
       "status": "active",
       "allowed_modules": [
-        "mod-general",
-        "mod-rice",
-        "mod-finance"
+        "mod-general"
       ],
       "last_sign_in_at": null,
       "login_count": 0,
       "created_at": "2026-10-12T01:45:33.928Z",
-      "updated_at": "2026-10-14T07:43:13.201Z",
+      "updated_at": "2026-10-14T07:48:29.152Z",
       "notes": "Testing permissions update by Super Admin",
       "permissions": {
         "can_add_activities": true,
@@ -73,6 +71,17 @@
     "jangmanwol0117@gmail.com"
   ],
   "login_logs": [
+    {
+      "id": "login-1791964098832",
+      "timestamp": "2026-10-14 07:48:18",
+      "email": "super.admin@car.da.gov.ph",
+      "full_name": "Regional Executive Director (Super Admin)",
+      "role": "super_admin",
+      "status": "SUCCESS",
+      "ip_address": "120.28.184.45 (Baguio RFO Node)",
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36 Edg/155.0.0.0",
+      "location": "Baguio City, Cordillera Administrative Region"
+    },
     {
       "id": "login-1791963778493",
       "timestamp": "2026-10-14 07:42:58",
@@ -1054,6 +1063,16 @@
     }
   ],
   "audit_logs": [
+    {
+      "id": "audit-1791964109152",
+      "timestamp": "2026-10-14 07:48:29",
+      "actor": "super.admin@car.da.gov.ph",
+      "actor_role": "SUPER_ADMIN",
+      "action_type": "ACCESS_RESTRICTED",
+      "target_user": "tester123@gmail.com",
+      "severity": "INFO",
+      "details": "Super Admin (super.admin@car.da.gov.ph) updated permissions for tester (tester123@gmail.com): Role: officer -> officer, Status: active -> active, Allowed Modules: [mod-general], Powers: [activities:true, budget:true, import:true, claims:true, delete_prog:true, edit_prog:true]."
+    },
     {
       "id": "audit-1791963793201",
       "timestamp": "2026-10-14 07:43:13",
