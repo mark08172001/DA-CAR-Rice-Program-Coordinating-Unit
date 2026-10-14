@@ -179,6 +179,13 @@ export default function ActivityCalendar({
     };
     window.addEventListener('da_permissions_updated', handlePermUpdated);
 
+    const handleStorage = (e: StorageEvent) => {
+      if (e.key === 'da_permissions_ts') {
+        fetchAccountData();
+      }
+    };
+    window.addEventListener('storage', handleStorage);
+
     const { data: { subscription } } = supabase.auth.onAuthStateChange(async (_event, session) => {
       const u = session?.user ?? null;
       setCurrentUser(u);
@@ -189,16 +196,16 @@ export default function ActivityCalendar({
           .eq('id', u.id)
           .single();
         if (prof) setUserProfile(prof);
-        fetchAccountData();
       } else {
         setUserProfile(null);
-        setCurrentUserAccount(null);
       }
+      fetchAccountData();
     });
 
     return () => {
       subscription.unsubscribe();
       window.removeEventListener('da_permissions_updated', handlePermUpdated);
+      window.removeEventListener('storage', handleStorage);
     };
   }, []);
 
@@ -439,9 +446,14 @@ export default function ActivityCalendar({
       return;
     }
     try {
-      const { error } = await supabase.from('regional_activities').delete().eq('id', id);
-      if (error) {
-        alert('Could not delete activity: ' + error.message);
+      const res = await fetch('/api/activities', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        alert(data.error || 'Could not delete activity.');
         return;
       }
       setActivities((prev) => prev.filter((a) => a.id !== id));
@@ -476,46 +488,44 @@ export default function ActivityCalendar({
 
     try {
       if (formMode === 'create') {
-        const { data, error } = await supabase
-          .from('regional_activities')
-          .insert({
-            ...payload,
-            created_by: currentUser?.id ?? null,
-          })
-          .select()
-          .single();
+        const res = await fetch('/api/activities', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        const data = await res.json();
 
-        if (error) {
-          setFormError(error.message);
+        if (!res.ok) {
+          setFormError(data.error || 'Error saving regional activity.');
           setFormSubmitting(false);
           return;
         }
 
-        if (data) {
+        if (data.activity) {
           const saved = {
-            ...(data as RegionalActivity),
-            status: computeActivityStatus((data as any).start_date, (data as any).end_date),
+            ...(data.activity as RegionalActivity),
+            status: computeActivityStatus(data.activity.start_date, data.activity.end_date),
           };
           setActivities((prev) => [saved, ...prev]);
         }
       } else {
-        const { data, error } = await supabase
-          .from('regional_activities')
-          .update(payload)
-          .eq('id', formId)
-          .select()
-          .single();
+        const res = await fetch('/api/activities', {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id: formId, ...payload }),
+        });
+        const data = await res.json();
 
-        if (error) {
-          setFormError(error.message);
+        if (!res.ok) {
+          setFormError(data.error || 'Error updating regional activity.');
           setFormSubmitting(false);
           return;
         }
 
-        if (data) {
+        if (data.activity) {
           const saved = {
-            ...(data as RegionalActivity),
-            status: computeActivityStatus((data as any).start_date, (data as any).end_date),
+            ...(data.activity as RegionalActivity),
+            status: computeActivityStatus(data.activity.start_date, data.activity.end_date),
           };
           setActivities((prev) => prev.map((a) => (a.id === formId ? saved : a)));
         }
@@ -530,18 +540,20 @@ export default function ActivityCalendar({
     }
   };
 
+  const effectiveUser = currentUser || currentUserAccount;
   const isSuspended = currentUserAccount?.status === 'suspended';
   const isSuperAdmin =
     currentUserAccount?.role === 'super_admin' ||
-    currentUser?.email === 'super.admin@car.da.gov.ph';
+    currentUser?.email === 'super.admin@car.da.gov.ph' ||
+    currentUserAccount?.email === 'super.admin@car.da.gov.ph';
 
   // Permission check: if can_add_activities is explicitly false, power is removed
   const hasAddActivityPower = currentUserAccount?.permissions
     ? currentUserAccount.permissions.can_add_activities !== false
-    : true;
+    : (isSuperAdmin ? true : false);
 
-  const canAlter = Boolean(currentUser) && !isSuspended && (isSuperAdmin || hasAddActivityPower);
-  const isExplicitlyRevoked = Boolean(currentUser) && !isSuperAdmin && (!hasAddActivityPower || isSuspended);
+  const canAlter = Boolean(effectiveUser) && !isSuspended && (isSuperAdmin || hasAddActivityPower);
+  const isExplicitlyRevoked = Boolean(effectiveUser) && !isSuperAdmin && (!hasAddActivityPower || isSuspended);
 
   return (
     <section className="section" id="event-calendar" aria-label="Regional Activities and Event Calendar">

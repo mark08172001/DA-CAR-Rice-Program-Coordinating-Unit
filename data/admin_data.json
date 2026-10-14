@@ -13,10 +13,10 @@
         "mod-beneficiary",
         "mod-finance"
       ],
-      "last_sign_in_at": "2026-10-14 02:34:05",
-      "login_count": 111,
+      "last_sign_in_at": "2026-10-14 07:42:58",
+      "login_count": 123,
       "created_at": "2026-09-01T08:00:00Z",
-      "updated_at": "2026-10-14T02:34:05.947Z",
+      "updated_at": "2026-10-14T07:42:58.493Z",
       "notes": "Super Admin clearance. Unrestricted system-wide privileges."
     },
     {
@@ -51,14 +51,13 @@
       "allowed_modules": [
         "mod-general",
         "mod-rice",
-        "mod-beneficiary",
         "mod-finance"
       ],
       "last_sign_in_at": null,
       "login_count": 0,
       "created_at": "2026-10-12T01:45:33.928Z",
-      "updated_at": "2026-10-14T01:10:45.029Z",
-      "notes": "Super Admin approved profile on 10/12/2026. Access granted.",
+      "updated_at": "2026-10-14T07:43:13.201Z",
+      "notes": "Testing permissions update by Super Admin",
       "permissions": {
         "can_add_activities": true,
         "can_edit_budget": true,
@@ -74,6 +73,138 @@
     "jangmanwol0117@gmail.com"
   ],
   "login_logs": [
+    {
+      "id": "login-1791963778493",
+      "timestamp": "2026-10-14 07:42:58",
+      "email": "super.admin@car.da.gov.ph",
+      "full_name": "Regional Executive Director (Super Admin)",
+      "role": "super_admin",
+      "status": "SUCCESS",
+      "ip_address": "120.28.184.45 (Baguio RFO Node)",
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36 Edg/155.0.0.0",
+      "location": "Baguio City, Cordillera Administrative Region"
+    },
+    {
+      "id": "login-1791962568379",
+      "timestamp": "2026-10-14 07:22:48",
+      "email": "super.admin@car.da.gov.ph",
+      "full_name": "Regional Executive Director (Super Admin)",
+      "role": "super_admin",
+      "status": "SUCCESS",
+      "ip_address": "120.28.184.45 (Baguio RFO Node)",
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36 Edg/155.0.0.0",
+      "location": "Baguio City, Cordillera Administrative Region"
+    },
+    {
+      "id": "login-1791962501428",
+      "timestamp": "2026-10-14 07:21:41",
+      "email": "super.admin@car.da.gov.ph",
+      "full_name": "Regional Executive Director (Super Admin)",
+      "role": "super_admin",
+      "status": "SUCCESS",
+      "ip_address": "120.28.184.45 (Baguio RFO Node)",
+      "user_agent": "Department Desktop Browser",
+      "location": "Baguio City, Cordillera Administrative Region"
+    },
+    {
+      "id": "login-1791962441122",
+      "timestamp": "2026-10-14 07:20:41",
+      "email": "super.admin@car.da.gov.ph",
+      "full_name": "Regional Executive Director (Super Admin)",
+      "role": "super_admin",
+      "status": "SUCCESS",
+      "ip_address": "120.28.184.45 (Baguio RFO Node)",
+      "user_agent": "Department Desktop Browser",
+      "location": "Baguio City, Cordillera Administrative Region"
+    },
+    {
+      "id": "login-1791962430795",
+      "timestamp": "2026-10-14 07:20:30",
+      "email": "super.admin@car.da.gov.ph",
+      "full_name": "Regional Executive Director (Super Admin)",
+      "role": "super_admin",
+      "status": "SUCCESS",
+      "ip_address": "120.28.184.45 (Baguio RFO Node)",
+      "user_agent": "Department Desktop Browser",
+      "location": "Baguio City, Cordillera Administrative Region"
+    },
+    {
+      "id": "login-1791962390440",
+      "timestamp": "2026-10-14 07:19:50",
+      "email": "super.admin@car.da.gov.ph",
+      "full_name": "Regional Executive Director (Super Admin)",
+      "role": "super_admin",
+      "status": "SUCCESS",
+      "ip_address": "120.28.184.45 (Baguio RFO Node)",
+      "user_agent": "Department Desktop Browser",
+      "location": "Baguio City, Cordillera Administrative Region"
+    },
+    {
+      "id": "login-1791962252121",
+      "timestamp": "2026-10-14 07:17:32",
+      "email": "super.admin@car.da.gov.ph",
+      "full_name": "Regional Executive Director (Super Admin)",
+      "role": "super_admin",
+      "status": "SUCCESS",
+      "ip_address": "120.28.184.45 (Baguio RFO Node)",
+      "user_agent": "Department Desktop Browser",
+      "location": "Baguio City, Cordillera Administrative Region"
+    },
+    {
+      "id": "login-1791962243932",
+      "timestamp": "2026-10-14 07:17:23",
+      "email": "super.admin@car.da.gov.ph",
+      "full_name": "Regional Executive Director (Super Admin)",
+      "role": "super_admin",
+      "status": "SUCCESS",
+      "ip_address": "120.28.184.45 (Baguio RFO Node)",
+      "user_agent": "Department Desktop Browser",
+      "location": "Baguio City, Cordillera Administrative Region"
+    },
+    {
+      "id": "login-1791962208068",
+      "timestamp": "2026-10-14 07:16:48",
+      "email": "super.admin@car.da.gov.ph",
+      "full_name": "Regional Executive Director (Super Admin)",
+      "role": "super_admin",
+      "status": "SUCCESS",
+      "ip_address": "120.28.184.45 (Baguio RFO Node)",
+      "user_agent": "Department Desktop Browser",
+      "location": "Baguio City, Cordillera Administrative Region"
+    },
+    {
+      "id": "login-1791962197660",
+      "timestamp": "2026-10-14 07:16:37",
+      "email": "super.admin@car.da.gov.ph",
+      "full_name": "Regional Executive Director (Super Admin)",
+      "role": "super_admin",
+      "status": "SUCCESS",
+      "ip_address": "120.28.184.45 (Baguio RFO Node)",
+      "user_agent": "Department Desktop Browser",
+      "location": "Baguio City, Cordillera Administrative Region"
+    },
+    {
+      "id": "login-1791960698802",
+      "timestamp": "2026-10-14 06:51:38",
+      "email": "super.admin@car.da.gov.ph",
+      "full_name": "Regional Executive Director (Super Admin)",
+      "role": "super_admin",
+      "status": "SUCCESS",
+      "ip_address": "120.28.184.45 (Baguio RFO Node)",
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36 Edg/155.0.0.0",
+      "location": "Baguio City, Cordillera Administrative Region"
+    },
+    {
+      "id": "login-1791960198448",
+      "timestamp": "2026-10-14 06:43:18",
+      "email": "super.admin@car.da.gov.ph",
+      "full_name": "Regional Executive Director (Super Admin)",
+      "role": "super_admin",
+      "status": "SUCCESS",
+      "ip_address": "120.28.184.45 (Baguio RFO Node)",
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36 Edg/155.0.0.0",
+      "location": "Baguio City, Cordillera Administrative Region"
+    },
     {
       "id": "login-1791945245947",
       "timestamp": "2026-10-14 02:34:05",
@@ -923,6 +1054,86 @@
     }
   ],
   "audit_logs": [
+    {
+      "id": "audit-1791963793201",
+      "timestamp": "2026-10-14 07:43:13",
+      "actor": "super.admin@car.da.gov.ph",
+      "actor_role": "SUPER_ADMIN",
+      "action_type": "ACCESS_RESTRICTED",
+      "target_user": "tester123@gmail.com",
+      "severity": "INFO",
+      "details": "Super Admin (super.admin@car.da.gov.ph) updated permissions for tester (tester123@gmail.com): Role: officer -> officer, Status: active -> active, Allowed Modules: [mod-general, mod-rice, mod-finance], Powers: [activities:true, budget:true, import:true, claims:true, delete_prog:true, edit_prog:true]."
+    },
+    {
+      "id": "audit-1791962583251",
+      "timestamp": "2026-10-14 07:23:03",
+      "actor": "super.admin@car.da.gov.ph",
+      "actor_role": "SUPER_ADMIN",
+      "action_type": "ACCESS_RESTRICTED",
+      "target_user": "tester123@gmail.com",
+      "severity": "INFO",
+      "details": "Super Admin (super.admin@car.da.gov.ph) updated permissions for tester (tester123@gmail.com): Role: officer -> officer, Status: active -> active, Allowed Modules: [mod-general], Powers: [activities:false, budget:false, import:false, claims:false, delete_prog:false, edit_prog:false]."
+    },
+    {
+      "id": "audit-1791962432346",
+      "timestamp": "2026-10-14 07:20:32",
+      "actor": "super.admin@car.da.gov.ph",
+      "actor_role": "SUPER_ADMIN",
+      "action_type": "ACCESS_RESTRICTED",
+      "target_user": "tester123@gmail.com",
+      "severity": "INFO",
+      "details": "Super Admin (super.admin@car.da.gov.ph) updated permissions for tester (tester123@gmail.com): Role: officer -> officer, Status: active -> active, Allowed Modules: [mod-general, mod-rice, mod-beneficiary], Powers: [activities:true, budget:false, import:true, claims:true, delete_prog:false, edit_prog:true]."
+    },
+    {
+      "id": "audit-1791962392193",
+      "timestamp": "2026-10-14 07:19:52",
+      "actor": "super.admin@car.da.gov.ph",
+      "actor_role": "SUPER_ADMIN",
+      "action_type": "ACCESS_RESTRICTED",
+      "target_user": "tester123@gmail.com",
+      "severity": "INFO",
+      "details": "Super Admin (super.admin@car.da.gov.ph) updated permissions for tester (tester123@gmail.com): Role: officer -> officer, Status: active -> active, Allowed Modules: [mod-general, mod-rice, mod-beneficiary], Powers: [activities:true, budget:false, import:true, claims:true, delete_prog:false, edit_prog:true]."
+    },
+    {
+      "id": "audit-1791962245619",
+      "timestamp": "2026-10-14 07:17:25",
+      "actor": "super.admin@car.da.gov.ph",
+      "actor_role": "SUPER_ADMIN",
+      "action_type": "ACCESS_RESTRICTED",
+      "target_user": "tester123@gmail.com",
+      "severity": "INFO",
+      "details": "Super Admin (super.admin@car.da.gov.ph) updated permissions for tester (tester123@gmail.com): Role: officer -> officer, Status: active -> active, Allowed Modules: [mod-general, mod-rice, mod-beneficiary], Powers: [activities:true, budget:false, import:true, claims:true, delete_prog:false, edit_prog:true]."
+    },
+    {
+      "id": "audit-1791962200162",
+      "timestamp": "2026-10-14 07:16:40",
+      "actor": "super.admin@car.da.gov.ph",
+      "actor_role": "SUPER_ADMIN",
+      "action_type": "ACCESS_RESTRICTED",
+      "target_user": "tester123@gmail.com",
+      "severity": "INFO",
+      "details": "Super Admin (super.admin@car.da.gov.ph) updated permissions for tester (tester123@gmail.com): Role: officer -> officer, Status: active -> active, Allowed Modules: [mod-general, mod-rice, mod-beneficiary], Powers: [activities:true, budget:false, import:true, claims:true, delete_prog:false, edit_prog:true]."
+    },
+    {
+      "id": "audit-1791960732126",
+      "timestamp": "2026-10-14 06:52:12",
+      "actor": "super.admin@car.da.gov.ph",
+      "actor_role": "SUPER_ADMIN",
+      "action_type": "ACCESS_RESTRICTED",
+      "target_user": "tester123@gmail.com",
+      "severity": "INFO",
+      "details": "Super Admin (super.admin@car.da.gov.ph) updated permissions for tester (tester123@gmail.com): Role: officer -> officer, Status: active -> active, Allowed Modules: [mod-general], Calendar Add Power: REVOKED, Programs Delete Power: REVOKED."
+    },
+    {
+      "id": "audit-1791960222644",
+      "timestamp": "2026-10-14 06:43:42",
+      "actor": "super.admin@car.da.gov.ph",
+      "actor_role": "SUPER_ADMIN",
+      "action_type": "ACCESS_RESTRICTED",
+      "target_user": "tester123@gmail.com",
+      "severity": "INFO",
+      "details": "Super Admin (super.admin@car.da.gov.ph) updated permissions for tester (tester123@gmail.com): Role: officer -> officer, Status: active -> active, Allowed Modules: [mod-general], Calendar Add Power: ALLOWED, Programs Delete Power: ALLOWED."
+    },
     {
       "id": "audit-1791940245029",
       "timestamp": "2026-10-14 01:10:45",

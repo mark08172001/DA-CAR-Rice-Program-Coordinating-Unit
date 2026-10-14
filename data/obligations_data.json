@@ -1,6 +1,6 @@
 [
   {
-    "id": "21f4142b-a96c-4c1a-8891-73b83204939f",
+    "id": "8ff573ba-f7c3-45d3-be23-682a225abcff",
     "sheet_name": "Main Registry",
     "row_order": 1,
     "fund": "1101101",
@@ -18,11 +18,11 @@
     "unallocated_allotment": 0,
     "disbursement": 99250,
     "unpaid": 750,
-    "created_at": "2026-10-14T06:14:33.321Z",
-    "updated_at": "2026-10-14T06:14:33.381Z"
+    "created_at": "2026-10-14T07:44:25.307Z",
+    "updated_at": "2026-10-14T07:44:25.353Z"
   },
   {
-    "id": "eef6a650-95e6-4680-8181-3288af9fa670",
+    "id": "264b77fc-e93b-4c00-9f05-9e2fda9eae25",
     "sheet_name": "Main Registry",
     "row_order": 2,
     "fund": "1101101",
@@ -40,11 +40,11 @@
     "unallocated_allotment": 0,
     "disbursement": 100000,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.323Z",
-    "updated_at": "2026-10-14T06:14:33.381Z"
+    "created_at": "2026-10-14T07:44:25.309Z",
+    "updated_at": "2026-10-14T07:44:25.353Z"
   },
   {
-    "id": "246c77bd-c607-49a2-8c10-4dbde9dd8a50",
+    "id": "8afc8655-916c-41c6-a4f7-bbb2447d2e92",
     "sheet_name": "Main Registry",
     "row_order": 3,
     "fund": "1101101",
@@ -62,11 +62,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.326Z",
-    "updated_at": "2026-10-14T06:14:33.381Z"
+    "created_at": "2026-10-14T07:44:25.311Z",
+    "updated_at": "2026-10-14T07:44:25.353Z"
   },
   {
-    "id": "bb87e7e1-7563-4c59-a18d-82a5eaefaed6",
+    "id": "2ccfa57a-d8f7-4f49-a9f9-4ccc856503f0",
     "sheet_name": "Main Registry",
     "row_order": 4,
     "fund": "1101101",
@@ -84,11 +84,11 @@
     "unallocated_allotment": 0,
     "disbursement": 199250,
     "unpaid": 750,
-    "created_at": "2026-10-14T06:14:33.328Z",
-    "updated_at": "2026-10-14T06:14:33.381Z"
+    "created_at": "2026-10-14T07:44:25.313Z",
+    "updated_at": "2026-10-14T07:44:25.353Z"
   },
   {
-    "id": "6aaf3686-0851-4b7b-b48e-453d4684b35e",
+    "id": "d2887932-aed0-44be-ac0c-b367c0e9d715",
     "sheet_name": "Main Registry",
     "row_order": 5,
     "fund": "1101101",
@@ -106,11 +106,11 @@
     "unallocated_allotment": 0,
     "disbursement": 100000,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.330Z",
-    "updated_at": "2026-10-14T06:14:33.381Z"
+    "created_at": "2026-10-14T07:44:25.315Z",
+    "updated_at": "2026-10-14T07:44:25.353Z"
   },
   {
-    "id": "b6fc6c2d-5c61-44a3-97d8-6c4432dd332f",
+    "id": "57e74482-7f28-4fc1-8038-e1327780b878",
     "sheet_name": "Main Registry",
     "row_order": 6,
     "fund": "1101101",
@@ -128,11 +128,11 @@
     "unallocated_allotment": 0,
     "disbursement": 138729.6,
     "unpaid": 11270.4,
-    "created_at": "2026-10-14T06:14:33.332Z",
-    "updated_at": "2026-10-14T06:14:33.382Z"
+    "created_at": "2026-10-14T07:44:25.317Z",
+    "updated_at": "2026-10-14T07:44:25.353Z"
   },
   {
-    "id": "ea89c4ce-22b0-4328-a7bc-5663af2c6450",
+    "id": "3e838b05-2d19-458e-bb09-b0e1489ebfcb",
     "sheet_name": "Main Registry",
     "row_order": 7,
     "fund": "1101101",
@@ -150,11 +150,11 @@
     "unallocated_allotment": 0,
     "disbursement": 100000,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.334Z",
-    "updated_at": "2026-10-14T06:14:33.382Z"
+    "created_at": "2026-10-14T07:44:25.319Z",
+    "updated_at": "2026-10-14T07:44:25.353Z"
   },
   {
-    "id": "6d21476a-9fde-4077-be17-ef8b34719d3c",
+    "id": "cb3a6a8b-f800-47f3-83a2-2b51c4edf0c1",
     "sheet_name": "Main Registry",
     "row_order": 8,
     "fund": "1101101",
@@ -172,11 +172,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.336Z",
-    "updated_at": "2026-10-14T06:14:33.382Z"
+    "created_at": "2026-10-14T07:44:25.321Z",
+    "updated_at": "2026-10-14T07:44:25.353Z"
   },
   {
-    "id": "470812ff-e335-4135-ab78-7257af0bd1f3",
+    "id": "2a0cd50a-b64f-468d-bef7-c254e839e854",
     "sheet_name": "Main Registry",
     "row_order": 9,
     "fund": "1101101",
@@ -194,11 +194,11 @@
     "unallocated_allotment": 0,
     "disbursement": 338729.6,
     "unpaid": 11270.4,
-    "created_at": "2026-10-14T06:14:33.339Z",
-    "updated_at": "2026-10-14T06:14:33.382Z"
+    "created_at": "2026-10-14T07:44:25.323Z",
+    "updated_at": "2026-10-14T07:44:25.353Z"
   },
   {
-    "id": "0574f3a8-43c9-4e88-a687-60b2c222b394",
+    "id": "d4fd8bc8-0c18-4547-94e6-c6ce524f68c0",
     "sheet_name": "Main Registry",
     "row_order": 10,
     "fund": "1101101",
@@ -216,11 +216,11 @@
     "unallocated_allotment": 2910.5,
     "disbursement": 97089.5,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.341Z",
-    "updated_at": "2026-10-14T06:14:33.382Z"
+    "created_at": "2026-10-14T07:44:25.326Z",
+    "updated_at": "2026-10-14T07:44:25.353Z"
   },
   {
-    "id": "1faf96f4-807e-45fe-b8bc-0c1bc57ac2bf",
+    "id": "93c91bc3-e21f-4bf2-92f8-40f3b27b5243",
     "sheet_name": "Main Registry",
     "row_order": 11,
     "fund": "1101101",
@@ -238,11 +238,11 @@
     "unallocated_allotment": 0,
     "disbursement": 150430.1,
     "unpaid": 149569.9,
-    "created_at": "2026-10-14T06:14:33.343Z",
-    "updated_at": "2026-10-14T06:14:33.382Z"
+    "created_at": "2026-10-14T07:44:25.328Z",
+    "updated_at": "2026-10-14T07:44:25.353Z"
   },
   {
-    "id": "4ae84f3f-63b6-4325-aea4-05018b36252b",
+    "id": "cf632409-abb2-4ae9-a5f3-dda387340ffb",
     "sheet_name": "Main Registry",
     "row_order": 12,
     "fund": "1101101",
@@ -260,11 +260,11 @@
     "unallocated_allotment": 0,
     "disbursement": 100000,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.345Z",
-    "updated_at": "2026-10-14T06:14:33.382Z"
+    "created_at": "2026-10-14T07:44:25.330Z",
+    "updated_at": "2026-10-14T07:44:25.353Z"
   },
   {
-    "id": "e276bd11-d9c4-49c1-bb2f-060dc0ac953d",
+    "id": "2feadc5c-dbd0-4d3a-affa-6ea53bf2d3bb",
     "sheet_name": "Main Registry",
     "row_order": 13,
     "fund": "1101101",
@@ -282,11 +282,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.347Z",
-    "updated_at": "2026-10-14T06:14:33.382Z"
+    "created_at": "2026-10-14T07:44:25.332Z",
+    "updated_at": "2026-10-14T07:44:25.353Z"
   },
   {
-    "id": "f1a9f5c6-294f-4dc2-9b82-ea5318ad219e",
+    "id": "66eb3266-3436-4402-8438-1dbb503a3d31",
     "sheet_name": "Main Registry",
     "row_order": 14,
     "fund": "1101101",
@@ -304,11 +304,11 @@
     "unallocated_allotment": 2910.5,
     "disbursement": 347519.6,
     "unpaid": 149569.9,
-    "created_at": "2026-10-14T06:14:33.349Z",
-    "updated_at": "2026-10-14T06:14:33.382Z"
+    "created_at": "2026-10-14T07:44:25.334Z",
+    "updated_at": "2026-10-14T07:44:25.353Z"
   },
   {
-    "id": "c06667ab-9172-4d63-9bd0-fa0e8d70d0f2",
+    "id": "e8d5b151-034b-43f2-9c4e-3cd183a1d4a2",
     "sheet_name": "Main Registry",
     "row_order": 15,
     "fund": "1101101",
@@ -326,11 +326,11 @@
     "unallocated_allotment": 0,
     "disbursement": 100000,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.351Z",
-    "updated_at": "2026-10-14T06:14:33.382Z"
+    "created_at": "2026-10-14T07:44:25.336Z",
+    "updated_at": "2026-10-14T07:44:25.353Z"
   },
   {
-    "id": "5aab5df4-db63-48d7-8bad-636c3fb422b9",
+    "id": "6dacac66-6963-4179-b058-ff55db7eae28",
     "sheet_name": "Main Registry",
     "row_order": 16,
     "fund": "1101101",
@@ -348,11 +348,11 @@
     "unallocated_allotment": 0,
     "disbursement": 150000,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.354Z",
-    "updated_at": "2026-10-14T06:14:33.382Z"
+    "created_at": "2026-10-14T07:44:25.338Z",
+    "updated_at": "2026-10-14T07:44:25.353Z"
   },
   {
-    "id": "c4a928df-8a6a-4cb2-bf8c-b8c78b18f99b",
+    "id": "2e804b04-a3c7-4c86-85dd-3c4f13587eb4",
     "sheet_name": "Main Registry",
     "row_order": 17,
     "fund": "1101101",
@@ -370,11 +370,11 @@
     "unallocated_allotment": 0,
     "disbursement": 100000,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.356Z",
-    "updated_at": "2026-10-14T06:14:33.382Z"
+    "created_at": "2026-10-14T07:44:25.340Z",
+    "updated_at": "2026-10-14T07:44:25.353Z"
   },
   {
-    "id": "23776936-3be5-4114-bd96-48b29c9a23d7",
+    "id": "58d12830-458d-40ea-882d-d3ac87f49f0d",
     "sheet_name": "Main Registry",
     "row_order": 18,
     "fund": "1101101",
@@ -392,11 +392,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.358Z",
-    "updated_at": "2026-10-14T06:14:33.382Z"
+    "created_at": "2026-10-14T07:44:25.342Z",
+    "updated_at": "2026-10-14T07:44:25.353Z"
   },
   {
-    "id": "9c8e3b3c-2dc9-46e6-9cce-880809705477",
+    "id": "67f5f35c-3f29-4a0e-aa41-a3271ed3c7fb",
     "sheet_name": "Main Registry",
     "row_order": 19,
     "fund": "1101101",
@@ -414,11 +414,11 @@
     "unallocated_allotment": 0,
     "disbursement": 350000,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.360Z",
-    "updated_at": "2026-10-14T06:14:33.382Z"
+    "created_at": "2026-10-14T07:44:25.345Z",
+    "updated_at": "2026-10-14T07:44:25.353Z"
   },
   {
-    "id": "13ed5930-0671-43e7-8520-f914c99d11fe",
+    "id": "a4c14fdd-4615-48de-b262-7491d65cf5f1",
     "sheet_name": "Main Registry",
     "row_order": 20,
     "fund": "1101101",
@@ -436,11 +436,11 @@
     "unallocated_allotment": 0,
     "disbursement": 100000,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.362Z",
-    "updated_at": "2026-10-14T06:14:33.382Z"
+    "created_at": "2026-10-14T07:44:25.347Z",
+    "updated_at": "2026-10-14T07:44:25.353Z"
   },
   {
-    "id": "da4d10f3-b27e-4a30-acff-cb3cd3ce5ba7",
+    "id": "e6a76ed0-a2cf-40ec-b8d8-4098c683abd4",
     "sheet_name": "Main Registry",
     "row_order": 21,
     "fund": "1101101",
@@ -458,11 +458,11 @@
     "unallocated_allotment": 0,
     "disbursement": 148615.92,
     "unpaid": 1384.08,
-    "created_at": "2026-10-14T06:14:33.364Z",
-    "updated_at": "2026-10-14T06:14:33.382Z"
+    "created_at": "2026-10-14T07:44:25.349Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "2b731d87-f34a-40f3-b888-5143fde0d78a",
+    "id": "6c7078fb-3c04-4743-b33d-a71781a269f0",
     "sheet_name": "Main Registry",
     "row_order": 22,
     "fund": "1101101",
@@ -480,11 +480,11 @@
     "unallocated_allotment": 0,
     "disbursement": 100000,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.366Z",
-    "updated_at": "2026-10-14T06:14:33.382Z"
+    "created_at": "2026-10-14T07:44:25.351Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "28982cd3-a87c-4893-979c-72c78a1310d9",
+    "id": "46284cd7-9507-47b9-97b3-10915f1a4484",
     "sheet_name": "Main Registry",
     "row_order": 23,
     "fund": "1101101",
@@ -502,11 +502,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.369Z",
-    "updated_at": "2026-10-14T06:14:33.382Z"
+    "created_at": "2026-10-14T07:44:25.353Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "f2c706a1-d244-4009-a513-6f7ca5e5fcee",
+    "id": "1bc3efd0-ad19-40fb-8bbc-95cfa65b69f5",
     "sheet_name": "Main Registry",
     "row_order": 24,
     "fund": "1101101",
@@ -524,11 +524,11 @@
     "unallocated_allotment": 0,
     "disbursement": 348615.92,
     "unpaid": 1384.08,
-    "created_at": "2026-10-14T06:14:33.371Z",
-    "updated_at": "2026-10-14T06:14:33.382Z"
+    "created_at": "2026-10-14T07:44:25.355Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "f1011e0b-83fe-4be8-8014-36db36a70f4b",
+    "id": "29228a17-6a85-44be-a852-3d0c697b50e0",
     "sheet_name": "Main Registry",
     "row_order": 25,
     "fund": "1101101",
@@ -546,11 +546,11 @@
     "unallocated_allotment": 0,
     "disbursement": 100000,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.373Z",
-    "updated_at": "2026-10-14T06:14:33.382Z"
+    "created_at": "2026-10-14T07:44:25.357Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "e7ebf7a1-e445-4ebf-acb0-5b938c30f454",
+    "id": "7bd566ea-047a-473f-967f-d7bbc28bacb1",
     "sheet_name": "Main Registry",
     "row_order": 26,
     "fund": "1101101",
@@ -568,11 +568,11 @@
     "unallocated_allotment": 0,
     "disbursement": 19321.91,
     "unpaid": 80678.09,
-    "created_at": "2026-10-14T06:14:33.375Z",
-    "updated_at": "2026-10-14T06:14:33.382Z"
+    "created_at": "2026-10-14T07:44:25.359Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "6fbdff2f-4852-44cd-8a77-5c271297ad21",
+    "id": "25dd0a3d-2300-4f02-82aa-68323515fbdf",
     "sheet_name": "Main Registry",
     "row_order": 27,
     "fund": "1101101",
@@ -590,11 +590,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.377Z",
-    "updated_at": "2026-10-14T06:14:33.382Z"
+    "created_at": "2026-10-14T07:44:25.361Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "523a43ea-c21a-4b05-9865-f370410fc73a",
+    "id": "f7776d11-5eb9-470a-9758-77fcd7d21f82",
     "sheet_name": "Main Registry",
     "row_order": 28,
     "fund": "1101101",
@@ -612,11 +612,11 @@
     "unallocated_allotment": 0,
     "disbursement": 119321.91,
     "unpaid": 80678.09,
-    "created_at": "2026-10-14T06:14:33.379Z",
-    "updated_at": "2026-10-14T06:14:33.382Z"
+    "created_at": "2026-10-14T07:44:25.364Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "5995d1a2-3fe9-4cbd-994d-ce70ef39ca79",
+    "id": "1d638bc0-d721-40c2-a18c-4cf4ecdbd0e2",
     "sheet_name": "Main Registry",
     "row_order": 29,
     "fund": "1101101",
@@ -634,11 +634,11 @@
     "unallocated_allotment": -2254968.13,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.382Z",
-    "updated_at": "2026-10-14T06:14:33.382Z"
+    "created_at": "2026-10-14T07:44:25.366Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "494749c2-18fe-4175-831b-183da5f4c646",
+    "id": "565f674f-0529-40b1-98a9-f03f19be257c",
     "sheet_name": "Main Registry",
     "row_order": 30,
     "fund": "1101101",
@@ -656,11 +656,11 @@
     "unallocated_allotment": -2254968.13,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.384Z",
-    "updated_at": "2026-10-14T06:14:33.382Z"
+    "created_at": "2026-10-14T07:44:25.368Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "630a9f50-56d6-4669-b6cb-251ffda8b329",
+    "id": "668ad6a6-a1ce-40a7-9b26-b9b1fa70ecbc",
     "sheet_name": "Main Registry",
     "row_order": 31,
     "fund": "1101101",
@@ -678,11 +678,11 @@
     "unallocated_allotment": 620,
     "disbursement": 79380,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.386Z",
-    "updated_at": "2026-10-14T06:14:33.382Z"
+    "created_at": "2026-10-14T07:44:25.370Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "1672cb8b-46bc-4a1d-af74-94f1f47d2b71",
+    "id": "c3c127d7-71e7-427d-9660-4f0bc9bfd0b9",
     "sheet_name": "Main Registry",
     "row_order": 32,
     "fund": "1101101",
@@ -700,11 +700,11 @@
     "unallocated_allotment": -136500,
     "disbursement": 136500,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.388Z",
-    "updated_at": "2026-10-14T06:14:33.382Z"
+    "created_at": "2026-10-14T07:44:25.372Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "383e37e1-8525-435f-beff-c61965af9d86",
+    "id": "db2bde06-6146-4cc2-a788-68d933358864",
     "sheet_name": "Main Registry",
     "row_order": 33,
     "fund": "1101101",
@@ -722,11 +722,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.390Z",
-    "updated_at": "2026-10-14T06:14:33.382Z"
+    "created_at": "2026-10-14T07:44:25.374Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "c9575da1-6e39-4895-95f7-a80d380ff970",
+    "id": "3c520c31-eae2-45a8-b212-d29c374a0a73",
     "sheet_name": "Main Registry",
     "row_order": 34,
     "fund": "1101101",
@@ -744,11 +744,11 @@
     "unallocated_allotment": 100000,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.392Z",
-    "updated_at": "2026-10-14T06:14:33.382Z"
+    "created_at": "2026-10-14T07:44:25.376Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "df76392f-b3e7-4cfd-99e4-6f41491c8aa2",
+    "id": "4667c8b4-584e-46cd-b999-5dbcbaeb25ff",
     "sheet_name": "Main Registry",
     "row_order": 35,
     "fund": "1101101",
@@ -766,11 +766,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 200000,
-    "created_at": "2026-10-14T06:14:33.394Z",
-    "updated_at": "2026-10-14T06:14:33.382Z"
+    "created_at": "2026-10-14T07:44:25.378Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "ca97cc77-38f7-4cce-bb4e-08cf3709cc02",
+    "id": "0d05cbff-2799-40e8-8f4f-d9e154d72d9d",
     "sheet_name": "Main Registry",
     "row_order": 36,
     "fund": "1101101",
@@ -788,11 +788,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.397Z",
-    "updated_at": "2026-10-14T06:14:33.382Z"
+    "created_at": "2026-10-14T07:44:25.380Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "773b79c6-ef32-4733-9348-bce5b88fa756",
+    "id": "98d2935b-9a8d-464b-8c58-d385d3aeac25",
     "sheet_name": "Main Registry",
     "row_order": 37,
     "fund": "1101101",
@@ -810,11 +810,11 @@
     "unallocated_allotment": 155798,
     "disbursement": 27702,
     "unpaid": 16500,
-    "created_at": "2026-10-14T06:14:33.399Z",
-    "updated_at": "2026-10-14T06:14:33.382Z"
+    "created_at": "2026-10-14T07:44:25.382Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "d5e02329-ea08-4e7a-8942-bfc0c7d63e65",
+    "id": "094d12f9-6268-4fb2-b41c-fd1a480a2906",
     "sheet_name": "Main Registry",
     "row_order": 38,
     "fund": "1101101",
@@ -832,11 +832,11 @@
     "unallocated_allotment": 0,
     "disbursement": 2108727.47,
     "unpaid": 149272.53,
-    "created_at": "2026-10-14T06:14:33.401Z",
-    "updated_at": "2026-10-14T06:14:33.382Z"
+    "created_at": "2026-10-14T07:44:25.384Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "7d8538ad-9e1c-468f-ac56-fc553866d72e",
+    "id": "22427ef5-2f87-4da5-a7eb-83376c36e842",
     "sheet_name": "Main Registry",
     "row_order": 39,
     "fund": "1101101",
@@ -854,11 +854,11 @@
     "unallocated_allotment": 70526,
     "disbursement": 50580.75,
     "unpaid": 50580.75,
-    "created_at": "2026-10-14T06:14:33.403Z",
-    "updated_at": "2026-10-14T06:14:33.382Z"
+    "created_at": "2026-10-14T07:44:25.387Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "271f9128-d882-4e7d-a274-c7d81f26bb50",
+    "id": "00af03ae-f203-4545-8734-1c618421c671",
     "sheet_name": "Main Registry",
     "row_order": 40,
     "fund": "1101101",
@@ -876,11 +876,11 @@
     "unallocated_allotment": 10988.3,
     "disbursement": 76511.7,
     "unpaid": 12500,
-    "created_at": "2026-10-14T06:14:33.405Z",
-    "updated_at": "2026-10-14T06:14:33.382Z"
+    "created_at": "2026-10-14T07:44:25.389Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "bb76933a-ca7a-4fb2-af92-a5352368b88b",
+    "id": "93e97e6a-336a-407d-84f4-4cf61f89d299",
     "sheet_name": "Main Registry",
     "row_order": 41,
     "fund": "1101101",
@@ -898,11 +898,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 43000,
-    "created_at": "2026-10-14T06:14:33.407Z",
-    "updated_at": "2026-10-14T06:14:33.382Z"
+    "created_at": "2026-10-14T07:44:25.391Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "50b8e790-5d06-428d-b793-84ce50ba3f39",
+    "id": "d0cecb19-5a7f-4a4e-87c8-76b2aa88b0a9",
     "sheet_name": "Main Registry",
     "row_order": 42,
     "fund": "1101101",
@@ -920,11 +920,11 @@
     "unallocated_allotment": 118051,
     "disbursement": 0,
     "unpaid": 40000,
-    "created_at": "2026-10-14T06:14:33.409Z",
-    "updated_at": "2026-10-14T06:14:33.382Z"
+    "created_at": "2026-10-14T07:44:25.393Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "42ef2e6b-6e26-47f0-b0b4-98bb890731b5",
+    "id": "598f95e1-41c2-4a07-835f-3cf230d80122",
     "sheet_name": "Main Registry",
     "row_order": 43,
     "fund": "1101101",
@@ -942,11 +942,11 @@
     "unallocated_allotment": 100000,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.411Z",
-    "updated_at": "2026-10-14T06:14:33.382Z"
+    "created_at": "2026-10-14T07:44:25.395Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "156b6a39-8690-4822-b174-2dd317de20ba",
+    "id": "c67e4516-45e8-410c-941e-c14195051c35",
     "sheet_name": "Main Registry",
     "row_order": 44,
     "fund": "1101101",
@@ -964,11 +964,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.414Z",
-    "updated_at": "2026-10-14T06:14:33.382Z"
+    "created_at": "2026-10-14T07:44:25.397Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "e3959ad9-2956-402e-925f-edcbdc00468d",
+    "id": "ff8bc9ef-b5b4-4132-99b1-fc3901d4c3ff",
     "sheet_name": "Main Registry",
     "row_order": 45,
     "fund": "1101101",
@@ -986,11 +986,11 @@
     "unallocated_allotment": 419483.3,
     "disbursement": 2479401.92,
     "unpaid": 511853.28,
-    "created_at": "2026-10-14T06:14:33.416Z",
-    "updated_at": "2026-10-14T06:14:33.382Z"
+    "created_at": "2026-10-14T07:44:25.399Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "a0729a09-00b0-4bbd-92a4-9e0675c97806",
+    "id": "6131e8da-3dec-4220-b8cc-db59d96bd322",
     "sheet_name": "Main Registry",
     "row_order": 46,
     "fund": "1101101",
@@ -1008,11 +1008,11 @@
     "unallocated_allotment": 0,
     "disbursement": 97000,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.418Z",
-    "updated_at": "2026-10-14T06:14:33.382Z"
+    "created_at": "2026-10-14T07:44:25.401Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "b6eeff6a-49ed-40c1-a922-da45befd2339",
+    "id": "3e713f73-de2e-48a9-8e76-7f04a9f386e6",
     "sheet_name": "Main Registry",
     "row_order": 47,
     "fund": "1101101",
@@ -1030,11 +1030,11 @@
     "unallocated_allotment": 0,
     "disbursement": 250000,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.420Z",
-    "updated_at": "2026-10-14T06:14:33.382Z"
+    "created_at": "2026-10-14T07:44:25.403Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "37d8d687-c1a3-417c-8b8d-67e989ea58aa",
+    "id": "48f37c41-f9d7-40ca-81b7-b46c53a6c79c",
     "sheet_name": "Main Registry",
     "row_order": 48,
     "fund": "1101101",
@@ -1052,11 +1052,11 @@
     "unallocated_allotment": 0,
     "disbursement": 30000,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.422Z",
-    "updated_at": "2026-10-14T06:14:33.382Z"
+    "created_at": "2026-10-14T07:44:25.405Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "ccd8fcb7-3e86-49f5-8a48-7c17054fa838",
+    "id": "f5278ffa-0f9f-4b15-8e2c-67ff10743355",
     "sheet_name": "Main Registry",
     "row_order": 49,
     "fund": "1101101",
@@ -1074,11 +1074,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.424Z",
-    "updated_at": "2026-10-14T06:14:33.382Z"
+    "created_at": "2026-10-14T07:44:25.407Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "6b3f3cb2-f1c6-4103-9ac7-d257d9327f6a",
+    "id": "0ece1a78-8269-4695-b5c6-ba48f59041a6",
     "sheet_name": "Main Registry",
     "row_order": 50,
     "fund": "1101101",
@@ -1096,11 +1096,11 @@
     "unallocated_allotment": 0,
     "disbursement": 377000,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.427Z",
-    "updated_at": "2026-10-14T06:14:33.382Z"
+    "created_at": "2026-10-14T07:44:25.410Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "7c671574-ffad-4763-b777-120699a5e20c",
+    "id": "d2148454-f56d-47ae-939e-ce9bbf95feed",
     "sheet_name": "Main Registry",
     "row_order": 51,
     "fund": "1101101",
@@ -1118,11 +1118,11 @@
     "unallocated_allotment": 0,
     "disbursement": 23000,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.429Z",
-    "updated_at": "2026-10-14T06:14:33.382Z"
+    "created_at": "2026-10-14T07:44:25.412Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "83eeaa77-3988-456b-ad34-c10135fef04d",
+    "id": "ccced803-1f52-437f-85ab-e96faaa3310c",
     "sheet_name": "Main Registry",
     "row_order": 52,
     "fund": "1101101",
@@ -1140,11 +1140,11 @@
     "unallocated_allotment": 0,
     "disbursement": 39584.44,
     "unpaid": 10415.56,
-    "created_at": "2026-10-14T06:14:33.431Z",
-    "updated_at": "2026-10-14T06:14:33.382Z"
+    "created_at": "2026-10-14T07:44:25.414Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "91a29892-86be-4601-9126-7de3fed2f09b",
+    "id": "500393a0-430b-4164-b779-d23957cf3787",
     "sheet_name": "Main Registry",
     "row_order": 53,
     "fund": "1101101",
@@ -1162,11 +1162,11 @@
     "unallocated_allotment": 0,
     "disbursement": 44750,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.433Z",
-    "updated_at": "2026-10-14T06:14:33.382Z"
+    "created_at": "2026-10-14T07:44:25.416Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "96bb7021-0ece-4507-a0ef-ba06016b93b1",
+    "id": "248d6ad6-2e9f-4564-ab5a-04c8de564424",
     "sheet_name": "Main Registry",
     "row_order": 54,
     "fund": "1101101",
@@ -1184,11 +1184,11 @@
     "unallocated_allotment": 0,
     "disbursement": 5250,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.435Z",
-    "updated_at": "2026-10-14T06:14:33.382Z"
+    "created_at": "2026-10-14T07:44:25.418Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "dda4dfc7-e782-44c9-92d2-964282e8cb6a",
+    "id": "53cf40f8-a2f3-4714-970b-a1a7b3a36c85",
     "sheet_name": "Main Registry",
     "row_order": 55,
     "fund": "1101101",
@@ -1206,11 +1206,11 @@
     "unallocated_allotment": 0,
     "disbursement": 112584.44,
     "unpaid": 10415.56,
-    "created_at": "2026-10-14T06:14:33.437Z",
-    "updated_at": "2026-10-14T06:14:33.382Z"
+    "created_at": "2026-10-14T07:44:25.421Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "9bcfa7ba-b8c8-4013-9a6b-0e1e365c750e",
+    "id": "75c9eb0b-29dd-4b11-a132-9bd12c2a8929",
     "sheet_name": "Main Registry",
     "row_order": 56,
     "fund": "1101101",
@@ -1228,11 +1228,11 @@
     "unallocated_allotment": 300000,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.440Z",
-    "updated_at": "2026-10-14T06:14:33.382Z"
+    "created_at": "2026-10-14T07:44:25.423Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "ba684a23-cd46-4b61-9e2b-eb37154d7d51",
+    "id": "0ff0a795-1848-451c-b34b-365ef58b073a",
     "sheet_name": "Main Registry",
     "row_order": 57,
     "fund": "1101101",
@@ -1250,11 +1250,11 @@
     "unallocated_allotment": 300000,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.442Z",
-    "updated_at": "2026-10-14T06:14:33.382Z"
+    "created_at": "2026-10-14T07:44:25.425Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "f9d09025-6fee-42b4-97af-c596daf55aa8",
+    "id": "0c1b91f5-6347-4fd9-b3db-38bce897bf2a",
     "sheet_name": "Main Registry",
     "row_order": 58,
     "fund": "1101101",
@@ -1272,11 +1272,11 @@
     "unallocated_allotment": -415839.17,
     "disbursement": 2461357.7,
     "unpaid": -311357.7,
-    "created_at": "2026-10-14T06:14:33.444Z",
-    "updated_at": "2026-10-14T06:14:33.382Z"
+    "created_at": "2026-10-14T07:44:25.427Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "ad935ba4-5676-451e-a753-1c0afde772a5",
+    "id": "70b92595-4fd0-405d-8fe4-d03525cacc7d",
     "sheet_name": "Main Registry",
     "row_order": 59,
     "fund": "1101101",
@@ -1294,11 +1294,11 @@
     "unallocated_allotment": 58510.2,
     "disbursement": 1632871.01,
     "unpaid": 222618.79,
-    "created_at": "2026-10-14T06:14:33.446Z",
-    "updated_at": "2026-10-14T06:14:33.382Z"
+    "created_at": "2026-10-14T07:44:25.429Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "bf726299-d03a-43ec-b2b6-130e78420cd7",
+    "id": "33fa7fbb-acfd-4bd7-b171-639f47ed1111",
     "sheet_name": "Main Registry",
     "row_order": 60,
     "fund": "1101101",
@@ -1316,11 +1316,11 @@
     "unallocated_allotment": 4079,
     "disbursement": 763863.05,
     "unpaid": 161950,
-    "created_at": "2026-10-14T06:14:33.448Z",
-    "updated_at": "2026-10-14T06:14:33.382Z"
+    "created_at": "2026-10-14T07:44:25.431Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "f6879aa4-fbd8-41d7-8593-707decd2913f",
+    "id": "6c49572f-8129-4a94-9661-2da00f445cc8",
     "sheet_name": "Main Registry",
     "row_order": 61,
     "fund": "1101101",
@@ -1338,11 +1338,11 @@
     "unallocated_allotment": 0,
     "disbursement": 94300,
     "unpaid": 5700,
-    "created_at": "2026-10-14T06:14:33.450Z",
-    "updated_at": "2026-10-14T06:14:33.382Z"
+    "created_at": "2026-10-14T07:44:25.433Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "9efc3e79-5bc2-4134-be7e-8a4ce59efe87",
+    "id": "b5cd18e2-170b-4509-812f-685851a5196e",
     "sheet_name": "Main Registry",
     "row_order": 62,
     "fund": "1101101",
@@ -1360,11 +1360,11 @@
     "unallocated_allotment": 100000,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.452Z",
-    "updated_at": "2026-10-14T06:14:33.382Z"
+    "created_at": "2026-10-14T07:44:25.435Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "103c8759-c3fd-446a-804a-942deaa2a70c",
+    "id": "994a9dcb-df1b-434b-8d50-b554c93c7161",
     "sheet_name": "Main Registry",
     "row_order": 63,
     "fund": "1101101",
@@ -1382,11 +1382,11 @@
     "unallocated_allotment": -253249.97,
     "disbursement": 4952391.76,
     "unpaid": 78911.09,
-    "created_at": "2026-10-14T06:14:33.455Z",
-    "updated_at": "2026-10-14T06:14:33.382Z"
+    "created_at": "2026-10-14T07:44:25.437Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "b077c092-baa8-4683-be53-d0e3744f0e8e",
+    "id": "d3ce216b-58eb-4250-8d38-ff3225e2f9e9",
     "sheet_name": "Main Registry",
     "row_order": 64,
     "fund": "1101101",
@@ -1404,11 +1404,11 @@
     "unallocated_allotment": 0,
     "disbursement": 150000,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.457Z",
-    "updated_at": "2026-10-14T06:14:33.382Z"
+    "created_at": "2026-10-14T07:44:25.440Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "15efe8cb-30b7-4ba3-9123-c26e8cc5a818",
+    "id": "aab38ff1-2d8b-41c3-a6c7-3ef18a550ded",
     "sheet_name": "Main Registry",
     "row_order": 65,
     "fund": "1101101",
@@ -1426,11 +1426,11 @@
     "unallocated_allotment": 0,
     "disbursement": 1026804.28,
     "unpaid": 53195.72,
-    "created_at": "2026-10-14T06:14:33.459Z",
-    "updated_at": "2026-10-14T06:14:33.382Z"
+    "created_at": "2026-10-14T07:44:25.442Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "cef12d77-cee7-4451-a733-035090c63e55",
+    "id": "ecd58b49-f9ac-4ccc-bde3-55162faebbca",
     "sheet_name": "Main Registry",
     "row_order": 66,
     "fund": "1101101",
@@ -1448,11 +1448,11 @@
     "unallocated_allotment": 50000,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.461Z",
-    "updated_at": "2026-10-14T06:14:33.382Z"
+    "created_at": "2026-10-14T07:44:25.444Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "2acd5954-d0d9-4b71-94a5-b0d87ec33048",
+    "id": "b92b7b58-b01a-41c5-a65a-f29208f26b0a",
     "sheet_name": "Main Registry",
     "row_order": 67,
     "fund": "1101101",
@@ -1470,11 +1470,11 @@
     "unallocated_allotment": 36178.09,
     "disbursement": 0,
     "unpaid": 63821.91,
-    "created_at": "2026-10-14T06:14:33.463Z",
-    "updated_at": "2026-10-14T06:14:33.382Z"
+    "created_at": "2026-10-14T07:44:25.446Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "64f5cd40-77be-4009-8591-4870a96e818f",
+    "id": "7fcd2f3c-d5f4-4b23-bf01-e80a35dd0bca",
     "sheet_name": "Main Registry",
     "row_order": 68,
     "fund": "1101101",
@@ -1492,11 +1492,11 @@
     "unallocated_allotment": 150000,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.465Z",
-    "updated_at": "2026-10-14T06:14:33.382Z"
+    "created_at": "2026-10-14T07:44:25.448Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "2e925726-9dee-4ca8-939c-5909f4fe015c",
+    "id": "181f43db-f9ae-44f2-b09f-050a1527a78c",
     "sheet_name": "Main Registry",
     "row_order": 69,
     "fund": "1101101",
@@ -1514,11 +1514,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.484Z",
-    "updated_at": "2026-10-14T06:14:33.382Z"
+    "created_at": "2026-10-14T07:44:25.450Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "dbfde10b-aa3a-456b-a249-bb43ec8e3aa3",
+    "id": "ee768278-4529-45c3-bac5-b2f02463bc8a",
     "sheet_name": "Main Registry",
     "row_order": 70,
     "fund": "1101101",
@@ -1536,11 +1536,11 @@
     "unallocated_allotment": 236178.09,
     "disbursement": 1176804.28,
     "unpaid": 117017.63,
-    "created_at": "2026-10-14T06:14:33.486Z",
-    "updated_at": "2026-10-14T06:14:33.382Z"
+    "created_at": "2026-10-14T07:44:25.452Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "046d4107-31ec-41c4-a1e8-12f8d1f6ccd8",
+    "id": "5daaedbd-83b6-4a78-b6f2-bee556316e3d",
     "sheet_name": "Main Registry",
     "row_order": 71,
     "fund": "1101101",
@@ -1558,11 +1558,11 @@
     "unallocated_allotment": 56334.27,
     "disbursement": 93665.73,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.488Z",
-    "updated_at": "2026-10-14T06:14:33.382Z"
+    "created_at": "2026-10-14T07:44:25.454Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "cc302172-59dc-4a33-af6d-49f641d64a45",
+    "id": "a89cf82f-1569-4286-bd0e-b40ec43f8e64",
     "sheet_name": "Main Registry",
     "row_order": 72,
     "fund": "1101101",
@@ -1580,11 +1580,11 @@
     "unallocated_allotment": 56334.27,
     "disbursement": 93665.73,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.491Z",
-    "updated_at": "2026-10-14T06:14:33.382Z"
+    "created_at": "2026-10-14T07:44:25.456Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "9a168794-9d53-4616-954c-c0e4cfa30f74",
+    "id": "c31f21b7-5956-4f83-9c76-0855d41dadc8",
     "sheet_name": "Main Registry",
     "row_order": 73,
     "fund": "1101101",
@@ -1602,11 +1602,11 @@
     "unallocated_allotment": 0,
     "disbursement": 415599.2,
     "unpaid": 202400.8,
-    "created_at": "2026-10-14T06:14:33.493Z",
-    "updated_at": "2026-10-14T06:14:33.382Z"
+    "created_at": "2026-10-14T07:44:25.459Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "bcef5f4a-6919-4de5-90e2-9e2a9cb42183",
+    "id": "eecb4e9e-d2b8-4f25-a13d-e7e927ea2173",
     "sheet_name": "Main Registry",
     "row_order": 74,
     "fund": "1101101",
@@ -1624,11 +1624,11 @@
     "unallocated_allotment": 0,
     "disbursement": 415599.2,
     "unpaid": 202400.8,
-    "created_at": "2026-10-14T06:14:33.495Z",
-    "updated_at": "2026-10-14T06:14:33.382Z"
+    "created_at": "2026-10-14T07:44:25.461Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "4f3eed8e-6a52-4c16-a636-0cab3f76f319",
+    "id": "3466ae0d-6ef2-45b1-94f2-4cf7a9b9558c",
     "sheet_name": "Main Registry",
     "row_order": 75,
     "fund": "1101101",
@@ -1646,11 +1646,11 @@
     "unallocated_allotment": 0,
     "disbursement": 1525.92,
     "unpaid": 98474.08,
-    "created_at": "2026-10-14T06:14:33.497Z",
-    "updated_at": "2026-10-14T06:14:33.382Z"
+    "created_at": "2026-10-14T07:44:25.463Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "5a208c12-ff15-4738-a632-59960968eb1d",
+    "id": "923a9688-f942-4e09-8059-6625f36d06a9",
     "sheet_name": "Main Registry",
     "row_order": 76,
     "fund": "1101101",
@@ -1668,11 +1668,11 @@
     "unallocated_allotment": 0,
     "disbursement": 1525.92,
     "unpaid": 98474.08,
-    "created_at": "2026-10-14T06:14:33.499Z",
-    "updated_at": "2026-10-14T06:14:33.382Z"
+    "created_at": "2026-10-14T07:44:25.465Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "9d557bc1-772d-4e9d-aea7-836c24e673e7",
+    "id": "3c792ca9-dc02-4b5e-a041-2e6d9a21af98",
     "sheet_name": "Main Registry",
     "row_order": 77,
     "fund": "1101101",
@@ -1690,11 +1690,11 @@
     "unallocated_allotment": 0,
     "disbursement": 79608.75,
     "unpaid": 20391.25,
-    "created_at": "2026-10-14T06:14:33.501Z",
-    "updated_at": "2026-10-14T06:14:33.382Z"
+    "created_at": "2026-10-14T07:44:25.467Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "562352b4-5721-40ae-978c-6c4bbaa71a02",
+    "id": "be1d61c3-8937-4923-81d5-271e41b92555",
     "sheet_name": "Main Registry",
     "row_order": 78,
     "fund": "1101101",
@@ -1712,11 +1712,11 @@
     "unallocated_allotment": 0,
     "disbursement": 79608.75,
     "unpaid": 20391.25,
-    "created_at": "2026-10-14T06:14:33.504Z",
-    "updated_at": "2026-10-14T06:14:33.382Z"
+    "created_at": "2026-10-14T07:44:25.469Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "76ccc96e-9dac-415d-86f7-71c025b45653",
+    "id": "936bfe75-05f5-4096-8b43-376201669a37",
     "sheet_name": "Main Registry",
     "row_order": 79,
     "fund": "1101101",
@@ -1734,11 +1734,11 @@
     "unallocated_allotment": 0,
     "disbursement": 173630.36,
     "unpaid": 6369.64,
-    "created_at": "2026-10-14T06:14:33.506Z",
-    "updated_at": "2026-10-14T06:14:33.382Z"
+    "created_at": "2026-10-14T07:44:25.471Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "3639c168-0ee0-47c6-944a-e802be1ac9a3",
+    "id": "7a2bb702-5b98-4dd4-9313-1ee815a00829",
     "sheet_name": "Main Registry",
     "row_order": 80,
     "fund": "1101101",
@@ -1756,11 +1756,11 @@
     "unallocated_allotment": 0,
     "disbursement": 173630.36,
     "unpaid": 6369.64,
-    "created_at": "2026-10-14T06:14:33.508Z",
-    "updated_at": "2026-10-14T06:14:33.382Z"
+    "created_at": "2026-10-14T07:44:25.474Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "d00d4c4d-52d8-438b-94a4-97b389eb3436",
+    "id": "9dfd5046-12c5-4dbd-94f4-35d691669397",
     "sheet_name": "Main Registry",
     "row_order": 81,
     "fund": "1101101",
@@ -1778,11 +1778,11 @@
     "unallocated_allotment": 0,
     "disbursement": 2366409.85,
     "unpaid": 133590.15,
-    "created_at": "2026-10-14T06:14:33.510Z",
-    "updated_at": "2026-10-14T06:14:33.382Z"
+    "created_at": "2026-10-14T07:44:25.476Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "2e973cf1-5ee7-4ce0-891a-04be8189c92a",
+    "id": "ce1514a3-2119-40c2-ad52-5899b7a78351",
     "sheet_name": "Main Registry",
     "row_order": 82,
     "fund": "1101101",
@@ -1800,11 +1800,11 @@
     "unallocated_allotment": 0,
     "disbursement": 2366409.85,
     "unpaid": 133590.15,
-    "created_at": "2026-10-14T06:14:33.512Z",
-    "updated_at": "2026-10-14T06:14:33.382Z"
+    "created_at": "2026-10-14T07:44:25.478Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "39da26ff-833f-4619-8baa-1f3f12114355",
+    "id": "5e92f8b6-3b00-474f-8278-802263fe272a",
     "sheet_name": "Main Registry",
     "row_order": 83,
     "fund": "1101101",
@@ -1822,11 +1822,11 @@
     "unallocated_allotment": 637000,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.514Z",
-    "updated_at": "2026-10-14T06:14:33.382Z"
+    "created_at": "2026-10-14T07:44:25.480Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "32311e98-76e6-45b2-9dd3-94ebb9809d40",
+    "id": "2cba3ab1-58ea-4539-ac45-ccdfd6b23fbc",
     "sheet_name": "Main Registry",
     "row_order": 84,
     "fund": "1101101",
@@ -1844,11 +1844,11 @@
     "unallocated_allotment": 637000,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.517Z",
-    "updated_at": "2026-10-14T06:14:33.382Z"
+    "created_at": "2026-10-14T07:44:25.482Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "8c7dda97-35f9-4a0c-a829-4278f5f42a94",
+    "id": "c6e16f99-3b27-4f23-a660-3b4347139a51",
     "sheet_name": "Main Registry",
     "row_order": 85,
     "fund": "1101101",
@@ -1866,11 +1866,11 @@
     "unallocated_allotment": -856311.94,
     "disbursement": 13932059.24,
     "unpaid": 1423075.95,
-    "created_at": "2026-10-14T06:14:33.519Z",
-    "updated_at": "2026-10-14T06:14:33.383Z"
+    "created_at": "2026-10-14T07:44:25.485Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "1a9954d0-3341-4be6-b8f2-0fc20178f9ea",
+    "id": "5641c0b3-c605-40e3-baaa-d6a117cf959f",
     "sheet_name": "Main Registry",
     "row_order": 86,
     "fund": "1101101",
@@ -1888,11 +1888,11 @@
     "unallocated_allotment": -856311.94,
     "disbursement": 13932059.24,
     "unpaid": 1423075.95,
-    "created_at": "2026-10-14T06:14:33.521Z",
-    "updated_at": "2026-10-14T06:14:33.383Z"
+    "created_at": "2026-10-14T07:44:25.487Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "083c6df0-105b-4698-ba0b-86d3dfbd3b9c",
+    "id": "90281303-bf6b-46a8-94f0-5343f6b6fb65",
     "sheet_name": "Main Registry",
     "row_order": 87,
     "fund": "1101101",
@@ -1910,11 +1910,11 @@
     "unallocated_allotment": -856311.94,
     "disbursement": 13932059.24,
     "unpaid": 1423075.95,
-    "created_at": "2026-10-14T06:14:33.524Z",
-    "updated_at": "2026-10-14T06:14:33.383Z"
+    "created_at": "2026-10-14T07:44:25.489Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "1f9dba21-4e43-41d2-9433-ed9263aba24a",
+    "id": "bd62d9f9-f889-4c26-982c-b4f0a21ff16c",
     "sheet_name": "Main Registry",
     "row_order": 88,
     "fund": "1101101",
@@ -1932,11 +1932,11 @@
     "unallocated_allotment": -5958749.5,
     "disbursement": 185350441.23,
     "unpaid": 292787338.27,
-    "created_at": "2026-10-14T06:14:33.526Z",
-    "updated_at": "2026-10-14T06:14:33.383Z"
+    "created_at": "2026-10-14T07:44:25.491Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "e43e1a52-c1c7-4971-bc3a-25feb93a6d1a",
+    "id": "0322ee2f-02bb-4d25-b981-a2aa85aa68c4",
     "sheet_name": "Main Registry",
     "row_order": 89,
     "fund": "1101101",
@@ -1954,11 +1954,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.528Z",
-    "updated_at": "2026-10-14T06:14:33.383Z"
+    "created_at": "2026-10-14T07:44:25.493Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "cdc3f578-501e-429e-a337-cafb7b533e52",
+    "id": "ae392c43-d063-4d6a-9829-36a7e7f15da8",
     "sheet_name": "Main Registry",
     "row_order": 90,
     "fund": "1101101",
@@ -1976,11 +1976,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.530Z",
-    "updated_at": "2026-10-14T06:14:33.383Z"
+    "created_at": "2026-10-14T07:44:25.495Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "8cda74e2-63ea-48ed-b346-bc9141db2d29",
+    "id": "75e1144c-5510-4e90-8eb0-127b3646c18f",
     "sheet_name": "Main Registry",
     "row_order": 91,
     "fund": "1101101",
@@ -1998,11 +1998,11 @@
     "unallocated_allotment": -5958749.5,
     "disbursement": 185350441.23,
     "unpaid": 292787338.27,
-    "created_at": "2026-10-14T06:14:33.532Z",
-    "updated_at": "2026-10-14T06:14:33.383Z"
+    "created_at": "2026-10-14T07:44:25.497Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "828f9ed0-a243-42b4-851b-04f658758c6a",
+    "id": "18a11764-de12-4d16-92d5-838d8fd5ff40",
     "sheet_name": "Main Registry",
     "row_order": 92,
     "fund": "1101101",
@@ -2020,11 +2020,11 @@
     "unallocated_allotment": -5958749.5,
     "disbursement": 185350441.23,
     "unpaid": 292787338.27,
-    "created_at": "2026-10-14T06:14:33.534Z",
-    "updated_at": "2026-10-14T06:14:33.383Z"
+    "created_at": "2026-10-14T07:44:25.500Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "1a4860f9-5b57-4cc5-b7e1-5ecd3cbc64db",
+    "id": "6f4b362e-aff9-49ae-b876-c9e1c6913dd0",
     "sheet_name": "Main Registry",
     "row_order": 93,
     "fund": "1101101",
@@ -2042,11 +2042,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.536Z",
-    "updated_at": "2026-10-14T06:14:33.383Z"
+    "created_at": "2026-10-14T07:44:25.502Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "e3b3cad4-49d1-4bac-84de-69581206c8c3",
+    "id": "5884eb37-7be5-4387-8ce8-c5d2340e15b8",
     "sheet_name": "Main Registry",
     "row_order": 94,
     "fund": "1101101",
@@ -2064,11 +2064,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.539Z",
-    "updated_at": "2026-10-14T06:14:33.383Z"
+    "created_at": "2026-10-14T07:44:25.504Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "bc04bf66-75b6-4b7b-9a54-ff462910cd0f",
+    "id": "20e40d97-bcc5-44e3-9862-cad64769cddd",
     "sheet_name": "Main Registry",
     "row_order": 95,
     "fund": "1101101",
@@ -2086,11 +2086,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.541Z",
-    "updated_at": "2026-10-14T06:14:33.383Z"
+    "created_at": "2026-10-14T07:44:25.506Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "d350d99c-bccf-40ae-851c-704e0168ed2f",
+    "id": "64f1b48e-8d60-4a78-af9c-0238606517a5",
     "sheet_name": "Main Registry",
     "row_order": 96,
     "fund": "1101101",
@@ -2108,11 +2108,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.543Z",
-    "updated_at": "2026-10-14T06:14:33.383Z"
+    "created_at": "2026-10-14T07:44:25.508Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "ea7e1c2b-417e-47ba-95c7-d3f9e791c769",
+    "id": "31d5d4d3-48d1-4293-af7c-2e6ba5ba9cca",
     "sheet_name": "Main Registry",
     "row_order": 97,
     "fund": "1101101",
@@ -2130,11 +2130,11 @@
     "unallocated_allotment": -5958749.5,
     "disbursement": 185350441.23,
     "unpaid": 292787338.27,
-    "created_at": "2026-10-14T06:14:33.545Z",
-    "updated_at": "2026-10-14T06:14:33.383Z"
+    "created_at": "2026-10-14T07:44:25.511Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "4f9424c1-8063-4820-97a1-219b60bd9e0e",
+    "id": "2e111364-79fa-47f7-8cc0-727607185899",
     "sheet_name": "Main Registry",
     "row_order": 98,
     "fund": "1101101",
@@ -2152,11 +2152,11 @@
     "unallocated_allotment": -5958749.5,
     "disbursement": 185350441.23,
     "unpaid": 292787338.27,
-    "created_at": "2026-10-14T06:14:33.547Z",
-    "updated_at": "2026-10-14T06:14:33.383Z"
+    "created_at": "2026-10-14T07:44:25.513Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "834d49f5-f38f-49ae-93f3-94fcbe2257f0",
+    "id": "8c385754-0f42-4463-bd88-47c552317c3f",
     "sheet_name": "Main Registry",
     "row_order": 99,
     "fund": "1101101",
@@ -2174,11 +2174,11 @@
     "unallocated_allotment": 0,
     "disbursement": 21446,
     "unpaid": 4434,
-    "created_at": "2026-10-14T06:14:33.550Z",
-    "updated_at": "2026-10-14T06:14:33.383Z"
+    "created_at": "2026-10-14T07:44:25.515Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "9d0820ec-f27b-4b1b-93cd-eed8255af3e0",
+    "id": "95204191-1881-4ca4-8921-1584759371c3",
     "sheet_name": "Main Registry",
     "row_order": 100,
     "fund": "1101101",
@@ -2196,11 +2196,11 @@
     "unallocated_allotment": 0,
     "disbursement": 11120,
     "unpaid": 16000,
-    "created_at": "2026-10-14T06:14:33.552Z",
-    "updated_at": "2026-10-14T06:14:33.383Z"
+    "created_at": "2026-10-14T07:44:25.517Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "19bdbc6a-bf18-4376-8f87-ec35414a557b",
+    "id": "e3389ad9-bb66-4399-9d09-3b113f827cb6",
     "sheet_name": "Main Registry",
     "row_order": 101,
     "fund": "1101101",
@@ -2218,11 +2218,11 @@
     "unallocated_allotment": 0,
     "disbursement": 32566,
     "unpaid": 20434,
-    "created_at": "2026-10-14T06:14:33.554Z",
-    "updated_at": "2026-10-14T06:14:33.383Z"
+    "created_at": "2026-10-14T07:44:25.519Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "1e0d2781-c0fc-4ee2-a03a-62aabc550058",
+    "id": "0aeb534b-65c0-4e03-b5ec-c484f8988997",
     "sheet_name": "Main Registry",
     "row_order": 102,
     "fund": "1101101",
@@ -2240,11 +2240,11 @@
     "unallocated_allotment": 0,
     "disbursement": 161000,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.556Z",
-    "updated_at": "2026-10-14T06:14:33.383Z"
+    "created_at": "2026-10-14T07:44:25.521Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "30a91d76-9b8d-4975-bebe-405f11311497",
+    "id": "c498cfe4-11de-4427-93e3-49f012eb011b",
     "sheet_name": "Main Registry",
     "row_order": 103,
     "fund": "1101101",
@@ -2262,11 +2262,11 @@
     "unallocated_allotment": 0,
     "disbursement": 161000,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.558Z",
-    "updated_at": "2026-10-14T06:14:33.383Z"
+    "created_at": "2026-10-14T07:44:25.524Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "50d164c3-6e4d-4c2d-9d9d-e6f5138a5c96",
+    "id": "6f85ae92-f70c-429e-9638-c721fa24d5ca",
     "sheet_name": "Main Registry",
     "row_order": 104,
     "fund": "1101101",
@@ -2284,11 +2284,11 @@
     "unallocated_allotment": 78320,
     "disbursement": 20480,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.560Z",
-    "updated_at": "2026-10-14T06:14:33.383Z"
+    "created_at": "2026-10-14T07:44:25.526Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "13d32425-514a-4fd8-ad26-1db4808bc024",
+    "id": "2299b452-b210-4468-b9cc-4a6cef7f826c",
     "sheet_name": "Main Registry",
     "row_order": 105,
     "fund": "1101101",
@@ -2306,11 +2306,11 @@
     "unallocated_allotment": 0,
     "disbursement": 150000,
     "unpaid": 348200,
-    "created_at": "2026-10-14T06:14:33.562Z",
-    "updated_at": "2026-10-14T06:14:33.383Z"
+    "created_at": "2026-10-14T07:44:25.528Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "3aa84075-c770-471e-8b6d-1e56f12cd6d0",
+    "id": "d751a9bd-9cd0-48e6-84ef-34c8decca448",
     "sheet_name": "Main Registry",
     "row_order": 106,
     "fund": "1101101",
@@ -2328,11 +2328,11 @@
     "unallocated_allotment": 78320,
     "disbursement": 170480,
     "unpaid": 348200,
-    "created_at": "2026-10-14T06:14:33.565Z",
-    "updated_at": "2026-10-14T06:14:33.383Z"
+    "created_at": "2026-10-14T07:44:25.530Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "b6782394-4f43-4197-880d-da26f57d08d5",
+    "id": "6870409f-9495-41da-a0e3-9652e1aa7ac6",
     "sheet_name": "Main Registry",
     "row_order": 107,
     "fund": "1101101",
@@ -2350,11 +2350,11 @@
     "unallocated_allotment": 112844,
     "disbursement": 42274.32,
     "unpaid": 2741.68,
-    "created_at": "2026-10-14T06:14:33.567Z",
-    "updated_at": "2026-10-14T06:14:33.383Z"
+    "created_at": "2026-10-14T07:44:25.532Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "65f56c35-8362-46af-8531-728c5c6dbb91",
+    "id": "f2ddc530-425b-4034-901f-c0196daafbc5",
     "sheet_name": "Main Registry",
     "row_order": 108,
     "fund": "1101101",
@@ -2372,11 +2372,11 @@
     "unallocated_allotment": 0,
     "disbursement": 160654.91,
     "unpaid": 345.09,
-    "created_at": "2026-10-14T06:14:33.569Z",
-    "updated_at": "2026-10-14T06:14:33.383Z"
+    "created_at": "2026-10-14T07:44:25.534Z",
+    "updated_at": "2026-10-14T07:44:25.354Z"
   },
   {
-    "id": "bc5229e1-bd77-4cb4-a1a3-6a428c368faa",
+    "id": "b5c1a9a1-4116-484a-91b9-e0a48670ac2f",
     "sheet_name": "Main Registry",
     "row_order": 109,
     "fund": "1101101",
@@ -2394,11 +2394,11 @@
     "unallocated_allotment": 0,
     "disbursement": 206200,
     "unpaid": 302940,
-    "created_at": "2026-10-14T06:14:33.571Z",
-    "updated_at": "2026-10-14T06:14:33.383Z"
+    "created_at": "2026-10-14T07:44:25.536Z",
+    "updated_at": "2026-10-14T07:44:25.355Z"
   },
   {
-    "id": "763cf8ac-af25-4759-9b4e-2ac76696b49e",
+    "id": "9a5933bc-6f2c-4b99-a2eb-f60089042f9b",
     "sheet_name": "Main Registry",
     "row_order": 110,
     "fund": "1101101",
@@ -2416,11 +2416,11 @@
     "unallocated_allotment": 112844,
     "disbursement": 409129.23,
     "unpaid": 306026.77,
-    "created_at": "2026-10-14T06:14:33.573Z",
-    "updated_at": "2026-10-14T06:14:33.383Z"
+    "created_at": "2026-10-14T07:44:25.538Z",
+    "updated_at": "2026-10-14T07:44:25.355Z"
   },
   {
-    "id": "ff339b04-4606-4013-8cf1-88d91bcfedfc",
+    "id": "00140451-6288-43cc-9f2f-57e3a6a04f81",
     "sheet_name": "Main Registry",
     "row_order": 111,
     "fund": "1101101",
@@ -2438,11 +2438,11 @@
     "unallocated_allotment": 0,
     "disbursement": 1920,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.575Z",
-    "updated_at": "2026-10-14T06:14:33.383Z"
+    "created_at": "2026-10-14T07:44:25.540Z",
+    "updated_at": "2026-10-14T07:44:25.355Z"
   },
   {
-    "id": "728cd6c9-e141-4cee-843b-4cc341569167",
+    "id": "2b62d444-c17d-43ac-8c5d-b1daed598872",
     "sheet_name": "Main Registry",
     "row_order": 112,
     "fund": "1101101",
@@ -2460,11 +2460,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 98080,
-    "created_at": "2026-10-14T06:14:33.577Z",
-    "updated_at": "2026-10-14T06:14:33.383Z"
+    "created_at": "2026-10-14T07:44:25.542Z",
+    "updated_at": "2026-10-14T07:44:25.355Z"
   },
   {
-    "id": "26fce9c5-3dbb-402a-8ad0-d5d044225f27",
+    "id": "b77e2862-d968-4f7a-b9d1-89f5b754aea0",
     "sheet_name": "Main Registry",
     "row_order": 113,
     "fund": "1101101",
@@ -2482,11 +2482,11 @@
     "unallocated_allotment": 0,
     "disbursement": 1920,
     "unpaid": 98080,
-    "created_at": "2026-10-14T06:14:33.580Z",
-    "updated_at": "2026-10-14T06:14:33.383Z"
+    "created_at": "2026-10-14T07:44:25.545Z",
+    "updated_at": "2026-10-14T07:44:25.355Z"
   },
   {
-    "id": "52466603-373b-4df8-b7fa-b1bd3e9c4d4d",
+    "id": "4462b12c-fd2a-4286-8425-ea8fb633675e",
     "sheet_name": "Main Registry",
     "row_order": 114,
     "fund": "1101101",
@@ -2504,11 +2504,11 @@
     "unallocated_allotment": 377187.61,
     "disbursement": 2507196.39,
     "unpaid": 124340,
-    "created_at": "2026-10-14T06:14:33.582Z",
-    "updated_at": "2026-10-14T06:14:33.383Z"
+    "created_at": "2026-10-14T07:44:25.547Z",
+    "updated_at": "2026-10-14T07:44:25.355Z"
   },
   {
-    "id": "0e6ab6f8-ef09-44a3-9784-73dfac7a0199",
+    "id": "0892db31-247d-46c7-a406-d6fc06279451",
     "sheet_name": "Main Registry",
     "row_order": 115,
     "fund": "1101101",
@@ -2526,11 +2526,11 @@
     "unallocated_allotment": 1868176.75,
     "disbursement": 3492774.1,
     "unpaid": 15744810.9,
-    "created_at": "2026-10-14T06:14:33.584Z",
-    "updated_at": "2026-10-14T06:14:33.383Z"
+    "created_at": "2026-10-14T07:44:25.549Z",
+    "updated_at": "2026-10-14T07:44:25.355Z"
   },
   {
-    "id": "ce507b9c-df6a-4f0a-9b0f-62b954fc0a0f",
+    "id": "fd344ae3-d37a-40ca-b808-95262d1575f0",
     "sheet_name": "Main Registry",
     "row_order": 116,
     "fund": "1101101",
@@ -2548,11 +2548,11 @@
     "unallocated_allotment": 98100,
     "disbursement": 0,
     "unpaid": 132000,
-    "created_at": "2026-10-14T06:14:33.586Z",
-    "updated_at": "2026-10-14T06:14:33.383Z"
+    "created_at": "2026-10-14T07:44:25.551Z",
+    "updated_at": "2026-10-14T07:44:25.355Z"
   },
   {
-    "id": "863423ed-6044-4aba-b0ed-edecb326f478",
+    "id": "4d5f5c00-5afe-46c6-8eee-8ae5219e0a6a",
     "sheet_name": "Main Registry",
     "row_order": 117,
     "fund": "1101101",
@@ -2570,11 +2570,11 @@
     "unallocated_allotment": 148191.25,
     "disbursement": 541981,
     "unpaid": 254817.75,
-    "created_at": "2026-10-14T06:14:33.588Z",
-    "updated_at": "2026-10-14T06:14:33.383Z"
+    "created_at": "2026-10-14T07:44:25.553Z",
+    "updated_at": "2026-10-14T07:44:25.355Z"
   },
   {
-    "id": "f520e056-a9a7-4056-8eb9-5e8db02467ef",
+    "id": "0129a7cb-e59a-4139-8215-2140db0faa67",
     "sheet_name": "Main Registry",
     "row_order": 118,
     "fund": "1101101",
@@ -2592,11 +2592,11 @@
     "unallocated_allotment": 865506.2,
     "disbursement": 76890,
     "unpaid": 6391803.8,
-    "created_at": "2026-10-14T06:14:33.590Z",
-    "updated_at": "2026-10-14T06:14:33.383Z"
+    "created_at": "2026-10-14T07:44:25.555Z",
+    "updated_at": "2026-10-14T07:44:25.355Z"
   },
   {
-    "id": "0588ccb6-228c-4bc4-aa24-4cfb85c35937",
+    "id": "edd99950-0b34-4994-ab25-75b3d376fe0c",
     "sheet_name": "Main Registry",
     "row_order": 119,
     "fund": "1101101",
@@ -2614,11 +2614,11 @@
     "unallocated_allotment": 32040,
     "disbursement": 39040,
     "unpaid": 106918,
-    "created_at": "2026-10-14T06:14:33.592Z",
-    "updated_at": "2026-10-14T06:14:33.383Z"
+    "created_at": "2026-10-14T07:44:25.557Z",
+    "updated_at": "2026-10-14T07:44:25.355Z"
   },
   {
-    "id": "2c8c4219-2ec0-47fc-a744-b3b4c85b48cd",
+    "id": "bbbdb1b5-0442-4c91-8c4c-18b5ad8e3b28",
     "sheet_name": "Main Registry",
     "row_order": 120,
     "fund": "1101101",
@@ -2636,11 +2636,11 @@
     "unallocated_allotment": 760000,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.594Z",
-    "updated_at": "2026-10-14T06:14:33.383Z"
+    "created_at": "2026-10-14T07:44:25.559Z",
+    "updated_at": "2026-10-14T07:44:25.355Z"
   },
   {
-    "id": "c4ffbb61-3550-4ef2-aa93-cf6bbec56979",
+    "id": "ea9ba84d-4f1d-4a11-983c-863df5df0a6a",
     "sheet_name": "Main Registry",
     "row_order": 121,
     "fund": "1101101",
@@ -2658,11 +2658,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 29850,
-    "created_at": "2026-10-14T06:14:33.597Z",
-    "updated_at": "2026-10-14T06:14:33.383Z"
+    "created_at": "2026-10-14T07:44:25.561Z",
+    "updated_at": "2026-10-14T07:44:25.355Z"
   },
   {
-    "id": "84781ed0-da60-426e-a0f6-224d31d33d04",
+    "id": "a292825d-c647-47ee-b119-e1a8129a4a60",
     "sheet_name": "Main Registry",
     "row_order": 122,
     "fund": "1101101",
@@ -2680,11 +2680,11 @@
     "unallocated_allotment": 11903,
     "disbursement": 81915,
     "unpaid": 214037,
-    "created_at": "2026-10-14T06:14:33.599Z",
-    "updated_at": "2026-10-14T06:14:33.383Z"
+    "created_at": "2026-10-14T07:44:25.564Z",
+    "updated_at": "2026-10-14T07:44:25.355Z"
   },
   {
-    "id": "0360939c-ea7f-47b4-9ad9-7aa67f707d48",
+    "id": "ef0172b8-0c4f-4fcf-9516-aca15eaaddec",
     "sheet_name": "Main Registry",
     "row_order": 123,
     "fund": "1101101",
@@ -2702,11 +2702,11 @@
     "unallocated_allotment": 302353,
     "disbursement": 21847,
     "unpaid": 11800,
-    "created_at": "2026-10-14T06:14:33.601Z",
-    "updated_at": "2026-10-14T06:14:33.383Z"
+    "created_at": "2026-10-14T07:44:25.566Z",
+    "updated_at": "2026-10-14T07:44:25.355Z"
   },
   {
-    "id": "c90edd49-7479-44d2-9d90-ec80f992aba7",
+    "id": "733981c1-a58e-437d-9332-bd0a7eeceed4",
     "sheet_name": "Main Registry",
     "row_order": 124,
     "fund": "1101101",
@@ -2724,11 +2724,11 @@
     "unallocated_allotment": 202510.14,
     "disbursement": 6090184.87,
     "unpaid": 5673597.11,
-    "created_at": "2026-10-14T06:14:33.603Z",
-    "updated_at": "2026-10-14T06:14:33.383Z"
+    "created_at": "2026-10-14T07:44:25.568Z",
+    "updated_at": "2026-10-14T07:44:25.355Z"
   },
   {
-    "id": "4f166aa1-ba86-4ad3-beae-88dc3a7f77ae",
+    "id": "85840552-6e6c-4762-9065-c00a5d997768",
     "sheet_name": "Main Registry",
     "row_order": 125,
     "fund": "1101101",
@@ -2746,11 +2746,11 @@
     "unallocated_allotment": 23291,
     "disbursement": 105709,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.605Z",
-    "updated_at": "2026-10-14T06:14:33.383Z"
+    "created_at": "2026-10-14T07:44:25.570Z",
+    "updated_at": "2026-10-14T07:44:25.355Z"
   },
   {
-    "id": "ad9a1898-b372-47ed-8801-d96b1296bce7",
+    "id": "d4286381-33ab-43d7-b131-51b5bd8719b5",
     "sheet_name": "Main Registry",
     "row_order": 126,
     "fund": "1101101",
@@ -2768,11 +2768,11 @@
     "unallocated_allotment": 0,
     "disbursement": 551800,
     "unpaid": 1038990,
-    "created_at": "2026-10-14T06:14:33.607Z",
-    "updated_at": "2026-10-14T06:14:33.383Z"
+    "created_at": "2026-10-14T07:44:25.572Z",
+    "updated_at": "2026-10-14T07:44:25.355Z"
   },
   {
-    "id": "ddbc457c-a206-43af-8386-566bfc07c910",
+    "id": "a0f059a7-2476-4d22-b830-82bd4d6f6d7f",
     "sheet_name": "Main Registry",
     "row_order": 127,
     "fund": "1101101",
@@ -2790,11 +2790,11 @@
     "unallocated_allotment": 100000,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.609Z",
-    "updated_at": "2026-10-14T06:14:33.383Z"
+    "created_at": "2026-10-14T07:44:25.574Z",
+    "updated_at": "2026-10-14T07:44:25.355Z"
   },
   {
-    "id": "0f5b95ac-a332-49e3-b830-c1e55203c2d1",
+    "id": "e931a8f9-dbe7-4d80-8685-ed78a744d5af",
     "sheet_name": "Main Registry",
     "row_order": 128,
     "fund": "1101101",
@@ -2812,11 +2812,11 @@
     "unallocated_allotment": 8468485.88,
     "disbursement": 4195,
     "unpaid": 217758,
-    "created_at": "2026-10-14T06:14:33.611Z",
-    "updated_at": "2026-10-14T06:14:33.383Z"
+    "created_at": "2026-10-14T07:44:25.576Z",
+    "updated_at": "2026-10-14T07:44:25.355Z"
   },
   {
-    "id": "ec70d210-1d0a-48b1-b43f-60f382a884ac",
+    "id": "a3983d4d-6273-4e3d-a220-df48cca98a69",
     "sheet_name": "Main Registry",
     "row_order": 129,
     "fund": "1101101",
@@ -2834,11 +2834,11 @@
     "unallocated_allotment": 13257744.83,
     "disbursement": 13513532.36,
     "unpaid": 29940722.56,
-    "created_at": "2026-10-14T06:14:33.614Z",
-    "updated_at": "2026-10-14T06:14:33.383Z"
+    "created_at": "2026-10-14T07:44:25.578Z",
+    "updated_at": "2026-10-14T07:44:25.355Z"
   },
   {
-    "id": "63427d33-befd-46a9-a6d7-628520d05635",
+    "id": "bf8d94e5-d4ed-4fba-a827-62a1fa09996b",
     "sheet_name": "Main Registry",
     "row_order": 130,
     "fund": "1101101",
@@ -2856,11 +2856,11 @@
     "unallocated_allotment": 0,
     "disbursement": 100000,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.616Z",
-    "updated_at": "2026-10-14T06:14:33.383Z"
+    "created_at": "2026-10-14T07:44:25.580Z",
+    "updated_at": "2026-10-14T07:44:25.355Z"
   },
   {
-    "id": "81fd90aa-269a-4e44-ae57-54840d2be644",
+    "id": "45dc1326-b0de-4e24-9521-9647a7c69a75",
     "sheet_name": "Main Registry",
     "row_order": 131,
     "fund": "1101101",
@@ -2878,11 +2878,11 @@
     "unallocated_allotment": 13897,
     "disbursement": 57123,
     "unpaid": 28980,
-    "created_at": "2026-10-14T06:14:33.618Z",
-    "updated_at": "2026-10-14T06:14:33.383Z"
+    "created_at": "2026-10-14T07:44:25.582Z",
+    "updated_at": "2026-10-14T07:44:25.355Z"
   },
   {
-    "id": "bdabc0ec-c95d-43bd-9874-1f93f097d89b",
+    "id": "0050e2d7-8fa3-4131-9fdf-a56cba84b274",
     "sheet_name": "Main Registry",
     "row_order": 132,
     "fund": "1101101",
@@ -2900,11 +2900,11 @@
     "unallocated_allotment": 0,
     "disbursement": 46799.2,
     "unpaid": 65200.8,
-    "created_at": "2026-10-14T06:14:33.620Z",
-    "updated_at": "2026-10-14T06:14:33.383Z"
+    "created_at": "2026-10-14T07:44:25.584Z",
+    "updated_at": "2026-10-14T07:44:25.355Z"
   },
   {
-    "id": "9b7ed505-3f63-4d7f-a0d7-3107314f5ed8",
+    "id": "a8cda20c-1187-4b2f-a937-118ae72eaa01",
     "sheet_name": "Main Registry",
     "row_order": 133,
     "fund": "1101101",
@@ -2922,11 +2922,11 @@
     "unallocated_allotment": 13897,
     "disbursement": 203922.2,
     "unpaid": 94180.8,
-    "created_at": "2026-10-14T06:14:33.622Z",
-    "updated_at": "2026-10-14T06:14:33.383Z"
+    "created_at": "2026-10-14T07:44:25.587Z",
+    "updated_at": "2026-10-14T07:44:25.355Z"
   },
   {
-    "id": "1eb61ac8-27e3-4872-882a-11ff35eb2711",
+    "id": "2bf25a35-0714-433a-9c44-aa8442c0b7e5",
     "sheet_name": "Main Registry",
     "row_order": 134,
     "fund": "1101101",
@@ -2944,11 +2944,11 @@
     "unallocated_allotment": 18846,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.624Z",
-    "updated_at": "2026-10-14T06:14:33.383Z"
+    "created_at": "2026-10-14T07:44:25.589Z",
+    "updated_at": "2026-10-14T07:44:25.355Z"
   },
   {
-    "id": "7fb09ce6-23b4-44a0-b37e-8b6cd52b1616",
+    "id": "d51ac476-dea6-43fb-86f3-433fc61c2188",
     "sheet_name": "Main Registry",
     "row_order": 135,
     "fund": "1101101",
@@ -2966,11 +2966,11 @@
     "unallocated_allotment": 3979,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.626Z",
-    "updated_at": "2026-10-14T06:14:33.383Z"
+    "created_at": "2026-10-14T07:44:25.591Z",
+    "updated_at": "2026-10-14T07:44:25.355Z"
   },
   {
-    "id": "16286495-3851-441a-8303-7b917f8146f9",
+    "id": "3bf75696-82a1-4cc4-a015-8f6ca61af0ef",
     "sheet_name": "Main Registry",
     "row_order": 136,
     "fund": "1101101",
@@ -2988,11 +2988,11 @@
     "unallocated_allotment": 0,
     "disbursement": 181154,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.629Z",
-    "updated_at": "2026-10-14T06:14:33.383Z"
+    "created_at": "2026-10-14T07:44:25.593Z",
+    "updated_at": "2026-10-14T07:44:25.355Z"
   },
   {
-    "id": "bb3370f1-548a-47ad-b1db-6ff5ee76cdb4",
+    "id": "73e5afab-d43c-4ec2-8552-8b5a2b3cf85d",
     "sheet_name": "Main Registry",
     "row_order": 137,
     "fund": "1101101",
@@ -3010,11 +3010,11 @@
     "unallocated_allotment": 0,
     "disbursement": 27940,
     "unpaid": 260740,
-    "created_at": "2026-10-14T06:14:33.631Z",
-    "updated_at": "2026-10-14T06:14:33.384Z"
+    "created_at": "2026-10-14T07:44:25.595Z",
+    "updated_at": "2026-10-14T07:44:25.355Z"
   },
   {
-    "id": "8ae8b5c8-e7ba-45c9-8991-7c27626cec74",
+    "id": "a046a184-d9e5-4321-9c6c-18700d930c2c",
     "sheet_name": "Main Registry",
     "row_order": 138,
     "fund": "1101101",
@@ -3032,11 +3032,11 @@
     "unallocated_allotment": 22825,
     "disbursement": 209094,
     "unpaid": 260740,
-    "created_at": "2026-10-14T06:14:33.633Z",
-    "updated_at": "2026-10-14T06:14:33.384Z"
+    "created_at": "2026-10-14T07:44:25.597Z",
+    "updated_at": "2026-10-14T07:44:25.355Z"
   },
   {
-    "id": "fd21bf2a-16ec-47f5-8617-ef2aad9ddfb5",
+    "id": "fffdbca4-d6f8-4bc7-b554-9afa8db15fd2",
     "sheet_name": "Main Registry",
     "row_order": 139,
     "fund": "1101101",
@@ -3054,11 +3054,11 @@
     "unallocated_allotment": 0,
     "disbursement": 90680,
     "unpaid": 37220,
-    "created_at": "2026-10-14T06:14:33.635Z",
-    "updated_at": "2026-10-14T06:14:33.384Z"
+    "created_at": "2026-10-14T07:44:25.600Z",
+    "updated_at": "2026-10-14T07:44:25.355Z"
   },
   {
-    "id": "78e7962f-2b55-4387-8a76-07fd54825007",
+    "id": "cb7ee811-fafc-494c-a9eb-520da7188c35",
     "sheet_name": "Main Registry",
     "row_order": 140,
     "fund": "1101101",
@@ -3076,11 +3076,11 @@
     "unallocated_allotment": 0,
     "disbursement": 100000,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.637Z",
-    "updated_at": "2026-10-14T06:14:33.384Z"
+    "created_at": "2026-10-14T07:44:25.602Z",
+    "updated_at": "2026-10-14T07:44:25.355Z"
   },
   {
-    "id": "d7c5ffde-3a76-46f7-a06f-8aa7478ae55b",
+    "id": "85131dba-3649-4916-9133-a0b642ad8a73",
     "sheet_name": "Main Registry",
     "row_order": 141,
     "fund": "1101101",
@@ -3098,11 +3098,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 1000000,
-    "created_at": "2026-10-14T06:14:33.639Z",
-    "updated_at": "2026-10-14T06:14:33.384Z"
+    "created_at": "2026-10-14T07:44:25.604Z",
+    "updated_at": "2026-10-14T07:44:25.355Z"
   },
   {
-    "id": "b2d25664-cf64-4065-95b9-5d4a22c7428e",
+    "id": "2a1cfdfc-27c2-4fc3-a002-a2996b009932",
     "sheet_name": "Main Registry",
     "row_order": 142,
     "fund": "1101101",
@@ -3120,11 +3120,11 @@
     "unallocated_allotment": -152896.17,
     "disbursement": 444572.22,
     "unpaid": 20500,
-    "created_at": "2026-10-14T06:14:33.641Z",
-    "updated_at": "2026-10-14T06:14:33.384Z"
+    "created_at": "2026-10-14T07:44:25.606Z",
+    "updated_at": "2026-10-14T07:44:25.355Z"
   },
   {
-    "id": "fb48567e-044b-4d12-bb22-6fb9756b131b",
+    "id": "193b1391-82fa-4aaa-8221-8559ef2f454b",
     "sheet_name": "Main Registry",
     "row_order": 143,
     "fund": "1101101",
@@ -3142,11 +3142,11 @@
     "unallocated_allotment": 32695,
     "disbursement": 431765,
     "unpaid": 41735,
-    "created_at": "2026-10-14T06:14:33.643Z",
-    "updated_at": "2026-10-14T06:14:33.384Z"
+    "created_at": "2026-10-14T07:44:25.608Z",
+    "updated_at": "2026-10-14T07:44:25.355Z"
   },
   {
-    "id": "e3413777-28d8-477b-8f3f-7a65ca1eaf40",
+    "id": "6c986b49-fb17-4d9d-96d0-c2e71ee7dca4",
     "sheet_name": "Main Registry",
     "row_order": 144,
     "fund": "1101101",
@@ -3164,11 +3164,11 @@
     "unallocated_allotment": -120201.17,
     "disbursement": 1067017.22,
     "unpaid": 1099455,
-    "created_at": "2026-10-14T06:14:33.646Z",
-    "updated_at": "2026-10-14T06:14:33.384Z"
+    "created_at": "2026-10-14T07:44:25.610Z",
+    "updated_at": "2026-10-14T07:44:25.355Z"
   },
   {
-    "id": "03d8f889-738f-4932-a39c-b88ac153e474",
+    "id": "274ec671-4a2b-4719-81f2-92d86106e1d8",
     "sheet_name": "Main Registry",
     "row_order": 145,
     "fund": "1101101",
@@ -3186,11 +3186,11 @@
     "unallocated_allotment": 0,
     "disbursement": 250000,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.648Z",
-    "updated_at": "2026-10-14T06:14:33.384Z"
+    "created_at": "2026-10-14T07:44:25.613Z",
+    "updated_at": "2026-10-14T07:44:25.355Z"
   },
   {
-    "id": "a4dd2dec-1a7a-4952-9847-aaf30fb352e8",
+    "id": "0c78560e-a885-4a8e-a002-09c36dff480e",
     "sheet_name": "Main Registry",
     "row_order": 146,
     "fund": "1101101",
@@ -3208,11 +3208,11 @@
     "unallocated_allotment": 0,
     "disbursement": 949200,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.650Z",
-    "updated_at": "2026-10-14T06:14:33.384Z"
+    "created_at": "2026-10-14T07:44:25.615Z",
+    "updated_at": "2026-10-14T07:44:25.355Z"
   },
   {
-    "id": "8c64b100-f15a-46ac-988a-b01b2b45d965",
+    "id": "007d5125-9753-4f86-be44-1f9ee7cc26a4",
     "sheet_name": "Main Registry",
     "row_order": 147,
     "fund": "1101101",
@@ -3230,11 +3230,11 @@
     "unallocated_allotment": 100898.56,
     "disbursement": 199105,
     "unpaid": 41780,
-    "created_at": "2026-10-14T06:14:33.652Z",
-    "updated_at": "2026-10-14T06:14:33.384Z"
+    "created_at": "2026-10-14T07:44:25.617Z",
+    "updated_at": "2026-10-14T07:44:25.355Z"
   },
   {
-    "id": "05c0c0bd-df1b-45ef-a067-1c90e2e72a6b",
+    "id": "05c7a744-e86c-4ee5-b86e-8c26e993937c",
     "sheet_name": "Main Registry",
     "row_order": 148,
     "fund": "1101101",
@@ -3252,11 +3252,11 @@
     "unallocated_allotment": 0,
     "disbursement": 177000,
     "unpaid": 601800,
-    "created_at": "2026-10-14T06:14:33.654Z",
-    "updated_at": "2026-10-14T06:14:33.384Z"
+    "created_at": "2026-10-14T07:44:25.619Z",
+    "updated_at": "2026-10-14T07:44:25.355Z"
   },
   {
-    "id": "4bc78f93-56f1-4d46-abcf-882d8608e7b8",
+    "id": "3f8a4f0c-51bb-423e-a59e-7f313d506a26",
     "sheet_name": "Main Registry",
     "row_order": 149,
     "fund": "1101101",
@@ -3274,11 +3274,11 @@
     "unallocated_allotment": 197400,
     "disbursement": 2600,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.656Z",
-    "updated_at": "2026-10-14T06:14:33.384Z"
+    "created_at": "2026-10-14T07:44:25.621Z",
+    "updated_at": "2026-10-14T07:44:25.355Z"
   },
   {
-    "id": "202831cd-9833-4663-b107-30ca8cb9563a",
+    "id": "ca63d4e0-221d-4147-9ea9-7e475fb83543",
     "sheet_name": "Main Registry",
     "row_order": 150,
     "fund": "1101101",
@@ -3296,11 +3296,11 @@
     "unallocated_allotment": 298298.56,
     "disbursement": 1577905,
     "unpaid": 643580,
-    "created_at": "2026-10-14T06:14:33.659Z",
-    "updated_at": "2026-10-14T06:14:33.384Z"
+    "created_at": "2026-10-14T07:44:25.623Z",
+    "updated_at": "2026-10-14T07:44:25.355Z"
   },
   {
-    "id": "b99bb22b-78df-4bb0-8b74-d819079787b2",
+    "id": "367d8c47-4e6e-4089-bfa6-4ca045d8c679",
     "sheet_name": "Main Registry",
     "row_order": 151,
     "fund": "1101101",
@@ -3318,11 +3318,11 @@
     "unallocated_allotment": 0,
     "disbursement": 18140.22,
     "unpaid": 340859.78,
-    "created_at": "2026-10-14T06:14:33.661Z",
-    "updated_at": "2026-10-14T06:14:33.384Z"
+    "created_at": "2026-10-14T07:44:25.625Z",
+    "updated_at": "2026-10-14T07:44:25.355Z"
   },
   {
-    "id": "c741d3b0-2441-431c-9e9a-a68162d16dcd",
+    "id": "7c7cffca-e99b-48c9-b239-d9752a509c43",
     "sheet_name": "Main Registry",
     "row_order": 152,
     "fund": "1101101",
@@ -3340,11 +3340,11 @@
     "unallocated_allotment": 0,
     "disbursement": 18140.22,
     "unpaid": 340859.78,
-    "created_at": "2026-10-14T06:14:33.663Z",
-    "updated_at": "2026-10-14T06:14:33.384Z"
+    "created_at": "2026-10-14T07:44:25.627Z",
+    "updated_at": "2026-10-14T07:44:25.355Z"
   },
   {
-    "id": "8d0f5c5b-3620-44f1-b7e6-53884c026848",
+    "id": "31652042-28ad-4124-80b5-b8efefb788e1",
     "sheet_name": "Main Registry",
     "row_order": 153,
     "fund": "1101101",
@@ -3362,11 +3362,11 @@
     "unallocated_allotment": 11233.6,
     "disbursement": 380648.14,
     "unpaid": 11118.26,
-    "created_at": "2026-10-14T06:14:33.665Z",
-    "updated_at": "2026-10-14T06:14:33.384Z"
+    "created_at": "2026-10-14T07:44:25.629Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "dafece2f-a564-4875-81b3-a8e2e901a0ec",
+    "id": "58067f42-8461-48d5-a65e-7b7ae4c8ada8",
     "sheet_name": "Main Registry",
     "row_order": 154,
     "fund": "1101101",
@@ -3384,11 +3384,11 @@
     "unallocated_allotment": 11233.6,
     "disbursement": 380648.14,
     "unpaid": 11118.26,
-    "created_at": "2026-10-14T06:14:33.667Z",
-    "updated_at": "2026-10-14T06:14:33.384Z"
+    "created_at": "2026-10-14T07:44:25.632Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "d7d2ab14-90d5-4aa9-8a89-7bf94b507a08",
+    "id": "1ad0642d-bcf5-4f51-9f41-b69a44352ffc",
     "sheet_name": "Main Registry",
     "row_order": 155,
     "fund": "1101101",
@@ -3406,11 +3406,11 @@
     "unallocated_allotment": 0,
     "disbursement": 163210,
     "unpaid": 2570436,
-    "created_at": "2026-10-14T06:14:33.669Z",
-    "updated_at": "2026-10-14T06:14:33.384Z"
+    "created_at": "2026-10-14T07:44:25.634Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "be6c55bd-91e9-4b53-8b35-92181356b747",
+    "id": "8941884b-b9fb-4692-9d4d-923de9287375",
     "sheet_name": "Main Registry",
     "row_order": 156,
     "fund": "1101101",
@@ -3428,11 +3428,11 @@
     "unallocated_allotment": 0,
     "disbursement": 54000,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.671Z",
-    "updated_at": "2026-10-14T06:14:33.384Z"
+    "created_at": "2026-10-14T07:44:25.636Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "86ad06e7-f39d-4604-a9da-63160dcdad63",
+    "id": "8b490c52-612c-4b5e-9d14-b923f4b0070a",
     "sheet_name": "Main Registry",
     "row_order": 157,
     "fund": "1101101",
@@ -3450,11 +3450,11 @@
     "unallocated_allotment": 0,
     "disbursement": 217210,
     "unpaid": 2570436,
-    "created_at": "2026-10-14T06:14:33.673Z",
-    "updated_at": "2026-10-14T06:14:33.384Z"
+    "created_at": "2026-10-14T07:44:25.638Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "d972e62b-77a1-46e9-957f-1ba58bace8d6",
+    "id": "b7493fc5-5940-4b28-970b-7f680d4c92a0",
     "sheet_name": "Main Registry",
     "row_order": 158,
     "fund": "1101101",
@@ -3472,11 +3472,11 @@
     "unallocated_allotment": 755807.9,
     "disbursement": 254262.1,
     "unpaid": 17300,
-    "created_at": "2026-10-14T06:14:33.676Z",
-    "updated_at": "2026-10-14T06:14:33.384Z"
+    "created_at": "2026-10-14T07:44:25.640Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "a1bd8fc4-55be-40d8-8856-0365d3026a2b",
+    "id": "1323e1c5-66bd-4b46-b9a9-0ad9be70e700",
     "sheet_name": "Main Registry",
     "row_order": 159,
     "fund": "1101101",
@@ -3494,11 +3494,11 @@
     "unallocated_allotment": 15124.81,
     "disbursement": 108275.19,
     "unpaid": 6600,
-    "created_at": "2026-10-14T06:14:33.678Z",
-    "updated_at": "2026-10-14T06:14:33.384Z"
+    "created_at": "2026-10-14T07:44:25.642Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "ab5f8cb1-eabc-459e-97ac-65a0623b9be1",
+    "id": "0ae774c5-fa3f-4fe3-82c7-d2644fb5d6a2",
     "sheet_name": "Main Registry",
     "row_order": 160,
     "fund": "1101101",
@@ -3516,11 +3516,11 @@
     "unallocated_allotment": 1267,
     "disbursement": 0,
     "unpaid": 76525,
-    "created_at": "2026-10-14T06:14:33.680Z",
-    "updated_at": "2026-10-14T06:14:33.384Z"
+    "created_at": "2026-10-14T07:44:25.644Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "864b6a2b-e2ce-464e-abb2-7b989a9e3c30",
+    "id": "1245cb92-b368-4a8d-99a8-7fe8ef085b60",
     "sheet_name": "Main Registry",
     "row_order": 161,
     "fund": "1101101",
@@ -3538,11 +3538,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 50000,
-    "created_at": "2026-10-14T06:14:33.682Z",
-    "updated_at": "2026-10-14T06:14:33.384Z"
+    "created_at": "2026-10-14T07:44:25.646Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "b2a3e363-2c4f-454e-b70e-01948cbd2e1e",
+    "id": "b07cc369-72f9-4582-95bf-3139bc0acf1e",
     "sheet_name": "Main Registry",
     "row_order": 162,
     "fund": "1101101",
@@ -3560,11 +3560,11 @@
     "unallocated_allotment": 0,
     "disbursement": 620199.63,
     "unpaid": 22800.37,
-    "created_at": "2026-10-14T06:14:33.684Z",
-    "updated_at": "2026-10-14T06:14:33.384Z"
+    "created_at": "2026-10-14T07:44:25.648Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "935bbbcc-3767-469f-a5c1-1b8d30b92d04",
+    "id": "cc22d4d5-6488-4602-a075-dccf5e56ebf0",
     "sheet_name": "Main Registry",
     "row_order": 163,
     "fund": "1101101",
@@ -3582,11 +3582,11 @@
     "unallocated_allotment": 32136.5,
     "disbursement": 21064,
     "unpaid": 46799.5,
-    "created_at": "2026-10-14T06:14:33.686Z",
-    "updated_at": "2026-10-14T06:14:33.384Z"
+    "created_at": "2026-10-14T07:44:25.650Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "9e1430df-9255-4768-b7b7-8a2eec2e94dd",
+    "id": "b33eed97-3512-4dcb-a6f8-4bb5f0ba7cf7",
     "sheet_name": "Main Registry",
     "row_order": 164,
     "fund": "1101101",
@@ -3604,11 +3604,11 @@
     "unallocated_allotment": 22000,
     "disbursement": 0,
     "unpaid": 118200,
-    "created_at": "2026-10-14T06:14:33.688Z",
-    "updated_at": "2026-10-14T06:14:33.384Z"
+    "created_at": "2026-10-14T07:44:25.653Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "11df2f50-28d7-43e9-96de-f9fd2e28664e",
+    "id": "c2cd55c0-9dbb-4fc9-bd47-784ccfc6888c",
     "sheet_name": "Main Registry",
     "row_order": 165,
     "fund": "1101101",
@@ -3626,11 +3626,11 @@
     "unallocated_allotment": 0,
     "disbursement": 467809.82,
     "unpaid": 32190.18,
-    "created_at": "2026-10-14T06:14:33.690Z",
-    "updated_at": "2026-10-14T06:14:33.384Z"
+    "created_at": "2026-10-14T07:44:25.655Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "e7b62485-8a27-4abf-b7e9-4246afa02480",
+    "id": "51a979ef-660e-4f26-9338-83d3fee78413",
     "sheet_name": "Main Registry",
     "row_order": 166,
     "fund": "1101101",
@@ -3648,11 +3648,11 @@
     "unallocated_allotment": 18010,
     "disbursement": 855220,
     "unpaid": 979400,
-    "created_at": "2026-10-14T06:14:33.692Z",
-    "updated_at": "2026-10-14T06:14:33.384Z"
+    "created_at": "2026-10-14T07:44:25.657Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "5c8a7e7a-5c2b-49b2-9e59-b1fcadb40ffa",
+    "id": "47c416fb-c09a-4559-aac9-fc18008acb7e",
     "sheet_name": "Main Registry",
     "row_order": 167,
     "fund": "1101101",
@@ -3670,11 +3670,11 @@
     "unallocated_allotment": 500000,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.694Z",
-    "updated_at": "2026-10-14T06:14:33.384Z"
+    "created_at": "2026-10-14T07:44:25.659Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "a782db40-641b-4909-bbb4-65a049f72aa4",
+    "id": "48c4588b-dcf2-43d0-9ed5-d3283b2d5ace",
     "sheet_name": "Main Registry",
     "row_order": 168,
     "fund": "1101101",
@@ -3692,11 +3692,11 @@
     "unallocated_allotment": 1344346.21,
     "disbursement": 2326830.74,
     "unpaid": 1349815.05,
-    "created_at": "2026-10-14T06:14:33.696Z",
-    "updated_at": "2026-10-14T06:14:33.384Z"
+    "created_at": "2026-10-14T07:44:25.661Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "67c566bf-9135-4d74-80c5-58846eeabdfd",
+    "id": "ef219cf3-a639-45e1-8326-30493b983353",
     "sheet_name": "Main Registry",
     "row_order": 169,
     "fund": "1101101",
@@ -3714,11 +3714,11 @@
     "unallocated_allotment": 190120,
     "disbursement": 709880,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.699Z",
-    "updated_at": "2026-10-14T06:14:33.384Z"
+    "created_at": "2026-10-14T07:44:25.663Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "e80131ae-c4ae-4b82-b691-d6988415f8c8",
+    "id": "249a1419-8d4d-4ff2-b2a6-3cc97ce4099b",
     "sheet_name": "Main Registry",
     "row_order": 170,
     "fund": "1101101",
@@ -3736,11 +3736,11 @@
     "unallocated_allotment": 238539,
     "disbursement": 439749,
     "unpaid": 474745,
-    "created_at": "2026-10-14T06:14:33.701Z",
-    "updated_at": "2026-10-14T06:14:33.384Z"
+    "created_at": "2026-10-14T07:44:25.665Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "6ee7fe0e-42c1-4872-9ee4-f502284ab8a4",
+    "id": "145d301d-cbbd-4e62-8079-5a74ce1d7bad",
     "sheet_name": "Main Registry",
     "row_order": 171,
     "fund": "1101101",
@@ -3758,11 +3758,11 @@
     "unallocated_allotment": 0,
     "disbursement": 764348.72,
     "unpaid": 81651.28,
-    "created_at": "2026-10-14T06:14:33.703Z",
-    "updated_at": "2026-10-14T06:14:33.384Z"
+    "created_at": "2026-10-14T07:44:25.668Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "f2c52315-b5bf-408b-a2d5-3b94f3e832cc",
+    "id": "55a5f059-f12c-4b36-b705-3f80116c347e",
     "sheet_name": "Main Registry",
     "row_order": 172,
     "fund": "1101101",
@@ -3780,11 +3780,11 @@
     "unallocated_allotment": 100100,
     "disbursement": 310900,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.705Z",
-    "updated_at": "2026-10-14T06:14:33.384Z"
+    "created_at": "2026-10-14T07:44:25.670Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "38cac485-8557-43ca-964d-a1462ed58f7b",
+    "id": "ca044027-5f5e-4df1-8a4a-014d3919abc4",
     "sheet_name": "Main Registry",
     "row_order": 173,
     "fund": "1101101",
@@ -3802,11 +3802,11 @@
     "unallocated_allotment": 200000,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.707Z",
-    "updated_at": "2026-10-14T06:14:33.384Z"
+    "created_at": "2026-10-14T07:44:25.672Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "4f41e404-3833-4a98-9c77-822a7186effe",
+    "id": "d09ce086-384a-4a76-b33c-3f014223088b",
     "sheet_name": "Main Registry",
     "row_order": 174,
     "fund": "1101101",
@@ -3824,11 +3824,11 @@
     "unallocated_allotment": 728759,
     "disbursement": 2224877.72,
     "unpaid": 556396.28,
-    "created_at": "2026-10-14T06:14:33.709Z",
-    "updated_at": "2026-10-14T06:14:33.384Z"
+    "created_at": "2026-10-14T07:44:25.674Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "a54645a5-89e0-4e2d-9f25-140b2d207e60",
+    "id": "f94f6ddd-cbdb-49a8-ab2f-0e5209b58605",
     "sheet_name": "Main Registry",
     "row_order": 175,
     "fund": "1101101",
@@ -3846,11 +3846,11 @@
     "unallocated_allotment": 492620,
     "disbursement": 0,
     "unpaid": 7380,
-    "created_at": "2026-10-14T06:14:33.711Z",
-    "updated_at": "2026-10-14T06:14:33.384Z"
+    "created_at": "2026-10-14T07:44:25.676Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "a1ce5200-2862-4d91-b43b-a4053c64a32e",
+    "id": "c2471451-37e8-4fad-a2f9-5b1d3da9c2ab",
     "sheet_name": "Main Registry",
     "row_order": 176,
     "fund": "1101101",
@@ -3868,11 +3868,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.713Z",
-    "updated_at": "2026-10-14T06:14:33.384Z"
+    "created_at": "2026-10-14T07:44:25.678Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "e3c22e30-7f84-49bf-8f24-b42e2d64792b",
+    "id": "a80d44b5-6477-4b87-b4fa-915f045b5f3b",
     "sheet_name": "Main Registry",
     "row_order": 177,
     "fund": "1101101",
@@ -3890,11 +3890,11 @@
     "unallocated_allotment": 492620,
     "disbursement": 0,
     "unpaid": 7380,
-    "created_at": "2026-10-14T06:14:33.715Z",
-    "updated_at": "2026-10-14T06:14:33.384Z"
+    "created_at": "2026-10-14T07:44:25.680Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "a9e3ea8f-745b-4d32-84ae-b910e0ff79b5",
+    "id": "56995ea6-eb19-4b09-97bd-3ccb5226f2ba",
     "sheet_name": "Main Registry",
     "row_order": 178,
     "fund": "1101101",
@@ -3912,11 +3912,11 @@
     "unallocated_allotment": 100000,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.718Z",
-    "updated_at": "2026-10-14T06:14:33.384Z"
+    "created_at": "2026-10-14T07:44:25.682Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "6071e73f-cbf3-4a9e-b9d0-9051e941e436",
+    "id": "52d0de64-4295-4f97-9007-fec5da5cfea3",
     "sheet_name": "Main Registry",
     "row_order": 179,
     "fund": "1101101",
@@ -3934,11 +3934,11 @@
     "unallocated_allotment": 100000,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.720Z",
-    "updated_at": "2026-10-14T06:14:33.384Z"
+    "created_at": "2026-10-14T07:44:25.684Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "a8a23f26-38ff-4d4c-9856-a2d8c8a5b974",
+    "id": "289375f8-a46a-4f10-a38e-74bd3c268aa8",
     "sheet_name": "Main Registry",
     "row_order": 180,
     "fund": "1101101",
@@ -3956,11 +3956,11 @@
     "unallocated_allotment": 16340687.03,
     "disbursement": 22514272.83,
     "unpaid": 37647424.5,
-    "created_at": "2026-10-14T06:14:33.722Z",
-    "updated_at": "2026-10-14T06:14:33.384Z"
+    "created_at": "2026-10-14T07:44:25.687Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "78097fd9-391f-4d3a-a075-912f1d27cd53",
+    "id": "64150f37-633e-45c2-86a9-36f1806bf817",
     "sheet_name": "Main Registry",
     "row_order": 181,
     "fund": "1101101",
@@ -3978,11 +3978,11 @@
     "unallocated_allotment": 16340687.03,
     "disbursement": 22514272.83,
     "unpaid": 37647424.5,
-    "created_at": "2026-10-14T06:14:33.724Z",
-    "updated_at": "2026-10-14T06:14:33.384Z"
+    "created_at": "2026-10-14T07:44:25.689Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "3d75969f-cf0c-4dfb-a123-98f8810276c0",
+    "id": "f4aafbc0-f39e-409d-87ef-5f8d71c4db3d",
     "sheet_name": "Main Registry",
     "row_order": 182,
     "fund": "1101101",
@@ -4000,11 +4000,11 @@
     "unallocated_allotment": 16340687.03,
     "disbursement": 22514272.83,
     "unpaid": 37647424.5,
-    "created_at": "2026-10-14T06:14:33.726Z",
-    "updated_at": "2026-10-14T06:14:33.384Z"
+    "created_at": "2026-10-14T07:44:25.691Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "25e2a13a-0ed1-40a1-985d-cf328cd37cac",
+    "id": "7c7601f1-e65e-4177-9039-d0247dff7917",
     "sheet_name": "Main Registry",
     "row_order": 183,
     "fund": "1101101",
@@ -4022,11 +4022,11 @@
     "unallocated_allotment": 133076.03,
     "disbursement": 937978.47,
     "unpaid": 129633,
-    "created_at": "2026-10-14T06:14:33.728Z",
-    "updated_at": "2026-10-14T06:14:33.384Z"
+    "created_at": "2026-10-14T07:44:25.693Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "86de325f-7a05-4780-a41e-9dea93c66f34",
+    "id": "28f33ae0-a3e5-44fc-9cdc-2ed94c8b303a",
     "sheet_name": "Main Registry",
     "row_order": 184,
     "fund": "1101101",
@@ -4044,11 +4044,11 @@
     "unallocated_allotment": 13685,
     "disbursement": 32480,
     "unpaid": 253835,
-    "created_at": "2026-10-14T06:14:33.731Z",
-    "updated_at": "2026-10-14T06:14:33.384Z"
+    "created_at": "2026-10-14T07:44:25.695Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "4b9a6b3e-4b5c-45e2-8ab3-3c8df8ce3280",
+    "id": "19517d80-8591-4912-b08e-6c14f2bc54ff",
     "sheet_name": "Main Registry",
     "row_order": 185,
     "fund": "1101101",
@@ -4066,11 +4066,11 @@
     "unallocated_allotment": -4500,
     "disbursement": 119839,
     "unpaid": 172329,
-    "created_at": "2026-10-14T06:14:33.733Z",
-    "updated_at": "2026-10-14T06:14:33.384Z"
+    "created_at": "2026-10-14T07:44:25.697Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "4dde817c-0c30-49cc-a9df-cca16724e20e",
+    "id": "cba97c2b-cd19-4b51-87d6-99603d9ba03d",
     "sheet_name": "Main Registry",
     "row_order": 186,
     "fund": "1101101",
@@ -4088,11 +4088,11 @@
     "unallocated_allotment": 537010,
     "disbursement": 0,
     "unpaid": 635800,
-    "created_at": "2026-10-14T06:14:33.735Z",
-    "updated_at": "2026-10-14T06:14:33.384Z"
+    "created_at": "2026-10-14T07:44:25.700Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "1d2b73b1-cc68-4632-be1e-a31eb29c9c54",
+    "id": "d3acee83-9b8e-4418-ad26-8ecb067c54db",
     "sheet_name": "Main Registry",
     "row_order": 187,
     "fund": "1101101",
@@ -4110,11 +4110,11 @@
     "unallocated_allotment": 3,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.737Z",
-    "updated_at": "2026-10-14T06:14:33.384Z"
+    "created_at": "2026-10-14T07:44:25.702Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "05bce00e-9776-456b-b2f7-dadf39685bf8",
+    "id": "c03a7b8b-c125-4d15-ab1f-1402c887f9ef",
     "sheet_name": "Main Registry",
     "row_order": 188,
     "fund": "1101101",
@@ -4132,11 +4132,11 @@
     "unallocated_allotment": 7984,
     "disbursement": 97280,
     "unpaid": 47626.5,
-    "created_at": "2026-10-14T06:14:33.739Z",
-    "updated_at": "2026-10-14T06:14:33.384Z"
+    "created_at": "2026-10-14T07:44:25.704Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "04ab2869-d8ed-42ca-bfed-a38e824aa049",
+    "id": "41992730-bf72-4984-8950-74792b7b0388",
     "sheet_name": "Main Registry",
     "row_order": 189,
     "fund": "1101101",
@@ -4154,11 +4154,11 @@
     "unallocated_allotment": 39700,
     "disbursement": 1300,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.741Z",
-    "updated_at": "2026-10-14T06:14:33.384Z"
+    "created_at": "2026-10-14T07:44:25.706Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "97e08b6d-0295-4b47-8bd7-c6cfb64f63c5",
+    "id": "d3857d25-80f4-49e8-8ba5-c262397948c1",
     "sheet_name": "Main Registry",
     "row_order": 190,
     "fund": "1101101",
@@ -4176,11 +4176,11 @@
     "unallocated_allotment": 55039.64,
     "disbursement": 3207407.88,
     "unpaid": 1401552.48,
-    "created_at": "2026-10-14T06:14:33.743Z",
-    "updated_at": "2026-10-14T06:14:33.384Z"
+    "created_at": "2026-10-14T07:44:25.708Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "e826ab97-dfe3-4386-b1e2-abb808a23559",
+    "id": "b8f8aed8-bdfe-47a6-89a6-6710b3a82856",
     "sheet_name": "Main Registry",
     "row_order": 191,
     "fund": "1101101",
@@ -4198,11 +4198,11 @@
     "unallocated_allotment": 54235,
     "disbursement": 429175,
     "unpaid": 511272.5,
-    "created_at": "2026-10-14T06:14:33.745Z",
-    "updated_at": "2026-10-14T06:14:33.384Z"
+    "created_at": "2026-10-14T07:44:25.710Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "9837a7c2-5a4b-4c9d-a6ff-32ca584e4163",
+    "id": "4e444858-edc2-4826-83be-66f92ff242bf",
     "sheet_name": "Main Registry",
     "row_order": 192,
     "fund": "1101101",
@@ -4220,11 +4220,11 @@
     "unallocated_allotment": 146080,
     "disbursement": 7130,
     "unpaid": 322000,
-    "created_at": "2026-10-14T06:14:33.747Z",
-    "updated_at": "2026-10-14T06:14:33.384Z"
+    "created_at": "2026-10-14T07:44:25.712Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "6b3241a4-c8b9-41e4-83b3-3ad9be6c2c91",
+    "id": "599213b4-7468-4b05-8b87-0903cee1f5a1",
     "sheet_name": "Main Registry",
     "row_order": 193,
     "fund": "1101101",
@@ -4242,11 +4242,11 @@
     "unallocated_allotment": 115585,
     "disbursement": 366430,
     "unpaid": 1078585,
-    "created_at": "2026-10-14T06:14:33.749Z",
-    "updated_at": "2026-10-14T06:14:33.384Z"
+    "created_at": "2026-10-14T07:44:25.715Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "af766b92-96a0-4d16-b10b-9824bfa5217b",
+    "id": "bf6dab2d-05c6-4434-ad91-601aa1763a6c",
     "sheet_name": "Main Registry",
     "row_order": 194,
     "fund": "1101101",
@@ -4264,11 +4264,11 @@
     "unallocated_allotment": 230000,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.751Z",
-    "updated_at": "2026-10-14T06:14:33.384Z"
+    "created_at": "2026-10-14T07:44:25.717Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "d41254f3-2f84-48c9-84d9-302dd0db9795",
+    "id": "2a304ef4-1774-42a2-a1a6-ce7960b0fb2b",
     "sheet_name": "Main Registry",
     "row_order": 195,
     "fund": "1101101",
@@ -4286,11 +4286,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.754Z",
-    "updated_at": "2026-10-14T06:14:33.384Z"
+    "created_at": "2026-10-14T07:44:25.719Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "1c48847c-882b-4488-8798-b705688e74fe",
+    "id": "687206cb-4916-4db5-bc4d-0261732fc448",
     "sheet_name": "Main Registry",
     "row_order": 196,
     "fund": "1101101",
@@ -4308,11 +4308,11 @@
     "unallocated_allotment": 1327897.67,
     "disbursement": 5199020.35,
     "unpaid": 4552633.48,
-    "created_at": "2026-10-14T06:14:33.756Z",
-    "updated_at": "2026-10-14T06:14:33.384Z"
+    "created_at": "2026-10-14T07:44:25.721Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "7151fdf2-aa47-4df5-8957-e24bb39dbd7f",
+    "id": "a9a5639d-d9f3-4d37-add2-4a92ab264794",
     "sheet_name": "Main Registry",
     "row_order": 197,
     "fund": "1101101",
@@ -4330,11 +4330,11 @@
     "unallocated_allotment": 1327897.67,
     "disbursement": 5199020.35,
     "unpaid": 4552633.48,
-    "created_at": "2026-10-14T06:14:33.758Z",
-    "updated_at": "2026-10-14T06:14:33.384Z"
+    "created_at": "2026-10-14T07:44:25.723Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "e6d52a5e-946a-409e-aaf6-bd73f7c01d64",
+    "id": "b8cb6c05-8e30-4f50-ac72-2ef7318d1f11",
     "sheet_name": "Main Registry",
     "row_order": 198,
     "fund": "1101101",
@@ -4352,11 +4352,11 @@
     "unallocated_allotment": 68000,
     "disbursement": 0,
     "unpaid": 438950,
-    "created_at": "2026-10-14T06:14:33.760Z",
-    "updated_at": "2026-10-14T06:14:33.384Z"
+    "created_at": "2026-10-14T07:44:25.725Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "c7716c7f-1796-4280-bef5-417b63121628",
+    "id": "62d5caa2-2751-4745-ac23-ab112abf6e1c",
     "sheet_name": "Main Registry",
     "row_order": 199,
     "fund": "1101101",
@@ -4374,11 +4374,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 450000,
-    "created_at": "2026-10-14T06:14:33.762Z",
-    "updated_at": "2026-10-14T06:14:33.384Z"
+    "created_at": "2026-10-14T07:44:25.727Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "e4629c67-4ccf-4435-be06-1d9c80d5cf0b",
+    "id": "f1f6eef7-e82a-4c06-b2a4-b8ab3a71e2be",
     "sheet_name": "Main Registry",
     "row_order": 200,
     "fund": "1101101",
@@ -4396,11 +4396,11 @@
     "unallocated_allotment": 68000,
     "disbursement": 0,
     "unpaid": 888950,
-    "created_at": "2026-10-14T06:14:33.764Z",
-    "updated_at": "2026-10-14T06:14:33.384Z"
+    "created_at": "2026-10-14T07:44:25.729Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "db59f539-8ff2-4985-8633-412a6441544b",
+    "id": "aaccf8ec-526c-43f1-ac10-374e5f901471",
     "sheet_name": "Main Registry",
     "row_order": 201,
     "fund": "1101101",
@@ -4418,11 +4418,11 @@
     "unallocated_allotment": 68000,
     "disbursement": 0,
     "unpaid": 888950,
-    "created_at": "2026-10-14T06:14:33.766Z",
-    "updated_at": "2026-10-14T06:14:33.384Z"
+    "created_at": "2026-10-14T07:44:25.732Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "7ea623ef-72fb-444a-8566-c241f052d4aa",
+    "id": "d9e62e0f-ea74-4b24-aebd-3455cc68674a",
     "sheet_name": "Main Registry",
     "row_order": 202,
     "fund": "1101101",
@@ -4440,11 +4440,11 @@
     "unallocated_allotment": 1395897.67,
     "disbursement": 5199020.35,
     "unpaid": 5441583.48,
-    "created_at": "2026-10-14T06:14:33.769Z",
-    "updated_at": "2026-10-14T06:14:33.384Z"
+    "created_at": "2026-10-14T07:44:25.734Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "42bd5832-ad17-4787-af0f-ae42d00ed69b",
+    "id": "7b10bac7-9d1d-4035-af27-67bb6a0e5a21",
     "sheet_name": "Main Registry",
     "row_order": 203,
     "fund": "1101101",
@@ -4462,11 +4462,11 @@
     "unallocated_allotment": 1395897.67,
     "disbursement": 5199020.35,
     "unpaid": 5441583.48,
-    "created_at": "2026-10-14T06:14:33.771Z",
-    "updated_at": "2026-10-14T06:14:33.384Z"
+    "created_at": "2026-10-14T07:44:25.736Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "a2212d35-045b-4b95-8409-604f33ff57c5",
+    "id": "76244d15-a625-4ee6-9874-81454be97fb9",
     "sheet_name": "Main Registry",
     "row_order": 204,
     "fund": "1101101",
@@ -4484,11 +4484,11 @@
     "unallocated_allotment": 824378.37,
     "disbursement": 5524200,
     "unpaid": 10039421.63,
-    "created_at": "2026-10-14T06:14:33.773Z",
-    "updated_at": "2026-10-14T06:14:33.384Z"
+    "created_at": "2026-10-14T07:44:25.738Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "c5d89a5d-79fd-418c-8dcb-245eb5a02a5b",
+    "id": "6ab7656b-a724-4643-8bab-131c9b06e36e",
     "sheet_name": "Main Registry",
     "row_order": 205,
     "fund": "1101101",
@@ -4506,11 +4506,11 @@
     "unallocated_allotment": 824378.37,
     "disbursement": 5524200,
     "unpaid": 10039421.63,
-    "created_at": "2026-10-14T06:14:33.775Z",
-    "updated_at": "2026-10-14T06:14:33.384Z"
+    "created_at": "2026-10-14T07:44:25.740Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "0ba76525-5c71-4b73-b293-9560b8c211c5",
+    "id": "b85a1d09-a56e-4e0f-b0e7-18737bea208c",
     "sheet_name": "Main Registry",
     "row_order": 206,
     "fund": "1101101",
@@ -4528,11 +4528,11 @@
     "unallocated_allotment": 824378.37,
     "disbursement": 5524200,
     "unpaid": 10039421.63,
-    "created_at": "2026-10-14T06:14:33.778Z",
-    "updated_at": "2026-10-14T06:14:33.384Z"
+    "created_at": "2026-10-14T07:44:25.742Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "46f0a0c9-d847-42fb-9af1-ed4ffa33ac6e",
+    "id": "ba3043a7-bfa5-4ee2-934b-530a165da5f6",
     "sheet_name": "Main Registry",
     "row_order": 207,
     "fund": "1101101",
@@ -4550,11 +4550,11 @@
     "unallocated_allotment": 824378.37,
     "disbursement": 5524200,
     "unpaid": 10039421.63,
-    "created_at": "2026-10-14T06:14:33.780Z",
-    "updated_at": "2026-10-14T06:14:33.384Z"
+    "created_at": "2026-10-14T07:44:25.745Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "31e3b4d2-2808-4f7f-b22c-622ff17a26af",
+    "id": "9ffe0eb9-44ea-49bd-849d-fb15c60f28e6",
     "sheet_name": "Main Registry",
     "row_order": 208,
     "fund": "1101101",
@@ -4572,11 +4572,11 @@
     "unallocated_allotment": 824378.37,
     "disbursement": 5524200,
     "unpaid": 10039421.63,
-    "created_at": "2026-10-14T06:14:33.782Z",
-    "updated_at": "2026-10-14T06:14:33.384Z"
+    "created_at": "2026-10-14T07:44:25.747Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "87bea794-470a-404f-86b2-aa5d457bf70e",
+    "id": "cffe6aa5-d3d2-4bec-b47c-1c177a7968e3",
     "sheet_name": "Main Registry",
     "row_order": 209,
     "fund": "1102101",
@@ -4594,11 +4594,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.784Z",
-    "updated_at": "2026-10-14T06:14:33.384Z"
+    "created_at": "2026-10-14T07:44:25.749Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "21c0e990-e319-43ab-9fa2-d327bc8913f2",
+    "id": "1cf42477-75c7-4e78-8352-d64945f89d74",
     "sheet_name": "Main Registry",
     "row_order": 210,
     "fund": "1102101",
@@ -4616,11 +4616,11 @@
     "unallocated_allotment": 0,
     "disbursement": 294349.49,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.786Z",
-    "updated_at": "2026-10-14T06:14:33.384Z"
+    "created_at": "2026-10-14T07:44:25.751Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "879ab5a5-8b96-4392-86c2-0b619db3e00a",
+    "id": "e485bc05-eb8b-4979-9425-2fbe854cedea",
     "sheet_name": "Main Registry",
     "row_order": 211,
     "fund": "1102101",
@@ -4638,11 +4638,11 @@
     "unallocated_allotment": 0,
     "disbursement": 294349.49,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.788Z",
-    "updated_at": "2026-10-14T06:14:33.384Z"
+    "created_at": "2026-10-14T07:44:25.753Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "05953f43-410c-4ccb-afb7-de2e3614c535",
+    "id": "46a9204c-97e4-4c7d-a4ac-8eaaeb4eab1a",
     "sheet_name": "Main Registry",
     "row_order": 212,
     "fund": "1102101",
@@ -4660,11 +4660,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.790Z",
-    "updated_at": "2026-10-14T06:14:33.384Z"
+    "created_at": "2026-10-14T07:44:25.755Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "957d8075-ebaf-4052-9bde-c2d18bd220f2",
+    "id": "3b47a05c-3359-46ee-be6c-68278554afe5",
     "sheet_name": "Main Registry",
     "row_order": 213,
     "fund": "1102101",
@@ -4682,11 +4682,11 @@
     "unallocated_allotment": 0,
     "disbursement": 124640.61,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.792Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.757Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "8d4f6b9b-356b-4005-86e6-56057eaa162e",
+    "id": "290dd358-ea2a-43cf-8072-66de2a6e9e2a",
     "sheet_name": "Main Registry",
     "row_order": 214,
     "fund": "1102101",
@@ -4704,11 +4704,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.794Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.760Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "5a08d1cb-6f13-466c-bcbe-0a65d46c8fe3",
+    "id": "190e4376-4f82-4b90-a305-1a1657e872ef",
     "sheet_name": "Main Registry",
     "row_order": 215,
     "fund": "1102101",
@@ -4726,11 +4726,11 @@
     "unallocated_allotment": 0,
     "disbursement": 124640.61,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.797Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.762Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "68064f67-7ce0-4668-8661-61207e2feedd",
+    "id": "74d47669-7c0b-4745-be1e-474034225d49",
     "sheet_name": "Main Registry",
     "row_order": 216,
     "fund": "1102101",
@@ -4748,11 +4748,11 @@
     "unallocated_allotment": 0,
     "disbursement": 418990.1,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.799Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.764Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "a77b484e-7c9e-454e-a6f0-8fae2095ef86",
+    "id": "1d139f42-3f79-44c8-9d16-18942010cc7e",
     "sheet_name": "Main Registry",
     "row_order": 217,
     "fund": "1102101",
@@ -4770,11 +4770,11 @@
     "unallocated_allotment": 0,
     "disbursement": 418990.1,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.801Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.766Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "3ae6b0bc-a07c-4b19-8eb9-3099acba48d5",
+    "id": "bf9fb55f-8cf0-4391-bd67-d0148d07578f",
     "sheet_name": "Main Registry",
     "row_order": 218,
     "fund": "1102101",
@@ -4792,11 +4792,11 @@
     "unallocated_allotment": 0,
     "disbursement": 418990.1,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.803Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.768Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "5b24085b-b019-4a95-8a07-0402306f70ce",
+    "id": "ae65fcef-3a19-4a91-abe2-101025581033",
     "sheet_name": "Main Registry",
     "row_order": 219,
     "fund": "1102101",
@@ -4814,11 +4814,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.805Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.770Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "0236ad87-cf3e-493b-8293-a1c9a14ce142",
+    "id": "232ea1fb-5ebd-4aa2-bc6e-5719070a53de",
     "sheet_name": "Main Registry",
     "row_order": 220,
     "fund": "1102101",
@@ -4836,11 +4836,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.807Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.773Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "2354e9f9-ef77-47a5-b5e4-107816f4857b",
+    "id": "f0c1bc8d-d192-4e93-8e47-0400d8907ef3",
     "sheet_name": "Main Registry",
     "row_order": 221,
     "fund": "1102101",
@@ -4858,11 +4858,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.810Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.775Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "a167e9f2-f3e7-411e-ab83-610da7c42eb5",
+    "id": "e40cf965-f21a-4efe-9316-c23ce85ac867",
     "sheet_name": "Main Registry",
     "row_order": 222,
     "fund": "1102101",
@@ -4880,11 +4880,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.812Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.777Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "0dae3dd3-de90-4749-aa53-b066577c288d",
+    "id": "8c49ed47-59fe-4a18-94d6-e9e417cb47b1",
     "sheet_name": "Main Registry",
     "row_order": 223,
     "fund": "1102101",
@@ -4902,11 +4902,11 @@
     "unallocated_allotment": 0,
     "disbursement": 8586836,
     "unpaid": 95664,
-    "created_at": "2026-10-14T06:14:33.814Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.779Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "afc00814-1d5f-4a6c-ae7c-71566bc07ef7",
+    "id": "4f3bf5c3-1ef5-4779-ab33-c1f89fb21c23",
     "sheet_name": "Main Registry",
     "row_order": 224,
     "fund": "1102101",
@@ -4924,11 +4924,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 102,
-    "created_at": "2026-10-14T06:14:33.816Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.781Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "8f5880b2-6d5a-4b3c-bdfe-57784cf14396",
+    "id": "7fef5e42-edac-4f44-ac19-b412e5d6aa2e",
     "sheet_name": "Main Registry",
     "row_order": 225,
     "fund": "1102101",
@@ -4946,11 +4946,11 @@
     "unallocated_allotment": 0,
     "disbursement": 8586836,
     "unpaid": 95766,
-    "created_at": "2026-10-14T06:14:33.818Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.784Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "f8dc3906-a8cb-4bb7-a5a1-60197feba071",
+    "id": "4dfabb5d-354c-4dcf-8c2a-652512797395",
     "sheet_name": "Main Registry",
     "row_order": 226,
     "fund": "1102101",
@@ -4968,11 +4968,11 @@
     "unallocated_allotment": 0,
     "disbursement": 8586836,
     "unpaid": 95766,
-    "created_at": "2026-10-14T06:14:33.820Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.786Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "371f8598-c53f-4121-9b29-7a2237ffca3c",
+    "id": "131de967-943d-49d1-805f-5b59f19e22b3",
     "sheet_name": "Main Registry",
     "row_order": 227,
     "fund": "1102101",
@@ -4990,11 +4990,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.822Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.788Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "533f158c-71a3-4d49-8b9f-272eb7cd2ea1",
+    "id": "5ef85405-24ec-4173-ae37-5fa8ad67a66e",
     "sheet_name": "Main Registry",
     "row_order": 228,
     "fund": "1102101",
@@ -5012,11 +5012,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.824Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.790Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "9619e7f5-c411-45ff-a2cd-06822992c2cb",
+    "id": "a9d0b75f-4375-4983-8765-d6ae09bf6ee5",
     "sheet_name": "Main Registry",
     "row_order": 229,
     "fund": "1102101",
@@ -5034,11 +5034,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.827Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.793Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "ef59fa3d-6a1f-4379-8ade-fa08bfc95d31",
+    "id": "d7e3c12c-7781-4ded-8f15-de92a36b7d38",
     "sheet_name": "Main Registry",
     "row_order": 230,
     "fund": "1102101",
@@ -5056,11 +5056,11 @@
     "unallocated_allotment": 0,
     "disbursement": 8586836,
     "unpaid": 95766,
-    "created_at": "2026-10-14T06:14:33.829Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.795Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "33975a56-85d5-4aa0-813a-a422ff4f2851",
+    "id": "a61e0c61-5a22-4df3-8549-2b3dacf860dc",
     "sheet_name": "Main Registry",
     "row_order": 231,
     "fund": "1102101",
@@ -5078,11 +5078,11 @@
     "unallocated_allotment": 0,
     "disbursement": 8586836,
     "unpaid": 95766,
-    "created_at": "2026-10-14T06:14:33.831Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.797Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "404f036c-21cc-4a77-a2bd-bafd6b09c266",
+    "id": "a0657ea5-26b4-4cae-9bae-41bc88ae389f",
     "sheet_name": "Main Registry",
     "row_order": 232,
     "fund": "1102101",
@@ -5100,11 +5100,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.833Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.799Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "094d62b3-0903-441d-9c6b-0a27d865a3bd",
+    "id": "5b46fdaf-0247-4ba1-bb30-bfbc7b58fad5",
     "sheet_name": "Main Registry",
     "row_order": 233,
     "fund": "1102101",
@@ -5122,11 +5122,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 414532.54,
-    "created_at": "2026-10-14T06:14:33.835Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.801Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "8b33b146-211b-41b3-b6ef-e73fe3a94c68",
+    "id": "fa30b2ff-8411-4aeb-a20e-58836053d979",
     "sheet_name": "Main Registry",
     "row_order": 234,
     "fund": "1102101",
@@ -5144,11 +5144,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.837Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.803Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "676b9066-8f9e-449f-b6ad-b575b3c182ef",
+    "id": "da53d096-4883-4af2-8d8e-47157f0578b7",
     "sheet_name": "Main Registry",
     "row_order": 235,
     "fund": "1102101",
@@ -5166,11 +5166,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.839Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.805Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "c36b882c-7578-4035-a256-b9fa3ee0159b",
+    "id": "e80d7bb6-c5ad-4a2b-8e05-ef617ef89605",
     "sheet_name": "Main Registry",
     "row_order": 236,
     "fund": "1102101",
@@ -5188,11 +5188,11 @@
     "unallocated_allotment": 0,
     "disbursement": 132793,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.841Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.807Z",
+    "updated_at": "2026-10-14T07:44:25.356Z"
   },
   {
-    "id": "9ef55f9f-37a2-4d0b-aba6-b2bf59e11142",
+    "id": "371ce573-10ef-439b-83e8-dc0b17ef9cf2",
     "sheet_name": "Main Registry",
     "row_order": 237,
     "fund": "1102101",
@@ -5210,11 +5210,11 @@
     "unallocated_allotment": 0,
     "disbursement": 132793,
     "unpaid": 414532.54,
-    "created_at": "2026-10-14T06:14:33.844Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.810Z",
+    "updated_at": "2026-10-14T07:44:25.357Z"
   },
   {
-    "id": "61dabf7d-5cbb-4dda-9125-7c8085a66765",
+    "id": "7d99d516-269a-4ecb-8c11-f95feb3dc819",
     "sheet_name": "Main Registry",
     "row_order": 238,
     "fund": "1102101",
@@ -5232,11 +5232,11 @@
     "unallocated_allotment": 0,
     "disbursement": 132793,
     "unpaid": 414532.54,
-    "created_at": "2026-10-14T06:14:33.846Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.812Z",
+    "updated_at": "2026-10-14T07:44:25.357Z"
   },
   {
-    "id": "fa7abc57-e63d-4fbe-833f-288096814794",
+    "id": "e4214869-f2e4-44a4-8952-cb27cd0c551f",
     "sheet_name": "Main Registry",
     "row_order": 239,
     "fund": "1102101",
@@ -5254,11 +5254,11 @@
     "unallocated_allotment": 0,
     "disbursement": 132793,
     "unpaid": 414532.54,
-    "created_at": "2026-10-14T06:14:33.848Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.814Z",
+    "updated_at": "2026-10-14T07:44:25.357Z"
   },
   {
-    "id": "8996b20e-cfc2-4722-8b8d-1c1ed6f3e13f",
+    "id": "3ff359c5-188e-4086-8c31-d1b01b574eb3",
     "sheet_name": "Main Registry",
     "row_order": 240,
     "fund": "1102101",
@@ -5276,11 +5276,11 @@
     "unallocated_allotment": 0,
     "disbursement": 132793,
     "unpaid": 414532.54,
-    "created_at": "2026-10-14T06:14:33.850Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.816Z",
+    "updated_at": "2026-10-14T07:44:25.357Z"
   },
   {
-    "id": "7fe5ed34-4e78-47da-b8d9-79e3d07f864b",
+    "id": "3ac926c9-19c6-45a7-aa3a-2c9120a3e2ab",
     "sheet_name": "Main Registry",
     "row_order": 241,
     "fund": "1102101",
@@ -5298,11 +5298,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.852Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.818Z",
+    "updated_at": "2026-10-14T07:44:25.357Z"
   },
   {
-    "id": "16b62bc8-1f5d-48da-8bc9-370c9ed853f4",
+    "id": "f2c94149-d6a2-4345-881a-776f475cc69f",
     "sheet_name": "Main Registry",
     "row_order": 242,
     "fund": "1102101",
@@ -5320,11 +5320,11 @@
     "unallocated_allotment": 0,
     "disbursement": 78806.9,
     "unpaid": 169710,
-    "created_at": "2026-10-14T06:14:33.854Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.820Z",
+    "updated_at": "2026-10-14T07:44:25.357Z"
   },
   {
-    "id": "a3f8b7a3-073a-423f-b6d1-a7670fed4d7e",
+    "id": "249d2e9f-7dd0-4b87-bc58-3c0c3d7996fa",
     "sheet_name": "Main Registry",
     "row_order": 243,
     "fund": "1102101",
@@ -5342,11 +5342,11 @@
     "unallocated_allotment": 0,
     "disbursement": 158950,
     "unpaid": 127161,
-    "created_at": "2026-10-14T06:14:33.856Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.822Z",
+    "updated_at": "2026-10-14T07:44:25.357Z"
   },
   {
-    "id": "4d5b36b5-d4b1-4154-b273-5e1a72e0370f",
+    "id": "686a6b59-20cd-46b9-abfe-cac237ec8137",
     "sheet_name": "Main Registry",
     "row_order": 244,
     "fund": "1102101",
@@ -5364,11 +5364,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 138000,
-    "created_at": "2026-10-14T06:14:33.858Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.825Z",
+    "updated_at": "2026-10-14T07:44:25.357Z"
   },
   {
-    "id": "b6f76685-3f8a-4aff-a1e7-eeb80dd18d57",
+    "id": "148ca0ee-2ec1-40a4-a98b-551c8e32ff84",
     "sheet_name": "Main Registry",
     "row_order": 245,
     "fund": "1102101",
@@ -5386,11 +5386,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.860Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.827Z",
+    "updated_at": "2026-10-14T07:44:25.357Z"
   },
   {
-    "id": "74288940-4ae1-4092-b4a3-efdf62522f10",
+    "id": "51be79c1-bbcd-4e40-b0d3-eff009278407",
     "sheet_name": "Main Registry",
     "row_order": 246,
     "fund": "1102101",
@@ -5408,11 +5408,11 @@
     "unallocated_allotment": 0,
     "disbursement": 1493895.93,
     "unpaid": 1376910.87,
-    "created_at": "2026-10-14T06:14:33.863Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.829Z",
+    "updated_at": "2026-10-14T07:44:25.357Z"
   },
   {
-    "id": "b222368c-3e0a-4840-8d14-bb3ce1e856c3",
+    "id": "c237df50-b6dc-4024-8331-0bdd4d82065a",
     "sheet_name": "Main Registry",
     "row_order": 247,
     "fund": "1102101",
@@ -5430,11 +5430,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 61050.66,
-    "created_at": "2026-10-14T06:14:33.865Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.831Z",
+    "updated_at": "2026-10-14T07:44:25.357Z"
   },
   {
-    "id": "7ada0877-b782-49bc-ae94-b6c59d4da71b",
+    "id": "7eff9e64-5697-43c5-838f-768acbd496aa",
     "sheet_name": "Main Registry",
     "row_order": 248,
     "fund": "1102101",
@@ -5452,11 +5452,11 @@
     "unallocated_allotment": 0,
     "disbursement": 50000,
     "unpaid": 240000,
-    "created_at": "2026-10-14T06:14:33.867Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.833Z",
+    "updated_at": "2026-10-14T07:44:25.357Z"
   },
   {
-    "id": "f5c70592-88c5-4427-8a43-0504a8605b32",
+    "id": "eb11c89a-9eec-433c-99e6-d716f00f81d9",
     "sheet_name": "Main Registry",
     "row_order": 249,
     "fund": "1102101",
@@ -5474,11 +5474,11 @@
     "unallocated_allotment": 0,
     "disbursement": 1781652.83,
     "unpaid": 2112832.53,
-    "created_at": "2026-10-14T06:14:33.869Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.835Z",
+    "updated_at": "2026-10-14T07:44:25.357Z"
   },
   {
-    "id": "0ced12b4-f368-4f79-9d92-311352471cb1",
+    "id": "2068cf50-0151-4a38-8bfd-2297a232eeb7",
     "sheet_name": "Main Registry",
     "row_order": 250,
     "fund": "1102101",
@@ -5496,11 +5496,11 @@
     "unallocated_allotment": 0,
     "disbursement": 79958.6,
     "unpaid": -38463.6,
-    "created_at": "2026-10-14T06:14:33.871Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.837Z",
+    "updated_at": "2026-10-14T07:44:25.357Z"
   },
   {
-    "id": "005a730a-de90-4fd3-88ba-00b80545b344",
+    "id": "c8465487-1ed8-4324-923d-445fd301b82f",
     "sheet_name": "Main Registry",
     "row_order": 251,
     "fund": "1102101",
@@ -5518,11 +5518,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.873Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.839Z",
+    "updated_at": "2026-10-14T07:44:25.357Z"
   },
   {
-    "id": "176e90e6-f75b-4333-86a3-20ac9bb1f994",
+    "id": "03b550ec-ee55-4a87-9190-982dcc1e23c0",
     "sheet_name": "Main Registry",
     "row_order": 252,
     "fund": "1102101",
@@ -5540,11 +5540,11 @@
     "unallocated_allotment": 0,
     "disbursement": 79958.6,
     "unpaid": -38463.6,
-    "created_at": "2026-10-14T06:14:33.875Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.842Z",
+    "updated_at": "2026-10-14T07:44:25.357Z"
   },
   {
-    "id": "660521c7-f630-4dad-93df-2af99528d130",
+    "id": "f6402915-9fd4-41a6-9374-680c45ddbba9",
     "sheet_name": "Main Registry",
     "row_order": 253,
     "fund": "1102101",
@@ -5562,11 +5562,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0.06,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.877Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.844Z",
+    "updated_at": "2026-10-14T07:44:25.357Z"
   },
   {
-    "id": "1e769674-2521-4a15-9835-6b383ba7f756",
+    "id": "4a8ee24e-585c-4d0c-a16e-595ca9793473",
     "sheet_name": "Main Registry",
     "row_order": 254,
     "fund": "1102101",
@@ -5584,11 +5584,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0.06,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.880Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.846Z",
+    "updated_at": "2026-10-14T07:44:25.357Z"
   },
   {
-    "id": "a1fa1623-9a52-45a4-9ce8-8054caba75b0",
+    "id": "255b0af6-ee93-4809-b247-e7fdaf532072",
     "sheet_name": "Main Registry",
     "row_order": 255,
     "fund": "1102101",
@@ -5606,11 +5606,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.882Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.848Z",
+    "updated_at": "2026-10-14T07:44:25.357Z"
   },
   {
-    "id": "2e3ae125-43aa-4edf-adc7-5cd2f68d292e",
+    "id": "2af855c8-b5ae-465e-963b-9f56a7c4832a",
     "sheet_name": "Main Registry",
     "row_order": 256,
     "fund": "1102101",
@@ -5628,11 +5628,11 @@
     "unallocated_allotment": 0,
     "disbursement": 47822.25,
     "unpaid": 13061.89,
-    "created_at": "2026-10-14T06:14:33.884Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.850Z",
+    "updated_at": "2026-10-14T07:44:25.357Z"
   },
   {
-    "id": "1b206b5e-a962-4f49-8847-42de7db08f73",
+    "id": "8cebe70b-054d-4e2f-a64e-e91df9b27c61",
     "sheet_name": "Main Registry",
     "row_order": 257,
     "fund": "1102101",
@@ -5650,11 +5650,11 @@
     "unallocated_allotment": 0,
     "disbursement": 47822.25,
     "unpaid": 13061.89,
-    "created_at": "2026-10-14T06:14:33.886Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.852Z",
+    "updated_at": "2026-10-14T07:44:25.357Z"
   },
   {
-    "id": "ab403af0-b6b7-4764-9536-e9bb0c3e57af",
+    "id": "d048e9f3-39bc-4219-8e9e-2627a2973b9e",
     "sheet_name": "Main Registry",
     "row_order": 258,
     "fund": "1102101",
@@ -5672,11 +5672,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.888Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.854Z",
+    "updated_at": "2026-10-14T07:44:25.357Z"
   },
   {
-    "id": "bd79bc09-56cd-49ee-9a87-292dffaafc98",
+    "id": "974366f9-e194-42b4-a841-81d68c0f6cab",
     "sheet_name": "Main Registry",
     "row_order": 259,
     "fund": "1102101",
@@ -5694,11 +5694,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 57463,
-    "created_at": "2026-10-14T06:14:33.890Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.856Z",
+    "updated_at": "2026-10-14T07:44:25.357Z"
   },
   {
-    "id": "0bc43505-4a32-44ef-a7c6-d53f2041dd71",
+    "id": "3a49fb73-2788-4e1a-8a7f-9c9e9780a09e",
     "sheet_name": "Main Registry",
     "row_order": 260,
     "fund": "1102101",
@@ -5716,11 +5716,11 @@
     "unallocated_allotment": 0,
     "disbursement": 992.38,
     "unpaid": 30430.92,
-    "created_at": "2026-10-14T06:14:33.892Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.858Z",
+    "updated_at": "2026-10-14T07:44:25.357Z"
   },
   {
-    "id": "b5ea3386-a8fa-4bde-af02-6f7741e2f487",
+    "id": "b0e01095-c03b-4be8-a4ee-024b1d6ddee7",
     "sheet_name": "Main Registry",
     "row_order": 261,
     "fund": "1102101",
@@ -5738,11 +5738,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 20844.44,
-    "created_at": "2026-10-14T06:14:33.894Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.860Z",
+    "updated_at": "2026-10-14T07:44:25.357Z"
   },
   {
-    "id": "e1e6da99-f0eb-4ee5-b670-86c069ea47db",
+    "id": "18485824-67d1-4448-8d06-35c88e9d9b11",
     "sheet_name": "Main Registry",
     "row_order": 262,
     "fund": "1102101",
@@ -5760,11 +5760,11 @@
     "unallocated_allotment": 0,
     "disbursement": 992.38,
     "unpaid": 108738.36,
-    "created_at": "2026-10-14T06:14:33.896Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.863Z",
+    "updated_at": "2026-10-14T07:44:25.357Z"
   },
   {
-    "id": "09ef821c-ad0a-4621-831e-61acb09f88da",
+    "id": "d0f87d31-6bd4-4482-9c3a-915ca8aa7e0f",
     "sheet_name": "Main Registry",
     "row_order": 263,
     "fund": "1102101",
@@ -5782,11 +5782,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 500000,
-    "created_at": "2026-10-14T06:14:33.898Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.865Z",
+    "updated_at": "2026-10-14T07:44:25.357Z"
   },
   {
-    "id": "565ac721-859e-4e27-9613-62bbc0eba47d",
+    "id": "fb9d296a-9975-421e-b9dc-39f3bc403fc7",
     "sheet_name": "Main Registry",
     "row_order": 264,
     "fund": "1102101",
@@ -5804,11 +5804,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.901Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.867Z",
+    "updated_at": "2026-10-14T07:44:25.357Z"
   },
   {
-    "id": "84a8982f-bbc1-40dc-9905-b26816092520",
+    "id": "149bbfc4-d91a-4f94-a639-6f5957e72182",
     "sheet_name": "Main Registry",
     "row_order": 265,
     "fund": "1102101",
@@ -5826,11 +5826,11 @@
     "unallocated_allotment": 0,
     "disbursement": 59798.4,
     "unpaid": 9156.65,
-    "created_at": "2026-10-14T06:14:33.903Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.869Z",
+    "updated_at": "2026-10-14T07:44:25.357Z"
   },
   {
-    "id": "731f0003-1c83-418c-b8e1-fd91e8837b09",
+    "id": "d9b67b97-aa9a-4533-94f4-49eab191af45",
     "sheet_name": "Main Registry",
     "row_order": 266,
     "fund": "1102101",
@@ -5848,11 +5848,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.905Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.871Z",
+    "updated_at": "2026-10-14T07:44:25.357Z"
   },
   {
-    "id": "a583bbbb-ea7f-416d-9acc-dfe406ca0931",
+    "id": "bdf421b1-6377-4618-bf6e-c8753c5214b3",
     "sheet_name": "Main Registry",
     "row_order": 267,
     "fund": "1102101",
@@ -5870,11 +5870,11 @@
     "unallocated_allotment": 0,
     "disbursement": 59798.4,
     "unpaid": 509156.65,
-    "created_at": "2026-10-14T06:14:33.907Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.873Z",
+    "updated_at": "2026-10-14T07:44:25.357Z"
   },
   {
-    "id": "b3e2ff8e-1749-49a2-8b0b-dffececd82ab",
+    "id": "36dacc1b-c0b8-4cbb-8532-20346783be48",
     "sheet_name": "Main Registry",
     "row_order": 268,
     "fund": "1102101",
@@ -5892,11 +5892,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.909Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.875Z",
+    "updated_at": "2026-10-14T07:44:25.357Z"
   },
   {
-    "id": "1994fd7b-fe29-413f-86ab-2c29bc29bc1e",
+    "id": "cc346e15-ce8e-4d27-a46d-c76ddc738fa6",
     "sheet_name": "Main Registry",
     "row_order": 269,
     "fund": "1102101",
@@ -5914,11 +5914,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 77721,
-    "created_at": "2026-10-14T06:14:33.911Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.877Z",
+    "updated_at": "2026-10-14T07:44:25.357Z"
   },
   {
-    "id": "ed55c638-779c-4611-8afb-66c52c00e443",
+    "id": "1d4ecc69-1673-460d-992f-abfb9559902f",
     "sheet_name": "Main Registry",
     "row_order": 270,
     "fund": "1102101",
@@ -5936,11 +5936,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.913Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.879Z",
+    "updated_at": "2026-10-14T07:44:25.357Z"
   },
   {
-    "id": "1ba2fdcf-d851-446f-b3fc-f2db74231064",
+    "id": "aecbfb88-6527-4e6a-aae8-982bd3337216",
     "sheet_name": "Main Registry",
     "row_order": 271,
     "fund": "1102101",
@@ -5958,11 +5958,11 @@
     "unallocated_allotment": 0,
     "disbursement": 110236.36,
     "unpaid": 15540.68,
-    "created_at": "2026-10-14T06:14:33.915Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.881Z",
+    "updated_at": "2026-10-14T07:44:25.357Z"
   },
   {
-    "id": "af3631d3-c646-4eff-9057-1f1dcfa7289a",
+    "id": "8471c91c-cd87-418d-b2a7-774cf1e18134",
     "sheet_name": "Main Registry",
     "row_order": 272,
     "fund": "1102101",
@@ -5980,11 +5980,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 4216,
-    "created_at": "2026-10-14T06:14:33.917Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.884Z",
+    "updated_at": "2026-10-14T07:44:25.357Z"
   },
   {
-    "id": "b3660e3a-7eb2-46b7-af69-32250a0d2ac0",
+    "id": "c138caa5-30b0-4f76-ae00-3daa9f6ae683",
     "sheet_name": "Main Registry",
     "row_order": 273,
     "fund": "1102101",
@@ -6002,11 +6002,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.919Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.886Z",
+    "updated_at": "2026-10-14T07:44:25.357Z"
   },
   {
-    "id": "13b1eba4-def5-474f-9529-a720d5795c0f",
+    "id": "f606485c-da5e-4b3c-94e3-75e0e2735d8b",
     "sheet_name": "Main Registry",
     "row_order": 274,
     "fund": "1102101",
@@ -6024,11 +6024,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.921Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.888Z",
+    "updated_at": "2026-10-14T07:44:25.357Z"
   },
   {
-    "id": "99558217-b5cf-4d6f-86ae-84ff57906d01",
+    "id": "ea1ac5c5-6db2-4a98-925a-1b60c4be657f",
     "sheet_name": "Main Registry",
     "row_order": 275,
     "fund": "1102101",
@@ -6046,11 +6046,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.924Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.890Z",
+    "updated_at": "2026-10-14T07:44:25.357Z"
   },
   {
-    "id": "9fba2dfd-84f9-4ae9-9aaf-9ec7a4d03589",
+    "id": "13055113-824f-46d8-bf9d-548ad5b475b4",
     "sheet_name": "Main Registry",
     "row_order": 276,
     "fund": "1102101",
@@ -6068,11 +6068,11 @@
     "unallocated_allotment": 0,
     "disbursement": 110236.36,
     "unpaid": 97477.68,
-    "created_at": "2026-10-14T06:14:33.926Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.892Z",
+    "updated_at": "2026-10-14T07:44:25.357Z"
   },
   {
-    "id": "fe9e1670-66d2-479b-a1b3-d990c12aa2b7",
+    "id": "aedf2be9-96ea-4d58-8726-a01b3f6201fd",
     "sheet_name": "Main Registry",
     "row_order": 277,
     "fund": "1102101",
@@ -6090,11 +6090,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 84200,
-    "created_at": "2026-10-14T06:14:33.928Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.894Z",
+    "updated_at": "2026-10-14T07:44:25.357Z"
   },
   {
-    "id": "2ace007d-ee51-4e2d-91fe-9736a53295f6",
+    "id": "5bf2adca-56e3-4399-9e78-e736210ff993",
     "sheet_name": "Main Registry",
     "row_order": 278,
     "fund": "1102101",
@@ -6112,11 +6112,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 84200,
-    "created_at": "2026-10-14T06:14:33.930Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.897Z",
+    "updated_at": "2026-10-14T07:44:25.357Z"
   },
   {
-    "id": "97c7c409-c1ce-4882-82ac-5ce58d685cf6",
+    "id": "765bc886-6c29-4360-9465-3b0a43898f84",
     "sheet_name": "Main Registry",
     "row_order": 279,
     "fund": "1102101",
@@ -6134,11 +6134,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.932Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.899Z",
+    "updated_at": "2026-10-14T07:44:25.357Z"
   },
   {
-    "id": "6c2ca8f1-e28e-4327-9629-cd8cf4c369d7",
+    "id": "0a512121-b11f-410c-b262-42ad80c05835",
     "sheet_name": "Main Registry",
     "row_order": 280,
     "fund": "1102101",
@@ -6156,11 +6156,11 @@
     "unallocated_allotment": 0,
     "disbursement": 88592.87,
     "unpaid": -29232.48,
-    "created_at": "2026-10-14T06:14:33.934Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.901Z",
+    "updated_at": "2026-10-14T07:44:25.357Z"
   },
   {
-    "id": "86f640c1-b612-4c71-9dfe-d870e6b68090",
+    "id": "65ae1076-fae0-4155-995c-4922a42ab963",
     "sheet_name": "Main Registry",
     "row_order": 281,
     "fund": "1102101",
@@ -6178,11 +6178,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.936Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.903Z",
+    "updated_at": "2026-10-14T07:44:25.357Z"
   },
   {
-    "id": "ee2f8144-4b7f-4446-aaea-3a6f26f9c172",
+    "id": "592db375-06cc-471b-869c-47d2d0c9d6f1",
     "sheet_name": "Main Registry",
     "row_order": 282,
     "fund": "1102101",
@@ -6200,11 +6200,11 @@
     "unallocated_allotment": 0,
     "disbursement": 88592.87,
     "unpaid": -29232.48,
-    "created_at": "2026-10-14T06:14:33.938Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.905Z",
+    "updated_at": "2026-10-14T07:44:25.357Z"
   },
   {
-    "id": "83aee475-5017-486a-9599-53456652b5d8",
+    "id": "4af596fd-6d74-47c5-9bba-445672dc9705",
     "sheet_name": "Main Registry",
     "row_order": 283,
     "fund": "1102101",
@@ -6222,11 +6222,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.940Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.907Z",
+    "updated_at": "2026-10-14T07:44:25.357Z"
   },
   {
-    "id": "87d8bfe0-9ab5-42d4-a72d-f2cd2c7ffdc7",
+    "id": "77006d8e-72ad-42ca-b58a-faf629384a41",
     "sheet_name": "Main Registry",
     "row_order": 284,
     "fund": "1102101",
@@ -6244,11 +6244,11 @@
     "unallocated_allotment": 0,
     "disbursement": 100821.25,
     "unpaid": 37107.32,
-    "created_at": "2026-10-14T06:14:33.943Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.909Z",
+    "updated_at": "2026-10-14T07:44:25.357Z"
   },
   {
-    "id": "c3532c7e-1e14-40a1-88fa-1d3b75ddd3d7",
+    "id": "ccc914a0-12c9-4fce-8a36-dd07508b7cc8",
     "sheet_name": "Main Registry",
     "row_order": 285,
     "fund": "1102101",
@@ -6266,11 +6266,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.945Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.911Z",
+    "updated_at": "2026-10-14T07:44:25.357Z"
   },
   {
-    "id": "d53f6c81-ec8b-4032-ab37-f3adde98d693",
+    "id": "78eaf6b6-1a3d-43cf-8763-f5ce6b48bd89",
     "sheet_name": "Main Registry",
     "row_order": 286,
     "fund": "1102101",
@@ -6288,11 +6288,11 @@
     "unallocated_allotment": 0,
     "disbursement": 100821.25,
     "unpaid": 37107.32,
-    "created_at": "2026-10-14T06:14:33.947Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.915Z",
+    "updated_at": "2026-10-14T07:44:25.357Z"
   },
   {
-    "id": "31b91f4a-55ff-402d-86c0-f588848e568a",
+    "id": "748154eb-141a-4c95-be2d-523e865423ff",
     "sheet_name": "Main Registry",
     "row_order": 287,
     "fund": "1102101",
@@ -6310,11 +6310,11 @@
     "unallocated_allotment": 0,
     "disbursement": 2269875,
     "unpaid": 2894878.35,
-    "created_at": "2026-10-14T06:14:33.949Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.917Z",
+    "updated_at": "2026-10-14T07:44:25.357Z"
   },
   {
-    "id": "396a4430-c2b8-4afe-846c-8f45e440ddd8",
+    "id": "43d82ec2-b6cf-4f43-a79b-9cc09b7d6750",
     "sheet_name": "Main Registry",
     "row_order": 288,
     "fund": "1102101",
@@ -6332,11 +6332,11 @@
     "unallocated_allotment": 0,
     "disbursement": 2269875,
     "unpaid": 2894878.35,
-    "created_at": "2026-10-14T06:14:33.951Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.920Z",
+    "updated_at": "2026-10-14T07:44:25.357Z"
   },
   {
-    "id": "473fd540-5ea9-46f3-8af8-a631a718cdc2",
+    "id": "fcc1374a-db7e-4ffb-a545-bd980ab317b9",
     "sheet_name": "Main Registry",
     "row_order": 289,
     "fund": "1102101",
@@ -6354,11 +6354,11 @@
     "unallocated_allotment": 0,
     "disbursement": 2269875,
     "unpaid": 2894878.35,
-    "created_at": "2026-10-14T06:14:33.953Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.922Z",
+    "updated_at": "2026-10-14T07:44:25.357Z"
   },
   {
-    "id": "c919309a-287d-4725-ab2e-abe5f45137d7",
+    "id": "d2a22bc8-421d-4670-a7b5-eba730b9c11c",
     "sheet_name": "Main Registry",
     "row_order": 290,
     "fund": "1102101",
@@ -6376,11 +6376,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.955Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.924Z",
+    "updated_at": "2026-10-14T07:44:25.357Z"
   },
   {
-    "id": "8e019602-7592-4ba0-a5e0-c727cf34bd2b",
+    "id": "eb60a66d-19e3-4216-9f4d-31bd2ffde988",
     "sheet_name": "Main Registry",
     "row_order": 291,
     "fund": "1102101",
@@ -6398,11 +6398,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 263010,
-    "created_at": "2026-10-14T06:14:33.958Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.926Z",
+    "updated_at": "2026-10-14T07:44:25.357Z"
   },
   {
-    "id": "d63c6619-8d81-4049-96de-f5ba13c494c6",
+    "id": "a68fd3f9-2b59-45a0-998c-962f7178d062",
     "sheet_name": "Main Registry",
     "row_order": 292,
     "fund": "1102101",
@@ -6420,11 +6420,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 10000,
-    "created_at": "2026-10-14T06:14:33.960Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.928Z",
+    "updated_at": "2026-10-14T07:44:25.357Z"
   },
   {
-    "id": "f92bfdb2-32ae-46d4-bf0f-fe990c500d16",
+    "id": "c682beaf-f4c3-4c2d-abcc-4edf61013d66",
     "sheet_name": "Main Registry",
     "row_order": 293,
     "fund": "1102101",
@@ -6442,11 +6442,11 @@
     "unallocated_allotment": -198952,
     "disbursement": 0,
     "unpaid": 78800,
-    "created_at": "2026-10-14T06:14:33.962Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.930Z",
+    "updated_at": "2026-10-14T07:44:25.357Z"
   },
   {
-    "id": "c4c9ef93-3422-45ce-88c0-7317eb97a4d5",
+    "id": "5f878cd5-acfd-4982-9ed8-eefae7a38009",
     "sheet_name": "Main Registry",
     "row_order": 294,
     "fund": "1102101",
@@ -6464,11 +6464,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.964Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.933Z",
+    "updated_at": "2026-10-14T07:44:25.357Z"
   },
   {
-    "id": "c7450610-0692-468c-9b8b-bf0a39346951",
+    "id": "44486021-d283-40ff-b1ad-feac7bdf6589",
     "sheet_name": "Main Registry",
     "row_order": 295,
     "fund": "1102101",
@@ -6486,11 +6486,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.966Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.935Z",
+    "updated_at": "2026-10-14T07:44:25.357Z"
   },
   {
-    "id": "3272f2e5-6a2f-4c33-87c7-b2abeb7ec90c",
+    "id": "eb590360-25de-4e1a-b690-0b2d72d8b534",
     "sheet_name": "Main Registry",
     "row_order": 296,
     "fund": "1102101",
@@ -6508,11 +6508,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 429360.18,
-    "created_at": "2026-10-14T06:14:33.968Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.937Z",
+    "updated_at": "2026-10-14T07:44:25.357Z"
   },
   {
-    "id": "8865f2c9-58ce-4c34-9f12-ea6f4ffb9853",
+    "id": "a8b80316-0053-4b14-86c1-0209aa12efa7",
     "sheet_name": "Main Registry",
     "row_order": 297,
     "fund": "1102101",
@@ -6530,11 +6530,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.970Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.939Z",
+    "updated_at": "2026-10-14T07:44:25.357Z"
   },
   {
-    "id": "289d5063-6e9e-426a-a8d8-bd183f02c551",
+    "id": "5a14af4a-ae46-4d00-bfbf-c03d9f76fe99",
     "sheet_name": "Main Registry",
     "row_order": 298,
     "fund": "1102101",
@@ -6552,11 +6552,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.972Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.941Z",
+    "updated_at": "2026-10-14T07:44:25.357Z"
   },
   {
-    "id": "adf7d238-cbff-42df-b124-cf826b7318f0",
+    "id": "5f772a45-0d7f-4534-a882-db09b9a46c90",
     "sheet_name": "Main Registry",
     "row_order": 299,
     "fund": "1102101",
@@ -6574,11 +6574,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.974Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.943Z",
+    "updated_at": "2026-10-14T07:44:25.357Z"
   },
   {
-    "id": "3adf8416-ca6c-462c-afda-36ee54352c89",
+    "id": "2166fb58-7f3c-405b-8db0-bba5baa7ebdd",
     "sheet_name": "Main Registry",
     "row_order": 300,
     "fund": "1102101",
@@ -6596,11 +6596,11 @@
     "unallocated_allotment": -198952,
     "disbursement": 0,
     "unpaid": 781170.18,
-    "created_at": "2026-10-14T06:14:33.977Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.945Z",
+    "updated_at": "2026-10-14T07:44:25.357Z"
   },
   {
-    "id": "f2dd17f0-6ba7-4ba2-ab63-2d80fe730e9e",
+    "id": "bf68a5aa-e798-4d7a-a179-5af31a63c77f",
     "sheet_name": "Main Registry",
     "row_order": 301,
     "fund": "1102101",
@@ -6618,11 +6618,11 @@
     "unallocated_allotment": -198952,
     "disbursement": 0,
     "unpaid": 781170.18,
-    "created_at": "2026-10-14T06:14:33.979Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.949Z",
+    "updated_at": "2026-10-14T07:44:25.357Z"
   },
   {
-    "id": "1f696116-bb1e-48a9-bcc1-7c19e2a2c1b6",
+    "id": "293ba099-a6f7-4449-b9d4-ca6c2e49c6d8",
     "sheet_name": "Main Registry",
     "row_order": 302,
     "fund": "1102101",
@@ -6640,11 +6640,11 @@
     "unallocated_allotment": -198952,
     "disbursement": 0,
     "unpaid": 781170.18,
-    "created_at": "2026-10-14T06:14:33.981Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.951Z",
+    "updated_at": "2026-10-14T07:44:25.357Z"
   },
   {
-    "id": "d13ce9fb-284a-4976-a9c2-383f5311cb8e",
+    "id": "2dc8ab98-2611-4d19-a561-571ae80ae52d",
     "sheet_name": "Main Registry",
     "row_order": 303,
     "fund": "1102101",
@@ -6662,11 +6662,11 @@
     "unallocated_allotment": -198952,
     "disbursement": 0,
     "unpaid": 781170.18,
-    "created_at": "2026-10-14T06:14:33.983Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.953Z",
+    "updated_at": "2026-10-14T07:44:25.357Z"
   },
   {
-    "id": "11e7e4c8-e235-4cb2-85eb-0fc7ef0b137a",
+    "id": "5bf709e6-4d01-4745-b837-2a1da414b2fe",
     "sheet_name": "Main Registry",
     "row_order": 304,
     "fund": "1102101",
@@ -6684,11 +6684,11 @@
     "unallocated_allotment": 0,
     "disbursement": 373320,
     "unpaid": 3038018.85,
-    "created_at": "2026-10-14T06:14:33.985Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.956Z",
+    "updated_at": "2026-10-14T07:44:25.357Z"
   },
   {
-    "id": "7faf72e8-554b-413a-a3f4-cb12c393986d",
+    "id": "d76f123f-1d1c-4ec3-9308-eacaeb9d44ca",
     "sheet_name": "Main Registry",
     "row_order": 305,
     "fund": "1102101",
@@ -6706,11 +6706,11 @@
     "unallocated_allotment": 0,
     "disbursement": 373320,
     "unpaid": 3038018.85,
-    "created_at": "2026-10-14T06:14:33.987Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.958Z",
+    "updated_at": "2026-10-14T07:44:25.357Z"
   },
   {
-    "id": "6358ec97-c6a2-429c-ba53-6c79927a20e0",
+    "id": "94fbb889-af25-486e-88a6-1e427bae038f",
     "sheet_name": "Main Registry",
     "row_order": 306,
     "fund": "1102101",
@@ -6728,11 +6728,11 @@
     "unallocated_allotment": 0,
     "disbursement": 373320,
     "unpaid": 3038018.85,
-    "created_at": "2026-10-14T06:14:33.990Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.960Z",
+    "updated_at": "2026-10-14T07:44:25.357Z"
   },
   {
-    "id": "034a3c31-6ed7-4979-b39a-cce4d9139aa6",
+    "id": "5902df72-3c8f-4f9a-8262-d9f6451702fc",
     "sheet_name": "Main Registry",
     "row_order": 307,
     "fund": "1102101",
@@ -6750,11 +6750,11 @@
     "unallocated_allotment": 0,
     "disbursement": 373320,
     "unpaid": 3038018.85,
-    "created_at": "2026-10-14T06:14:33.992Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.962Z",
+    "updated_at": "2026-10-14T07:44:25.357Z"
   },
   {
-    "id": "438313cd-565f-4e17-8458-ee697d5e3fde",
+    "id": "df1df430-e7e6-487c-886d-c48f784c4934",
     "sheet_name": "Main Registry",
     "row_order": 308,
     "fund": "1102101",
@@ -6772,11 +6772,11 @@
     "unallocated_allotment": 0,
     "disbursement": 373320,
     "unpaid": 3038018.85,
-    "created_at": "2026-10-14T06:14:33.994Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.964Z",
+    "updated_at": "2026-10-14T07:44:25.357Z"
   },
   {
-    "id": "42795f75-208c-453b-9566-b52518ae176d",
+    "id": "bc5afab7-c27a-4ab5-9e48-72dd189efca9",
     "sheet_name": "Main Registry",
     "row_order": 309,
     "fund": "01105422C",
@@ -6794,11 +6794,11 @@
     "unallocated_allotment": 63.75,
     "disbursement": 1003600,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.996Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.966Z",
+    "updated_at": "2026-10-14T07:44:25.357Z"
   },
   {
-    "id": "ecb1d661-388d-4cd0-96a4-b04291580c81",
+    "id": "08f2af3d-79ea-4797-a919-9bba871d15fc",
     "sheet_name": "Main Registry",
     "row_order": 310,
     "fund": "01105422C",
@@ -6816,11 +6816,11 @@
     "unallocated_allotment": 63.75,
     "disbursement": 1003600,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:33.998Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.969Z",
+    "updated_at": "2026-10-14T07:44:25.357Z"
   },
   {
-    "id": "d02b81c6-56c7-4772-9031-f9567d88e89d",
+    "id": "9e297370-273b-4281-b110-62e314afe864",
     "sheet_name": "Main Registry",
     "row_order": 311,
     "fund": "01105422C",
@@ -6838,11 +6838,11 @@
     "unallocated_allotment": 63.75,
     "disbursement": 1003600,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:34.000Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.971Z",
+    "updated_at": "2026-10-14T07:44:25.357Z"
   },
   {
-    "id": "e76b345e-95c9-4032-bb2c-298e7b55f73c",
+    "id": "fc031bc3-ff30-4709-a283-c7eb31d544bb",
     "sheet_name": "Main Registry",
     "row_order": 312,
     "fund": "01105422C",
@@ -6860,11 +6860,11 @@
     "unallocated_allotment": 63.75,
     "disbursement": 1003600,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:34.003Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.973Z",
+    "updated_at": "2026-10-14T07:44:25.357Z"
   },
   {
-    "id": "5a4fb58e-e37c-4a8a-b619-ee0904fbcf7d",
+    "id": "ce1d20a3-99ab-4912-8d88-0b29c4182fbf",
     "sheet_name": "Main Registry",
     "row_order": 313,
     "fund": "01105422C",
@@ -6882,11 +6882,11 @@
     "unallocated_allotment": 63.75,
     "disbursement": 1003600,
     "unpaid": 0,
-    "created_at": "2026-10-14T06:14:34.005Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.975Z",
+    "updated_at": "2026-10-14T07:44:25.357Z"
   },
   {
-    "id": "3b9421e7-838b-4c37-9818-1524f5caa482",
+    "id": "22e0e65c-9084-4d2c-8a83-8c5554aa3dea",
     "sheet_name": "Main Registry",
     "row_order": 314,
     "fund": "Grand Total",
@@ -6904,7 +6904,7 @@
     "unallocated_allotment": 11547013.379999999,
     "disbursement": 245305407.75,
     "unpaid": 354563209.75000006,
-    "created_at": "2026-10-14T06:14:33.381Z",
-    "updated_at": "2026-10-14T06:14:33.385Z"
+    "created_at": "2026-10-14T07:44:25.353Z",
+    "updated_at": "2026-10-14T07:44:25.357Z"
   }
 ]

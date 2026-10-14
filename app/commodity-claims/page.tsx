@@ -4,7 +4,7 @@ import PageHero from '@/components/PageHero';
 import { createClient as createDirectClient } from '@supabase/supabase-js';
 import { cookies } from 'next/headers';
 import { createClient } from '@/utils/supabase/server';
-import { getAccountByEmail } from '@/utils/adminStore';
+import { getAccountByEmail, getEffectivePermissions } from '@/utils/adminStore';
 import ModuleAccessGuard from '@/components/ModuleAccessGuard';
 import { fetchCommodityClaimsFromGoogleSheet } from '@/utils/fetchCommodityClaimsSheet';
 
@@ -17,8 +17,6 @@ export const metadata: Metadata = {
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
-
-
 export default async function CommodityClaimsPage() {
   const cookieStore = await cookies();
   const supabase = createClient(cookieStore);
@@ -30,7 +28,7 @@ export default async function CommodityClaimsPage() {
     if (adminSessionCookie) {
       try {
         const parsed = JSON.parse(decodeURIComponent(adminSessionCookie));
-        if (parsed?.email === 'super.admin@car.da.gov.ph' || parsed?.email === 'admin@car.da.gov.ph') {
+        if (parsed?.email) {
           activeEmail = parsed.email;
         }
       } catch {}
@@ -43,6 +41,11 @@ export default async function CommodityClaimsPage() {
   const allowed = isSuperAdmin
     ? ['mod-general', 'mod-rice', 'mod-beneficiary', 'mod-finance', 'mod-admin']
     : (account?.allowed_modules || ['mod-general']);
+
+  const effectivePerms = isSuperAdmin
+    ? { can_manage_claims: true }
+    : (account ? getEffectivePermissions(account) : { can_manage_claims: ['officer', 'admin'].includes(userRole) });
+  const canManageClaims = isSuperAdmin || effectivePerms.can_manage_claims !== false;
 
   if (!activeEmail) {
     return (
@@ -124,6 +127,7 @@ export default async function CommodityClaimsPage() {
           <CommodityDashboard
             initialAllocations={allocations}
             totalTransactions={totalTransactions}
+            canManageClaims={canManageClaims}
           />
         </div>
       </section>

@@ -101,39 +101,69 @@ export async function GET(request: NextRequest) {
       });
     }
 
-    // 2. If NO Supabase user, check for Super Admin emergency session cookie
+    // 2. If NO Supabase user, check for emergency / admin session cookie
     const adminSessionCookie = cookieStore.get('da_admin_session')?.value;
     if (adminSessionCookie) {
       try {
         const parsed = JSON.parse(decodeURIComponent(adminSessionCookie));
-        if (parsed?.email && (parsed.email === 'super.admin@car.da.gov.ph' || parsed.email === 'admin@car.da.gov.ph')) {
-          const localAcc = getAccountByEmail(parsed.email);
+        if (parsed?.email) {
+          const email = parsed.email.trim().toLowerCase();
+
+          if (isAccountDeleted(email)) {
+            return NextResponse.json({
+              authenticated: true,
+              user: { id: parsed.id || 'usr-001', email },
+              account: {
+                id: parsed.id || 'usr-001',
+                email,
+                full_name: parsed.full_name || email,
+                department: parsed.department || 'Rice Program Coordinating Unit',
+                role: 'staff',
+                status: 'suspended',
+                allowed_modules: [],
+                permissions: {
+                  can_add_activities: false,
+                  can_edit_budget: false,
+                  can_import_beneficiaries: false,
+                  can_manage_claims: false,
+                  can_delete_programs: false,
+                  can_edit_programs: false,
+                },
+                is_deleted: true,
+              },
+            });
+          }
+
+          const localAcc = getAccountByEmail(email);
+          const isSuper = email === 'super.admin@car.da.gov.ph' || localAcc?.role === 'super_admin' || parsed.role === 'super_admin';
+          const role = isSuper ? 'super_admin' : (localAcc?.role || parsed.role || 'staff');
+          const status = localAcc?.status || 'active';
+
           return NextResponse.json({
             authenticated: true,
             user: {
-              id: parsed.id || 'usr-001',
-              email: parsed.email,
+              id: parsed.id || localAcc?.id || 'usr-001',
+              email,
               user_metadata: {
-                full_name: parsed.full_name,
-                role: parsed.role || 'super_admin',
-                department: parsed.department,
+                full_name: parsed.full_name || localAcc?.full_name || email,
+                role,
+                department: parsed.department || localAcc?.department,
               },
             },
             account: {
-              id: parsed.id || 'usr-001',
-              email: parsed.email,
-              full_name: parsed.full_name,
-              department: parsed.department,
-              role: 'super_admin',
-              status: 'active',
-              allowed_modules: localAcc?.allowed_modules || [
-                'mod-general',
-                'mod-rice',
-                'mod-beneficiary',
-                'mod-finance',
-                'mod-admin',
-              ],
-              permissions: localAcc ? getEffectivePermissions(localAcc) : getDefaultPermissionsForRole('super_admin'),
+              id: parsed.id || localAcc?.id || 'usr-001',
+              email,
+              full_name: parsed.full_name || localAcc?.full_name || email,
+              department: parsed.department || localAcc?.department || 'Rice Program Coordinating Unit',
+              role,
+              status,
+              allowed_modules: isSuper
+                ? ['mod-general', 'mod-rice', 'mod-beneficiary', 'mod-finance', 'mod-admin']
+                : (localAcc?.allowed_modules || ['mod-general']),
+              permissions: isSuper
+                ? getDefaultPermissionsForRole('super_admin')
+                : (localAcc ? getEffectivePermissions(localAcc) : getDefaultPermissionsForRole(role)),
+              notes: localAcc?.notes,
             },
           });
         }

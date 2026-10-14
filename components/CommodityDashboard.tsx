@@ -1,6 +1,7 @@
 'use client';
 
-import { CircleDollarSign, HandCoins, Wallet, TrendingUp, Eye, Users, FileCheck2, Layers } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { CircleDollarSign, HandCoins, Wallet, TrendingUp, Eye, Users, FileCheck2, Layers, Lock, ShieldCheck } from 'lucide-react';
 
 export interface CommodityAllocation {
   id?: string | number;
@@ -21,13 +22,50 @@ interface CommodityDashboardProps {
   initialAllocations?: CommodityAllocation[];
   totalBeneficiaries?: number;
   totalTransactions?: number;
+  canManageClaims?: boolean;
 }
 
 export default function CommodityDashboard({
   initialAllocations = [],
   totalBeneficiaries,
   totalTransactions,
+  canManageClaims = true,
 }: CommodityDashboardProps) {
+  const [canClaim, setCanClaim] = useState<boolean>(canManageClaims);
+
+  useEffect(() => {
+    const fetchAuth = async () => {
+      try {
+        const res = await fetch('/api/auth/me');
+        if (res.ok) {
+          const json = await res.json();
+          if (json?.account?.permissions) {
+            setCanClaim(json.account.permissions.can_manage_claims !== false);
+          } else if (json?.account) {
+            setCanClaim(['super_admin', 'admin', 'officer'].includes(json.account.role));
+          }
+        }
+      } catch {}
+    };
+    fetchAuth();
+
+    const handlePermUpdated = () => {
+      fetchAuth();
+    };
+    window.addEventListener('da_permissions_updated', handlePermUpdated);
+
+    const handleStorage = (e: StorageEvent) => {
+      if (e.key === 'da_permissions_ts') {
+        fetchAuth();
+      }
+    };
+    window.addEventListener('storage', handleStorage);
+
+    return () => {
+      window.removeEventListener('da_permissions_updated', handlePermUpdated);
+      window.removeEventListener('storage', handleStorage);
+    };
+  }, []);
   // Combine drone_0001 and drone_0002 into a single consolidated record
   const combinedSource: CommodityAllocation[] = [];
   let droneCombined: CommodityAllocation | null = null;
@@ -140,6 +178,29 @@ export default function CommodityDashboard({
             <p>Live fund allocation and claim status records.</p>
           </div>
         </div>
+
+        {!canClaim && (
+          <div
+            style={{
+              padding: '12px 18px',
+              backgroundColor: '#fef2f2',
+              border: '1px solid #fecaca',
+              borderRadius: 8,
+              display: 'flex',
+              alignItems: 'center',
+              gap: 12,
+              marginBottom: 16,
+              color: '#991b1b',
+              fontSize: 13,
+              lineHeight: 1.5,
+            }}
+          >
+            <Lock size={18} style={{ color: '#dc2626', flexShrink: 0 }} />
+            <div>
+              <strong>Voucher Claims Certification Restricted:</strong> The Super Administrator has revoked commodity voucher verification and redemption certification powers for your account (Module 03). Fund allocations and distribution statistics remain accessible in read-only audit mode.
+            </div>
+          </div>
+        )}
 
         <div className="summary-grid allocation-summary-grid">
           {hasAnyFund && totalFund > 0 ? (

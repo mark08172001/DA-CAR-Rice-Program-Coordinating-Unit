@@ -24,7 +24,7 @@ export default async function RiceFarmersPage() {
     if (adminSessionCookie) {
       try {
         const parsed = JSON.parse(decodeURIComponent(adminSessionCookie));
-        if (parsed?.email === 'super.admin@car.da.gov.ph' || parsed?.email === 'admin@car.da.gov.ph') {
+        if (parsed?.email) {
           activeEmail = parsed.email;
         }
       } catch {}

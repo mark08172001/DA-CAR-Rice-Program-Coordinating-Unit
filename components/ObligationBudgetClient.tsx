@@ -8,6 +8,7 @@ import {
   ChevronRight,
   ExternalLink,
   ChevronDown,
+  Lock,
 } from 'lucide-react';
 
 export interface ObligationCategoryItem {
@@ -37,6 +38,7 @@ interface ObligationBudgetClientProps {
   disbursementCategories?: ObligationCategoryItem[];
   totalBannerRice?: ObligationCategoryItem;
   isLiveLoading?: boolean;
+  canEditBudget?: boolean;
 }
 
 const DEFAULT_TOTAL_BANNER_RICE: ObligationCategoryItem = {
@@ -1598,12 +1600,49 @@ export default function ObligationBudgetClient({
   disbursementCategories = DEFAULT_BLANK_CATEGORIES,
   totalBannerRice = DEFAULT_TOTAL_BANNER_RICE,
   isLiveLoading = false,
+  canEditBudget = true,
 }: ObligationBudgetClientProps) {
+  const [canEdit, setCanEdit] = useState<boolean>(canEditBudget);
   const [obligationCats, setObligationCats] = useState<ObligationCategoryItem[]>(obligationCategories);
   const [bannerTotal, setBannerTotal] = useState<ObligationCategoryItem>(totalBannerRice);
   const [isSyncing, setIsSyncing] = useState(false);
   const [lastSynced, setLastSynced] = useState<Date | null>(null);
   const [mounted, setMounted] = useState(false);
+
+  // Synchronize live permissions from /api/auth/me and events
+  useEffect(() => {
+    const fetchAuth = async () => {
+      try {
+        const res = await fetch('/api/auth/me');
+        if (res.ok) {
+          const json = await res.json();
+          if (json?.account?.permissions) {
+            setCanEdit(json.account.permissions.can_edit_budget !== false);
+          } else if (json?.account) {
+            setCanEdit(['super_admin', 'admin'].includes(json.account.role));
+          }
+        }
+      } catch {}
+    };
+    fetchAuth();
+
+    const handlePermUpdated = () => {
+      fetchAuth();
+    };
+    window.addEventListener('da_permissions_updated', handlePermUpdated);
+
+    const handleStorage = (e: StorageEvent) => {
+      if (e.key === 'da_permissions_ts') {
+        fetchAuth();
+      }
+    };
+    window.addEventListener('storage', handleStorage);
+
+    return () => {
+      window.removeEventListener('da_permissions_updated', handlePermUpdated);
+      window.removeEventListener('storage', handleStorage);
+    };
+  }, []);
 
   // Separated Pillars state
   const [activePillarTab, setActivePillarTab] = useState<'ALL' | PillarType>('ALL');
@@ -1689,6 +1728,29 @@ export default function ObligationBudgetClient({
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+      {/* FINANCIAL LEDGER ALTERATION RESTRICTION NOTICE */}
+      {!canEdit && (
+        <div
+          style={{
+            padding: '12px 18px',
+            backgroundColor: '#fef2f2',
+            border: '1px solid #fecaca',
+            borderRadius: 8,
+            display: 'flex',
+            alignItems: 'center',
+            gap: 12,
+            color: '#991b1b',
+            fontSize: 13,
+            lineHeight: 1.5,
+          }}
+        >
+          <Lock size={18} style={{ color: '#dc2626', flexShrink: 0 }} />
+          <div>
+            <strong>Financial Ledger Alterations Restricted:</strong> The Super Administrator has revoked editing and modification powers on financial ledger balances for your account (Module 04). All budget utilization records remain accessible in read-only audit mode.
+          </div>
+        </div>
+      )}
+
       {/* EXECUTIVE TOP HEADER CARD */}
       <header
         style={{

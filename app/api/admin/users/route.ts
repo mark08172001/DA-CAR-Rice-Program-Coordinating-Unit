@@ -6,26 +6,76 @@ import { createAdminClient } from '@/utils/supabase/admin';
 
 export const dynamic = 'force-dynamic';
 
+async function getCallerAuth(cookieStore: any, supabase: any) {
+  try {
+    const { data: { user } } = await supabase.auth.getUser();
+    if (user && user.email) {
+      const { data: profile } = await supabase
+        .from('profiles')
+        .select('role')
+        .eq('id', user.id)
+        .maybeSingle();
+
+      const localAccount = getAccountByEmail(user.email);
+      const userRole = (localAccount?.role || profile?.role || 'staff').toLowerCase();
+      const isSuper = userRole === 'super_admin' || user.email === 'super.admin@car.da.gov.ph';
+      const isAuth = isSuper || userRole === 'admin';
+
+      return {
+        authenticated: true,
+        email: user.email,
+        role: isSuper ? 'super_admin' : userRole,
+        isSuperAdmin: isSuper,
+        isAuthorized: isAuth,
+        userId: user.id,
+      };
+    }
+  } catch {}
+
+  // Fallback to da_admin_session cookie
+  const adminCookie = cookieStore.get('da_admin_session')?.value;
+  if (adminCookie) {
+    try {
+      const parsed = JSON.parse(decodeURIComponent(adminCookie));
+      if (parsed?.email) {
+        const localAccount = getAccountByEmail(parsed.email);
+        const userRole = (localAccount?.role || parsed.role || 'staff').toLowerCase();
+        const isSuper = userRole === 'super_admin' || parsed.email === 'super.admin@car.da.gov.ph';
+        const isAuth = isSuper || userRole === 'admin';
+
+        return {
+          authenticated: true,
+          email: parsed.email,
+          role: isSuper ? 'super_admin' : userRole,
+          isSuperAdmin: isSuper,
+          isAuthorized: isAuth,
+          userId: parsed.id || 'usr-001',
+        };
+      }
+    } catch {}
+  }
+
+  return {
+    authenticated: false,
+    email: null,
+    role: 'visitor',
+    isSuperAdmin: false,
+    isAuthorized: false,
+    userId: null,
+  };
+}
+
 export async function GET(request: NextRequest) {
   try {
     const cookieStore = await cookies();
     const supabase = createClient(cookieStore);
-    const { data: { user } } = await supabase.auth.getUser();
+    const caller = await getCallerAuth(cookieStore, supabase);
 
-    if (!user) {
+    if (!caller.authenticated) {
       return NextResponse.json({ error: 'Authentication required' }, { status: 401 });
     }
 
-    const { data: profile } = await supabase
-      .from('profiles')
-      .select('role')
-      .eq('id', user.id)
-      .single();
-
-    const localAccount = getAccountByEmail(user.email || '');
-    const userRole = localAccount?.role || profile?.role || 'staff';
-
-    if (!['super_admin', 'admin'].includes(userRole)) {
+    if (!caller.isAuthorized) {
       return NextResponse.json(
         { error: 'Access Denied: Super Admin or Administrator privileges required.' },
         { status: 403 }
@@ -41,7 +91,7 @@ export async function GET(request: NextRequest) {
     } catch {}
 
     const accounts = getAccounts();
-    return NextResponse.json({ accounts, callerRole: userRole });
+    return NextResponse.json({ accounts, callerRole: caller.role });
   } catch (err: any) {
     return NextResponse.json({ error: err.message || 'Internal server error' }, { status: 500 });
   }
@@ -51,23 +101,14 @@ export async function PATCH(request: NextRequest) {
   try {
     const cookieStore = await cookies();
     const supabase = createClient(cookieStore);
-    const { data: { user } } = await supabase.auth.getUser();
+    const caller = await getCallerAuth(cookieStore, supabase);
 
-    if (!user) {
+    if (!caller.authenticated) {
       return NextResponse.json({ error: 'Authentication required' }, { status: 401 });
     }
 
-    const { data: profile } = await supabase
-      .from('profiles')
-      .select('role')
-      .eq('id', user.id)
-      .single();
-
-    const localAccount = getAccountByEmail(user.email || '');
-    const userRole = localAccount?.role || profile?.role || 'staff';
-
-    // Super Admin privilege check to limit/modify staff access
-    if (!['super_admin', 'admin'].includes(userRole)) {
+    // Super Admin or Admin privilege check to limit/modify staff access
+    if (!caller.isAuthorized) {
       return NextResponse.json(
         { error: 'Access Denied: Only Super Admin and Administrators can modify staff access permissions.' },
         { status: 403 }
@@ -105,7 +146,7 @@ export async function PATCH(request: NextRequest) {
     const result = updateStaffAccessBySuperAdmin(
       targetEmail,
       { role, status, allowed_modules, permissions, notes },
-      user.email || 'super.admin@car.da.gov.ph'
+      caller.email || 'super.admin@car.da.gov.ph'
     );
 
     if (!result.success) {
@@ -143,23 +184,14 @@ export async function DELETE(request: NextRequest) {
   try {
     const cookieStore = await cookies();
     const supabase = createClient(cookieStore);
-    const { data: { user } } = await supabase.auth.getUser();
+    const caller = await getCallerAuth(cookieStore, supabase);
 
-    if (!user) {
+    if (!caller.authenticated) {
       return NextResponse.json({ error: 'Authentication required' }, { status: 401 });
     }
 
-    const { data: profile } = await supabase
-      .from('profiles')
-      .select('role')
-      .eq('id', user.id)
-      .single();
-
-    const localAccount = getAccountByEmail(user.email || '');
-    const userRole = localAccount?.role || profile?.role || 'staff';
-
     // Only Super Admin can delete user accounts
-    if (userRole !== 'super_admin' && !user.email?.includes('super.admin')) {
+    if (!caller.isSuperAdmin) {
       return NextResponse.json(
         { error: 'Access Denied: Only the Super Administrator has authority to delete registered personnel accounts.' },
         { status: 403 }
@@ -203,7 +235,7 @@ export async function DELETE(request: NextRequest) {
       console.warn('Note deleting from profiles table:', e);
     }
 
-    const result = deleteAccountBySuperAdmin(targetEmail, user.email || 'super.admin@car.da.gov.ph');
+    const result = deleteAccountBySuperAdmin(targetEmail, caller.email || 'super.admin@car.da.gov.ph');
 
     if (!result.success) {
       return NextResponse.json({ error: result.error }, { status: 400 });

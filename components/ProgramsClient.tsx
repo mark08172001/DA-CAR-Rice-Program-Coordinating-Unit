@@ -173,8 +173,16 @@ export default function ProgramsClient({
     };
     window.addEventListener('da_permissions_updated', handlePermUpdated);
 
+    const handleStorage = (e: StorageEvent) => {
+      if (e.key === 'da_permissions_ts') {
+        fetchPerms();
+      }
+    };
+    window.addEventListener('storage', handleStorage);
+
     return () => {
       window.removeEventListener('da_permissions_updated', handlePermUpdated);
+      window.removeEventListener('storage', handleStorage);
     };
   }, []);
 

@@ -34,7 +34,7 @@ export default async function RiceDashboardPage() {
     if (adminSessionCookie) {
       try {
         const parsed = JSON.parse(decodeURIComponent(adminSessionCookie));
-        if (parsed?.email === 'super.admin@car.da.gov.ph' || parsed?.email === 'admin@car.da.gov.ph') {
+        if (parsed?.email) {
           activeEmail = parsed.email;
         }
       } catch {}
@@ -185,22 +185,18 @@ export default async function RiceDashboardPage() {
           </div>
 
           <div className="rice-quick-links">
-            {allowed.includes('mod-finance') && (
-              <Link className="rice-quick-link" href="/rice/balances">
-                <span>
-                  <ChartNoAxesColumnIncreasing size={16} /> Fund balances
-                </span>
-                <ArrowRight size={16} />
-              </Link>
-            )}
-            {allowed.includes('mod-beneficiary') && (
-              <Link className="rice-quick-link" href="/rice/farmers">
-                <span>
-                  <Users size={16} /> Farmer directory
-                </span>
-                <ArrowRight size={16} />
-              </Link>
-            )}
+            <Link className="rice-quick-link" href="/rice/balances">
+              <span>
+                <ChartNoAxesColumnIncreasing size={16} /> Fund balances
+              </span>
+              <ArrowRight size={16} />
+            </Link>
+            <Link className="rice-quick-link" href="/rice/farmers">
+              <span>
+                <Users size={16} /> Farmer directory
+              </span>
+              <ArrowRight size={16} />
+            </Link>
             <Link className="rice-quick-link" href="/rice/programs">
               <span>
                 <Wheat size={16} /> Rice programs

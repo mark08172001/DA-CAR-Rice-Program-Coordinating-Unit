@@ -43,6 +43,37 @@ const MODULE_OPTIONS = [
   { id: 'mod-finance', label: 'Module 04: Financial Balances & Obligations', public: false },
 ];
 
+const getRoleDefaultPermissions = (role: string) => {
+  if (role === 'super_admin' || role === 'admin') {
+    return {
+      can_add_activities: true,
+      can_edit_budget: true,
+      can_import_beneficiaries: true,
+      can_manage_claims: true,
+      can_delete_programs: true,
+      can_edit_programs: true,
+    };
+  }
+  if (role === 'officer') {
+    return {
+      can_add_activities: true,
+      can_edit_budget: false,
+      can_import_beneficiaries: true,
+      can_manage_claims: true,
+      can_delete_programs: false,
+      can_edit_programs: true,
+    };
+  }
+  return {
+    can_add_activities: true,
+    can_edit_budget: false,
+    can_import_beneficiaries: false,
+    can_manage_claims: false,
+    can_delete_programs: false,
+    can_edit_programs: false,
+  };
+};
+
 export default function UsersManagementClient({
   initialAccounts,
   currentUserEmail,
@@ -218,6 +249,9 @@ export default function UsersManagementClient({
       );
       if (typeof window !== 'undefined') {
         window.dispatchEvent(new Event('da_permissions_updated'));
+        try {
+          localStorage.setItem('da_permissions_ts', String(Date.now()));
+        } catch {}
       }
       setFeedback({ type: 'success', message: 'Staff access limits updated and logged in COA security register.' });
       setTimeout(() => {
@@ -652,7 +686,11 @@ export default function UsersManagementClient({
                 <select
                   id="edit-role"
                   value={editRole}
-                  onChange={(e) => setEditRole(e.target.value as any)}
+                  onChange={(e) => {
+                    const nextRole = e.target.value as any;
+                    setEditRole(nextRole);
+                    setEditPermissions(getRoleDefaultPermissions(nextRole));
+                  }}
                   className="form-control"
                 >
                   <option value="staff">Staff (Standard Field Personnel)</option>

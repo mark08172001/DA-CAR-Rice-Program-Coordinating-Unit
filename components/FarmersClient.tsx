@@ -125,8 +125,17 @@ export default function FarmersClient({
       fetchAccountData();
     };
     window.addEventListener('da_permissions_updated', handlePermUpdated);
+
+    const handleStorage = (e: StorageEvent) => {
+      if (e.key === 'da_permissions_ts') {
+        fetchAccountData();
+      }
+    };
+    window.addEventListener('storage', handleStorage);
+
     return () => {
       window.removeEventListener('da_permissions_updated', handlePermUpdated);
+      window.removeEventListener('storage', handleStorage);
     };
   }, []);
 
@@ -145,6 +154,12 @@ export default function FarmersClient({
     : (['super_admin', 'admin', 'officer'].includes(currentUserAccount?.role || ''));
 
   const canImport = hasModuleAccess && !isSuspended && (isSuperAdmin || hasImportPower);
+
+  const hasClaimsPower = currentUserAccount?.permissions
+    ? currentUserAccount.permissions.can_manage_claims !== false
+    : (['super_admin', 'admin', 'officer'].includes(currentUserAccount?.role || ''));
+
+  const canManageClaims = hasModuleAccess && !isSuspended && (isSuperAdmin || hasClaimsPower);
 
   // Search and Filter states
   const [searchTerm, setSearchTerm] = useState<string>('');
@@ -1400,6 +1415,20 @@ export default function FarmersClient({
                 <div className="detail-field" style={{ gridColumn: 'span 2' }}>
                   <span>Merchant Name</span>
                   <strong>{selectedItem['Merchant Name'] || '—'}</strong>
+                </div>
+                <div className="detail-field" style={{ gridColumn: 'span 2', marginTop: 4, paddingTop: 10, borderTop: '1px solid #e2e8f0' }}>
+                  <span style={{ display: 'block', marginBottom: 4 }}>Voucher Claim Verification Status</span>
+                  {canManageClaims ? (
+                    <div style={{ display: 'inline-flex', alignItems: 'center', gap: 6, color: '#166534', backgroundColor: '#dcfce7', padding: '4px 10px', borderRadius: 4, fontSize: 12, fontWeight: 700 }}>
+                      <FileCheck2 size={14} />
+                      <span>Certified &amp; Verified (Technical Officer Power Active)</span>
+                    </div>
+                  ) : (
+                    <div style={{ display: 'inline-flex', alignItems: 'center', gap: 6, color: '#991b1b', backgroundColor: '#fee2e2', padding: '4px 10px', borderRadius: 4, fontSize: 12, fontWeight: 700 }}>
+                      <Lock size={14} />
+                      <span>Claim Certification Restricted (Power Revoked by Super Admin)</span>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>

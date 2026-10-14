@@ -102,11 +102,18 @@ export default function PortalShell({ children }: PortalShellProps) {
     const handlePermissionsUpdated = () => {
       fetchAuth();
     };
+    const handleStorage = (e: StorageEvent) => {
+      if (e.key === 'da_permissions_ts') {
+        fetchAuth();
+      }
+    };
     window.addEventListener('da_permissions_updated', handlePermissionsUpdated);
+    window.addEventListener('storage', handleStorage);
     window.addEventListener('focus', handlePermissionsUpdated);
 
     return () => {
       window.removeEventListener('da_permissions_updated', handlePermissionsUpdated);
+      window.removeEventListener('storage', handleStorage);
       window.removeEventListener('focus', handlePermissionsUpdated);
     };
   }, []);
@@ -160,26 +167,28 @@ export default function PortalShell({ children }: PortalShellProps) {
   }
 
   // Evaluate module access restrictions for logged-in personnel
+  const activeUser = currentUser || currentAccount;
+  const activeEmail = currentUser?.email || currentAccount?.email || '';
   const userRole = (currentAccount?.role || currentUser?.user_metadata?.role || 'visitor').toLowerCase();
   const isSuperAdmin =
     userRole === 'super_admin' ||
-    currentUser?.email === 'super.admin@car.da.gov.ph';
+    activeEmail === 'super.admin@car.da.gov.ph';
   const isSuperAdminOrAdmin =
     ['super_admin', 'admin'].includes(userRole) ||
-    currentUser?.email === 'super.admin@car.da.gov.ph' ||
-    currentUser?.email === 'admin@car.da.gov.ph';
+    activeEmail === 'super.admin@car.da.gov.ph' ||
+    activeEmail === 'admin@car.da.gov.ph';
   const targetModule = getModuleForPath(pathname);
 
   let accessBlockedNode: React.ReactNode = null;
 
-  if (currentUser && targetModule) {
+  if (activeUser && targetModule) {
     // 1. Check if user is suspended
     if (currentAccount?.status === 'suspended') {
       accessBlockedNode = (
         <ModuleAccessGuard
           type="suspended"
-          userEmail={currentUser.email || ''}
-          userName={currentAccount?.full_name || currentUser.email}
+          userEmail={activeEmail}
+          userName={currentAccount?.full_name || activeEmail}
           userRole={userRole}
           moduleInfo={targetModule}
         />
@@ -190,8 +199,8 @@ export default function PortalShell({ children }: PortalShellProps) {
       accessBlockedNode = (
         <ModuleAccessGuard
           type="admin_only"
-          userEmail={currentUser.email || ''}
-          userName={currentAccount?.full_name || currentUser.email}
+          userEmail={activeEmail}
+          userName={currentAccount?.full_name || activeEmail}
           userRole={userRole}
           moduleInfo={targetModule}
         />
@@ -206,8 +215,8 @@ export default function PortalShell({ children }: PortalShellProps) {
         accessBlockedNode = (
           <ModuleAccessGuard
             type="restricted"
-            userEmail={currentUser.email || ''}
-            userName={currentAccount?.full_name || currentUser.email}
+            userEmail={activeEmail}
+            userName={currentAccount?.full_name || activeEmail}
             userRole={userRole}
             moduleInfo={targetModule}
             allowedModules={allowed}

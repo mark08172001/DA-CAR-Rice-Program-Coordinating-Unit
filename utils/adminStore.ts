@@ -364,9 +364,10 @@ export function updateStaffAccessBySuperAdmin(
   if (updates.status) account.status = updates.status;
   if (updates.allowed_modules) account.allowed_modules = updates.allowed_modules;
   if (updates.permissions) {
+    const isRoleChanged = Boolean(updates.role && updates.role !== previousRole);
     account.permissions = {
       ...getDefaultPermissionsForRole(account.role),
-      ...(account.permissions || {}),
+      ...(isRoleChanged ? {} : (account.permissions || {})),
       ...updates.permissions,
     };
   }
@@ -385,20 +386,10 @@ export function updateStaffAccessBySuperAdmin(
       ? 'ACCOUNT_ACTIVATED'
       : 'ACCESS_RESTRICTED';
 
-  const calendarPowerStr =
-    account.permissions?.can_add_activities === false
-      ? 'Calendar Add Power: REVOKED'
-      : 'Calendar Add Power: ALLOWED';
-
-  const programsDeletePowerStr =
-    account.permissions?.can_delete_programs === false
-      ? 'Programs Delete Power: REVOKED'
-      : 'Programs Delete Power: ALLOWED';
-
   const details =
     wasPending && isNowActive
       ? `Super Admin (${actorEmail}) officially reviewed and approved registration for ${account.full_name} (${account.email}). Status changed to ACTIVE.`
-      : `Super Admin (${actorEmail}) updated permissions for ${account.full_name} (${account.email}): Role: ${previousRole} -> ${account.role}, Status: ${previousStatus} -> ${account.status}, Allowed Modules: [${account.allowed_modules.join(', ')}], ${calendarPowerStr}, ${programsDeletePowerStr}.`;
+      : `Super Admin (${actorEmail}) updated permissions for ${account.full_name} (${account.email}): Role: ${previousRole} -> ${account.role}, Status: ${previousStatus} -> ${account.status}, Allowed Modules: [${account.allowed_modules.join(', ')}], Powers: [activities:${account.permissions?.can_add_activities !== false}, budget:${account.permissions?.can_edit_budget === true}, import:${account.permissions?.can_import_beneficiaries !== false}, claims:${account.permissions?.can_manage_claims !== false}, delete_prog:${account.permissions?.can_delete_programs === true}, edit_prog:${account.permissions?.can_edit_programs !== false}].`;
 
   data.audit_logs.unshift({
     id: `audit-${Date.now()}`,

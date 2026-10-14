@@ -1,4 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { createClient } from '@/utils/supabase/server';
+import { cookies } from 'next/headers';
+import { getAccountByEmail, getEffectivePermissions } from '@/utils/adminStore';
 import {
   getObligations,
   saveObligations,
@@ -13,6 +16,52 @@ import {
 } from '@/utils/obligationsStore';
 
 export const dynamic = 'force-dynamic';
+
+async function getObligationCaller(cookieStore: any, supabase: any) {
+  let activeEmail: string | undefined = undefined;
+
+  try {
+    const { data: { user } } = await supabase.auth.getUser();
+    if (user?.email) activeEmail = user.email;
+  } catch {}
+
+  if (!activeEmail) {
+    const adminSessionCookie = cookieStore.get('da_admin_session')?.value;
+    if (adminSessionCookie) {
+      try {
+        const parsed = JSON.parse(decodeURIComponent(adminSessionCookie));
+        if (parsed?.email) activeEmail = parsed.email;
+      } catch {}
+    }
+  }
+
+  if (!activeEmail) {
+    return { authenticated: false, isSuperAdmin: false, canEditBudget: false, isSuspended: false };
+  }
+
+  const account = getAccountByEmail(activeEmail);
+  const isSuperAdmin =
+    activeEmail === 'super.admin@car.da.gov.ph' ||
+    account?.role === 'super_admin';
+
+  if (account?.status === 'suspended') {
+    return { authenticated: true, email: activeEmail, isSuperAdmin: false, canEditBudget: false, isSuspended: true };
+  }
+
+  const effectivePerms = isSuperAdmin
+    ? { can_edit_budget: true }
+    : (account ? getEffectivePermissions(account) : { can_edit_budget: false });
+
+  const canEditBudget = isSuperAdmin || effectivePerms.can_edit_budget !== false;
+
+  return {
+    authenticated: true,
+    email: activeEmail,
+    isSuperAdmin,
+    canEditBudget,
+    isSuspended: false,
+  };
+}
 
 export async function GET(request: NextRequest) {
   try {
@@ -101,6 +150,21 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   try {
+    const cookieStore = await cookies();
+    const supabase = createClient(cookieStore);
+    const caller = await getObligationCaller(cookieStore, supabase);
+
+    if (caller.isSuspended) {
+      return NextResponse.json({ success: false, error: 'Access Denied: Your personnel account is suspended.' }, { status: 403 });
+    }
+
+    if (!caller.isSuperAdmin && !caller.canEditBudget) {
+      return NextResponse.json(
+        { success: false, error: 'Access Denied: The Super Administrator has revoked your permission to modify financial obligations and ledger balances (Module 04).' },
+        { status: 403 }
+      );
+    }
+
     const body = await request.json();
     const { rows, sheetName = 'Main Registry', mode = 'replace' } = body;
 
@@ -207,6 +271,21 @@ export async function POST(request: NextRequest) {
 
 export async function PUT(request: NextRequest) {
   try {
+    const cookieStore = await cookies();
+    const supabase = createClient(cookieStore);
+    const caller = await getObligationCaller(cookieStore, supabase);
+
+    if (caller.isSuspended) {
+      return NextResponse.json({ success: false, error: 'Access Denied: Your personnel account is suspended.' }, { status: 403 });
+    }
+
+    if (!caller.isSuperAdmin && !caller.canEditBudget) {
+      return NextResponse.json(
+        { success: false, error: 'Access Denied: The Super Administrator has revoked your permission to modify financial obligations and ledger balances (Module 04).' },
+        { status: 403 }
+      );
+    }
+
     const body = await request.json();
     const { id, updates, sheetName = 'Main Registry' } = body;
 
@@ -228,6 +307,21 @@ export async function PUT(request: NextRequest) {
 
 export async function DELETE(request: NextRequest) {
   try {
+    const cookieStore = await cookies();
+    const supabase = createClient(cookieStore);
+    const caller = await getObligationCaller(cookieStore, supabase);
+
+    if (caller.isSuspended) {
+      return NextResponse.json({ success: false, error: 'Access Denied: Your personnel account is suspended.' }, { status: 403 });
+    }
+
+    if (!caller.isSuperAdmin && !caller.canEditBudget) {
+      return NextResponse.json(
+        { success: false, error: 'Access Denied: The Super Administrator has revoked your permission to modify or delete financial ledger balances (Module 04).' },
+        { status: 403 }
+      );
+    }
+
     const body = await request.json();
     const { ids, sheetName = 'Main Registry', deleteEntireSheet = false } = body;
 
