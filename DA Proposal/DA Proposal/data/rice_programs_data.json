@@ -1,0 +1,21 @@
+[
+  {
+    "id": "prog-pss-1791942040513",
+    "category": "PSS",
+    "category_name": "Production Support Services",
+    "name": "Distribution of hybrid seeds",
+    "description": "test123",
+    "status": "Planned",
+    "target_beneficiaries": "",
+    "province": "Bucay",
+    "municipality": "",
+    "barangay": "",
+    "allotment_class": "MOOE",
+    "start_date": "2026-10-15",
+    "end_date": "2026-10-24",
+    "date_coverage": "2026-10-15 to 2026-10-24",
+    "display_order": 1,
+    "created_at": "2026-10-14T01:40:40.514Z",
+    "updated_at": "2026-10-14T01:50:17.382Z"
+  }
+]

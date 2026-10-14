@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <defs>
+    <path id="department-arc" d="M 54 258 A 202 202 0 0 1 458 258" />
+  </defs>
+  <text fill="#171916" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="700" letter-spacing="1.2">
+    <textPath href="#department-arc" startOffset="50%" text-anchor="middle">DEPARTMENT OF AGRICULTURE</textPath>
+  </text>
+  <g stroke="#087a43" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M252 345C220 308 168 282 118 282c39 21 70 49 102 76 12 10 22 11 32 0" fill="#087a43" stroke="none" />
+    <path d="M252 345C220 308 168 282 118 282c39 21 70 49 102 76 12 10 22 11 32 0M249 337C218 316 173 301 108 303M247 350C211 333 165 327 103 330M246 363C207 352 165 355 112 362" stroke-width="12" />
+    <path d="M260 345c32-37 84-63 134-63-39 21-70 49-102 76-12 10-22 11-32 0" fill="#087a43" stroke="none" />
+    <path d="M260 345c32-37 84-63 134-63-39 21-70 49-102 76-12 10-22 11-32 0M263 337c31-21 76-36 141-34M265 350c36-17 82-23 144-20M266 363c39-11 81-8 134-1" stroke-width="12" />
+  </g>
+  <g fill="#ee9d1b" stroke="#ee9d1b" stroke-linejoin="round">
+    <path d="M255 311c-10-24-11-86 1-189 12 103 10 165 1 189" stroke-width="3" />
+    <path d="M255 145c-19-8-29-25-25-48 19 7 30 23 25 48ZM258 145c19-8 29-25 25-48-19 7-30 23-25 48Z" />
+    <path d="M254 172c-20-7-32-23-29-46 19 7 31 22 29 46ZM259 172c20-7 32-23 29-46-19 7-31 22-29 46Z" />
+    <path d="M254 199c-21-5-34-19-34-42 20 5 34 19 34 42ZM259 199c21-5 34-19 34-42-20 5-34 19-34 42Z" />
+    <path d="M254 226c-21-3-36-17-38-39 21 4 36 17 38 39ZM259 226c21-3 36-17 38-39-21 4-36 17-38 39Z" />
+    <path d="M254 253c-21-2-37-15-41-36 21 2 37 15 41 36ZM259 253c21-2 37-15 41-36-21 2-37 15-41 36Z" />
+    <path d="M254 280c-21 0-38-12-44-32 21 0 38 12 44 32ZM259 280c21 0 38-12 44-32-21 0-38 12-44 32Z" />
+    <path d="M224 316c10-8 22-8 32 0 10-8 22-8 32 0l-14 18c-10-5-17-5-26 0-9-5-16-5-26 0l-14-18Z" stroke="none" />
+  </g>
+  <text x="256" y="430" fill="#171916" font-family="Georgia, 'Times New Roman', serif" font-size="29" font-weight="700" text-anchor="middle" letter-spacing="1">1898</text>
+</svg>
