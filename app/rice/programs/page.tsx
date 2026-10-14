@@ -1,7 +1,7 @@
 import ProgramsClient from '@/components/ProgramsClient';
 import { createClient } from '@/utils/supabase/server';
 import { cookies } from 'next/headers';
-import { getAccountByEmail, getEffectivePermissions } from '@/utils/adminStore';
+import { getAuthoritativeUserAccess } from '@/utils/adminStore';
 import { getAuthoritativePrograms } from '@/utils/programsStore';
 import ModuleAccessGuard from '@/components/ModuleAccessGuard';
 
@@ -29,12 +29,11 @@ export default async function RiceProgramsPage() {
     }
   }
 
-  const account = activeEmail ? getAccountByEmail(activeEmail) : null;
-  const userRole = (account?.role || user?.user_metadata?.role || 'visitor').toLowerCase();
-  const isSuperAdmin = userRole === 'super_admin' || activeEmail === 'super.admin@car.da.gov.ph';
-  const allowed = isSuperAdmin
-    ? ['mod-general', 'mod-rice', 'mod-beneficiary', 'mod-finance', 'mod-admin']
-    : (account?.allowed_modules || ['mod-general']);
+  const access = await getAuthoritativeUserAccess(activeEmail, supabase);
+  const isSuperAdmin = access.isSuperAdmin;
+  const allowed = access.allowed_modules;
+  const userRole = access.role;
+  const userName = access.fullName;
 
   if (!activeEmail) {
     return (
@@ -54,12 +53,12 @@ export default async function RiceProgramsPage() {
     );
   }
 
-  if (account?.status === 'suspended') {
+  if (access.status === 'suspended') {
     return (
       <ModuleAccessGuard
         type="suspended"
         userEmail={activeEmail}
-        userName={account?.full_name || activeEmail}
+        userName={userName}
         userRole={userRole}
         moduleInfo={{
           id: 'mod-rice',
@@ -76,7 +75,7 @@ export default async function RiceProgramsPage() {
       <ModuleAccessGuard
         type="restricted"
         userEmail={activeEmail}
-        userName={account?.full_name || activeEmail}
+        userName={userName}
         userRole={userRole}
         moduleInfo={{
           id: 'mod-rice',
@@ -90,14 +89,8 @@ export default async function RiceProgramsPage() {
   }
 
   let programs: any[] = [];
-  let canDeletePrograms = isSuperAdmin;
-  let canEditPrograms = isSuperAdmin;
-
-  if (account) {
-    const perms = getEffectivePermissions(account);
-    canDeletePrograms = isSuperAdmin || perms.can_delete_programs !== false;
-    canEditPrograms = isSuperAdmin || perms.can_edit_programs !== false;
-  }
+  const canDeletePrograms = isSuperAdmin || access.permissions.can_delete_programs !== false;
+  const canEditPrograms = isSuperAdmin || access.permissions.can_edit_programs !== false;
 
   try {
     const { data } = await supabase

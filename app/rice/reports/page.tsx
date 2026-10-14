@@ -2,7 +2,7 @@ import { getObligations, ObligationBalanceRow } from '@/utils/obligationsStore';
 import RiceReportsClient from '@/components/RiceReportsClient';
 import { cookies } from 'next/headers';
 import { createClient } from '@/utils/supabase/server';
-import { getAccountByEmail } from '@/utils/adminStore';
+import { getAuthoritativeUserAccess } from '@/utils/adminStore';
 import ModuleAccessGuard from '@/components/ModuleAccessGuard';
 
 export const metadata = {
@@ -35,12 +35,11 @@ export default async function RiceReportsPage({
     }
   }
 
-  const account = activeEmail ? getAccountByEmail(activeEmail) : null;
-  const userRole = (account?.role || user?.user_metadata?.role || 'visitor').toLowerCase();
-  const isSuperAdmin = userRole === 'super_admin' || activeEmail === 'super.admin@car.da.gov.ph';
-  const allowed = isSuperAdmin
-    ? ['mod-general', 'mod-rice', 'mod-beneficiary', 'mod-finance', 'mod-admin']
-    : (account?.allowed_modules || ['mod-general']);
+  const access = await getAuthoritativeUserAccess(activeEmail, supabase);
+  const isSuperAdmin = access.isSuperAdmin;
+  const allowed = access.allowed_modules;
+  const userRole = access.role;
+  const userName = access.fullName;
 
   if (!activeEmail) {
     return (
@@ -60,12 +59,12 @@ export default async function RiceReportsPage({
     );
   }
 
-  if (account?.status === 'suspended') {
+  if (access.status === 'suspended') {
     return (
       <ModuleAccessGuard
         type="suspended"
         userEmail={activeEmail}
-        userName={account?.full_name || activeEmail}
+        userName={userName}
         userRole={userRole}
         moduleInfo={{
           id: 'mod-finance',
@@ -82,7 +81,7 @@ export default async function RiceReportsPage({
       <ModuleAccessGuard
         type="restricted"
         userEmail={activeEmail}
-        userName={account?.full_name || activeEmail}
+        userName={userName}
         userRole={userRole}
         moduleInfo={{
           id: 'mod-finance',

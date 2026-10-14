@@ -121,8 +121,18 @@ interface AdminStoreData {
   deleted_emails?: string[];
 }
 
-const DATA_DIR = path.join(process.cwd(), 'data');
-const DATA_FILE = path.join(DATA_DIR, 'admin_data.json');
+function getDataPaths() {
+  const isServerless = !!process.env.VERCEL || !!process.env.AWS_LAMBDA_FUNCTION_NAME || process.env.NODE_ENV === 'production';
+  const localDir = path.join(process.cwd(), 'data');
+  const localFile = path.join(localDir, 'admin_data.json');
+
+  if (isServerless) {
+    const tmpDir = path.join('/tmp', 'da_data');
+    const tmpFile = path.join(tmpDir, 'admin_data.json');
+    return { dataDir: tmpDir, dataFile: tmpFile, seedFile: localFile };
+  }
+  return { dataDir: localDir, dataFile: localFile, seedFile: localFile };
+}
 
 const INITIAL_ACCOUNTS: UserAccount[] = [
   {
@@ -159,30 +169,57 @@ const INITIAL_AUDIT_LOGS: AuditLogEntry[] = [];
 
 function loadData(): AdminStoreData {
   try {
-    if (!fs.existsSync(DATA_DIR)) {
-      fs.mkdirSync(DATA_DIR, { recursive: true });
+    const { dataDir, dataFile, seedFile } = getDataPaths();
+
+    if (!fs.existsSync(dataDir)) {
+      try {
+        fs.mkdirSync(dataDir, { recursive: true });
+      } catch {}
     }
-    if (!fs.existsSync(DATA_FILE)) {
+
+    if (!fs.existsSync(dataFile)) {
+      // If seed file exists (bundled in project deployment), seed the writable location
+      if (fs.existsSync(seedFile)) {
+        try {
+          const seedContent = fs.readFileSync(seedFile, 'utf-8');
+          fs.writeFileSync(dataFile, seedContent, 'utf-8');
+          return JSON.parse(seedContent);
+        } catch {}
+      }
+
       const initial: AdminStoreData = {
         accounts: INITIAL_ACCOUNTS,
         login_logs: INITIAL_LOGIN_LOGS,
         audit_logs: INITIAL_AUDIT_LOGS,
       };
-      fs.writeFileSync(DATA_FILE, JSON.stringify(initial, null, 2), 'utf-8');
+      try {
+        fs.writeFileSync(dataFile, JSON.stringify(initial, null, 2), 'utf-8');
+      } catch {}
       return initial;
     }
-    const raw = fs.readFileSync(DATA_FILE, 'utf-8');
+
+    const raw = fs.readFileSync(dataFile, 'utf-8');
     const parsed: AdminStoreData = JSON.parse(raw);
 
     // Ensure super admin account exists as baseline
     if (!parsed.accounts.some((a) => a.email.toLowerCase() === 'super.admin@car.da.gov.ph')) {
       parsed.accounts.unshift(INITIAL_ACCOUNTS[0]);
-      fs.writeFileSync(DATA_FILE, JSON.stringify(parsed, null, 2), 'utf-8');
+      try {
+        fs.writeFileSync(dataFile, JSON.stringify(parsed, null, 2), 'utf-8');
+      } catch {}
     }
 
     return parsed;
   } catch (e) {
     console.error('Error loading admin store:', e);
+    // Try fallback to seed file directly if possible
+    try {
+      const seedFile = path.join(process.cwd(), 'data', 'admin_data.json');
+      if (fs.existsSync(seedFile)) {
+        return JSON.parse(fs.readFileSync(seedFile, 'utf-8'));
+      }
+    } catch {}
+
     return {
       accounts: INITIAL_ACCOUNTS,
       login_logs: INITIAL_LOGIN_LOGS,
@@ -193,10 +230,13 @@ function loadData(): AdminStoreData {
 
 function saveData(data: AdminStoreData): void {
   try {
-    if (!fs.existsSync(DATA_DIR)) {
-      fs.mkdirSync(DATA_DIR, { recursive: true });
+    const { dataDir, dataFile } = getDataPaths();
+    if (!fs.existsSync(dataDir)) {
+      try {
+        fs.mkdirSync(dataDir, { recursive: true });
+      } catch {}
     }
-    fs.writeFileSync(DATA_FILE, JSON.stringify(data, null, 2), 'utf-8');
+    fs.writeFileSync(dataFile, JSON.stringify(data, null, 2), 'utf-8');
   } catch (e) {
     console.error('Error saving admin store:', e);
   }
@@ -274,6 +314,9 @@ export function syncProfilesFromSupabase(profiles: Array<{
   department?: string;
   role?: string;
   is_approved?: boolean;
+  allowed_modules?: string[];
+  permissions?: UserPermissions;
+  status?: string;
   created_at?: string;
   updated_at?: string;
 }>): void {
@@ -292,7 +335,7 @@ export function syncProfilesFromSupabase(profiles: Array<{
 
     const existing = data.accounts.find((a) => a.email.toLowerCase() === lower);
 
-    const mappedStatus: UserAccount['status'] = p.is_approved === false ? 'pending_approval' : 'active';
+    const mappedStatus: UserAccount['status'] = (p.status as any) || (p.is_approved === false ? 'pending_approval' : 'active');
     const mappedRole = (['super_admin', 'admin', 'officer', 'staff'].includes(p.role || '') ? p.role : 'staff') as any;
 
     if (existing) {
@@ -308,13 +351,34 @@ export function syncProfilesFromSupabase(profiles: Array<{
         existing.department = p.department;
         modified = true;
       }
-      if (p.is_approved !== undefined && existing.status !== 'suspended' && existing.status !== 'restricted') {
+      if (p.role && existing.role !== p.role) {
+        existing.role = mappedRole;
+        modified = true;
+      }
+      if (p.allowed_modules && Array.isArray(p.allowed_modules) && p.allowed_modules.length > 0) {
+        existing.allowed_modules = p.allowed_modules;
+        modified = true;
+      }
+      if (p.permissions && typeof p.permissions === 'object') {
+        existing.permissions = { ...existing.permissions, ...p.permissions };
+        modified = true;
+      }
+      if (p.status && existing.status !== p.status) {
+        existing.status = p.status as any;
+        modified = true;
+      } else if (p.is_approved !== undefined && existing.status !== 'suspended' && existing.status !== 'restricted') {
         if (existing.status !== mappedStatus) {
           existing.status = mappedStatus;
           modified = true;
         }
       }
     } else {
+      const allowedMods = p.allowed_modules && Array.isArray(p.allowed_modules) && p.allowed_modules.length > 0
+        ? p.allowed_modules
+        : (mappedRole === 'super_admin' || mappedRole === 'admin'
+            ? ['mod-general', 'mod-rice', 'mod-beneficiary', 'mod-finance', 'mod-admin']
+            : (mappedRole === 'officer' ? ['mod-general', 'mod-rice', 'mod-beneficiary'] : ['mod-general']));
+
       data.accounts.push({
         id: p.id || `usr-${Date.now().toString(36)}`,
         email: lower,
@@ -322,7 +386,8 @@ export function syncProfilesFromSupabase(profiles: Array<{
         department: p.department || 'Rice Program Coordinating Unit',
         role: mappedRole,
         status: mappedStatus,
-        allowed_modules: ['mod-general', 'mod-rice', 'mod-beneficiary', 'mod-finance'],
+        allowed_modules: allowedMods,
+        permissions: p.permissions || getDefaultPermissionsForRole(mappedRole),
         last_sign_in_at: null,
         login_count: 0,
         created_at: p.created_at || new Date().toISOString(),
@@ -336,6 +401,128 @@ export function syncProfilesFromSupabase(profiles: Array<{
   if (modified) {
     saveData(data);
   }
+}
+
+/**
+ * Real-time authoritative access resolver that checks Supabase first (cloud Postgres),
+ * ensuring module access limits work accurately in serverless environments like Vercel.
+ */
+export async function getAuthoritativeUserAccess(
+  email: string | null | undefined,
+  supabaseClient?: any
+): Promise<{
+  role: string;
+  status: string;
+  allowed_modules: string[];
+  permissions: UserPermissions;
+  fullName: string;
+  department: string;
+  isSuperAdmin: boolean;
+}> {
+  const cleanEmail = (email || '').trim().toLowerCase();
+  const isSuper = cleanEmail === 'super.admin@car.da.gov.ph';
+
+  if (!cleanEmail) {
+    return {
+      role: 'visitor',
+      status: 'active',
+      allowed_modules: ['mod-general'],
+      permissions: getDefaultPermissionsForRole('visitor'),
+      fullName: 'Guest',
+      department: 'Public Visitor',
+      isSuperAdmin: false,
+    };
+  }
+
+  if (isSuper) {
+    return {
+      role: 'super_admin',
+      status: 'active',
+      allowed_modules: ['mod-general', 'mod-rice', 'mod-beneficiary', 'mod-finance', 'mod-admin'],
+      permissions: getDefaultPermissionsForRole('super_admin'),
+      fullName: 'Regional Executive Director (Super Admin)',
+      department: 'Office of the Regional Executive Director',
+      isSuperAdmin: true,
+    };
+  }
+
+  // 1. Try querying Supabase profiles table directly for live cloud state
+  if (supabaseClient) {
+    try {
+      const { data: profile } = await supabaseClient
+        .from('profiles')
+        .select('*')
+        .eq('email', cleanEmail)
+        .maybeSingle();
+
+      if (profile) {
+        const role = (profile.role || 'staff').toLowerCase();
+        const isProfileSuper = role === 'super_admin' || role === 'admin';
+        const status = profile.status || (profile.is_approved === false ? 'pending_approval' : 'active');
+
+        // Check if allowed_modules is stored in Supabase
+        let allowed: string[] | null = Array.isArray(profile.allowed_modules) && profile.allowed_modules.length > 0
+          ? profile.allowed_modules
+          : null;
+
+        // If not stored in Supabase columns, fallback to local/tmp store
+        const local = getAccountByEmail(cleanEmail);
+        if (!allowed && local?.allowed_modules && local.allowed_modules.length > 0) {
+          allowed = local.allowed_modules;
+        }
+        if (!allowed) {
+          allowed = isProfileSuper
+            ? ['mod-general', 'mod-rice', 'mod-beneficiary', 'mod-finance', 'mod-admin']
+            : (role === 'officer' ? ['mod-general', 'mod-rice', 'mod-beneficiary'] : ['mod-general']);
+        }
+
+        const perms = profile.permissions && typeof profile.permissions === 'object'
+          ? profile.permissions
+          : (local?.permissions ? getEffectivePermissions(local) : getDefaultPermissionsForRole(role));
+
+        return {
+          role,
+          status,
+          allowed_modules: allowed,
+          permissions: perms,
+          fullName: profile.full_name || local?.full_name || cleanEmail.split('@')[0],
+          department: profile.department || local?.department || 'Rice Program Coordinating Unit',
+          isSuperAdmin: isProfileSuper,
+        };
+      }
+    } catch (e) {
+      console.warn('Note querying authoritative access from Supabase:', e);
+    }
+  }
+
+  // 2. Fallback to local adminStore
+  const localAccount = getAccountByEmail(cleanEmail);
+  if (localAccount) {
+    const role = (localAccount.role || 'staff').toLowerCase();
+    const isLocalSuper = role === 'super_admin' || role === 'admin';
+    return {
+      role,
+      status: localAccount.status,
+      allowed_modules: isLocalSuper
+        ? ['mod-general', 'mod-rice', 'mod-beneficiary', 'mod-finance', 'mod-admin']
+        : (localAccount.allowed_modules || ['mod-general']),
+      permissions: getEffectivePermissions(localAccount),
+      fullName: localAccount.full_name,
+      department: localAccount.department,
+      isSuperAdmin: isLocalSuper,
+    };
+  }
+
+  // 3. Fallback default
+  return {
+    role: 'staff',
+    status: 'active',
+    allowed_modules: ['mod-general'],
+    permissions: getDefaultPermissionsForRole('staff'),
+    fullName: cleanEmail.split('@')[0],
+    department: 'Rice Program Coordinating Unit',
+    isSuperAdmin: false,
+  };
 }
 
 export function updateStaffAccessBySuperAdmin(

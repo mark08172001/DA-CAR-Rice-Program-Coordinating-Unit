@@ -122,21 +122,33 @@ export async function PATCH(request: NextRequest) {
       return NextResponse.json({ error: 'Target email is required' }, { status: 400 });
     }
 
-    // Attempt to update Supabase profiles table if it exists
+    // Attempt to update Supabase profiles table with role, status, allowed_modules, and permissions
     try {
-      if (role || status) {
-        const profileUpdate: any = {
-          updated_at: new Date().toISOString(),
-        };
-        if (role) profileUpdate.role = role;
-        if (status) profileUpdate.is_approved = status === 'active' || status === 'restricted';
+      const db = createAdminClient() ?? supabase;
+      const cleanEmail = targetEmail.trim().toLowerCase();
+      const profileUpdate: any = {
+        updated_at: new Date().toISOString(),
+      };
+      if (role) profileUpdate.role = role;
+      if (status) {
+        profileUpdate.status = status;
+        profileUpdate.is_approved = status === 'active' || status === 'restricted';
+      }
+      if (allowed_modules) profileUpdate.allowed_modules = allowed_modules;
+      if (permissions) profileUpdate.permissions = permissions;
+      if (notes !== undefined) profileUpdate.notes = notes;
 
-        const db = createAdminClient() ?? supabase;
-        const { error: profErr } = await db
-          .from('profiles')
-          .update(profileUpdate)
-          .eq('email', targetEmail.trim().toLowerCase());
-        if (profErr) console.warn('Profiles update error:', profErr.message);
+      const { error: profErr } = await db
+        .from('profiles')
+        .update(profileUpdate)
+        .eq('email', cleanEmail);
+
+      // If the table doesn't have the extended columns yet, fallback to basic columns
+      if (profErr && profErr.message?.includes('column')) {
+        const basicUpdate: any = { updated_at: new Date().toISOString() };
+        if (role) basicUpdate.role = role;
+        if (status) basicUpdate.is_approved = status === 'active' || status === 'restricted';
+        await db.from('profiles').update(basicUpdate).eq('email', cleanEmail);
       }
     } catch (e) {
       console.warn('Note updating Supabase profiles table:', e);

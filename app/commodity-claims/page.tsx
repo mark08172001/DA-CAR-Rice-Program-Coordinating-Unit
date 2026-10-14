@@ -4,7 +4,7 @@ import PageHero from '@/components/PageHero';
 import { createClient as createDirectClient } from '@supabase/supabase-js';
 import { cookies } from 'next/headers';
 import { createClient } from '@/utils/supabase/server';
-import { getAccountByEmail, getEffectivePermissions } from '@/utils/adminStore';
+import { getAuthoritativeUserAccess } from '@/utils/adminStore';
 import ModuleAccessGuard from '@/components/ModuleAccessGuard';
 import { fetchCommodityClaimsFromGoogleSheet } from '@/utils/fetchCommodityClaimsSheet';
 
@@ -35,17 +35,12 @@ export default async function CommodityClaimsPage() {
     }
   }
 
-  const account = activeEmail ? getAccountByEmail(activeEmail) : null;
-  const userRole = (account?.role || user?.user_metadata?.role || 'visitor').toLowerCase();
-  const isSuperAdmin = userRole === 'super_admin' || activeEmail === 'super.admin@car.da.gov.ph';
-  const allowed = isSuperAdmin
-    ? ['mod-general', 'mod-rice', 'mod-beneficiary', 'mod-finance', 'mod-admin']
-    : (account?.allowed_modules || ['mod-general']);
-
-  const effectivePerms = isSuperAdmin
-    ? { can_manage_claims: true }
-    : (account ? getEffectivePermissions(account) : { can_manage_claims: ['officer', 'admin'].includes(userRole) });
-  const canManageClaims = isSuperAdmin || effectivePerms.can_manage_claims !== false;
+  const access = await getAuthoritativeUserAccess(activeEmail, supabase);
+  const isSuperAdmin = access.isSuperAdmin;
+  const allowed = access.allowed_modules;
+  const userRole = access.role;
+  const userName = access.fullName;
+  const canManageClaims = isSuperAdmin || access.permissions.can_manage_claims !== false;
 
   if (!activeEmail) {
     return (
@@ -65,12 +60,12 @@ export default async function CommodityClaimsPage() {
     );
   }
 
-  if (account?.status === 'suspended') {
+  if (access.status === 'suspended') {
     return (
       <ModuleAccessGuard
         type="suspended"
         userEmail={activeEmail}
-        userName={account?.full_name || activeEmail}
+        userName={userName}
         userRole={userRole}
         moduleInfo={{
           id: 'mod-beneficiary',
@@ -87,7 +82,7 @@ export default async function CommodityClaimsPage() {
       <ModuleAccessGuard
         type="restricted"
         userEmail={activeEmail}
-        userName={account?.full_name || activeEmail}
+        userName={userName}
         userRole={userRole}
         moduleInfo={{
           id: 'mod-beneficiary',
