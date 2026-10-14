@@ -381,9 +381,9 @@ export default function PhysicalAccomplishmentClient({ initialData }: Props) {
               const boxX = x - boxW / 2;
               const boxY = y - boxH - 5;
 
-              // Pink badge box
-              ctx.fillStyle = '#ff6384';
-              ctx.shadowColor = 'rgba(255, 99, 132, 0.35)';
+              // Blue badge box
+              ctx.fillStyle = '#2563eb';
+              ctx.shadowColor = 'rgba(37, 99, 235, 0.35)';
               ctx.shadowBlur = 4;
               ctx.shadowOffsetY = 1;
               ctx.beginPath();
@@ -439,13 +439,13 @@ export default function PhysicalAccomplishmentClient({ initialData }: Props) {
             type: 'line',
             data: rates,
             hidden: hiddenProvincialRef.current.coverage,
-            borderColor: '#ff6384',
-            backgroundColor: 'rgba(255, 99, 132, 0.16)',
+            borderColor: '#2563eb',
+            backgroundColor: 'rgba(37, 99, 235, 0.16)',
             fill: true,
             tension: 0,
             borderWidth: 2.8,
             pointBackgroundColor: '#ffffff',
-            pointBorderColor: '#ff6384',
+            pointBorderColor: '#2563eb',
             pointBorderWidth: 2.5,
             pointRadius: 4,
             pointHoverRadius: 6,
@@ -508,7 +508,7 @@ export default function PhysicalAccomplishmentClient({ initialData }: Props) {
             max: 100,
             grid: { display: false },
             ticks: {
-              color: '#ff6384',
+              color: '#2563eb',
               font: { size: 11, weight: 600 },
               callback: (value) => `${value}%`,
             },
@@ -897,8 +897,8 @@ export default function PhysicalAccomplishmentClient({ initialData }: Props) {
                       style={{
                         width: 34,
                         height: 12,
-                        background: hiddenProvincial.coverage ? '#f1f5f9' : 'rgba(255, 99, 132, 0.25)',
-                        border: hiddenProvincial.coverage ? '2px dashed #cbd5e1' : '2px solid #ff6384',
+                        background: hiddenProvincial.coverage ? '#f1f5f9' : 'rgba(37, 99, 235, 0.22)',
+                        border: hiddenProvincial.coverage ? '2px dashed #cbd5e1' : '2px solid #2563eb',
                       }}
                     />
                     <span>Coverage / Procurement Rate (%)</span>
