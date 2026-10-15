@@ -44,7 +44,7 @@ export default function DSDistributionClient({ initialData }: Props) {
                 DS 2026-2027 Distribution Status
               </h1>
               <p style={{ margin: 0, color: '#d2dfd6', fontSize: '13.5px', maxWidth: 720, lineHeight: 1.6 }}>
-                Official Dry Season (DS) 2026-2027 monitoring of regional seed consignments, provincial allocations, and farmer cluster dropoffs across the Cordilleras.
+                Official Dry Season (DS) 2026-2027 monitoring of regional seed consignments, provincial allocations, and farmer cluster dropoffs across the Cordillera.
               </p>
             </div>
             <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>

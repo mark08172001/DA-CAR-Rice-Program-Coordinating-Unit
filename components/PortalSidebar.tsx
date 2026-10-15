@@ -47,6 +47,7 @@ interface NavItem {
   badge?: string;
   badgeType?: 'gold' | 'green' | 'muted';
   isSubItem?: boolean;
+  subItems?: NavItem[];
 }
 
 interface NavModule {
@@ -73,10 +74,24 @@ export default function PortalSidebar({
   // Module accordion state: ALL modules are closed by default when opening the website
   const [openModules, setOpenModules] = useState<Record<string, boolean>>({});
 
+  // Sub-items dropdown state (e.g. Physical -> DS Distribution)
+  const [openSubMenus, setOpenSubMenus] = useState<Record<string, boolean>>({
+    '/rice/physical': true,
+  });
+
   const toggleModule = (moduleId: string) => {
     setOpenModules((prev) => ({
       ...prev,
       [moduleId]: !prev[moduleId],
+    }));
+  };
+
+  const toggleSubMenu = (itemHref: string, e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setOpenSubMenus((prev) => ({
+      ...prev,
+      [itemHref]: !prev[itemHref],
     }));
   };
 
@@ -220,12 +235,18 @@ export default function PortalSidebar({
       title: 'Physical & Programs',
       description: 'Target KPIs & operational programs',
       items: [
-        { label: 'Physical', href: '/rice/physical', icon: BarChart3 },
         {
-          label: 'DS 2026-2027 Distribution Status',
-          href: '/rice/physical/ds-2026-2027-distribution-status',
-          icon: Truck,
-          isSubItem: true,
+          label: 'Physical',
+          href: '/rice/physical',
+          icon: BarChart3,
+          subItems: [
+            {
+              label: 'DS 2026-2027 Distribution Status',
+              href: '/rice/physical/ds-2026-2027-distribution-status',
+              icon: Truck,
+              isSubItem: true,
+            },
+          ],
         },
         { label: 'Programs', href: '/rice/programs', icon: Wheat },
       ],
@@ -399,77 +420,136 @@ export default function PortalSidebar({
                       isActive = pathname === item.href || pathname.startsWith(item.href + '/');
                     }
 
+                    const hasSubItems = Boolean(item.subItems && item.subItems.length > 0);
+                    const isSubOpen = Boolean(openSubMenus[item.href]);
+
                     return (
-                      <Link
-                        key={item.label}
-                        href={item.href}
-                        onClick={onClose}
-                        className={`module-link ${isActive ? 'active' : ''} ${item.isSubItem ? 'module-sublink' : ''}`}
-                        title={item.label}
-                        style={
-                          item.isSubItem && !isCollapsed
-                            ? {
-                                marginLeft: '14px',
-                                paddingLeft: '8px',
-                                position: 'relative',
-                              }
-                            : undefined
-                        }
-                      >
-                        <span className="module-link-left" style={{ alignItems: item.isSubItem ? 'flex-start' : 'center' }}>
-                          {item.isSubItem && !isCollapsed ? (
-                            /* Hierarchical L-shaped tree branch matching user design */
-                            <span
-                              aria-hidden="true"
-                              style={{
-                                display: 'inline-block',
-                                width: '13px',
-                                height: '14px',
-                                borderLeft: '2.5px solid rgba(255, 255, 255, 0.75)',
-                                borderBottom: '2.5px solid rgba(255, 255, 255, 0.75)',
-                                borderBottomLeftRadius: '2px',
-                                marginRight: '6px',
-                                marginTop: '2px',
-                                flexShrink: 0,
-                              }}
-                            />
-                          ) : (
+                      <div key={item.label} className="module-item-group">
+                        <Link
+                          href={item.href}
+                          onClick={(e) => {
+                            if (hasSubItems) {
+                              // If clicked on collapsed sidebar, just navigate; on full sidebar, keep dropdown open
+                              setOpenSubMenus((prev) => ({
+                                ...prev,
+                                [item.href]: true,
+                              }));
+                            }
+                            onClose();
+                          }}
+                          className={`module-link ${isActive ? 'active' : ''}`}
+                          title={item.label}
+                        >
+                          <span className="module-link-left">
                             <IconComponent size={isCollapsed ? 18 : 16} className="module-link-icon" />
-                          )}
-                          {!isCollapsed && (
-                            <span
-                              className="module-link-title"
-                              style={
-                                item.isSubItem
-                                  ? {
-                                      whiteSpace: 'normal',
-                                      lineHeight: '1.25',
-                                      fontSize: '12px',
-                                      fontWeight: 500,
-                                    }
-                                  : undefined
-                              }
-                            >
-                              {item.label === 'DS 2026-2027 Distribution Status' ? (
-                                <>
-                                  <span style={{ display: 'block', fontWeight: 600 }}>DS 2026-2027</span>
-                                  <span style={{ display: 'block', fontSize: '11px', opacity: 0.88 }}>Distribution status</span>
-                                </>
-                              ) : (
-                                item.label
-                              )}
-                            </span>
-                          )}
-                        </span>
-                        {!isCollapsed && item.badge && (
-                          <span className={`module-badge badge-${item.badgeType || 'muted'}`}>
-                            {item.badge}
+                            {!isCollapsed && <span className="module-link-title">{item.label}</span>}
                           </span>
+
+                          {!isCollapsed && (
+                            <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                              {item.badge && (
+                                <span className={`module-badge badge-${item.badgeType || 'muted'}`}>
+                                  {item.badge}
+                                </span>
+                              )}
+                              {hasSubItems && (
+                                <button
+                                  type="button"
+                                  onClick={(e) => toggleSubMenu(item.href, e)}
+                                  style={{
+                                    border: 'none',
+                                    background: 'transparent',
+                                    color: 'rgba(255, 255, 255, 0.7)',
+                                    cursor: 'pointer',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    padding: '2px 4px',
+                                    borderRadius: 3,
+                                  }}
+                                  aria-label={`Toggle ${item.label} sub-items`}
+                                >
+                                  <ChevronDown
+                                    size={13}
+                                    style={{
+                                      transform: isSubOpen ? 'rotate(0deg)' : 'rotate(-90deg)',
+                                      transition: 'transform 0.2s ease',
+                                    }}
+                                  />
+                                </button>
+                              )}
+                            </div>
+                          )}
+
+                          {isCollapsed && item.badge && (
+                            <span className="minimized-badge-dot" title={item.badge} />
+                          )}
+                        </Link>
+
+                        {/* Collapsible Sub-Items Dropdown */}
+                        {hasSubItems && !isCollapsed && isSubOpen && (
+                          <div className="module-subnav-list" style={{ marginTop: '2px', marginBottom: '4px' }}>
+                            {item.subItems!.map((sub) => {
+                              const isSubActive = pathname === sub.href;
+                              return (
+                                <Link
+                                  key={sub.label}
+                                  href={sub.href}
+                                  onClick={onClose}
+                                  className={`module-link ${isSubActive ? 'active' : ''} module-sublink`}
+                                  title={sub.label}
+                                  style={{
+                                    marginLeft: '14px',
+                                    paddingLeft: '8px',
+                                    position: 'relative',
+                                  }}
+                                >
+                                  <span className="module-link-left" style={{ alignItems: 'flex-start' }}>
+                                    {/* Hierarchical L-shaped tree branch */}
+                                    <span
+                                      aria-hidden="true"
+                                      style={{
+                                        display: 'inline-block',
+                                        width: '13px',
+                                        height: '14px',
+                                        borderLeft: '2.5px solid rgba(255, 255, 255, 0.75)',
+                                        borderBottom: '2.5px solid rgba(255, 255, 255, 0.75)',
+                                        borderBottomLeftRadius: '2px',
+                                        marginRight: '6px',
+                                        marginTop: '2px',
+                                        flexShrink: 0,
+                                      }}
+                                    />
+                                    <span
+                                      className="module-link-title"
+                                      style={{
+                                        whiteSpace: 'normal',
+                                        lineHeight: '1.25',
+                                        fontSize: '12px',
+                                        fontWeight: 500,
+                                      }}
+                                    >
+                                      {sub.label === 'DS 2026-2027 Distribution Status' ? (
+                                        <>
+                                          <span style={{ display: 'block', fontWeight: 600 }}>DS 2026-2027</span>
+                                          <span style={{ display: 'block', fontSize: '11px', opacity: 0.88 }}>Distribution status</span>
+                                        </>
+                                      ) : (
+                                        sub.label
+                                      )}
+                                    </span>
+                                  </span>
+
+                                  {sub.badge && (
+                                    <span className={`module-badge badge-${sub.badgeType || 'muted'}`}>
+                                      {sub.badge}
+                                    </span>
+                                  )}
+                                </Link>
+                              );
+                            })}
+                          </div>
                         )}
-                        {isCollapsed && item.badge && (
-                          <span className="minimized-badge-dot" title={item.badge} />
-                        )}
-                      </Link>
+                      </div>
                     );
                   })}
                 </nav>
