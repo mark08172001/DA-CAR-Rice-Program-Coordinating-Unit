@@ -82,8 +82,8 @@ export default function ActivityCalendar({
   const [activities, setActivities] = useState<RegionalActivity[]>(() =>
     (initialActivities || []).map((act) => ({
       ...act,
-      status: act.id?.startsWith('act-prog-')
-        ? act.status
+      status: act.status === 'completed'
+        ? 'completed'
         : computeActivityStatus(act.start_date, act.end_date),
     }))
   );
@@ -93,8 +93,8 @@ export default function ActivityCalendar({
       setActivities(
         initialActivities.map((act) => ({
           ...act,
-          status: act.id?.startsWith('act-prog-')
-            ? act.status
+          status: act.status === 'completed'
+            ? 'completed'
             : computeActivityStatus(act.start_date, act.end_date),
         }))
       );
@@ -233,11 +233,9 @@ export default function ActivityCalendar({
   const normalizedActivities = useMemo(() => {
     const today = getTodayDateStr();
     return activities.map((act) => {
-      if (act.id?.startsWith('act-prog-')) {
-        return act;
-      }
       const computed = computeActivityStatus(act.start_date, act.end_date, today);
-      return act.status !== computed ? { ...act, status: computed } : act;
+      const effective = act.status === 'completed' && computed !== 'ongoing' ? 'completed' : computed;
+      return act.status !== effective ? { ...act, status: effective } : act;
     });
   }, [activities]);
 

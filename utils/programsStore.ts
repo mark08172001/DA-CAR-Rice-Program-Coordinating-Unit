@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { RegionalActivity } from '@/components/ActivityCalendar';
+import { computeActivityStatus } from '@/utils/activityStatus';
 
 export interface Program {
   id?: string | number;
@@ -20,6 +21,21 @@ export interface Program {
   display_order?: number;
   created_at?: string;
   updated_at?: string;
+}
+
+export function computeProgramStatus(startDate?: string, endDate?: string, manualStatus?: string): string {
+  const raw = (manualStatus || '').toLowerCase();
+  if (['completed', 'done', 'finished'].includes(raw)) {
+    return 'Completed';
+  }
+  if (!startDate) {
+    return manualStatus || 'Active';
+  }
+  const computed = computeActivityStatus(startDate, endDate);
+  if (computed === 'ongoing') return 'Ongoing';
+  if (computed === 'upcoming') return 'Upcoming';
+  if (computed === 'completed') return 'Completed';
+  return manualStatus || 'Active';
 }
 
 const JSON_DATA_PATH = path.join(process.cwd(), 'data', 'rice_programs_data.json');
@@ -52,7 +68,10 @@ export function saveLocalPrograms(programs: Program[]): void {
 export function getAuthoritativePrograms(supabasePrograms?: any[] | null): Program[] {
   const localList = getLocalPrograms();
   if (!supabasePrograms || supabasePrograms.length === 0) {
-    return localList;
+    return localList.map((lp) => {
+      const effStatus = computeProgramStatus(lp.start_date, lp.end_date, lp.status || 'Active');
+      return { ...lp, status: effStatus };
+    });
   }
 
   const localById = new Map<string, Program>();
@@ -68,14 +87,13 @@ export function getAuthoritativePrograms(supabasePrograms?: any[] | null): Progr
       localById.get(String(sp.id)) ||
       (sp.name ? localByName.get(sp.name.trim().toLowerCase()) : null);
 
-    if (!lp) return sp;
+    const base = lp ? { ...sp, ...lp, updated_at: lp.updated_at || sp.updated_at } : sp;
+    const rawStatus = lp?.status || sp.status || 'Active';
+    const effectiveStatus = computeProgramStatus(base.start_date, base.end_date, rawStatus);
 
-    // Local changes (such as status, name, description) reflect latest user modifications
     return {
-      ...sp,
-      ...lp,
-      status: lp.status || sp.status || 'Active',
-      updated_at: lp.updated_at || sp.updated_at,
+      ...base,
+      status: effectiveStatus,
     };
   });
 
@@ -83,7 +101,12 @@ export function getAuthoritativePrograms(supabasePrograms?: any[] | null): Progr
   const spIdSet = new Set(supabasePrograms.map((sp) => String(sp.id)));
   localList.forEach((lp) => {
     if (lp.id && !spIdSet.has(String(lp.id))) {
-      merged.push(lp);
+      const rawStatus = lp.status || 'Active';
+      const effectiveStatus = computeProgramStatus(lp.start_date, lp.end_date, rawStatus);
+      merged.push({
+        ...lp,
+        status: effectiveStatus,
+      });
     }
   });
 
@@ -152,6 +175,13 @@ export function programToRegionalActivity(program: Program): RegionalActivity {
   }
   if (program.end_date) {
     end_date = program.end_date;
+  }
+
+  // Automatically compute status based on designated start/end date coverage
+  if (['completed', 'done', 'finished'].includes(rawStatus)) {
+    status = 'completed';
+  } else if (program.start_date) {
+    status = computeActivityStatus(start_date, end_date);
   }
 
   return {
