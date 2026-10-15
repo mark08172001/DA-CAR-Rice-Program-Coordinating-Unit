@@ -258,9 +258,17 @@ export default function ModuleAccessGuard({
               Access to {moduleInfo?.title || 'This Module'} is Restricted
             </h2>
             <p style={{ fontSize: 14, color: '#4b5563', lineHeight: 1.6, margin: '0 0 16px' }}>
-              The Regional Executive Director (Super Admin) has configured granular accessibility limits for your staff
-              account (<strong>{userEmail}</strong>). Permission to view or operate within this module is currently not
-              granted.
+              {userEmail === 'Guest / Outsider' || userRole === 'visitor' ? (
+                <>
+                  Access to this operational module is restricted to authorized Department of Agriculture personnel. You are currently viewing as an unauthenticated visitor.
+                </>
+              ) : (
+                <>
+                  The Regional Executive Director (Super Admin) has configured granular accessibility limits for your staff
+                  account (<strong>{userEmail}</strong>). Permission to view or operate within this module is currently not
+                  granted.
+                </>
+              )}
             </p>
 
             {/* Permitted Modules Summary */}
@@ -315,6 +323,23 @@ export default function ModuleAccessGuard({
               >
                 <ArrowLeft size={15} /> View General Directory
               </Link>
+              {(userEmail === 'Guest / Outsider' || userRole === 'visitor') && (
+                <Link
+                  href="/login"
+                  className="button"
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: 6,
+                    background: '#136c38',
+                    color: '#ffffff',
+                    border: 'none',
+                    fontWeight: 600,
+                  }}
+                >
+                  <Lock size={15} /> Sign In with DA Account
+                </Link>
+              )}
             </div>
           </div>
         </div>

@@ -70,6 +70,10 @@ export const createClient = async (request: NextRequest) => {
   const isModule1Path =
     pathname === '/' ||
     pathname === '/about' ||
+    pathname === '/contact' ||
+    pathname === '/provinces' ||
+    pathname === '/weather' ||
+    pathname === '/market-prices' ||
     pathname === '/privacy-policy' ||
     pathname === '/terms-of-use' ||
     pathname === '/login' ||
@@ -82,84 +86,62 @@ export const createClient = async (request: NextRequest) => {
     (pathname === '/api/admin/logs' && request.method === 'POST') ||
     pathname.startsWith('/_next');
 
-  // 1. If visitor is unauthenticated (outsider) and attempting to access restricted modules
-  // (Module 02, Module 03, Module 04, Module 05 Admin, or restricted APIs)
-  if (!isModule1Path && !user) {
-    if (pathname.startsWith('/api/')) {
-      return NextResponse.json(
-        { error: 'Access Denied: Authentication required. Module access is restricted to authorized Department of Agriculture personnel.' },
-        { status: 401 }
-      );
-    }
-
-    const loginUrl = new URL('/login', request.url);
-    loginUrl.searchParams.set(
-      'error',
-      'Access Denied: Outsiders can only view Module 01. Please sign in with an authorized Department of Agriculture account to access this module.'
-    );
-    loginUrl.searchParams.set('next', pathname);
-    return NextResponse.redirect(loginUrl);
-  }
-
-  // 2. If user is authenticated, ensure account exists and is approved before accessing restricted modules
-  if (!isModule1Path && user && user.email !== 'super.admin@car.da.gov.ph') {
-    let isApproved = true;
-
-    const { data: profile } = await supabase
-      .from('profiles')
-      .select('is_approved, role')
-      .eq('id', user.id)
-      .single();
-
-    if (profile) {
-      isApproved = profile.is_approved !== false;
-    }
-
-    if (!isApproved) {
+  // 1. Strict protection for Super Admin Suite (/admin and /api/admin)
+  const isAdminPath = pathname.startsWith('/admin') || pathname.startsWith('/api/admin');
+  if (isAdminPath) {
+    if (!user) {
       if (pathname.startsWith('/api/')) {
         return NextResponse.json(
-          { error: 'Access Denied: Account is pending Super Admin approval.' },
-          { status: 403 }
+          { error: 'Access Denied: Authentication required. Super Administrator clearance required.' },
+          { status: 401 }
         );
       }
       const loginUrl = new URL('/login', request.url);
+      loginUrl.searchParams.set('next', pathname);
       loginUrl.searchParams.set(
         'error',
-        'Account Pending Approval: Your account is awaiting approval from the Regional Executive Director (Super Admin). Access to this module will be granted once approved.'
+        'Super Administrator or Administrator clearance required to access the Administrative Suite.'
       );
       return NextResponse.redirect(loginUrl);
     }
-  }
 
-  // 3. If user is authenticated, enforce Super Admin / Admin clearance on administrative management suite
-  if (user) {
-    const isAdminPath = pathname.startsWith('/admin') || pathname.startsWith('/api/admin');
-    if (isAdminPath) {
-      const { data: profile } = await supabase
-        .from('profiles')
-        .select('role, is_approved')
-        .eq('id', user.id)
-        .single();
+    // Enforce Super Admin / Admin clearance on administrative management suite
+    const { data: profile } = await supabase
+      .from('profiles')
+      .select('role, is_approved')
+      .eq('id', user.id)
+      .single();
 
-      const userRole = profile?.role || user.user_metadata?.role || (user.email?.includes('admin') ? 'super_admin' : 'staff');
-      const isSuperAdminOrAdmin = ['super_admin', 'admin'].includes(userRole) || user.email?.includes('admin');
+    const userRole = profile?.role || user.user_metadata?.role || (user.email?.includes('admin') ? 'super_admin' : 'staff');
+    const isSuperAdminOrAdmin = ['super_admin', 'admin'].includes(userRole) || user.email?.includes('admin');
 
-      if (!isSuperAdminOrAdmin) {
-        if (pathname.startsWith('/api/')) {
-          return NextResponse.json(
-            { error: 'Access Denied: Super Admin or Administrator privileges required.' },
-            { status: 403 }
-          );
-        }
-        const errorUrl = new URL('/', request.url);
-        errorUrl.searchParams.set(
-          'error',
-          'Access Denied: Administrative and Staff Access Control tools require Super Administrator clearance.'
+    if (!isSuperAdminOrAdmin) {
+      if (pathname.startsWith('/api/')) {
+        return NextResponse.json(
+          { error: 'Access Denied: Super Admin or Administrator privileges required.' },
+          { status: 403 }
         );
-        return NextResponse.redirect(errorUrl);
       }
+      const errorUrl = new URL('/', request.url);
+      errorUrl.searchParams.set(
+        'error',
+        'Access Denied: Administrative and Staff Access Control tools require Super Administrator clearance.'
+      );
+      return NextResponse.redirect(errorUrl);
     }
   }
+
+  // 2. Protected backend APIs require authentication (unless publicly permitted)
+  if (pathname.startsWith('/api/') && !isModule1Path && !user) {
+    return NextResponse.json(
+      { error: 'Access Denied: Authentication required. Module access is restricted to authorized Department of Agriculture personnel.' },
+      { status: 401 }
+    );
+  }
+
+  // Note: Operational module pages (/rice/*, /commodity-claims) have dedicated server-side
+  // ModuleAccessGuard components that display the institutional restriction banner in-place
+  // based on the user's specific account or guest status.
 
   return supabaseResponse;
 };
