@@ -87,6 +87,9 @@ export default function PortalTopBar({
   } else if (pathname.startsWith('/rice/programs')) {
     currentModuleName = 'Module 02: Rice Coordinating Unit';
     currentPageTitle = 'Programs Register';
+  } else if (pathname.startsWith('/rice/physical/ds-2026-2027-distribution-status')) {
+    currentModuleName = 'Module 02: Rice Coordinating Unit';
+    currentPageTitle = 'DS 2026-2027 Distribution Status';
   } else if (pathname.startsWith('/rice/physical')) {
     currentModuleName = 'Module 02: Rice Coordinating Unit';
     currentPageTitle = 'Physical Targets & Accomplishment';

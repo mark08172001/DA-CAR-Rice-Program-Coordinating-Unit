@@ -28,7 +28,8 @@ import {
   PanelLeftOpen,
   Sliders,
   UserCheck,
-  BarChart3
+  BarChart3,
+  Truck
 } from 'lucide-react';
 import { createClient } from '@/utils/supabase/client';
 
@@ -45,6 +46,7 @@ interface NavItem {
   icon: any;
   badge?: string;
   badgeType?: 'gold' | 'green' | 'muted';
+  isSubItem?: boolean;
 }
 
 interface NavModule {
@@ -219,6 +221,12 @@ export default function PortalSidebar({
       description: 'Target KPIs & operational programs',
       items: [
         { label: 'Physical', href: '/rice/physical', icon: BarChart3 },
+        {
+          label: 'DS 2026-2027 Distribution Status',
+          href: '/rice/physical/ds-2026-2027-distribution-status',
+          icon: Truck,
+          isSubItem: true,
+        },
         { label: 'Programs', href: '/rice/programs', icon: Wheat },
       ],
     },
@@ -396,12 +404,62 @@ export default function PortalSidebar({
                         key={item.label}
                         href={item.href}
                         onClick={onClose}
-                        className={`module-link ${isActive ? 'active' : ''}`}
+                        className={`module-link ${isActive ? 'active' : ''} ${item.isSubItem ? 'module-sublink' : ''}`}
                         title={item.label}
+                        style={
+                          item.isSubItem && !isCollapsed
+                            ? {
+                                marginLeft: '14px',
+                                paddingLeft: '8px',
+                                position: 'relative',
+                              }
+                            : undefined
+                        }
                       >
-                        <span className="module-link-left">
-                          <IconComponent size={isCollapsed ? 18 : 16} className="module-link-icon" />
-                          {!isCollapsed && <span className="module-link-title">{item.label}</span>}
+                        <span className="module-link-left" style={{ alignItems: item.isSubItem ? 'flex-start' : 'center' }}>
+                          {item.isSubItem && !isCollapsed ? (
+                            /* Hierarchical L-shaped tree branch matching user design */
+                            <span
+                              aria-hidden="true"
+                              style={{
+                                display: 'inline-block',
+                                width: '13px',
+                                height: '14px',
+                                borderLeft: '2.5px solid rgba(255, 255, 255, 0.75)',
+                                borderBottom: '2.5px solid rgba(255, 255, 255, 0.75)',
+                                borderBottomLeftRadius: '2px',
+                                marginRight: '6px',
+                                marginTop: '2px',
+                                flexShrink: 0,
+                              }}
+                            />
+                          ) : (
+                            <IconComponent size={isCollapsed ? 18 : 16} className="module-link-icon" />
+                          )}
+                          {!isCollapsed && (
+                            <span
+                              className="module-link-title"
+                              style={
+                                item.isSubItem
+                                  ? {
+                                      whiteSpace: 'normal',
+                                      lineHeight: '1.25',
+                                      fontSize: '12px',
+                                      fontWeight: 500,
+                                    }
+                                  : undefined
+                              }
+                            >
+                              {item.label === 'DS 2026-2027 Distribution Status' ? (
+                                <>
+                                  <span style={{ display: 'block', fontWeight: 600 }}>DS 2026-2027</span>
+                                  <span style={{ display: 'block', fontSize: '11px', opacity: 0.88 }}>Distribution status</span>
+                                </>
+                              ) : (
+                                item.label
+                              )}
+                            </span>
+                          )}
                         </span>
                         {!isCollapsed && item.badge && (
                           <span className={`module-badge badge-${item.badgeType || 'muted'}`}>

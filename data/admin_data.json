@@ -51,10 +51,7 @@
       "role": "officer",
       "status": "active",
       "allowed_modules": [
-        "mod-general",
-        "mod-rice",
-        "mod-beneficiary",
-        "mod-finance"
+        "mod-general"
       ],
       "last_sign_in_at": null,
       "login_count": 0,
