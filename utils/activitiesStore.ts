@@ -1,20 +1,8 @@
 import fs from 'fs';
 import path from 'path';
+import type { RegionalActivity } from '@/components/ActivityCalendar';
 
-export interface RegionalActivity {
-  id: string;
-  title: string;
-  description: string | null;
-  category: 'Production Support' | 'Extension & Training' | 'Research & Dev' | 'Infrastructure' | 'Banner Rice Program';
-  province: 'Abra' | 'Apayao' | 'Benguet' | 'Ifugao' | 'Kalinga' | 'Mountain Province' | 'All Provinces';
-  location_details: string;
-  start_date: string;
-  end_date: string;
-  status: 'ongoing' | 'upcoming' | 'completed';
-  created_by?: string | null;
-  created_at?: string;
-  updated_at?: string;
-}
+export type { RegionalActivity };
 
 const DATA_DIR = path.join(process.cwd(), 'data');
 const ACTIVITIES_FILE = path.join(DATA_DIR, 'activities_data.json');

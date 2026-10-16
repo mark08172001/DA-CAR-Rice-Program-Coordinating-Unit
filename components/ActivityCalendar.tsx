@@ -27,18 +27,39 @@ import {
 } from 'lucide-react';
 import { createClient } from '@/utils/supabase/client';
 
+export type ActivityCategory =
+  | 'Production Support'
+  | 'Extension & Training'
+  | 'Machinery & Equipment'
+  | 'Irrigation Services'
+  | 'Regional Monitoring'
+  | 'Research & Dev'
+  | 'Infrastructure'
+  | 'Banner Rice Program';
+
+export type ActivityProvince =
+  | 'Abra'
+  | 'Apayao'
+  | 'Benguet'
+  | 'Ifugao'
+  | 'Kalinga'
+  | 'Mountain Province'
+  | 'Regional Office'
+  | 'All Provinces';
+
 export interface RegionalActivity {
   id: string;
   title: string;
   description: string | null;
-  category: 'Production Support' | 'Extension & Training' | 'Machinery & Equipment' | 'Irrigation Services' | 'Regional Monitoring';
-  province: 'Abra' | 'Apayao' | 'Benguet' | 'Ifugao' | 'Kalinga' | 'Mountain Province' | 'Regional Office';
+  category: ActivityCategory;
+  province: ActivityProvince;
   location_details: string;
   start_date: string;
   end_date: string | null;
   status: 'ongoing' | 'upcoming' | 'completed';
   created_by?: string | null;
   created_at?: string;
+  updated_at?: string;
   is_program?: boolean;
 }
 
