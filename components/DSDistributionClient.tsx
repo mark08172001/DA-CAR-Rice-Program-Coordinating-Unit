@@ -1513,7 +1513,6 @@ export default function DSDistributionClient({ initialData }: Props) {
                       <th style={{ padding: '10px 14px', textAlign: 'right' }}>Liquid Urea (bottle)</th>
                       <th style={{ padding: '10px 14px', textAlign: 'right' }}>T14 WP (pack)</th>
                       <th style={{ padding: '10px 14px', textAlign: 'right' }}>Total Units</th>
-                      <th style={{ padding: '10px 14px', textAlign: 'center' }}>Delivery Status</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -1525,11 +1524,6 @@ export default function DSDistributionClient({ initialData }: Props) {
                         <td style={{ padding: '10px 14px', textAlign: 'right', color: '#334155' }}>{p.liquidUrea.toLocaleString()}</td>
                         <td style={{ padding: '10px 14px', textAlign: 'right', color: '#334155' }}>{p.t14WettablePowder.toLocaleString()}</td>
                         <td style={{ padding: '10px 14px', textAlign: 'right', fontWeight: 700, color: '#166534' }}>{p.totalTarget.toLocaleString()}</td>
-                        <td style={{ padding: '10px 14px', textAlign: 'center' }}>
-                          <span style={{ fontSize: 11, background: '#fef3c7', color: '#b45309', padding: '2px 7px', borderRadius: 4, fontWeight: 600 }}>
-                            Procurement / Transit
-                          </span>
-                        </td>
                       </tr>
                     ))}
                   </tbody>
@@ -1556,7 +1550,6 @@ export default function DSDistributionClient({ initialData }: Props) {
                       <th style={{ padding: '10px 14px', textAlign: 'right' }}>Liquid Urea (bottle)</th>
                       <th style={{ padding: '10px 14px', textAlign: 'right' }}>T14 WP (pack)</th>
                       <th style={{ padding: '10px 14px', textAlign: 'right' }}>Total Units</th>
-                      <th style={{ padding: '10px 14px', textAlign: 'center' }}>Delivery Status</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -1568,11 +1561,6 @@ export default function DSDistributionClient({ initialData }: Props) {
                         <td style={{ padding: '10px 14px', textAlign: 'right', color: '#334155' }}>{p.liquidUrea.toLocaleString()}</td>
                         <td style={{ padding: '10px 14px', textAlign: 'right', color: '#334155' }}>{p.t14WettablePowder.toLocaleString()}</td>
                         <td style={{ padding: '10px 14px', textAlign: 'right', fontWeight: 700, color: '#166534' }}>{p.totalTarget.toLocaleString()}</td>
-                        <td style={{ padding: '10px 14px', textAlign: 'center' }}>
-                          <span style={{ fontSize: 11, background: '#fef3c7', color: '#b45309', padding: '2px 7px', borderRadius: 4, fontWeight: 600 }}>
-                            Procurement / Transit
-                          </span>
-                        </td>
                       </tr>
                     ))}
                   </tbody>
