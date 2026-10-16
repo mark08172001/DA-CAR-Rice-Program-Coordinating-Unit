@@ -315,7 +315,7 @@ export default function PortalSidebar({
     >
       {/* Sidebar Header Brand */}
       <div className="sidebar-brand-box">
-        <Link href="/" className="sidebar-brand" onClick={onClose} title="DA-CAR Integrated Portal">
+        <Link href="/" className="sidebar-brand" onClick={onClose} title="DA-CAR | Rice Program Coordinating Unit">
           <span className="sidebar-seal-wrapper">
             <img
               src="/da-seal.svg"
@@ -327,8 +327,8 @@ export default function PortalSidebar({
           {!isCollapsed && (
             <div className="sidebar-brand-text">
               <span className="sidebar-republic">Republic of the Philippines</span>
-              <strong>Rice Program Coordinating Unit</strong>
-              <span className="sidebar-portal-tag">Integrated Portal</span>
+              <strong>DA-CAR</strong>
+              <span className="sidebar-portal-tag">Rice Program Coordinating Unit</span>
             </div>
           )}
         </Link>

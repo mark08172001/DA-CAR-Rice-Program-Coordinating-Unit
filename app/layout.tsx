@@ -3,9 +3,9 @@ import './globals.css';
 import PortalShell from '@/components/PortalShell';
 
 export const metadata: Metadata = {
-  title: 'Department of Agriculture – Cordillera Administrative Region | DA-CAR',
+  title: 'DA-CAR | Rice Program Coordinating Unit',
   description:
-    'Department of Agriculture – Cordillera Administrative Region. Supporting farmers, food security, and sustainable agriculture in the Cordilleras.',
+    'Department of Agriculture – Cordillera Administrative Region | Rice Program Coordinating Unit. Supporting farmers, food security, and sustainable agriculture in the Cordilleras.',
   icons: {
     icon: '/da-seal.svg',
   },

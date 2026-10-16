@@ -2,7 +2,7 @@ import PageHero from '@/components/PageHero';
 import { CloudSun, Droplets, Wind, Thermometer } from 'lucide-react';
 
 export const metadata = {
-  title: 'Agricultural Weather | DA-CAR',
+  title: 'Agricultural Weather | DA-CAR | Rice Program Coordinating Unit',
   description: 'Agriculture-focused weather information for the Cordillera Administrative Region.',
 };
 

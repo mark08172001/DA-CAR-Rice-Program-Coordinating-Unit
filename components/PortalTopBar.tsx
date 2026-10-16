@@ -158,7 +158,7 @@ export default function PortalTopBar({
 
           <div className="topbar-meta-item status-indicator-badge">
             <span className="status-indicator-dot"></span>
-            <span>DA-CAR Online</span>
+            <span>DA-CAR | RCU Online</span>
           </div>
 
           {user ? (

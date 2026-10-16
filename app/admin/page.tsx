@@ -14,7 +14,7 @@ import {
 import PageHero from '@/components/PageHero';
 
 export const metadata = {
-  title: 'Restricted Administration Portal | DA-CAR',
+  title: 'Restricted Administration Portal | DA-CAR | Rice Program Coordinating Unit',
   description: 'Authorized personnel management dashboard for DA-CAR user accounts and profile database.',
 };
 

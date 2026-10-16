@@ -7,7 +7,7 @@ import { getAccounts, getAccountByEmail, syncProfilesFromSupabase, getDeletedEma
 import { createAdminClient } from '@/utils/supabase/admin';
 
 export const metadata = {
-  title: 'Profile Database & Registered Users | Super Admin Suite',
+  title: 'Profile Database & Registered Users | Super Admin Suite | DA-CAR | Rice Program Coordinating Unit',
   description: 'Access the PostgreSQL profiles table, inspect registered personnel accounts, manage clearance roles, and view user records.',
 };
 

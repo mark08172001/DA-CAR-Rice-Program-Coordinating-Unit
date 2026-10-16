@@ -4,7 +4,7 @@ import { cookies } from 'next/headers';
 import { Eye } from 'lucide-react';
 
 export const metadata = {
-  title: 'Market Prices | DA-CAR',
+  title: 'Market Prices | DA-CAR | Rice Program Coordinating Unit',
   description: 'View commodity prices reported through the Department of Agriculture – Cordillera Administrative Region.',
 };
 

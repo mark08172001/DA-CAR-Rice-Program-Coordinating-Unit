@@ -16,7 +16,7 @@ import { getAuthoritativeUserAccess } from '@/utils/adminStore';
 import ModuleAccessGuard from '@/components/ModuleAccessGuard';
 
 export const metadata = {
-  title: 'Rice Coordinating Unit Dashboard | DA-CAR',
+  title: 'Rice Coordinating Unit Dashboard | DA-CAR | Rice Program Coordinating Unit',
   description: 'Official operations dashboard for the Rice Program Coordinating Unit.',
 };
 

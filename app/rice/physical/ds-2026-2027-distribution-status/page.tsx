@@ -6,7 +6,7 @@ import { getAuthoritativeUserAccess } from '@/utils/adminStore';
 import ModuleAccessGuard from '@/components/ModuleAccessGuard';
 
 export const metadata = {
-  title: 'DS 2026-2027 Distribution Status | Module 02: Rice Program Operations | DA-CAR',
+  title: 'DS 2026-2027 Distribution Status | Module 02 | DA-CAR | Rice Program Coordinating Unit',
   description:
     'Dry Season (DS) 2026-2027 seed and input distribution status, consignment tracking, and provincial targets for DA-CAR Regional Rice Program Coordinating Unit.',
 };

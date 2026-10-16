@@ -11,8 +11,8 @@ export default function Footer() {
                 <img src="/da-seal.svg" alt="DA Seal" width={48} height={48} />
               </span>
               <span>
-                <strong>Department of Agriculture</strong>
-                <span>Cordillera Administrative Region</span>
+                <strong>DA-CAR</strong>
+                <span>Rice Program Coordinating Unit</span>
               </span>
             </Link>
             <p className="footer-about">
@@ -36,7 +36,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="footer-bottom">
-          <span>Copyright © 2026 Department of Agriculture – Cordillera Administrative Region</span>
+          <span>Copyright © 2026 DA-CAR | Rice Program Coordinating Unit</span>
           <span>Official government information portal</span>
         </div>
       </div>

@@ -4,7 +4,7 @@ import { createClient } from '@/utils/supabase/server';
 import { cookies } from 'next/headers';
 
 export const metadata = {
-  title: 'Provinces | DA-CAR',
+  title: 'Provinces | DA-CAR | Rice Program Coordinating Unit',
   description: 'Province directory for the Cordillera Administrative Region.',
 };
 

@@ -6,7 +6,7 @@ import { getAuthoritativeUserAccess } from '@/utils/adminStore';
 import ModuleAccessGuard from '@/components/ModuleAccessGuard';
 
 export const metadata = {
-  title: 'Financial Category Reports | Module 04: Financial Management | DA-CAR',
+  title: 'Financial Category Reports | Module 04 | DA-CAR | Rice Program Coordinating Unit',
   description: 'Official financial category reports for DA-CAR Rice Program Coordinating Unit.',
 };
 

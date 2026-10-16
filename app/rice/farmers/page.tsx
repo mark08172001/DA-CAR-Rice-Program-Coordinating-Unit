@@ -5,7 +5,7 @@ import { getAuthoritativeUserAccess } from '@/utils/adminStore';
 import ModuleAccessGuard from '@/components/ModuleAccessGuard';
 
 export const metadata = {
-  title: 'Beneficiaries & Farmers Directory | Rice Coordinating Unit',
+  title: 'Beneficiaries & Farmers Directory | DA-CAR | Rice Program Coordinating Unit',
   description:
     'Live beneficiary service records and transactions managed by the Rice Program Coordinating Unit.',
 };

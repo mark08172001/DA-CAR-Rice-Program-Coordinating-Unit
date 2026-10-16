@@ -9,7 +9,7 @@ import ModuleAccessGuard from '@/components/ModuleAccessGuard';
 import { fetchCommodityClaimsFromGoogleSheet } from '@/utils/fetchCommodityClaimsSheet';
 
 export const metadata: Metadata = {
-  title: 'Commodity Claims Dashboard | Module 03: Beneficiaries & Field Services',
+  title: 'Commodity Claims Dashboard | DA-CAR | Rice Program Coordinating Unit',
   description:
     'Official monitoring of beneficiary claims, hybrid seeds, fertilizers, and agricultural input distributions across Cordillera provinces.',
 };

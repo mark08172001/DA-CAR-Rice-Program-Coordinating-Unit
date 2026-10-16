@@ -1,7 +1,7 @@
 import PageHero from '@/components/PageHero';
 
 export const metadata = {
-  title: 'Terms of Use | DA-CAR',
+  title: 'Terms of Use | DA-CAR | Rice Program Coordinating Unit',
   description: 'Terms for accessing and using this information portal.',
 };
 

@@ -1,7 +1,7 @@
 import PageHero from '@/components/PageHero';
 
 export const metadata = {
-  title: 'About Rice Program Coordinating Unit | DA-CAR',
+  title: 'About | DA-CAR | Rice Program Coordinating Unit',
   description:
     'Learn about the Rice Program Coordinating Unit’s work coordinating rice programs, farmer services, and regional monitoring across the Cordillera Administrative Region.',
 };

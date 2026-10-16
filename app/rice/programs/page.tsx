@@ -6,7 +6,7 @@ import { getAuthoritativePrograms } from '@/utils/programsStore';
 import ModuleAccessGuard from '@/components/ModuleAccessGuard';
 
 export const metadata = {
-  title: 'Rice Programs Register | Module 02: Rice Program Operations | DA-CAR',
+  title: 'Rice Programs Register | Module 02 | DA-CAR | Rice Program Coordinating Unit',
   description: 'Official banner program interventions under PSS, ESETS, RD, and INS managed by the Rice Coordinating Unit.',
 };
 

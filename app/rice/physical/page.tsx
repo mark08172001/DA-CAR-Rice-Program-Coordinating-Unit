@@ -6,7 +6,7 @@ import { getAuthoritativeUserAccess } from '@/utils/adminStore';
 import ModuleAccessGuard from '@/components/ModuleAccessGuard';
 
 export const metadata = {
-  title: 'Physical Targets & Accomplishments | Module 02: Rice Program Operations | DA-CAR',
+  title: 'Physical Targets & Accomplishments | Module 02 | DA-CAR | Rice Program Coordinating Unit',
   description:
     'Monthly and MFO physical target vs accomplishment monitoring for DA-CAR Regional Rice Program Coordinating Unit.',
 };

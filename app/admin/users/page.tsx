@@ -7,7 +7,7 @@ import { getAccounts, getAccountByEmail, syncProfilesFromSupabase, getDeletedEma
 import { createAdminClient } from '@/utils/supabase/admin';
 
 export const metadata = {
-  title: 'Staff Access Control & Accounts | Super Admin Suite',
+  title: 'Staff Access Control & Accounts | Super Admin Suite | DA-CAR | Rice Program Coordinating Unit',
   description: 'Super Admin management portal to limit staff permissions, control module access, and monitor user logins.',
 };
 

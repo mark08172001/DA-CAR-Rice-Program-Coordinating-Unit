@@ -2,7 +2,7 @@ import PageHero from '@/components/PageHero';
 import { ShieldCheck } from 'lucide-react';
 
 export const metadata = {
-  title: 'Privacy Policy | DA-CAR',
+  title: 'Privacy Policy | DA-CAR | Rice Program Coordinating Unit',
   description: 'Information about how this portal handles personal information.',
 };
 
