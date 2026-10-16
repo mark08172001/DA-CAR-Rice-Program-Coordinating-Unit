@@ -312,8 +312,8 @@ export default async function HomePage() {
                 </p>
               </div>
               {canAccessRice ? (
-                <Link href="/rice" className="section-link">
-                  Visit Operations Dashboard <ArrowRight size={15} />
+                <Link href="/rice/physical" className="section-link">
+                  Visit Physical Operations <ArrowRight size={15} />
                 </Link>
               ) : (
                 <Link href="/about" className="section-link">

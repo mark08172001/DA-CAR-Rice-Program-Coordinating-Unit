@@ -32,8 +32,8 @@ const slides = [
       'Review ongoing activities, fund releases, farmer services, and official reports from the regional coordinating unit.',
     caption: 'Rice Program Coordinating Unit',
     actions: (
-      <Link href="/rice" className="button button-primary">
-        View operations dashboard <ArrowRight size={15} />
+      <Link href="/rice/physical" className="button button-primary">
+        Access Rice Operations <ArrowRight size={15} />
       </Link>
     ),
   },

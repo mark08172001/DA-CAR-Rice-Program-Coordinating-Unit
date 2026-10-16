@@ -26,6 +26,11 @@ import {
   Wheat,
 } from 'lucide-react';
 import { createClient } from '@/utils/supabase/client';
+import {
+  PHILIPPINE_HOLIDAYS_2026,
+  HOLIDAYS_BY_DATE_MAP,
+  getHolidayCountdown,
+} from '@/utils/holidays';
 
 export type ActivityCategory =
   | 'Production Support'
@@ -213,6 +218,8 @@ export default function ActivityCalendar({
     return new Date(now.getFullYear(), now.getMonth(), 1);
   });
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
+
+  const selectedHoliday = selectedDate ? HOLIDAYS_BY_DATE_MAP[selectedDate] : null;
 
   // Auth state for administrative alteration
   const [currentUser, setCurrentUser] = useState<any>(null);
@@ -671,24 +678,6 @@ export default function ActivityCalendar({
                 <span className="pulse-indicator"></span>
                 {ongoingCount} Ongoing Across Cordillera
               </span>
-              <span
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: 5,
-                  padding: '3px 9px',
-                  borderRadius: 20,
-                  fontSize: 11.5,
-                  fontWeight: 600,
-                  background: 'rgba(22, 101, 52, 0.08)',
-                  color: '#166534',
-                  border: '1px solid rgba(22, 101, 52, 0.2)',
-                }}
-                title="Activity statuses automatically advance at 12:00 AM midnight (Philippine Standard Time)"
-              >
-                <Clock size={12} />
-                <span>Auto-updated daily at 12:00 AM</span>
-              </span>
             </div>
             <h2>Regional activities & field calendar</h2>
             <p>
@@ -795,6 +784,9 @@ export default function ActivityCalendar({
           <div className="selected-date-banner">
             <span>
               Showing events scheduled on <strong>{selectedDate}</strong>
+              {selectedHoliday && (
+                <> — 🇵🇭 <strong>{selectedHoliday.name}</strong> ({selectedHoliday.type})</>
+              )}
             </span>
             <button
               type="button"
@@ -860,6 +852,8 @@ export default function ActivityCalendar({
                 const isSelected = selectedDate === day.dateStr;
                 const isToday = day.dateStr === getTodayDateStr();
                 const dayActivities = activityDatesMap.get(day.dateStr);
+                const dayHoliday = HOLIDAYS_BY_DATE_MAP[day.dateStr];
+                const holidayNote = dayHoliday ? ` • 🇵🇭 ${dayHoliday.name} (${dayHoliday.type})` : '';
 
                 return (
                   <button
@@ -878,14 +872,20 @@ export default function ActivityCalendar({
                     }}
                     className={`calendar-day-btn ${!day.isCurrentMonth ? 'other-month' : ''
                       } ${isSelected ? 'selected' : ''} ${isToday ? 'is-today' : ''}`}
-                    title={`${day.dateStr} (${dayActivities?.total || 0} activities)`}
+                    title={`${day.dateStr} (${dayActivities?.total || 0} activities)${holidayNote}`}
                   >
                     <span className="day-number">{day.dayNum}</span>
-                    {dayActivities && (
+                    {(dayActivities || dayHoliday) && (
                       <span className="day-indicators">
-                        {dayActivities.ongoing && <span className="cell-dot dot-ongoing" title="Ongoing activity" />}
-                        {dayActivities.upcoming && <span className="cell-dot dot-upcoming" title="Upcoming activity" />}
-                        {dayActivities.completed && <span className="cell-dot dot-completed" title="Completed activity (gray)" />}
+                        {dayActivities?.ongoing && <span className="cell-dot dot-ongoing" title="Ongoing activity" />}
+                        {dayActivities?.upcoming && <span className="cell-dot dot-upcoming" title="Upcoming activity" />}
+                        {dayActivities?.completed && <span className="cell-dot dot-completed" title="Completed activity (gray)" />}
+                        {dayHoliday && (
+                          <span
+                            className="cell-dot dot-holiday"
+                            title={`🇵🇭 ${dayHoliday.name} (${dayHoliday.type})`}
+                          />
+                        )}
                       </span>
                     )}
                   </button>
@@ -906,6 +906,10 @@ export default function ActivityCalendar({
               <div className="legend-item">
                 <span className="cell-dot dot-completed"></span>
                 <span>Completed / Past Activity (Gray)</span>
+              </div>
+              <div className="legend-item">
+                <span className="cell-dot dot-holiday"></span>
+                <span>Official Philippine Holiday (Rose)</span>
               </div>
               <div className="legend-item">
                 <span className="legend-box today-box"></span>
@@ -930,6 +934,23 @@ export default function ActivityCalendar({
                 </span>
               )}
             </div>
+
+            {/* Selected Holiday Banner if viewed day is a holiday */}
+            {selectedHoliday && (
+              <div className="calendar-holiday-selected-card">
+                <div className="holiday-card-badge">
+                  <span>🇵🇭 {selectedHoliday.type}</span>
+                  <span className="holiday-countdown-chip">
+                    {getHolidayCountdown(selectedHoliday.date, getTodayDateStr())}
+                  </span>
+                </div>
+                <h4>{selectedHoliday.name}</h4>
+                <p>{selectedHoliday.description}</p>
+                <span className="holiday-note">
+                  Official public holiday / non-working day observed across the Cordillera Administrative Region.
+                </span>
+              </div>
+            )}
 
             {filteredActivities.length === 0 ? (
               <div className="empty-activities-state">
