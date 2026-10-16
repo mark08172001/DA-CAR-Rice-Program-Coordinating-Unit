@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState, useEffect, useRef, useMemo } from 'react';
-import Link from 'next/link';
 import Chart from 'chart.js/auto';
 import {
   Wheat,
@@ -674,27 +673,6 @@ export default function DSDistributionClient({ initialData }: Props) {
               <p style={{ margin: 0, color: '#d2dfd6', fontSize: '13.5px', maxWidth: 740, lineHeight: 1.6 }}>
                 Official Dry Season (DS) 2026-2027 live monitoring of regional seed consignments, provincial allocations, drop-off deliveries, and farmer drop-offs across the Cordillera Administrative Region.
               </p>
-            </div>
-            <div style={{ display: 'flex', gap: 10, alignItems: 'center', flexWrap: 'wrap' }}>
-              <Link
-                href="/rice/physical"
-                className="button"
-                style={{
-                  background: 'rgba(255, 255, 255, 0.16)',
-                  color: '#ffffff',
-                  border: '1px solid rgba(255, 255, 255, 0.3)',
-                  fontSize: 12,
-                  padding: '7px 14px',
-                  borderRadius: 6,
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 6,
-                  textDecoration: 'none',
-                }}
-              >
-                <BarChart3 size={15} />
-                <span>Physical (WS Accomplishment)</span>
-              </Link>
             </div>
           </div>
         </div>
