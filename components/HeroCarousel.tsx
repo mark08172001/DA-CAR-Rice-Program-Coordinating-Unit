@@ -16,14 +16,9 @@ const slides = [
       'Access agricultural programs, regional services, rice coordination information, and public data for the Cordillera Administrative Region.',
     caption: 'DA-CAR | Rice Program Coordinating Unit',
     actions: (
-      <>
-        <a href="#portal-services" className="button button-primary">
-          Browse portal services <ArrowDown size={15} />
-        </a>
-        <Link href="/rice" className="button button-light">
-          Open rice coordination
-        </Link>
-      </>
+      <a href="#portal-services" className="button button-primary">
+        Browse portal services <ArrowDown size={15} />
+      </a>
     ),
   },
   {

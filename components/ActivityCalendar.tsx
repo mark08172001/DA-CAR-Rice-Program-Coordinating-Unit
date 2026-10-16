@@ -69,10 +69,18 @@ const CATEGORIES = [
 import {
   normalizeDateStr,
   computeActivityStatus,
-  getTodayDateStr
+  getTodayDateStr,
+  getMsUntilNextMidnightPST,
+  recomputeActivityStatuses,
 } from '@/utils/activityStatus';
 
-export { normalizeDateStr, computeActivityStatus, getTodayDateStr };
+export {
+  normalizeDateStr,
+  computeActivityStatus,
+  getTodayDateStr,
+  getMsUntilNextMidnightPST,
+  recomputeActivityStatuses,
+};
 
 export default function ActivityCalendar({
   initialActivities = [],
@@ -100,6 +108,80 @@ export default function ActivityCalendar({
       );
     }
   }, [initialActivities]);
+
+  // 12:00 AM Midnight Auto-Update Mechanism
+  // Automatically recomputes activity statuses at 12:00:00 AM midnight (Philippine Standard Time)
+  useEffect(() => {
+    let midnightTimeout: NodeJS.Timeout | null = null;
+    let fallbackInterval: NodeJS.Timeout | null = null;
+    let lastEvaluatedDate = getTodayDateStr();
+
+    const triggerMidnightUpdate = async () => {
+      const todayStr = getTodayDateStr();
+      lastEvaluatedDate = todayStr;
+
+      // 1. Immediately recompute in-memory activity statuses with new midnight reference date
+      setActivities((prev) => recomputeActivityStatuses(prev, todayStr));
+
+      // 2. Fetch fresh activities from server API
+      try {
+        const res = await fetch('/api/activities');
+        if (res.ok) {
+          const data = await res.json();
+          if (Array.isArray(data.activities)) {
+            setActivities(recomputeActivityStatuses(data.activities, todayStr));
+          }
+        }
+      } catch (e) {
+        console.error('Error auto-syncing activities at midnight:', e);
+      }
+
+      // 3. Trigger router refresh so server-rendered counters update
+      try {
+        router.refresh();
+      } catch {}
+
+      // 4. Schedule next midnight update
+      scheduleNextMidnight();
+    };
+
+    const scheduleNextMidnight = () => {
+      if (midnightTimeout) clearTimeout(midnightTimeout);
+      const msUntilMidnight = getMsUntilNextMidnightPST();
+      midnightTimeout = setTimeout(() => {
+        triggerMidnightUpdate();
+      }, msUntilMidnight);
+    };
+
+    // Initialize midnight timer
+    scheduleNextMidnight();
+
+    // Fallback interval (every 30 seconds) to guard against device sleep / wake after midnight
+    fallbackInterval = setInterval(() => {
+      const currentToday = getTodayDateStr();
+      if (currentToday !== lastEvaluatedDate) {
+        triggerMidnightUpdate();
+      }
+    }, 30000);
+
+    // Tab visibility and window focus check
+    const handleVisibilityOrFocus = () => {
+      const currentToday = getTodayDateStr();
+      if (currentToday !== lastEvaluatedDate) {
+        triggerMidnightUpdate();
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityOrFocus);
+    window.addEventListener('focus', handleVisibilityOrFocus);
+
+    return () => {
+      if (midnightTimeout) clearTimeout(midnightTimeout);
+      if (fallbackInterval) clearInterval(fallbackInterval);
+      document.removeEventListener('visibilitychange', handleVisibilityOrFocus);
+      window.removeEventListener('focus', handleVisibilityOrFocus);
+    };
+  }, [router]);
 
   const [selectedProvince, setSelectedProvince] = useState<string>('All Provinces');
   const [statusFilter, setStatusFilter] = useState<'all' | 'ongoing' | 'upcoming' | 'completed'>('all');
@@ -265,7 +347,8 @@ export default function ActivityCalendar({
         return false;
       }
 
-      // Specific calendar date clicked takes precedence
+      // Specific calendar date clicked takes precedence:
+      // When a user clicks a calendar date (including a past date with a gray dot), show the activities on that day!
       if (selectedDate) {
         const start = normalizeDateStr(act.start_date);
         const end = normalizeDateStr(act.end_date) || start;
@@ -289,8 +372,10 @@ export default function ActivityCalendar({
         return act.status === 'completed';
       }
 
-      // Default 'All Activities' tab: automatically excludes activities that moved past their date
+      // Default 'All Activities' tab: do not show completed activities on regional agricultural docket
       return act.status !== 'completed';
+    }).sort((a, b) => {
+      return (a.start_date || '').localeCompare(b.start_date || '');
     });
   }, [normalizedActivities, selectedProvince, statusFilter, selectedDate]);
 
@@ -565,6 +650,24 @@ export default function ActivityCalendar({
                 <span className="pulse-indicator"></span>
                 {ongoingCount} Ongoing Across Cordillera
               </span>
+              <span
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: 5,
+                  padding: '3px 9px',
+                  borderRadius: 20,
+                  fontSize: 11.5,
+                  fontWeight: 600,
+                  background: 'rgba(22, 101, 52, 0.08)',
+                  color: '#166534',
+                  border: '1px solid rgba(22, 101, 52, 0.2)',
+                }}
+                title="Activity statuses automatically advance at 12:00 AM midnight (Philippine Standard Time)"
+              >
+                <Clock size={12} />
+                <span>Auto-updated daily at 12:00 AM</span>
+              </span>
             </div>
             <h2>Regional activities & field calendar</h2>
             <p>
@@ -641,16 +744,14 @@ export default function ActivityCalendar({
               <span className="status-dot upcoming"></span>
               Upcoming ({upcomingCount})
             </button>
-            {completedCount > 0 && (
-              <button
-                type="button"
-                className={`status-tab ${statusFilter === 'completed' ? 'active' : ''}`}
-                onClick={() => { setStatusFilter('completed'); setSelectedDate(null); }}
-              >
-                <span className="status-dot completed"></span>
-                Past / Completed ({completedCount})
-              </button>
-            )}
+            <button
+              type="button"
+              className={`status-tab ${statusFilter === 'completed' ? 'active' : ''}`}
+              onClick={() => { setStatusFilter('completed'); setSelectedDate(null); }}
+            >
+              <span className="status-dot completed"></span>
+              Completed ({completedCount})
+            </button>
           </div>
 
           <div className="filter-dropdown-wrap">
@@ -761,8 +862,9 @@ export default function ActivityCalendar({
                     <span className="day-number">{day.dayNum}</span>
                     {dayActivities && (
                       <span className="day-indicators">
-                        {dayActivities.ongoing && <span className="cell-dot dot-ongoing" />}
-                        {dayActivities.upcoming && <span className="cell-dot dot-upcoming" />}
+                        {dayActivities.ongoing && <span className="cell-dot dot-ongoing" title="Ongoing activity" />}
+                        {dayActivities.upcoming && <span className="cell-dot dot-upcoming" title="Upcoming activity" />}
+                        {dayActivities.completed && <span className="cell-dot dot-completed" title="Completed activity (gray)" />}
                       </span>
                     )}
                   </button>
@@ -774,11 +876,15 @@ export default function ActivityCalendar({
             <div className="calendar-legend">
               <div className="legend-item">
                 <span className="cell-dot dot-ongoing"></span>
-                <span>Active / Ongoing Activity</span>
+                <span>Active / Ongoing Activity (Green)</span>
               </div>
               <div className="legend-item">
                 <span className="cell-dot dot-upcoming"></span>
-                <span>Scheduled Upcoming</span>
+                <span>Scheduled Upcoming (Gold)</span>
+              </div>
+              <div className="legend-item">
+                <span className="cell-dot dot-completed"></span>
+                <span>Completed / Past Activity (Gray)</span>
               </div>
               <div className="legend-item">
                 <span className="legend-box today-box"></span>
@@ -829,12 +935,13 @@ export default function ActivityCalendar({
                   return (
                     <article
                       key={act.id}
-                      className={`regional-activity-card ${isOngoing ? 'card-ongoing' : ''}`}
+                      className={`regional-activity-card ${isOngoing ? 'card-ongoing' : ''} ${act.status === 'completed' ? 'card-completed' : ''}`}
                     >
                       <div className="card-top-row">
                         <div className="card-badges">
                           <span className={`status-badge-chip ${act.status}`}>
                             {isOngoing && <span className="live-dot" />}
+                            {act.status === 'completed' && <span className="completed-dot" />}
                             {act.status.toUpperCase()}
                           </span>
                           {act.id?.startsWith('act-prog-') && (
@@ -942,6 +1049,8 @@ export default function ActivityCalendar({
             <div className="modal-header">
               <div className="modal-header-meta">
                 <span className={`status-badge-chip ${activeModalActivity.status}`}>
+                  {activeModalActivity.status === 'ongoing' && <span className="live-dot" />}
+                  {activeModalActivity.status === 'completed' && <span className="completed-dot" />}
                   {activeModalActivity.status.toUpperCase()}
                 </span>
                 <span className="category-chip">

@@ -22,6 +22,7 @@ import { createClient } from '@/utils/supabase/server';
 import { cookies } from 'next/headers';
 import { getAccountByEmail } from '@/utils/adminStore';
 import { getAuthoritativePrograms, programToRegionalActivity } from '@/utils/programsStore';
+import { getAuthoritativeActivities } from '@/utils/activitiesStore';
 
 export const dynamic = 'force-dynamic';
 
@@ -57,12 +58,11 @@ export default async function HomePage() {
     if (farmerRes.count !== null && farmerRes.count !== undefined) {
       farmerCount = farmerRes.count;
     }
-    if (actRes.data) {
-      activities = (actRes.data as RegionalActivity[]).map((act) => ({
-        ...act,
-        status: computeActivityStatus(act.start_date, act.end_date),
-      }));
-    }
+    const authoritativeActs = getAuthoritativeActivities(actRes.data as any);
+    activities = authoritativeActs.map((act) => ({
+      ...act,
+      status: computeActivityStatus(act.start_date, act.end_date),
+    }));
   } catch (e) {
     console.error('Error fetching data for home page:', e);
   }

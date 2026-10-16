@@ -10,6 +10,7 @@ import {
   updateLocalActivity,
   deleteLocalActivity,
 } from '@/utils/activitiesStore';
+import { computeActivityStatus } from '@/utils/activityStatus';
 
 export const dynamic = 'force-dynamic';
 
@@ -85,7 +86,11 @@ export async function GET() {
     } catch {}
 
     const authoritative = getAuthoritativeActivities(dbActivities);
-    return NextResponse.json({ activities: authoritative });
+    const withComputedStatus = authoritative.map((act) => ({
+      ...act,
+      status: computeActivityStatus(act.start_date, act.end_date),
+    }));
+    return NextResponse.json({ activities: withComputedStatus });
   } catch (err: any) {
     return NextResponse.json({ error: err.message || 'Error fetching activities' }, { status: 500 });
   }

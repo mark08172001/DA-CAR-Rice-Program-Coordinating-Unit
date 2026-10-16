@@ -1345,18 +1345,18 @@ export default function DSDistributionClient({ initialData }: Props) {
                                   prov.status === 'Completed'
                                     ? '#dcfce7'
                                     : prov.status === 'Advanced'
-                                    ? '#dbeafe'
-                                    : prov.status === 'In Progress'
-                                    ? '#fef3c7'
-                                    : '#f1f5f9',
+                                      ? '#dbeafe'
+                                      : prov.status === 'In Progress'
+                                        ? '#fef3c7'
+                                        : '#f1f5f9',
                                 color:
                                   prov.status === 'Completed'
                                     ? '#15803d'
                                     : prov.status === 'Advanced'
-                                    ? '#1d4ed8'
-                                    : prov.status === 'In Progress'
-                                    ? '#b45309'
-                                    : '#64748b',
+                                      ? '#1d4ed8'
+                                      : prov.status === 'In Progress'
+                                        ? '#b45309'
+                                        : '#64748b',
                               }}
                             >
                               {prov.status}
@@ -1501,7 +1501,7 @@ export default function DSDistributionClient({ initialData }: Props) {
                         {item.provincesCount} CAR Provinces
                       </td>
                       <td style={{ padding: '12px 16px', fontSize: 12, color: '#475569' }}>
-                        {item.remarks || 'Standard certified hybrid seed allocation'}
+                        {item.remarks || 'Standard hybrid seed allocation'}
                       </td>
                     </tr>
                   ))}

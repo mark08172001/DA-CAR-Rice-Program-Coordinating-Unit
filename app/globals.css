@@ -1377,6 +1377,15 @@ button { color: inherit; }
 .dot-upcoming {
   background: var(--gold-500);
 }
+.dot-completed {
+  background: #94a3b8;
+}
+.completed-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #64748b;
+}
 
 .calendar-legend {
   margin-top: 18px;
@@ -1508,6 +1517,16 @@ button { color: inherit; }
 }
 .regional-activity-card.card-ongoing {
   border-left: 4px solid #22c55e;
+}
+.regional-activity-card.card-completed {
+  border-left: 4px solid #94a3b8;
+  background: #f8fafc;
+}
+.regional-activity-card.card-completed:hover {
+  border-color: #94a3b8;
+}
+.regional-activity-card.card-completed .activity-card-title {
+  color: #475569;
 }
 
 .card-top-row {
