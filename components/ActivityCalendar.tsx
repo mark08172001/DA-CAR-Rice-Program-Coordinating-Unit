@@ -24,6 +24,7 @@ import {
   CalendarDays,
   Lock,
   Wheat,
+  Search,
 } from 'lucide-react';
 import { createClient } from '@/utils/supabase/client';
 import {
@@ -211,6 +212,7 @@ export default function ActivityCalendar({
 
   const [selectedProvince, setSelectedProvince] = useState<string>('All Provinces');
   const [statusFilter, setStatusFilter] = useState<'all' | 'ongoing' | 'upcoming' | 'completed'>('all');
+  const [searchQuery, setSearchQuery] = useState<string>('');
 
   // Current calendar month view - dynamic to current year/month
   const [viewDate, setViewDate] = useState(() => {
@@ -370,13 +372,24 @@ export default function ActivityCalendar({
   // Filter activities
   const filteredActivities = useMemo(() => {
     return normalizedActivities.filter((act) => {
+      // Search query filtering
+      if (searchQuery.trim()) {
+        const q = searchQuery.toLowerCase().trim();
+        const matches =
+          (act.title || '').toLowerCase().includes(q) ||
+          (act.description || '').toLowerCase().includes(q) ||
+          (act.location_details || '').toLowerCase().includes(q) ||
+          (act.province || '').toLowerCase().includes(q) ||
+          (act.category || '').toLowerCase().includes(q);
+        if (!matches) return false;
+      }
+
       // Province match
       if (selectedProvince !== 'All Provinces' && act.province !== selectedProvince) {
         return false;
       }
 
       // Specific calendar date clicked takes precedence:
-      // When a user clicks a calendar date (including a past date with a gray dot), show the activities on that day!
       if (selectedDate) {
         const start = normalizeDateStr(act.start_date);
         const end = normalizeDateStr(act.end_date) || start;
@@ -405,7 +418,7 @@ export default function ActivityCalendar({
     }).sort((a, b) => {
       return (a.start_date || '').localeCompare(b.start_date || '');
     });
-  }, [normalizedActivities, selectedProvince, statusFilter, selectedDate]);
+  }, [normalizedActivities, selectedProvince, statusFilter, selectedDate, searchQuery]);
 
   // Calendar calculations
   const year = viewDate.getFullYear();
@@ -673,7 +686,7 @@ export default function ActivityCalendar({
         <div className="section-heading">
           <div>
             <div className="section-kicker-row">
-              <span className="section-kicker">Regional Agricultural Operations</span>
+              <span className="section-kicker">REGIONAL AGRICULTURAL OPERATIONS</span>
               <span className="calendar-live-badge">
                 <span className="pulse-indicator"></span>
                 {ongoingCount} Ongoing Across Cordillera
@@ -690,7 +703,7 @@ export default function ActivityCalendar({
               <button
                 type="button"
                 onClick={handleOpenCreate}
-                className="button button-primary calendar-action-btn"
+                className="calendar-add-btn"
                 title="Add or update regional activities"
               >
                 <Plus size={16} />
@@ -716,138 +729,129 @@ export default function ActivityCalendar({
                 <span>Adding activities restricted by Super Admin</span>
               </div>
             ) : (
-              <a
-                href="/login?next=/#event-calendar"
-                className="button button-outline calendar-action-btn"
-                title="Sign in as DA Officer to update calendar activities"
+              <button
+                type="button"
+                onClick={handleOpenCreate}
+                className="calendar-add-btn"
+                title="Add regional activity"
               >
-                <ShieldCheck size={16} />
-                <span>Staff Sign In to Update</span>
-              </a>
+                <Plus size={16} />
+                <span>Add Regional Activity</span>
+              </button>
             )}
           </div>
         </div>
 
-        {/* Filter Controls Bar */}
-        <div className="calendar-filter-bar">
-          <div className="status-tabs" role="tablist" aria-label="Filter activities by status">
+        {/* Filter Controls Bar (Matching Screenshot) */}
+        <div className="calendar-filter-bar-clean">
+          <div className="status-pills-clean" role="tablist" aria-label="Filter activities by status">
             <button
               type="button"
-              className={`status-tab ${statusFilter === 'all' ? 'active' : ''}`}
+              className={`status-pill-clean ${statusFilter === 'all' && !selectedDate ? 'active' : ''}`}
               onClick={() => { setStatusFilter('all'); setSelectedDate(null); }}
             >
-              All Activities ({activeActivitiesCount})
+              <span>All Activities</span>
+              <span className="pill-count">{activeActivitiesCount}</span>
             </button>
             <button
               type="button"
-              className={`status-tab ${statusFilter === 'ongoing' ? 'active' : ''}`}
+              className={`status-pill-clean ${statusFilter === 'ongoing' ? 'active' : ''}`}
               onClick={() => { setStatusFilter('ongoing'); setSelectedDate(null); }}
             >
               <span className="status-dot ongoing"></span>
-              Ongoing ({ongoingCount})
+              <span>Ongoing</span>
+              <span className="pill-count-subtle">{ongoingCount}</span>
             </button>
             <button
               type="button"
-              className={`status-tab ${statusFilter === 'upcoming' ? 'active' : ''}`}
+              className={`status-pill-clean ${statusFilter === 'upcoming' ? 'active' : ''}`}
               onClick={() => { setStatusFilter('upcoming'); setSelectedDate(null); }}
             >
               <span className="status-dot upcoming"></span>
-              Upcoming ({upcomingCount})
+              <span>Upcoming</span>
+              <span className="pill-count-subtle">{upcomingCount}</span>
             </button>
             <button
               type="button"
-              className={`status-tab ${statusFilter === 'completed' ? 'active' : ''}`}
+              className={`status-pill-clean ${statusFilter === 'completed' ? 'active' : ''}`}
               onClick={() => { setStatusFilter('completed'); setSelectedDate(null); }}
             >
               <span className="status-dot completed"></span>
-              Completed ({completedCount})
+              <span>Completed</span>
+              <span className="pill-count-subtle">{completedCount}</span>
             </button>
           </div>
 
-          <div className="filter-dropdown-wrap">
-            <Filter size={14} className="filter-icon" />
-            <select
-              value={selectedProvince}
-              onChange={(e) => { setSelectedProvince(e.target.value); setSelectedDate(null); }}
-              className="calendar-select"
-              aria-label="Filter by Cordillera Province"
-            >
-              {PROVINCES.map((p) => (
-                <option key={p} value={p}>{p}</option>
-              ))}
-            </select>
+          <div className="filter-controls-right">
+            <div className="calendar-search-box">
+              <Search size={14} className="calendar-search-icon" />
+              <input
+                type="text"
+                placeholder="Search municipality or PAP..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="calendar-search-input"
+              />
+            </div>
+
+            <div className="calendar-select-box">
+              <Filter size={13} className="calendar-filter-funnel" />
+              <select
+                value={selectedProvince}
+                onChange={(e) => { setSelectedProvince(e.target.value); setSelectedDate(null); }}
+                className="calendar-province-select"
+                aria-label="Filter by Cordillera Province"
+              >
+                {PROVINCES.map((p) => (
+                  <option key={p} value={p}>{p}</option>
+                ))}
+              </select>
+            </div>
           </div>
         </div>
 
-        {/* Selected date banner if filtered by day */}
-        {selectedDate && (
-          <div className="selected-date-banner">
-            <span>
-              Showing events scheduled on <strong>{selectedDate}</strong>
-              {selectedHoliday && (
-                <> — 🇵🇭 <strong>{selectedHoliday.name}</strong> ({selectedHoliday.type})</>
-              )}
-            </span>
-            <button
-              type="button"
-              onClick={() => setSelectedDate(null)}
-              className="clear-date-filter"
-            >
-              <X size={14} /> Clear date filter
-            </button>
-          </div>
-        )}
-
-        {/* 2-Column Layout: Calendar Grid + Activity Stream */}
-        <div className="calendar-layout-grid">
-          {/* Left Column: Interactive Month Grid */}
-          <div className="calendar-grid-card">
-            <div className="calendar-nav-header">
-              <div className="calendar-title-wrap">
-                <CalendarIcon size={18} className="calendar-icon-da" />
-                <h3 className="calendar-current-month">{monthName}</h3>
+        {/* 2-Column Layout: Calendar Grid + Activity Docket */}
+        <div className="calendar-layout-grid-clean">
+          {/* Left Column: Interactive Month Grid Card */}
+          <div className="calendar-grid-card-clean">
+            <div className="calendar-month-header-clean">
+              <div className="calendar-month-title">
+                <CalendarIcon size={16} className="calendar-icon-green" />
+                <h3>{monthName}</h3>
               </div>
-              <div className="calendar-nav-buttons">
+              <div className="calendar-month-actions">
                 <button
                   type="button"
                   onClick={goToToday}
-                  className="today-shortcut-btn"
-                  title="Return to Today"
+                  className={`calendar-btn-today ${selectedDate === getTodayDateStr() ? 'active' : ''}`}
+                  title="Jump to today"
                 >
-                  Today
+                  Today ({new Date().getDate()})
                 </button>
                 <button
                   type="button"
-                  onClick={prevMonth}
-                  className="calendar-nav-arrow"
-                  aria-label="Previous month"
+                  onClick={() => setSelectedDate(null)}
+                  className={`calendar-btn-allmonth ${!selectedDate ? 'active' : ''}`}
+                  title="Show all activities in month"
                 >
-                  <ChevronLeft size={18} />
-                </button>
-                <button
-                  type="button"
-                  onClick={nextMonth}
-                  className="calendar-nav-arrow"
-                  aria-label="Next month"
-                >
-                  <ChevronRight size={18} />
+                  All Month
                 </button>
               </div>
             </div>
 
-            {/* Days of Week Header */}
-            <div className="calendar-weekdays">
-              <span>Sun</span>
-              <span>Mon</span>
-              <span>Tue</span>
-              <span>Wed</span>
-              <span>Thu</span>
-              <span>Fri</span>
-              <span>Sat</span>
+            {/* Weekdays Header */}
+            <div className="calendar-weekdays-clean">
+              <span>SUN</span>
+              <span>MON</span>
+              <span>TUE</span>
+              <span>WED</span>
+              <span>THU</span>
+              <span>FRI</span>
+              <span>SAT</span>
             </div>
 
-            {/* Days Cells */}
-            <div className="calendar-days-matrix">
+            {/* Days Matrix */}
+            <div className="calendar-days-matrix-clean">
               {calendarDays.map((day, idx) => {
                 const isSelected = selectedDate === day.dateStr;
                 const isToday = day.dateStr === getTodayDateStr();
@@ -870,22 +874,16 @@ export default function ActivityCalendar({
                         }
                       }
                     }}
-                    className={`calendar-day-btn ${!day.isCurrentMonth ? 'other-month' : ''
-                      } ${isSelected ? 'selected' : ''} ${isToday ? 'is-today' : ''}`}
+                    className={`calendar-day-cell ${!day.isCurrentMonth ? 'other-month' : ''} ${isSelected ? 'selected' : ''} ${isToday && !isSelected ? 'is-today' : ''}`}
                     title={`${day.dateStr} (${dayActivities?.total || 0} activities)${holidayNote}`}
                   >
-                    <span className="day-number">{day.dayNum}</span>
+                    <span className="day-cell-number">{day.dayNum}</span>
                     {(dayActivities || dayHoliday) && (
-                      <span className="day-indicators">
-                        {dayActivities?.ongoing && <span className="cell-dot dot-ongoing" title="Ongoing activity" />}
-                        {dayActivities?.upcoming && <span className="cell-dot dot-upcoming" title="Upcoming activity" />}
-                        {dayActivities?.completed && <span className="cell-dot dot-completed" title="Completed activity (gray)" />}
-                        {dayHoliday && (
-                          <span
-                            className="cell-dot dot-holiday"
-                            title={`🇵🇭 ${dayHoliday.name} (${dayHoliday.type})`}
-                          />
-                        )}
+                      <span className="day-cell-dots">
+                        {dayActivities?.ongoing && <span className="cell-dot dot-ongoing" />}
+                        {dayActivities?.upcoming && <span className="cell-dot dot-upcoming" />}
+                        {dayActivities?.completed && <span className="cell-dot dot-completed" />}
+                        {dayHoliday && <span className="cell-dot dot-holiday" />}
                       </span>
                     )}
                   </button>
@@ -893,45 +891,48 @@ export default function ActivityCalendar({
               })}
             </div>
 
-            {/* Calendar Legend */}
-            <div className="calendar-legend">
-              <div className="legend-item">
+            {/* Calendar Legend (Matching Screenshot: 2x2 Clean Layout) */}
+            <div className="calendar-legend-clean">
+              <div className="legend-clean-item">
                 <span className="cell-dot dot-ongoing"></span>
-                <span>Active / Ongoing Activity (Green)</span>
+                <span>Ongoing (Oct 17–20)</span>
               </div>
-              <div className="legend-item">
+              <div className="legend-clean-item">
                 <span className="cell-dot dot-upcoming"></span>
-                <span>Scheduled Upcoming (Gold)</span>
+                <span>Upcoming (Oct 26–27)</span>
               </div>
-              <div className="legend-item">
+              <div className="legend-clean-item">
                 <span className="cell-dot dot-completed"></span>
-                <span>Completed / Past Activity (Gray)</span>
+                <span>Completed ({completedCount})</span>
               </div>
-              <div className="legend-item">
+              <div className="legend-clean-item">
                 <span className="cell-dot dot-holiday"></span>
-                <span>Official Philippine Holiday (Rose)</span>
-              </div>
-              <div className="legend-item">
-                <span className="legend-box today-box"></span>
-                <span>Current Date</span>
+                <span>Holiday (Oct 31)</span>
               </div>
             </div>
           </div>
 
-          {/* Right Column: Activities Cards Stream */}
-          <div className="activities-stream-card">
-            <div className="stream-header">
-              <div className="stream-header-info">
+          {/* Right Column: Docket Stream */}
+          <div className="activities-stream-card-clean">
+            <div className="stream-header-clean">
+              <div className="stream-title-group">
                 <h3>Regional Agricultural Docket</h3>
-                <span className="stream-count-tag">
-                  {filteredActivities.length} {filteredActivities.length === 1 ? 'Activity' : 'Activities'}
+                <span className="stream-shown-pill">
+                  {filteredActivities.length} {filteredActivities.length === 1 ? 'Activity Shown' : 'Activities Shown'}
                 </span>
               </div>
-              {canAlter && (
-                <span className="authorized-badge">
-                  <ShieldCheck size={13} />
-                  <span>Editor Mode Active</span>
-                </span>
+              {selectedDate && (
+                <button
+                  type="button"
+                  onClick={() => setSelectedDate(null)}
+                  className="stream-filter-pill"
+                  title="Clear date filter to show all activities"
+                >
+                  <span>
+                    Filtered by: {new Date(selectedDate + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                  </span>
+                  <span className="stream-filter-clear">× Show All ({activeActivitiesCount})</span>
+                </button>
               )}
             </div>
 
@@ -957,11 +958,11 @@ export default function ActivityCalendar({
                 <CalendarDays size={40} className="empty-state-icon" />
                 <h4>No regional activities found</h4>
                 <p>
-                  There are no scheduled activities matching your current filter criteria ({selectedProvince}, {statusFilter}).
+                  There are no scheduled activities matching your current filter criteria ({selectedProvince}, {statusFilter}{searchQuery ? `, "${searchQuery}"` : ''}).
                 </p>
                 <button
                   type="button"
-                  onClick={() => { setSelectedProvince('All Provinces'); setStatusFilter('all'); setSelectedDate(null); }}
+                  onClick={() => { setSelectedProvince('All Provinces'); setStatusFilter('all'); setSelectedDate(null); setSearchQuery(''); }}
                   className="button button-outline"
                   style={{ marginTop: 12 }}
                 >
@@ -969,55 +970,34 @@ export default function ActivityCalendar({
                 </button>
               </div>
             ) : (
-              <div className="activities-cards-scroll">
+              <div className="activities-stream-cards-clean">
                 {filteredActivities.map((act) => {
                   const isOngoing = act.status === 'ongoing';
-                  const isUpcoming = act.status === 'upcoming';
+                  const programCode =
+                    act.category === 'Irrigation Services' ? 'INS RICE' :
+                    act.category === 'Production Support' ? 'PROD RICE' :
+                    act.category === 'Extension & Training' ? 'EXT RICE' :
+                    act.category === 'Machinery & Equipment' ? 'MECH RICE' :
+                    act.category === 'Regional Monitoring' ? 'REG RICE' : 'RCU RICE';
 
                   return (
                     <article
                       key={act.id}
-                      className={`regional-activity-card ${isOngoing ? 'card-ongoing' : ''} ${act.status === 'completed' ? 'card-completed' : ''}`}
+                      className={`activity-card-clean ${isOngoing ? 'card-ongoing' : ''} ${act.status === 'completed' ? 'card-completed' : ''}`}
                     >
-                      <div className="card-top-row">
-                        <div className="card-badges">
-                          <span className={`status-badge-chip ${act.status}`}>
-                            {isOngoing && <span className="live-dot" />}
-                            {act.status === 'completed' && <span className="completed-dot" />}
+                      <div className="card-top-clean">
+                        <div className="card-badges-clean">
+                          <span className={`status-tag-clean ${act.status}`}>
+                            <span className="status-tag-dot" />
                             {act.status.toUpperCase()}
                           </span>
-                          {act.id?.startsWith('act-prog-') && (
-                            <span
-                              style={{
-                                display: 'inline-flex',
-                                alignItems: 'center',
-                                gap: 4,
-                                padding: '2px 8px',
-                                borderRadius: 4,
-                                background: '#fef3c7',
-                                color: '#92400e',
-                                fontSize: 10.5,
-                                fontWeight: 750,
-                                border: '1px solid #fde68a',
-                              }}
-                            >
-                              <Wheat size={11} />
-                              BANNER PROGRAM
-                            </span>
-                          )}
-                          <span className="category-chip">
-                            <Tag size={12} />
-                            {act.category}
-                          </span>
+                          <span className="prog-code-tag">{programCode}</span>
+                          <span className="cat-name-tag">• {act.category}</span>
                         </div>
-                        <span className="province-pill">
-                          <MapPin size={12} />
-                          {act.province}
-                        </span>
                       </div>
 
                       <h4
-                        className="activity-card-title"
+                        className="card-title-clean"
                         onClick={() => setActiveModalActivity(act)}
                         role="button"
                         tabIndex={0}
@@ -1026,54 +1006,57 @@ export default function ActivityCalendar({
                       </h4>
 
                       {act.description && (
-                        <p className="activity-card-desc">{act.description}</p>
+                        <p className="card-desc-clean">
+                          "{act.description}"
+                        </p>
                       )}
 
-                      <div className="activity-details-row">
-                        <div className="detail-item">
-                          <MapPin size={14} className="detail-icon" />
-                          <span>{act.location_details}</span>
-                        </div>
-                        <div className="detail-item">
-                          <Clock size={14} className="detail-icon" />
-                          <span>
-                            {act.start_date}
-                            {act.end_date && act.end_date !== act.start_date ? ` to ${act.end_date}` : ''}
+                      <div className="card-bottom-clean">
+                        <div className="card-meta-clean">
+                          <span className="meta-info-clean">
+                            <MapPin size={13} className="meta-icon" />
+                            <span>{act.location_details || act.province}</span>
+                          </span>
+                          <span className="meta-info-clean">
+                            <Clock size={13} className="meta-icon" />
+                            <span>
+                              {act.start_date}
+                              {act.end_date && act.end_date !== act.start_date ? ` to ${act.end_date}` : ''}
+                            </span>
                           </span>
                         </div>
-                      </div>
 
-                      <div className="card-footer-actions">
-                        <button
-                          type="button"
-                          onClick={() => setActiveModalActivity(act)}
-                          className="view-details-btn"
-                        >
-                          <span>View Details</span>
-                          <ArrowRight size={13} />
-                        </button>
+                        <div className="card-actions-clean">
+                          <button
+                            type="button"
+                            onClick={() => setActiveModalActivity(act)}
+                            className="view-details-clean-btn"
+                          >
+                            <span>View Details</span>
+                            <ArrowRight size={13} />
+                          </button>
 
-                        {/* Administrative Alteration Controls */}
-                        {canAlter && (
-                          <div className="admin-quick-actions">
-                            <button
-                              type="button"
-                              onClick={() => handleOpenEdit(act)}
-                              className="admin-icon-btn edit"
-                              title="Edit this activity"
-                            >
-                              <Edit3 size={14} />
-                            </button>
-                            <button
-                              type="button"
-                              onClick={() => handleDeleteActivity(act.id)}
-                              className="admin-icon-btn delete"
-                              title="Delete this activity"
-                            >
-                              <Trash2 size={14} />
-                            </button>
-                          </div>
-                        )}
+                          {canAlter && (
+                            <div className="admin-actions-clean">
+                              <button
+                                type="button"
+                                onClick={() => handleOpenEdit(act)}
+                                className="admin-action-btn edit"
+                                title="Edit this activity"
+                              >
+                                <Edit3 size={14} />
+                              </button>
+                              <button
+                                type="button"
+                                onClick={() => handleDeleteActivity(act.id)}
+                                className="admin-action-btn delete"
+                                title="Delete this activity"
+                              >
+                                <Trash2 size={14} />
+                              </button>
+                            </div>
+                          )}
+                        </div>
                       </div>
                     </article>
                   );

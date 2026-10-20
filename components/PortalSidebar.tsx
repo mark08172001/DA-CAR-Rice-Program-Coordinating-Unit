@@ -317,16 +317,13 @@ export default function PortalSidebar({
       <div className="sidebar-brand-box">
         <Link href="/" className="sidebar-brand" onClick={onClose} title="DA-CAR | Rice Program Coordinating Unit">
           <span className="sidebar-seal-wrapper">
-            <img
-              src="/da-seal.svg"
-              alt="Department of Agriculture Seal"
-              width={isCollapsed ? 36 : 46}
-              height={isCollapsed ? 36 : 46}
-            />
+            <div className="sidebar-wheat-badge">
+              <Wheat size={20} className="sidebar-wheat-icon" />
+            </div>
           </span>
           {!isCollapsed && (
             <div className="sidebar-brand-text">
-              <span className="sidebar-republic">Republic of the Philippines</span>
+              <span className="sidebar-republic">REPUBLIC OF THE PHILIPPINES</span>
               <strong>DA-CAR</strong>
               <span className="sidebar-portal-tag">Rice Program Coordinating Unit</span>
             </div>
@@ -359,7 +356,7 @@ export default function PortalSidebar({
 
       {/* Module Overview Indicator */}
       {!isCollapsed && (
-        <div className="sidebar-kpi-pill">
+        <div className="sidebar-region-pill">
           <span className="sidebar-live-dot"></span>
           <span>Cordillera Administrative Region</span>
         </div>
@@ -369,6 +366,7 @@ export default function PortalSidebar({
       <div className="sidebar-modules-scroll">
         {visibleModules.map((mod) => {
           const isModuleOpen = !!openModules[mod.id];
+          const isGeneral = mod.id === 'mod-general';
           const hasActiveChild = mod.items.some((item) => {
             if (item.href === '/') return pathname === '/';
             if (item.href.includes('#')) {
@@ -381,30 +379,36 @@ export default function PortalSidebar({
           return (
             <section
               key={mod.id}
-              className={`module-section ${hasActiveChild ? 'module-active' : ''}`}
+              className={`module-section ${hasActiveChild ? 'module-active' : ''} ${isGeneral ? 'module-section-flat' : ''}`}
               title={isCollapsed ? `${mod.moduleNumber}: ${mod.title}` : undefined}
             >
-              {/* Module Header Button (Collapsible on full sidebar) */}
-              {!isCollapsed ? (
-                <button
-                  type="button"
-                  onClick={() => toggleModule(mod.id)}
-                  className="module-header-btn"
-                  aria-expanded={isModuleOpen}
-                >
-                  <div className="module-title-col">
-                    <span className="module-code">{mod.moduleNumber}</span>
-                    <h3 className="module-heading">{mod.title}</h3>
+              {/* Category label for Public Portal (flat minimal header) or Accordion Button for other modules */}
+              {!isCollapsed && (
+                isGeneral ? (
+                  <div className="sidebar-section-label">
+                    <span>PUBLIC PORTAL</span>
                   </div>
-                  <ChevronDown
-                    size={14}
-                    className={`module-chevron ${!isModuleOpen ? 'collapsed' : ''}`}
-                  />
-                </button>
-              ) : null}
+                ) : (
+                  <button
+                    type="button"
+                    onClick={() => toggleModule(mod.id)}
+                    className="module-header-btn"
+                    aria-expanded={isModuleOpen}
+                  >
+                    <div className="module-title-col">
+                      <span className="module-code">{mod.moduleNumber}</span>
+                      <h3 className="module-heading">{mod.title}</h3>
+                    </div>
+                    <ChevronDown
+                      size={14}
+                      className={`module-chevron ${!isModuleOpen ? 'collapsed' : ''}`}
+                    />
+                  </button>
+                )
+              )}
 
               {/* Module Navigation Items */}
-              {(isModuleOpen || isCollapsed) && (
+              {(isGeneral || isModuleOpen || isCollapsed) && (
                 <nav className="module-nav-list" aria-label={mod.title}>
                   {mod.items.map((item) => {
                     const IconComponent = item.icon;
@@ -429,7 +433,6 @@ export default function PortalSidebar({
                           href={item.href}
                           onClick={(e) => {
                             if (hasSubItems) {
-                              // If clicked on collapsed sidebar, just navigate; on full sidebar, keep dropdown open
                               setOpenSubMenus((prev) => ({
                                 ...prev,
                                 [item.href]: true,

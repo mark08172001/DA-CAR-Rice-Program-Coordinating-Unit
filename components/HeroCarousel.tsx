@@ -1,124 +1,110 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Link from 'next/link';
-import { ArrowDown, ArrowRight, Pause, Play } from 'lucide-react';
+import { ArrowDown, ArrowRight } from 'lucide-react';
 
 const slides = [
   {
-    eyebrow: 'Module 01: General Portal',
+    kicker: '— 2026 WET & DRY SEASON',
     title: (
       <>
-        Rice Program Coordinating Unit<span>Portal</span>
+        Certified seed & <em>fertilizer support</em>
       </>
     ),
     description:
-      'Access agricultural programs, regional services, rice coordination information, and public data for the Cordillera Administrative Region.',
-    caption: 'DA-CAR | Rice Program Coordinating Unit',
-    actions: (
-      <a href="#portal-services" className="button button-primary">
-        Browse portal services <ArrowDown size={15} />
-      </a>
-    ),
+      'Check allocation schedules and municipal distribution points across Abra, Apayao, Benguet, Ifugao, Kalinga, and Mountain Province.',
+    ctaText: 'View allocations ↓',
+    ctaHref: '#rice-dashboard',
+    ctaSubtext: 'RCEF & National Rice Program',
+    image: '/hero-support.jpg',
   },
   {
-    eyebrow: 'Module 02: Rice Program Operations',
+    kicker: '— CORDILLERA RICE INITIATIVES',
     title: (
       <>
-        Track rice program<span>operations</span>
+        Highland heritage & <em>sustainable food systems</em>
       </>
     ),
     description:
-      'Review ongoing activities, fund releases, farmer services, and official reports from the regional coordinating unit.',
-    caption: 'Rice Program Coordinating Unit',
-    actions: (
-      <Link href="/rice/physical" className="button button-primary">
-        Access Rice Operations <ArrowRight size={15} />
-      </Link>
-    ),
+      'Supporting terrace rehabilitation, heirloom rice exports, and localized farmer cooperatives across the Cordillera highlands.',
+    ctaText: 'Explore programs ↓',
+    ctaHref: '#portal-services',
+    ctaSubtext: 'Regional Rice Program Coordination',
+    image: '/hero-terraces.jpg',
   },
   {
-    eyebrow: 'Module 01: General Portal',
+    kicker: '— FIELD EXTENSION & OPERATIONS',
     title: (
       <>
-        Services for<span>Cordillera communities</span>
+        Direct farmer support & <em>machinery distribution</em>
       </>
     ),
     description:
-      'Find regional programs, province information, public data, and department contact channels through one official portal.',
-    caption: 'Public agricultural information',
-    actions: (
-      <a href="#portal-services" className="button button-primary">
-        Explore services <ArrowDown size={15} />
-      </a>
-    ),
+      'Live schedules for certified bio-fertilizers, solar irrigation pumps, hauling equipment, and technical agronomy training.',
+    ctaText: 'Check calendar ↓',
+    ctaHref: '#event-calendar',
+    ctaSubtext: 'Agricultural Extension Operations',
+    image: '/hero-machinery.jpg',
   },
 ];
 
 export default function HeroCarousel() {
   const [activeSlide, setActiveSlide] = useState(0);
-  const [paused, setPaused] = useState(false);
 
   useEffect(() => {
-    if (paused) return;
     const timer = setInterval(() => {
       setActiveSlide((prev) => (prev + 1) % slides.length);
-    }, 7000);
+    }, 8500);
     return () => clearInterval(timer);
-  }, [paused]);
+  }, []);
+
+  const slide = slides[activeSlide];
 
   return (
-    <section
-      className="hero hero-carousel"
-      aria-roledescription="carousel"
-      aria-label="DA-CAR portal highlights"
-    >
-      <div className="hero-slides">
-        {slides.map((slide, index) => {
-          const isActive = index === activeSlide;
-          return (
-            <article
-              key={index}
-              className={`hero-slide ${isActive ? 'is-active' : ''}`}
-              data-slide={index}
-              aria-hidden={!isActive}
-              style={{ display: isActive ? 'block' : 'none' }}
-            >
-              <div className="hero-content">
-                <span className="eyebrow">{slide.eyebrow}</span>
-                <h1 id={index === 0 ? 'home-title' : undefined}>{slide.title}</h1>
-                <p className="hero-description">{slide.description}</p>
-                <div className="hero-actions">{slide.actions}</div>
-              </div>
-            </article>
-          );
-        })}
-      </div>
+    <section className="minimal-hero-container" aria-label="Rice Program Support Portal">
+      <div className="minimal-hero-card">
+        {/* Right side photography overlay - distinct image per slide with smooth crossfade */}
+        {slides.map((s, idx) => (
+          <div
+            key={idx}
+            className="minimal-hero-bg"
+            style={{
+              backgroundImage: `url('${s.image}')`,
+              opacity: idx === activeSlide ? 1 : 0,
+              transition: 'opacity 0.75s ease-in-out',
+            }}
+            aria-hidden="true"
+          />
+        ))}
+        <div className="minimal-hero-gradient" aria-hidden="true" />
 
-      <div className="hero-caption">
-        <span id="hero-caption-text">{slides[activeSlide].caption}</span>
-        <div className="hero-controls">
-          <button
-            className="hero-pause"
-            type="button"
-            aria-label={paused ? 'Play carousel' : 'Pause carousel'}
-            onClick={() => setPaused(!paused)}
-          >
-            {paused ? <Play size={13} /> : <Pause size={13} />}
-          </button>
-          <div className="hero-dots" role="tablist" aria-label="Carousel slides">
-            {slides.map((_, index) => (
-              <button
-                key={index}
-                className={`hero-dot ${index === activeSlide ? 'is-active' : ''}`}
-                type="button"
-                role="tab"
-                aria-label={`Show slide ${index + 1}`}
-                aria-selected={index === activeSlide}
-                onClick={() => setActiveSlide(index)}
-              />
-            ))}
+        {/* Content */}
+        <div className="minimal-hero-content">
+          <div className="minimal-hero-kicker">{slide.kicker}</div>
+          <h1 className="minimal-hero-title">{slide.title}</h1>
+          <p className="minimal-hero-desc">{slide.description}</p>
+
+          <div className="minimal-hero-action-row">
+            <a href={slide.ctaHref} className="minimal-hero-cta">
+              {slide.ctaText}
+            </a>
+            <span className="minimal-hero-subtext">| {slide.ctaSubtext}</span>
           </div>
+        </div>
+
+        {/* Bottom-right slide indicators */}
+        <div className="minimal-hero-dots" role="tablist" aria-label="Hero carousel navigation">
+          {slides.map((_, idx) => (
+            <button
+              key={idx}
+              type="button"
+              className={`minimal-hero-dot ${idx === activeSlide ? 'active' : ''}`}
+              onClick={() => setActiveSlide(idx)}
+              aria-label={`Switch to slide ${idx + 1}`}
+              aria-selected={idx === activeSlide}
+              role="tab"
+            />
+          ))}
         </div>
       </div>
     </section>
