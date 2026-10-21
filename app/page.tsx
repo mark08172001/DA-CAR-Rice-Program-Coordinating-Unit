@@ -76,6 +76,7 @@ export default async function HomePage() {
   const combinedActivities = [...programActivities, ...activities];
 
   const totalOngoingActivities = combinedActivities.filter((a) => a.status === 'ongoing').length;
+  const firstOngoing = combinedActivities.find((a) => a.status === 'ongoing');
 
   let activeEmail = user?.email;
   if (!activeEmail) {
@@ -120,7 +121,6 @@ export default async function HomePage() {
                 <span className="minimal-kpi-value">
                   {farmerCount > 0 ? farmerCount.toLocaleString('en-PH') : '41,792'}
                 </span>
-                <span className="minimal-kpi-pill green">+100% Verified</span>
               </div>
               <Link href="/rice/farmers" className="minimal-kpi-foot">
                 <span>Live served transactions across 6 provinces</span>
@@ -140,7 +140,6 @@ export default async function HomePage() {
                 <span className="minimal-kpi-value">
                   {programs.length > 0 ? programs.length : 2}
                 </span>
-                <span className="minimal-kpi-pill gold">FY 2026 Active</span>
               </div>
               <Link href="/rice/programs" className="minimal-kpi-foot">
                 <span>National Rice & Highland Heritage Programs</span>
@@ -158,9 +157,17 @@ export default async function HomePage() {
               </div>
               <div className="minimal-kpi-val-row">
                 <span className="minimal-kpi-value">
-                  {totalOngoingActivities > 0 ? totalOngoingActivities : 1}
+                  {totalOngoingActivities}
                 </span>
-                <span className="minimal-kpi-pill green">Tabuk City, Kalinga</span>
+                {totalOngoingActivities > 0 ? (
+                  <span className="minimal-kpi-pill green">
+                    {firstOngoing?.province || 'Active in Field'}
+                  </span>
+                ) : (
+                  <span className="minimal-kpi-pill" style={{ background: '#f1f5f9', color: '#64748b' }}>
+                    No Active Events
+                  </span>
+                )}
               </div>
               <div className="minimal-kpi-foot">
                 <span>Live from field event calendar</span>
