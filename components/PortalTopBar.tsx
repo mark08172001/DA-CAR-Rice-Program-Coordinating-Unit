@@ -68,8 +68,6 @@ export default function PortalTopBar({
     setCurrentTime(formatted);
   }, []);
 
-  const [showWhyWorks, setShowWhyWorks] = useState(false);
-
   // Determine current active module name based on pathname
   let currentModuleName = 'Public Portal';
   let currentPageTitle = 'Overview';
@@ -125,8 +123,7 @@ export default function PortalTopBar({
   }
 
   return (
-    <>
-      <header className="portal-topbar">
+    <header className="portal-topbar">
         <div className="portal-topbar-inner">
           {/* Left side: Hamburger (on mobile) + Breadcrumb */}
           <div className="topbar-left">
@@ -148,15 +145,6 @@ export default function PortalTopBar({
 
           {/* Right side: 'Why This Works', Live Date Pill, Staff Sign In */}
           <div className="topbar-right">
-            <button
-              type="button"
-              onClick={() => setShowWhyWorks(true)}
-              className="topbar-why-btn"
-              title="Learn about this public portal"
-            >
-              <span className="why-btn-sparkle">✨</span>
-              <span>Why This Works</span>
-            </button>
 
             <div className="topbar-date-pill">
               <span className="topbar-date-dot"></span>
@@ -190,54 +178,5 @@ export default function PortalTopBar({
           </div>
         </div>
       </header>
-
-      {/* 'Why This Works' Informational Modal */}
-      {showWhyWorks && (
-        <div className="why-modal-backdrop" onClick={() => setShowWhyWorks(false)}>
-          <div className="why-modal-card" onClick={(e) => e.stopPropagation()}>
-            <div className="why-modal-header">
-              <div className="why-modal-badge">
-                <span>✨ Transparency & Open Governance</span>
-              </div>
-              <button
-                type="button"
-                className="why-modal-close"
-                onClick={() => setShowWhyWorks(false)}
-                aria-label="Close dialog"
-              >
-                ✕
-              </button>
-            </div>
-            <h3>Department of Agriculture – Cordillera Administrative Region</h3>
-            <p className="why-modal-lead">
-              The Rice Program Coordinating Unit (DA-CAR RCU) portal provides open, verifiable oversight of certified seed allocations, fertilizer distribution schedules, and farmer support.
-            </p>
-            <div className="why-modal-points">
-              <div className="why-modal-point">
-                <strong>🌾 Direct Allocation Tracking</strong>
-                <span>Monitor certified seeds, inorganic & bio-fertilizers across Abra, Apayao, Benguet, Ifugao, Kalinga, and Mountain Province.</span>
-              </div>
-              <div className="why-modal-point">
-                <strong>📋 Verified RSBSA Registry</strong>
-                <span>All distributions map directly to registered farmers and accredited agricultural cooperatives.</span>
-              </div>
-              <div className="why-modal-point">
-                <strong>📅 Live Field Calendar</strong>
-                <span>Stay informed with ongoing field events, harvest monitoring, and technical training missions in real time.</span>
-              </div>
-            </div>
-            <div className="why-modal-footer">
-              <button
-                type="button"
-                className="button button-primary why-modal-gotit"
-                onClick={() => setShowWhyWorks(false)}
-              >
-                Understood
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-    </>
   );
 }
