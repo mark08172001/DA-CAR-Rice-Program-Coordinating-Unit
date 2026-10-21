@@ -225,7 +225,7 @@ export default function PortalSidebar({
       description: 'Core agency directory & calendar',
       items: [
         { label: 'Portal Home', href: '/', icon: Home },
-        { label: 'Field Event Calendar', href: '/#event-calendar', icon: Calendar, badge: 'Live', badgeType: 'green' },
+        { label: 'Field Event Calendar', href: '/#event-calendar', icon: Calendar },
         { label: 'About Coordinating Unit', href: '/about', icon: Info },
       ],
     },
@@ -277,8 +277,8 @@ export default function PortalSidebar({
       title: 'Super Admin',
       description: 'Access limits & staff profiles',
       items: [
-        { label: 'Staff Access Control', href: '/admin/users', icon: Users, badge: 'Access Limits', badgeType: 'gold' },
-        { label: 'Profile Database', href: '/admin/profiles', icon: UserCheck, badge: 'Profiles DB', badgeType: 'green' },
+        { label: 'Staff Access Control', href: '/admin/users', icon: Users },
+        { label: 'Profile Database', href: '/admin/profiles', icon: Users },
       ],
     },
   ];

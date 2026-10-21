@@ -115,6 +115,7 @@ export default async function CommodityClaimsPage() {
         eyebrow="Module 03: Beneficiaries & Field Services"
         heading="Commodity Claims & Allocations Dashboard"
         description="Certified RSBSA farmer beneficiary transactions, subsidy redemptions, and regional distribution totals for hybrid palay seeds, organic fertilizers, and mechanization."
+        parent={{ label: 'Field Services', href: '/rice/farmers' }}
       />
 
       <section className="section" style={{ paddingTop: 10 }}>

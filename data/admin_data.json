@@ -51,7 +51,8 @@
       "role": "officer",
       "status": "active",
       "allowed_modules": [
-        "mod-general"
+        "mod-general",
+        "mod-rice"
       ],
       "last_sign_in_at": null,
       "login_count": 0,

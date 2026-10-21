@@ -8111,6 +8111,1073 @@ select.form-control {
   }
 }
 
+/* ==========================================================================
+   UNIFIED MINIMAL EDITORIAL DESIGN SYSTEM (ACROSS ALL PORTAL PAGES)
+   ========================================================================== */
+
+/* 1. Page Hero Banner Card */
+.minimal-page-hero-card {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #092319;
+  min-height: 220px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 10px 30px rgba(9, 35, 25, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.minimal-page-hero-pattern {
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(circle at 85% 20%, rgba(245, 158, 11, 0.12) 0%, transparent 45%),
+    radial-gradient(circle at 15% 90%, rgba(5, 150, 105, 0.22) 0%, transparent 55%),
+    linear-gradient(135deg, #092319 0%, #0d3627 60%, #082117 100%);
+  pointer-events: none;
+}
+
+.minimal-page-hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 36px 44px;
+  max-width: 760px;
+  width: 100%;
+}
+
+.minimal-hero-kicker-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(245, 158, 11, 0.12);
+  border: 1px solid rgba(245, 158, 11, 0.28);
+  color: #f59e0b;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 99px;
+  margin-bottom: 12px;
+}
+
+.kicker-pulse-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #f59e0b;
+  box-shadow: 0 0 8px #f59e0b;
+}
+
+.minimal-page-hero-title {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(26px, 3.2vw, 36px);
+  font-weight: 400;
+  color: #ffffff;
+  line-height: 1.2;
+  margin: 0 0 10px;
+  letter-spacing: -0.3px;
+}
+
+.minimal-page-hero-desc {
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: #cbdad2;
+  margin: 0 0 18px;
+  max-width: 680px;
+}
+
+.minimal-hero-breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  font-size: 12px;
+}
+
+.minimal-hero-bc-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: #a9c6b8;
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 4px 11px;
+  border-radius: 99px;
+  transition: all 0.15s ease;
+}
+
+.minimal-hero-bc-link:hover {
+  background: rgba(255, 255, 255, 0.14);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.28);
+}
+
+.minimal-hero-bc-sep {
+  color: #4b6b5d;
+}
+
+.minimal-hero-bc-current {
+  color: #f1f5f9;
+  font-weight: 550;
+  background: rgba(245, 158, 11, 0.15);
+  border: 1px solid rgba(245, 158, 11, 0.25);
+  padding: 4px 11px;
+  border-radius: 99px;
+}
+
+/* 2. About Page Layout */
+.about-pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.about-pillar-card {
+  background: #ffffff;
+  border: 1px solid #e5eae6;
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+  transition: all 0.18s ease;
+}
+
+.about-pillar-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  border-color: #cbd5e1;
+}
+
+.about-pillar-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.about-pillar-icon-wrap {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: #ecfdf5;
+  color: #059669;
+  border: 1px solid #d1fae5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-pillar-kicker {
+  font-size: 11px;
+  font-weight: 650;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.about-pillar-title {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 17px;
+  font-weight: 600;
+  color: #0f172a;
+  margin: 0 0 8px;
+  line-height: 1.3;
+}
+
+.about-pillar-desc {
+  font-size: 13px;
+  line-height: 1.6;
+  color: #475569;
+  margin: 0 0 18px;
+}
+
+.about-pillar-foot {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 14px;
+  border-top: 1px solid #f1f5f9;
+}
+
+.about-pillar-code {
+  font-size: 11px;
+  font-weight: 750;
+  color: #092319;
+  background: #f1f5f9;
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+
+.about-pillar-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #059669;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.about-pillar-link:hover {
+  color: #047857;
+}
+
+.about-heritage-card {
+  background: #ffffff;
+  border: 1px solid #e5eae6;
+  border-radius: 18px;
+  padding: 32px 36px;
+  display: grid;
+  grid-template-columns: 1.8fr 1fr;
+  gap: 32px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+.about-heritage-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  justify-content: center;
+}
+
+.heritage-mini-stat {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 16px 20px;
+}
+
+.heritage-stat-num {
+  font-size: 26px;
+  font-weight: 800;
+  color: #092319;
+  display: block;
+  line-height: 1.1;
+  margin-bottom: 4px;
+}
+
+.heritage-stat-label {
+  font-size: 12px;
+  color: #64748b;
+  line-height: 1.4;
+}
+
+.about-contact-bar {
+  background: #ffffff;
+  border: 1px solid #e5eae6;
+  border-radius: 16px;
+  padding: 24px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+}
+
+.about-contact-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* 3. Provinces Page */
+.provinces-stats-bar {
+  background: #ffffff;
+  border: 1px solid #e5eae6;
+  border-radius: 16px;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+  overflow-x: auto;
+}
+
+.pstat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 140px;
+}
+
+.pstat-label {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  color: #64748b;
+  text-transform: uppercase;
+}
+
+.pstat-val {
+  font-size: 14.5px;
+  font-weight: 750;
+  color: #0f172a;
+}
+
+.pstat-divider {
+  width: 1px;
+  height: 28px;
+  background: #e2e8f0;
+  flex-shrink: 0;
+}
+
+.provinces-card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.province-editorial-card {
+  background: #ffffff;
+  border: 1px solid #e5eae6;
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+  transition: all 0.18s ease;
+}
+
+.province-editorial-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  border-color: #cbd5e1;
+}
+
+.prov-card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 12px;
+}
+
+.prov-icon-wrap {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: #ecfdf5;
+  color: #059669;
+  border: 1px solid #d1fae5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.prov-meta-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.prov-tag-pill {
+  font-size: 11px;
+  font-weight: 650;
+  color: #059669;
+  letter-spacing: 0.2px;
+}
+
+.prov-title-serif {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: #0f172a;
+  margin: 0;
+}
+
+.prov-capital-sub {
+  font-size: 11.5px;
+  color: #64748b;
+}
+
+.prov-desc-body {
+  font-size: 13px;
+  line-height: 1.6;
+  color: #475569;
+  margin: 0 0 16px;
+}
+
+.prov-crops-row {
+  margin-bottom: 16px;
+}
+
+.prov-crops-kicker {
+  font-size: 11px;
+  font-weight: 600;
+  color: #64748b;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.prov-crops-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.prov-crop-pill {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  color: #334155;
+  font-size: 11.5px;
+  font-weight: 500;
+  padding: 3px 9px;
+  border-radius: 6px;
+}
+
+.prov-foot-highlight {
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid #f1f5f9;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.prov-highlight-text {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11.5px;
+  color: #059669;
+  font-weight: 550;
+}
+
+.prov-wheat-icon {
+  flex-shrink: 0;
+}
+
+.prov-explore-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #092319;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.prov-explore-link:hover {
+  text-decoration: underline;
+}
+
+/* 4. Weather Page Layout */
+.weather-advisory-banner {
+  background: #ffffff;
+  border: 1px solid #e5eae6;
+  border-left: 4px solid #f59e0b;
+  border-radius: 14px;
+  padding: 18px 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+}
+
+.weather-advisory-icon-wrap {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #fef3c7;
+  color: #b45309;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.weather-advisory-body {
+  flex: 1;
+}
+
+.weather-advisory-body strong {
+  font-size: 14px;
+  color: #0f172a;
+  display: block;
+  margin-bottom: 3px;
+}
+
+.weather-advisory-body p {
+  font-size: 12.5px;
+  color: #475569;
+  line-height: 1.55;
+  margin: 0;
+}
+
+.weather-advisory-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  padding: 5px 12px;
+  border-radius: 99px;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #475569;
+  flex-shrink: 0;
+}
+
+.weather-station-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.weather-station-card {
+  background: #ffffff;
+  border: 1px solid #e5eae6;
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+  transition: all 0.18s ease;
+}
+
+.weather-station-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  border-color: #cbd5e1;
+}
+
+.station-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.station-province-kicker {
+  font-size: 11px;
+  font-weight: 700;
+  color: #059669;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: block;
+  margin-bottom: 2px;
+}
+
+.station-title {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 17px;
+  font-weight: 600;
+  color: #0f172a;
+  margin: 0;
+}
+
+.station-icon-badge {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.weather-icon-sun { color: #f59e0b; }
+.weather-icon-partly { color: #0284c7; }
+.weather-icon-rain { color: #2563eb; }
+.weather-icon-cloud { color: #64748b; }
+
+.station-temp-row {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.station-temp-val {
+  font-size: 34px;
+  font-weight: 800;
+  color: #092319;
+  line-height: 1;
+}
+
+.station-condition-pill {
+  background: #ecfdf5;
+  color: #059669;
+  border: 1px solid #d1fae5;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 9px;
+  border-radius: 99px;
+}
+
+.station-metrics-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.station-metric-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 11.5px;
+  color: #475569;
+}
+
+.metric-chip-icon {
+  color: #0284c7;
+}
+
+.station-advisory-box {
+  margin-top: auto;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+}
+
+.advisory-optimal {
+  background: #f0fdf4;
+  border-color: #dcfce7;
+}
+
+.advisory-caution {
+  background: #fefce8;
+  border-color: #fef08a;
+}
+
+.advisory-normal {
+  background: #f8fafc;
+  border-color: #e2e8f0;
+}
+
+.station-advisory-kicker {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #64748b;
+  display: block;
+  margin-bottom: 3px;
+}
+
+.station-advisory-text {
+  font-size: 12px;
+  line-height: 1.45;
+  color: #334155;
+  margin: 0;
+}
+
+/* 5. Market Prices Layout */
+.price-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.price-kpi-card {
+  background: #ffffff;
+  border: 1px solid #e5eae6;
+  border-radius: 16px;
+  padding: 22px 24px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+}
+
+.price-kpi-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.price-kpi-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #475569;
+}
+
+.price-kpi-tag {
+  font-size: 11px;
+  font-weight: 650;
+  padding: 2px 8px;
+  border-radius: 99px;
+}
+
+.price-kpi-tag.green { background: #dcfce7; color: #15803d; }
+.price-kpi-tag.gold { background: #fef3c7; color: #b45309; }
+.price-kpi-tag.purple { background: #ede9fe; color: #6d28d9; }
+
+.price-kpi-val-row {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+
+.price-kpi-val {
+  font-size: 30px;
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1;
+}
+
+.price-kpi-unit {
+  font-size: 12.5px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.price-kpi-sub {
+  font-size: 11.5px;
+  color: #64748b;
+}
+
+.market-table-card {
+  background: #ffffff;
+  border: 1px solid #e5eae6;
+  border-radius: 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+  overflow: hidden;
+}
+
+.market-table-header-bar {
+  padding: 20px 24px;
+  border-bottom: 1px solid #e5eae6;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.market-table-title {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: #0f172a;
+  margin: 0 0 2px;
+}
+
+.market-table-sub {
+  font-size: 12px;
+  color: #64748b;
+}
+
+.market-badge-official {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: #ecfdf5;
+  border: 1px solid #a7f3d0;
+  color: #047857;
+  font-size: 11.5px;
+  font-weight: 650;
+  padding: 4px 12px;
+  border-radius: 99px;
+}
+
+.market-data-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.market-data-table th {
+  background: #f8fafc;
+  color: #475569;
+  font-size: 11.5px;
+  font-weight: 650;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 12px 18px;
+  border-bottom: 1px solid #e2e8f0;
+  text-align: left;
+}
+
+.market-data-table th.numeric,
+.market-data-table td.numeric {
+  text-align: right;
+}
+
+.market-data-table td {
+  padding: 14px 18px;
+  border-bottom: 1px solid #f1f5f9;
+  font-size: 13px;
+  color: #1e293b;
+}
+
+.market-data-table tr:hover td {
+  background: #fbfdfc;
+}
+
+.market-item-name {
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.market-cat-pill {
+  background: #f1f5f9;
+  color: #475569;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+.market-avg-highlight {
+  color: #059669;
+  font-weight: 700;
+}
+
+.market-location-text {
+  font-size: 12px;
+  color: #64748b;
+}
+
+.market-date-cell {
+  font-size: 11.5px;
+  color: #64748b;
+}
+
+.market-table-foot {
+  padding: 14px 24px;
+  background: #f8fafc;
+  border-top: 1px solid #e2e8f0;
+  font-size: 11.5px;
+  color: #64748b;
+  line-height: 1.5;
+}
+
+/* 6. Legal & Compliance Pages Layout */
+.legal-editorial-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 900px;
+  margin-inline: auto;
+}
+
+.legal-header-card {
+  background: #ffffff;
+  border: 1px solid #e5eae6;
+  border-radius: 16px;
+  padding: 24px 28px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+}
+
+.legal-header-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #fef3c7;
+  color: #92400e;
+  border: 1px solid #fde68a;
+  font-size: 11.5px;
+  font-weight: 650;
+  padding: 4px 12px;
+  border-radius: 99px;
+  margin-bottom: 10px;
+}
+
+.legal-header-badge.green-badge {
+  background: #ecfdf5;
+  color: #047857;
+  border-color: #a7f3d0;
+}
+
+.legal-doc-title {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: #0f172a;
+  margin: 0 0 6px;
+}
+
+.legal-doc-meta {
+  font-size: 12.5px;
+  color: #64748b;
+  margin: 0;
+}
+
+.legal-sections-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.legal-section-card {
+  background: #ffffff;
+  border: 1px solid #e5eae6;
+  border-radius: 16px;
+  padding: 24px 28px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+}
+
+.legal-sec-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.legal-sec-num {
+  font-size: 12px;
+  font-weight: 800;
+  color: #092319;
+  background: #ecfdf5;
+  border: 1px solid #a7f3d0;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.legal-sec-icon-wrap {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: #ecfdf5;
+  color: #059669;
+  border: 1px solid #a7f3d0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.legal-sec-title {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 17px;
+  font-weight: 600;
+  color: #0f172a;
+  margin: 0;
+}
+
+.legal-sec-body {
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: #475569;
+  margin: 0;
+}
+
+.legal-footer-notice {
+  background: #ffffff;
+  border: 1px solid #e5eae6;
+  border-left: 4px solid #059669;
+  border-radius: 14px;
+  padding: 20px 24px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+}
+
+.legal-footer-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #ecfdf5;
+  color: #059669;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.legal-footer-text strong {
+  font-size: 14px;
+  color: #0f172a;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.legal-footer-text p {
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: #475569;
+  margin: 0;
+}
+
+/* General surfaces fallback */
+.surface {
+  background: #ffffff;
+  border: 1px solid #e5eae6;
+  border-radius: 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+}
+
+.surface-pad {
+  padding: 28px 32px;
+}
+
+.content-section {
+  padding: 28px 0 50px;
+}
+
+/* Responsive adjustments across tablets and mobile */
+@media (max-width: 1024px) {
+  .about-pillars-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .provinces-card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .weather-station-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .price-kpi-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .about-heritage-card {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 640px) {
+  .minimal-page-hero-content {
+    padding: 28px 20px;
+  }
+  .about-pillars-grid {
+    grid-template-columns: 1fr;
+  }
+  .provinces-card-grid {
+    grid-template-columns: 1fr;
+  }
+  .weather-station-grid {
+    grid-template-columns: 1fr;
+  }
+  .price-kpi-grid {
+    grid-template-columns: 1fr;
+  }
+  .about-contact-bar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .weather-advisory-banner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+
 
 
 

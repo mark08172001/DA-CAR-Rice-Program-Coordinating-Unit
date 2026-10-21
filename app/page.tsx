@@ -200,7 +200,6 @@ export default async function HomePage() {
                 </div>
                 <div className="minimal-quick-body">
                   <strong>Fund balances</strong>
-                  <span>₱129.8M FY 2026 regional allocation</span>
                 </div>
                 <ChevronRight size={16} className="minimal-quick-chevron" />
               </Link>
@@ -211,7 +210,6 @@ export default async function HomePage() {
                 </div>
                 <div className="minimal-quick-body">
                   <strong>Farmer directory</strong>
-                  <span>Accredited cooperatives & associations</span>
                 </div>
                 <ChevronRight size={16} className="minimal-quick-chevron" />
               </Link>

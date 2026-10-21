@@ -528,26 +528,7 @@ export default function PhysicalAccomplishmentClient({ initialData }: Props) {
 
   return (
     <div className="physical-accomplishment-page" style={{ paddingBottom: 60 }}>
-      {/* 1. INSTITUTIONAL PAGE HERO */}
-      <section className="page-hero" style={{ padding: '38px 0 32px' }}>
-        <div className="page-container">
-          <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', flexWrap: 'wrap', gap: 20 }}>
-            <div>
-              <div className="eyebrow" style={{ color: '#e5c45c', marginBottom: 8 }}>
-                Republic of the Philippines · Department of Agriculture · CAR
-              </div>
-              <h1 style={{ margin: '0 0 8px', fontSize: '32px', fontFamily: 'Georgia, serif', fontWeight: 400, color: '#ffffff' }}>
-                Physical Targets & Accomplishments
-              </h1>
-              <p style={{ margin: 0, color: '#d2dfd6', fontSize: '13.5px', maxWidth: 680, lineHeight: 1.6 }}>
-                FY 2026 Wet Season (WS) and Dry Season (DS) Operations Register — tracking regional seed allocations, inorganic fertilizers, provincial area coverage, and commodity procurement across the Cordilleras.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <div className="page-container" style={{ marginTop: 28 }}>
+      <div className="page-container" style={{ marginTop: 24 }}>
         {/* 2. EXECUTIVE METRIC CARDS (REAL NUMBERS FROM GOOGLE SHEET) */}
         <div className="summary-grid" style={{ marginBottom: 26 }}>
           <article className="summary-card" style={{ background: '#ffffff', border: '1px solid #e2e8f0', borderRadius: 8, padding: '16px 20px' }}>

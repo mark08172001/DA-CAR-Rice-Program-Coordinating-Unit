@@ -659,26 +659,7 @@ export default function DSDistributionClient({ initialData }: Props) {
 
   return (
     <div className="ds-distribution-container" style={{ paddingBottom: 60 }}>
-      {/* 1. INSTITUTIONAL HERO HEADER */}
-      <section className="page-hero" style={{ padding: '36px 0 30px' }}>
-        <div className="page-container">
-          <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', flexWrap: 'wrap', gap: 20 }}>
-            <div>
-              <div className="eyebrow" style={{ color: '#e5c45c', marginBottom: 8 }}>
-                Republic of the Philippines · Department of Agriculture · CAR
-              </div>
-              <h1 style={{ margin: '0 0 8px', fontSize: '32px', fontFamily: 'Georgia, serif', fontWeight: 400, color: '#ffffff' }}>
-                DS 2026-2027 Distribution Status
-              </h1>
-              <p style={{ margin: 0, color: '#d2dfd6', fontSize: '13.5px', maxWidth: 740, lineHeight: 1.6 }}>
-                Official Dry Season (DS) 2026-2027 live monitoring of regional seed consignments, provincial allocations, drop-off deliveries, and farmer drop-offs across the Cordillera Administrative Region.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <div className="page-container" style={{ marginTop: 28 }}>
+      <div className="page-container" style={{ marginTop: 24 }}>
         {/* 2. EXECUTIVE METRIC KPI CARDS (FROM GOOGLE SHEET) */}
         <div className="summary-grid" style={{ marginBottom: 26 }}>
           <article className="summary-card" style={{ background: '#ffffff', border: '1px solid #e2e8f0', borderRadius: 8, padding: '16px 20px' }}>
