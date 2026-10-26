@@ -348,15 +348,15 @@ export default function DisbursementClient({ initialContinuingData }: Disburseme
               </div>
             </div>
 
-            {/* Data Table */}
-            <div style={{ overflowX: 'auto', width: '100%' }}>
+            {/* Data Table with Scroll & Sticky Header/Footer */}
+            <div style={{ maxHeight: '650px', overflowY: 'auto', overflowX: 'auto', width: '100%', position: 'relative' }}>
               <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: 13 }}>
-                <thead>
-                  <tr style={{ background: '#f1f5f9', borderBottom: '2px solid #cbd5e1' }}>
-                    <th style={{ padding: '10px 14px', width: '48px', color: '#475569', fontWeight: 700 }}>#</th>
+                <thead style={{ position: 'sticky', top: 0, zIndex: 10 }}>
+                  <tr style={{ background: '#f1f5f9', borderBottom: '2px solid #cbd5e1', boxShadow: '0 1px 2px rgba(0,0,0,0.05)' }}>
+                    <th style={{ padding: '10px 14px', width: '48px', color: '#475569', fontWeight: 700, background: '#f1f5f9' }}>#</th>
                     <th
                       onClick={() => toggleSort('payee')}
-                      style={{ padding: '10px 14px', color: '#1e293b', fontWeight: 700, cursor: 'pointer', userSelect: 'none' }}
+                      style={{ padding: '10px 14px', color: '#1e293b', fontWeight: 700, cursor: 'pointer', userSelect: 'none', background: '#f1f5f9' }}
                       title="Sort by Payee"
                     >
                       <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
@@ -366,7 +366,7 @@ export default function DisbursementClient({ initialContinuingData }: Disburseme
                     </th>
                     <th
                       onClick={() => toggleSort('totalObligation')}
-                      style={{ padding: '10px 14px', textAlign: 'right', color: '#1e293b', fontWeight: 700, cursor: 'pointer', userSelect: 'none' }}
+                      style={{ padding: '10px 14px', textAlign: 'right', color: '#1e293b', fontWeight: 700, cursor: 'pointer', userSelect: 'none', background: '#f1f5f9' }}
                       title="Sort by Total Obligation"
                     >
                       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: 6 }}>
@@ -376,7 +376,7 @@ export default function DisbursementClient({ initialContinuingData }: Disburseme
                     </th>
                     <th
                       onClick={() => toggleSort('grossAmount')}
-                      style={{ padding: '10px 14px', textAlign: 'right', color: '#1e293b', fontWeight: 700, cursor: 'pointer', userSelect: 'none' }}
+                      style={{ padding: '10px 14px', textAlign: 'right', color: '#1e293b', fontWeight: 700, cursor: 'pointer', userSelect: 'none', background: '#f1f5f9' }}
                       title="Sort by Gross Amount"
                     >
                       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: 6 }}>
@@ -386,7 +386,7 @@ export default function DisbursementClient({ initialContinuingData }: Disburseme
                     </th>
                     <th
                       onClick={() => toggleSort('unpaidObligation')}
-                      style={{ padding: '10px 14px', textAlign: 'right', color: '#1e293b', fontWeight: 700, cursor: 'pointer', userSelect: 'none' }}
+                      style={{ padding: '10px 14px', textAlign: 'right', color: '#1e293b', fontWeight: 700, cursor: 'pointer', userSelect: 'none', background: '#f1f5f9' }}
                       title="Sort by Unpaid Obligation"
                     >
                       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: 6 }}>
@@ -438,18 +438,18 @@ export default function DisbursementClient({ initialContinuingData }: Disburseme
                 </tbody>
                 {/* Table Footer with Summary Column Totals */}
                 {filteredContinuingRecords.length > 0 && (
-                  <tfoot>
-                    <tr style={{ background: '#f8fafc', borderTop: '2px solid #cbd5e1', fontWeight: 700 }}>
-                      <td colSpan={2} style={{ padding: '12px 14px', color: '#0f172a' }}>
+                  <tfoot style={{ position: 'sticky', bottom: 0, zIndex: 9 }}>
+                    <tr style={{ background: '#f8fafc', borderTop: '2px solid #cbd5e1', boxShadow: '0 -1px 3px rgba(0,0,0,0.06)', fontWeight: 700 }}>
+                      <td colSpan={2} style={{ padding: '12px 14px', color: '#0f172a', background: '#f8fafc' }}>
                         SUMMARY TOTAL ({filteredContinuingRecords.length} items)
                       </td>
-                      <td style={{ padding: '12px 14px', textAlign: 'right', color: '#0f172a', fontVariantNumeric: 'tabular-nums' }}>
+                      <td style={{ padding: '12px 14px', textAlign: 'right', color: '#0f172a', fontVariantNumeric: 'tabular-nums', background: '#f8fafc' }}>
                         {formatCurrency(filteredContinuingRecords.reduce((sum, r) => sum + r.totalObligation, 0))}
                       </td>
-                      <td style={{ padding: '12px 14px', textAlign: 'right', color: '#15803d', fontVariantNumeric: 'tabular-nums' }}>
+                      <td style={{ padding: '12px 14px', textAlign: 'right', color: '#15803d', fontVariantNumeric: 'tabular-nums', background: '#f8fafc' }}>
                         {formatCurrency(filteredContinuingRecords.reduce((sum, r) => sum + r.grossAmount, 0))}
                       </td>
-                      <td style={{ padding: '12px 14px', textAlign: 'right', color: '#b45309', fontVariantNumeric: 'tabular-nums' }}>
+                      <td style={{ padding: '12px 14px', textAlign: 'right', color: '#b45309', fontVariantNumeric: 'tabular-nums', background: '#f8fafc' }}>
                         {formatCurrency(filteredContinuingRecords.reduce((sum, r) => sum + r.unpaidObligation, 0))}
                       </td>
                     </tr>
