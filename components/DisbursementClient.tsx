@@ -156,7 +156,7 @@ export default function DisbursementClient({
                   letterSpacing: '0.04em',
                 }}
               >
-                Module 03
+                Module 02
               </span>
             </div>
             <p style={{ margin: '2px 0 0', fontSize: 12, color: '#64748b' }}>
@@ -167,36 +167,36 @@ export default function DisbursementClient({
 
         {/* Dropdown Selector */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 10, background: '#f8fafc', padding: '6px 12px', borderRadius: 8, border: '1px solid #e2e8f0' }}>
-          <label htmlFor="disbursement-category" style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 13, fontWeight: 600, color: '#334155', cursor: 'pointer' }}>
-            <Filter size={14} style={{ color: '#166534' }} />
-            <span>Fund Category:</span>
-          </label>
-          <select
-            id="disbursement-category"
-            value={selectedView}
-            onChange={(e) => {
-              setSelectedView(e.target.value as DisbursementView);
-              setSearchQuery('');
-            }}
-            style={{
-              fontSize: 13,
-              fontWeight: 600,
-              padding: '6px 12px',
-              borderRadius: 6,
-              border: '1px solid #cbd5e1',
-              background: '#ffffff',
-              color: '#0f172a',
-              cursor: 'pointer',
-              outline: 'none',
-              minWidth: 190,
-            }}
-          >
-            <option value="current">Current</option>
-            <option value="continuing">Continuing</option>
-            <option value="unpaid-prior-years">Unpaid Prior Years</option>
-          </select>
+            <label htmlFor="disbursement-category" style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 13, fontWeight: 600, color: '#334155', cursor: 'pointer' }}>
+              <Filter size={14} style={{ color: '#166534' }} />
+              <span>Fund Category:</span>
+            </label>
+            <select
+              id="disbursement-category"
+              value={selectedView}
+              onChange={(e) => {
+                setSelectedView(e.target.value as DisbursementView);
+                setSearchQuery('');
+              }}
+              style={{
+                fontSize: 13,
+                fontWeight: 600,
+                padding: '6px 12px',
+                borderRadius: 6,
+                border: '1px solid #cbd5e1',
+                background: '#ffffff',
+                color: '#0f172a',
+                cursor: 'pointer',
+                outline: 'none',
+                minWidth: 190,
+              }}
+            >
+              <option value="current">Current</option>
+              <option value="continuing">Continuing</option>
+              <option value="unpaid-prior-years">Unpaid Prior Years</option>
+            </select>
+          </div>
         </div>
-      </div>
 
       {/* Main Ledger View (Captures Payee, TOTAL OBLIGATION, PAID, UNPAID OBLIGATION) */}
       <div id={`disbursement-${selectedView}-view`}>

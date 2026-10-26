@@ -59,7 +59,7 @@ export default function AboutPage() {
   return (
     <div className="about-portal-wrapper">
       <PageHero
-        eyebrow="Module 01: Public Information Portal"
+        eyebrow="Public Information Portal"
         heading="About the Rice Coordinating Unit"
         description="Coordinating regional rice productivity, food security initiatives, farmer extension, and financial governance across the Cordillera Administrative Region."
         parent={{ label: 'Home', href: '/' }}

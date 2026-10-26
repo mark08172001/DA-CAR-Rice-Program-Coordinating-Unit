@@ -33,7 +33,7 @@ export default function PrivacyPolicyPage() {
   return (
     <div className="privacy-portal-page">
       <PageHero
-        eyebrow="Module 01: Public Information Portal"
+        eyebrow="Public Information Portal"
         heading="Privacy Policy & Data Protection"
         description="Official privacy notice, data protection governance, and RSBSA beneficiary confidentiality protocols of the DA-CAR Rice Program Coordinating Unit."
         parent={{ label: 'Home', href: '/' }}

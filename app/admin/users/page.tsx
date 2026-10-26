@@ -71,7 +71,7 @@ export default async function AdminUsersPage() {
   return (
     <>
       <PageHero
-        eyebrow="Module 05: Super Admin Suite"
+        eyebrow="Module 04: Super Admin Suite"
         heading="User Accounts & Staff Access Control"
         description="Monitor registered accounts, inspect user login history, and exercise administrative powers to limit, grant, or suspend staff access to specific modules."
         parent={{ label: 'Admin Portal', href: '/admin' }}

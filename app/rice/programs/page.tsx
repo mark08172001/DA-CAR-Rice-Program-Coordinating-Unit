@@ -6,7 +6,7 @@ import { getAuthoritativePrograms } from '@/utils/programsStore';
 import ModuleAccessGuard from '@/components/ModuleAccessGuard';
 
 export const metadata = {
-  title: 'Rice Programs Register | Module 02 | DA-CAR | Rice Program Coordinating Unit',
+  title: 'Rice Programs Register | Module 01 | DA-CAR | Rice Program Coordinating Unit',
   description: 'Official banner program interventions under PSS, ESETS, RD, and INS managed by the Rice Coordinating Unit.',
 };
 
@@ -44,8 +44,8 @@ export default async function RiceProgramsPage() {
         userRole={userRole}
         moduleInfo={{
           id: 'mod-rice',
-          number: 'Module 02',
-          title: 'Rice Program Operations',
+          number: 'Module 01',
+          title: 'Physical & Programs',
           desc: 'Official rice coordinating unit operations, programs, and monitoring reports.',
         }}
       />

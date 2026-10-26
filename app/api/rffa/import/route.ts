@@ -41,14 +41,14 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // 2. Check Module 04 (Beneficiaries) Access
+    // 2. Check Module 03 (Beneficiaries) Access
     const allowedModules = isSuperAdmin
       ? ['mod-general', 'mod-rice', 'mod-finance', 'mod-beneficiary', 'mod-admin']
       : (account?.allowed_modules || ['mod-general']);
 
     if (!allowedModules.includes('mod-beneficiary')) {
       return NextResponse.json(
-        { error: 'Access Denied: Your account does not have access to Module 04 (Beneficiaries & Field Services).' },
+        { error: 'Access Denied: Your account does not have access to Module 03 (Beneficiaries & Field Services).' },
         { status: 403 }
       );
     }

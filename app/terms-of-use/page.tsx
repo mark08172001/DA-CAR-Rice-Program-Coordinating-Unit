@@ -33,7 +33,7 @@ export default function TermsOfUsePage() {
   return (
     <div className="terms-portal-page">
       <PageHero
-        eyebrow="Module 01: Public Information Portal"
+        eyebrow="Public Information Portal"
         heading="Terms of Use & Portal Guidelines"
         description="Official terms of access, acceptable use policy, and public transparency governance for the DA-CAR Rice Program Coordinating Unit portal."
         parent={{ label: 'Home', href: '/' }}

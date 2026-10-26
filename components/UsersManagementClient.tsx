@@ -37,10 +37,10 @@ interface UsersManagementClientProps {
 }
 
 const MODULE_OPTIONS = [
-  { id: 'mod-general', label: 'Module 01: General Portal & Calendar', public: true },
-  { id: 'mod-rice', label: 'Module 02: Rice Unit Operations & Programs', public: true },
-  { id: 'mod-finance', label: 'Module 03: Financial Balances & Obligations', public: true },
-  { id: 'mod-beneficiary', label: 'Module 04: Beneficiaries & Commodity Claims', public: false },
+  { id: 'mod-general', label: 'Public Portal & Calendar', public: true },
+  { id: 'mod-rice', label: 'Module 01: Physical & Programs', public: true },
+  { id: 'mod-finance', label: 'Module 02: Financial Management', public: true },
+  { id: 'mod-beneficiary', label: 'Module 03: Beneficiaries', public: false },
 ];
 
 const getRoleDefaultPermissions = (role: string) => {
@@ -705,7 +705,7 @@ export default function UsersManagementClient({
                 <div className="form-group" style={{ marginTop: 16 }}>
                   <label>Restricted Module Access Control</label>
                   <p style={{ margin: '2px 0 10px', fontSize: 12, color: 'var(--muted)' }}>
-                    Modules 01, 02, and 03 are open for public viewing. Use this checkbox to grant or revoke access to restricted Module 04:
+                    Modules 01 and 02 are open for public viewing. Use this checkbox to grant or revoke access to restricted Module 03 (Beneficiaries):
                   </p>
                   <div className="module-toggles-list">
                     {MODULE_OPTIONS.filter((m) => !m.public).map((m) => {
@@ -765,7 +765,7 @@ export default function UsersManagementClient({
                       <div style={{ flex: 1 }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
                           <Calendar size={14} style={{ color: editPermissions.can_add_activities ? '#166534' : '#dc2626' }} />
-                          <strong>Add & Modify Calendar of Activities (Module 01)</strong>
+                          <strong>Add & Modify Calendar of Activities (Public Portal)</strong>
                         </div>
                         <span style={{ fontSize: 11, color: editPermissions.can_add_activities ? 'var(--green-700)' : '#dc2626' }}>
                           {editPermissions.can_add_activities
@@ -792,7 +792,7 @@ export default function UsersManagementClient({
                       <div style={{ flex: 1 }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
                           <Coins size={14} style={{ color: editPermissions.can_edit_budget ? '#166534' : '#dc2626' }} />
-                          <strong>Edit Financial Obligations & Ledger (Module 03)</strong>
+                          <strong>Edit Financial Obligations & Ledger (Module 02)</strong>
                         </div>
                         <span style={{ fontSize: 11, color: editPermissions.can_edit_budget ? 'var(--green-700)' : '#dc2626' }}>
                           {editPermissions.can_edit_budget
@@ -819,7 +819,7 @@ export default function UsersManagementClient({
                       <div style={{ flex: 1 }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
                           <Users size={14} style={{ color: editPermissions.can_import_beneficiaries ? '#166534' : '#dc2626' }} />
-                          <strong>Import & Alter RSBSA Beneficiaries Registry (Module 04)</strong>
+                          <strong>Import & Alter RSBSA Beneficiaries Registry (Module 03)</strong>
                         </div>
                         <span style={{ fontSize: 11, color: editPermissions.can_import_beneficiaries ? 'var(--green-700)' : '#dc2626' }}>
                           {editPermissions.can_import_beneficiaries
@@ -846,7 +846,7 @@ export default function UsersManagementClient({
                       <div style={{ flex: 1 }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
                           <Package size={14} style={{ color: editPermissions.can_manage_claims ? '#166534' : '#dc2626' }} />
-                          <strong>Verify & Release Commodity Voucher Claims (Module 04)</strong>
+                          <strong>Verify & Release Commodity Voucher Claims (Module 03)</strong>
                         </div>
                         <span style={{ fontSize: 11, color: editPermissions.can_manage_claims ? 'var(--green-700)' : '#dc2626' }}>
                           {editPermissions.can_manage_claims
@@ -873,7 +873,7 @@ export default function UsersManagementClient({
                       <div style={{ flex: 1 }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
                           <Trash2 size={14} style={{ color: editPermissions.can_delete_programs ? '#166534' : '#dc2626' }} />
-                          <strong>Delete Rice Programs & Interventions (Module 02 - /rice/programs)</strong>
+                          <strong>Delete Rice Programs & Interventions (Module 01 - /rice/programs)</strong>
                         </div>
                         <span style={{ fontSize: 11, color: editPermissions.can_delete_programs ? 'var(--green-700)' : '#dc2626' }}>
                           {editPermissions.can_delete_programs
@@ -900,7 +900,7 @@ export default function UsersManagementClient({
                       <div style={{ flex: 1 }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
                           <Pencil size={14} style={{ color: editPermissions.can_edit_programs ? '#166534' : '#dc2626' }} />
-                          <strong>Edit Rice Programs & Interventions (Module 02 - /rice/programs)</strong>
+                          <strong>Edit Rice Programs & Interventions (Module 01 - /rice/programs)</strong>
                         </div>
                         <span style={{ fontSize: 11, color: editPermissions.can_edit_programs ? 'var(--green-700)' : '#dc2626' }}>
                           {editPermissions.can_edit_programs

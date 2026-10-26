@@ -221,7 +221,7 @@ export default function PortalSidebar({
   const modules: NavModule[] = [
     {
       id: 'mod-general',
-      moduleNumber: 'Module 01',
+      moduleNumber: 'Public Portal',
       title: 'Home',
       description: 'Core agency directory & calendar',
       items: [
@@ -232,7 +232,7 @@ export default function PortalSidebar({
     },
     {
       id: 'mod-rice',
-      moduleNumber: 'Module 02',
+      moduleNumber: 'Module 01',
       title: 'Physical & Programs',
       description: 'Target KPIs & operational programs',
       items: [
@@ -254,7 +254,7 @@ export default function PortalSidebar({
     },
     {
       id: 'mod-finance',
-      moduleNumber: 'Module 03',
+      moduleNumber: 'Module 02',
       title: 'Financial Management',
       description: 'Obligation budget & financial reports',
       items: [
@@ -265,8 +265,8 @@ export default function PortalSidebar({
     },
     {
       id: 'mod-beneficiary',
-      moduleNumber: 'Module 04',
-      title: 'Beneficiaries & Field',
+      moduleNumber: 'Module 03',
+      title: 'Beneficiaries',
       description: 'Farmers & voucher distributions',
       items: [
         { label: 'Beneficiary Directory', href: '/rice/farmers', icon: Users },
@@ -275,7 +275,7 @@ export default function PortalSidebar({
     },
     {
       id: 'mod-admin',
-      moduleNumber: 'Module 05',
+      moduleNumber: 'Module 04',
       title: 'Super Admin',
       description: 'Access limits & staff profiles',
       items: [
@@ -570,7 +570,7 @@ export default function PortalSidebar({
           <div className="sidebar-restricted-box">
             <div className="sidebar-restricted-badge">
               <Lock size={12} />
-              <span>Module 4 Restricted</span>
+              <span>Module 3 Restricted</span>
             </div>
             <p className="sidebar-restricted-desc">
               RSBSA Beneficiary Registry and Voucher Claims are restricted to authorized DA personnel.
@@ -584,7 +584,7 @@ export default function PortalSidebar({
 
         {/* Minimized icon for outsiders indicating locked modules */}
         {!user && isCollapsed && (
-          <div className="minimized-lock-item" title="Module 4 Restricted to Authorized DA Personnel">
+          <div className="minimized-lock-item" title="Module 3 Restricted to Authorized DA Personnel">
             <Link href="/login" onClick={onClose} className="minimized-lock-link" title="Sign In to unlock module">
               <Lock size={16} />
             </Link>

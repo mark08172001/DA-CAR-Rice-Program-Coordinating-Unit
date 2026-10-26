@@ -110,7 +110,7 @@ export default function WeatherPage() {
   return (
     <div className="weather-portal-page">
       <PageHero
-        eyebrow="Module 01: Public Information Portal"
+        eyebrow="Public Information Portal"
         heading="Agricultural Weather & Field Bulletins"
         description="Cordillera microclimate monitoring, provincial station telemetry, humidity levels, and seasonal agricultural farm advisories."
         parent={{ label: 'Home', href: '/' }}

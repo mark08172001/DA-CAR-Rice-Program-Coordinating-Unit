@@ -99,7 +99,7 @@ export default async function AdminProfilesPage() {
   return (
     <>
       <PageHero
-        eyebrow="Module 05: Super Admin Suite"
+        eyebrow="Module 04: Super Admin Suite"
         heading="User Profile Database & Registered Personnel"
         description="Direct administrative access to the PostgreSQL public.profiles table, registered accounts directory, clearance approval status, and database UUID records."
         parent={{ label: 'Admin Portal', href: '/admin' }}

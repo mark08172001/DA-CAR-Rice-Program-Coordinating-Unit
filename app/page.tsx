@@ -263,7 +263,7 @@ export default async function HomePage() {
             <div className="public-welcome-card">
               <div className="public-welcome-badge">
                 <ShieldCheck size={14} />
-                <span>Module 01: Public Information Portal</span>
+                <span>Public Information Portal</span>
               </div>
               <div className="public-welcome-grid">
                 <div className="public-welcome-content">
@@ -297,7 +297,7 @@ export default async function HomePage() {
                       <span>DA Personnel Gateway</span>
                     </div>
                     <p>
-                      Module 04 (RSBSA Beneficiaries Directory and Voucher Claims) requires authorized sign-in.
+                      Module 03 (RSBSA Beneficiaries Directory and Voucher Claims) requires authorized sign-in.
                     </p>
                     <Link href="/login" className="button button-primary gate-login-btn">
                       <LogIn size={14} />
@@ -384,7 +384,7 @@ export default async function HomePage() {
           style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 26, flexWrap: 'wrap' }}
         >
           <div>
-            <span className="section-kicker">Public Information · Module 01</span>
+            <span className="section-kicker">Public Information Portal</span>
             <h2 className="content-heading" style={{ margin: '8px 0 0', fontSize: 26 }}>
               Agriculture information for the Cordillera
             </h2>

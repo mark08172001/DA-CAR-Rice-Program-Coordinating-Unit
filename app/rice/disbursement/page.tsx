@@ -4,7 +4,7 @@ import { getAuthoritativeUserAccess } from '@/utils/adminStore';
 import ModuleAccessGuard from '@/components/ModuleAccessGuard';
 
 export const metadata = {
-  title: 'Disbursement | Module 03 | DA-CAR | Rice Program Coordinating Unit',
+  title: 'Disbursement | Module 02 | DA-CAR | Rice Program Coordinating Unit',
   description: 'Disbursement tracking and records for the DA-CAR Regional Rice Coordinating Unit.',
 };
 
@@ -47,7 +47,7 @@ export default async function RiceDisbursementPage() {
         userRole={userRole}
         moduleInfo={{
           id: 'mod-finance',
-          number: 'Module 03',
+          number: 'Module 02',
           title: 'Financial Management',
           desc: 'Official financial category reports, obligation budget, and fund monitoring.',
         }}

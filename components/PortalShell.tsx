@@ -15,7 +15,7 @@ function getModuleForPath(pathname: string): { id: string; number: string; title
   if (pathname.startsWith('/admin')) {
     return {
       id: 'mod-admin',
-      number: 'Module 05',
+      number: 'Module 04',
       title: 'Super Admin Suite',
       desc: 'Administrative security controls, staff profiles, and account management.',
     };
@@ -27,7 +27,7 @@ function getModuleForPath(pathname: string): { id: string; number: string; title
   ) {
     return {
       id: 'mod-finance',
-      number: 'Module 03',
+      number: 'Module 02',
       title: 'Financial Management',
       desc: 'Government obligation budget, financial category reports, and fund balances.',
     };
@@ -39,7 +39,7 @@ function getModuleForPath(pathname: string): { id: string; number: string; title
   ) {
     return {
       id: 'mod-beneficiary',
-      number: 'Module 04',
+      number: 'Module 03',
       title: 'Beneficiaries & Field Operations',
       desc: 'RSBSA farmer registry and commodity voucher distributions.',
     };
@@ -51,12 +51,12 @@ function getModuleForPath(pathname: string): { id: string; number: string; title
   ) {
     return {
       id: 'mod-rice',
-      number: 'Module 02',
-      title: 'Rice Program Operations',
-      desc: 'Official rice coordinating unit operations and active program registers.',
+      number: 'Module 01',
+      title: 'Physical & Programs',
+      desc: 'Official physical targets, banner interventions, and operational program registers.',
     };
   }
-  return null; // Public / General pages: Module 01 (Home, About, etc.)
+  return null; // Public / General pages: Public Portal (Home, About, etc.)
 }
 
 export default function PortalShell({ children }: PortalShellProps) {
@@ -195,7 +195,7 @@ export default function PortalShell({ children }: PortalShellProps) {
         />
       );
     }
-    // 2. Module 05 is Admin/Super Admin only
+    // 2. Module 04 is Admin/Super Admin only
     else if (targetModule.id === 'mod-admin' && !isSuperAdminOrAdmin) {
       accessBlockedNode = (
         <ModuleAccessGuard

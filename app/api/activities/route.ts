@@ -112,7 +112,7 @@ export async function POST(request: NextRequest) {
 
     if (!caller.canAddActivities) {
       return NextResponse.json(
-        { error: 'Access Denied: The Super Administrator has revoked your permission to add or modify activities in the Regional Calendar (Module 01).' },
+        { error: 'Access Denied: The Super Administrator has revoked your permission to add or modify activities in the Regional Calendar (Public Portal).' },
         { status: 403 }
       );
     }
@@ -187,7 +187,7 @@ export async function PUT(request: NextRequest) {
 
     if (!caller.canAddActivities) {
       return NextResponse.json(
-        { error: 'Access Denied: The Super Administrator has revoked your permission to add or modify activities in the Regional Calendar (Module 01).' },
+        { error: 'Access Denied: The Super Administrator has revoked your permission to add or modify activities in the Regional Calendar (Public Portal).' },
         { status: 403 }
       );
     }
@@ -239,7 +239,7 @@ export async function DELETE(request: NextRequest) {
 
     if (!caller.canAddActivities) {
       return NextResponse.json(
-        { error: 'Access Denied: The Super Administrator has revoked your permission to delete activities from the Regional Calendar (Module 01).' },
+        { error: 'Access Denied: The Super Administrator has revoked your permission to delete activities from the Regional Calendar (Public Portal).' },
         { status: 403 }
       );
     }

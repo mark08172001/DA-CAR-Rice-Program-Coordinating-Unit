@@ -18,11 +18,11 @@ interface ModuleAccessGuardProps {
 }
 
 const MODULE_LABELS: Record<string, string> = {
-  'mod-general': 'Module 01: Portal & Executive',
-  'mod-rice': 'Module 02: Rice Unit Operations',
-  'mod-finance': 'Module 03: Financial Management',
-  'mod-beneficiary': 'Module 04: Beneficiaries & Field',
-  'mod-admin': 'Module 05: Super Admin Suite',
+  'mod-general': 'Public Portal & Executive',
+  'mod-rice': 'Module 01: Physical & Programs',
+  'mod-finance': 'Module 02: Financial Management',
+  'mod-beneficiary': 'Module 03: Beneficiaries',
+  'mod-admin': 'Module 04: Super Admin Suite',
 };
 
 export default function ModuleAccessGuard({
@@ -170,7 +170,7 @@ export default function ModuleAccessGuard({
                 Super Admin Privilege Required
               </span>
               <h2 style={{ fontSize: 20, fontWeight: 700, color: '#9a3412', margin: '0 0 10px' }}>
-                Access Denied: Module 05 (Super Admin Suite)
+                Access Denied: Module 04 (Super Admin Suite)
               </h2>
               <p style={{ fontSize: 14, color: '#4b5563', lineHeight: 1.6, margin: '0 0 16px' }}>
                 Your account (<strong>{userEmail}</strong>) is currently designated with{' '}

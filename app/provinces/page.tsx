@@ -76,7 +76,7 @@ export default async function ProvincesPage() {
   return (
     <div className="provinces-portal-page">
       <PageHero
-        eyebrow="Module 01: Public Information Portal"
+        eyebrow="Public Information Portal"
         heading="Cordillera Administrative Region Provinces"
         description="Agricultural profiles, palay production centers, and regional coverage across the 6 provinces of the Cordillera Administrative Region."
         parent={{ label: 'Home', href: '/' }}

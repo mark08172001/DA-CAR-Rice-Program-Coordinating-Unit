@@ -113,7 +113,7 @@ export default async function MarketPricesPage() {
   return (
     <div className="market-prices-portal-page">
       <PageHero
-        eyebrow="Module 01: Public Information Portal"
+        eyebrow="Public Information Portal"
         heading="Cordillera Agricultural Market Prices"
         description="Official monitoring of farmgate palay rates, wholesale rice commodities, heirloom specialty grains, and seed prices across CAR trading centers."
         parent={{ label: 'Home', href: '/' }}
