@@ -1,40 +1,56 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { CreditCard, Filter, Search, RefreshCw, ArrowUpDown, ChevronDown, Layers, FileSpreadsheet } from 'lucide-react';
-import { ContinuingDisbursementItem } from '@/utils/fetchContinuingDisbursements';
+import { CreditCard, Filter, Search, ArrowUpDown, FileSpreadsheet } from 'lucide-react';
+import { DisbursementItem, FetchDisbursementResult } from '@/utils/fetchContinuingDisbursements';
 
 export type DisbursementView = 'current' | 'continuing' | 'unpaid-prior-years';
 
 interface DisbursementClientProps {
-  initialContinuingData?: {
-    records: ContinuingDisbursementItem[];
-    totals: {
-      totalObligation: number;
-      grossAmount: number;
-      unpaidObligation: number;
-      count: number;
-    };
-    fetchedAt: string;
-    error?: string;
-  };
+  initialContinuingData?: FetchDisbursementResult;
+  initialCurrentData?: FetchDisbursementResult;
 }
 
-export default function DisbursementClient({ initialContinuingData }: DisbursementClientProps) {
-  const [selectedView, setSelectedView] = useState<DisbursementView>('continuing');
+export default function DisbursementClient({
+  initialContinuingData,
+  initialCurrentData,
+}: DisbursementClientProps) {
+  const [selectedView, setSelectedView] = useState<DisbursementView>('current');
   const [searchQuery, setSearchQuery] = useState('');
   const [sortField, setSortField] = useState<'payee' | 'totalObligation' | 'grossAmount' | 'unpaidObligation'>('totalObligation');
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('desc');
 
-  const records = initialContinuingData?.records || [];
-  const totals = initialContinuingData?.totals || {
-    totalObligation: 0,
-    grossAmount: 0,
-    unpaidObligation: 0,
-    count: 0,
-  };
+  // Select active records & totals based on the dropdown
+  const activeData = useMemo(() => {
+    if (selectedView === 'current') {
+      return (
+        initialCurrentData || {
+          records: [],
+          totals: { totalObligation: 0, grossAmount: 0, unpaidObligation: 0, count: 0 },
+          fetchedAt: '',
+        }
+      );
+    }
+    if (selectedView === 'continuing') {
+      return (
+        initialContinuingData || {
+          records: [],
+          totals: { totalObligation: 0, grossAmount: 0, unpaidObligation: 0, count: 0 },
+          fetchedAt: '',
+        }
+      );
+    }
+    return {
+      records: [],
+      totals: { totalObligation: 0, grossAmount: 0, unpaidObligation: 0, count: 0 },
+      fetchedAt: '',
+    };
+  }, [selectedView, initialCurrentData, initialContinuingData]);
 
-  const filteredContinuingRecords = useMemo(() => {
+  const records = activeData.records;
+  const totals = activeData.totals;
+
+  const filteredRecords = useMemo(() => {
     let list = records;
     if (searchQuery.trim()) {
       const q = searchQuery.toLowerCase().trim();
@@ -71,6 +87,13 @@ export default function DisbursementClient({ initialContinuingData }: Disburseme
     if (val === 0) return '-';
     return `₱${val.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
   };
+
+  const viewTitle =
+    selectedView === 'current'
+      ? 'Current Disbursements Ledger'
+      : selectedView === 'continuing'
+      ? 'Continuing Disbursements Ledger'
+      : 'Unpaid Prior Years';
 
   return (
     <div className="disbursement-page-wrapper" style={{ width: '100%', maxWidth: 1480, margin: '0 auto', padding: '16px 20px 48px' }}>
@@ -140,7 +163,10 @@ export default function DisbursementClient({ initialContinuingData }: Disburseme
           <select
             id="disbursement-category"
             value={selectedView}
-            onChange={(e) => setSelectedView(e.target.value as DisbursementView)}
+            onChange={(e) => {
+              setSelectedView(e.target.value as DisbursementView);
+              setSearchQuery('');
+            }}
             style={{
               fontSize: 13,
               fontWeight: 600,
@@ -161,24 +187,6 @@ export default function DisbursementClient({ initialContinuingData }: Disburseme
         </div>
       </div>
 
-      {/* VIEW: CURRENT (Blank at first as requested) */}
-      {selectedView === 'current' && (
-        <div
-          id="disbursement-current-view"
-          style={{
-            minHeight: '400px',
-            background: '#ffffff',
-            border: '1px dashed #cbd5e1',
-            borderRadius: 12,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-        >
-          {/* Blank view for Current */}
-        </div>
-      )}
-
       {/* VIEW: UNPAID PRIOR YEARS (Blank at first as requested) */}
       {selectedView === 'unpaid-prior-years' && (
         <div
@@ -197,9 +205,9 @@ export default function DisbursementClient({ initialContinuingData }: Disburseme
         </div>
       )}
 
-      {/* VIEW: CONTINUING (Captures Payee, TOTAL OBLIGATION, GROSS AMOUNT, UNPAID OBLIGATION) */}
-      {selectedView === 'continuing' && (
-        <div id="disbursement-continuing-view">
+      {/* VIEW: CURRENT or CONTINUING (Captures Payee, TOTAL OBLIGATION, PAID, UNPAID OBLIGATION) */}
+      {(selectedView === 'current' || selectedView === 'continuing') && (
+        <div id={`disbursement-${selectedView}-view`}>
           {/* Summary KPI stat cards */}
           <div
             style={{
@@ -221,7 +229,7 @@ export default function DisbursementClient({ initialContinuingData }: Disburseme
               }}
             >
               <div style={{ fontSize: 12, fontWeight: 600, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
-                Total Obligation
+                Total Obligation ({selectedView === 'current' ? 'Current' : 'Continuing'})
               </div>
               <div style={{ fontSize: 22, fontWeight: 700, color: '#0f172a', marginTop: 4 }}>
                 {formatCurrency(totals.totalObligation)}
@@ -302,7 +310,7 @@ export default function DisbursementClient({ initialContinuingData }: Disburseme
               <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                 <FileSpreadsheet size={16} style={{ color: '#166534' }} />
                 <span style={{ fontSize: 14, fontWeight: 700, color: '#1e293b' }}>
-                  Continuing Disbursements Ledger
+                  {viewTitle}
                 </span>
                 <span
                   style={{
@@ -314,7 +322,7 @@ export default function DisbursementClient({ initialContinuingData }: Disburseme
                     borderRadius: 10,
                   }}
                 >
-                  {filteredContinuingRecords.length} of {records.length}
+                  {filteredRecords.length} of {records.length}
                 </span>
               </div>
 
@@ -397,16 +405,16 @@ export default function DisbursementClient({ initialContinuingData }: Disburseme
                   </tr>
                 </thead>
                 <tbody>
-                  {filteredContinuingRecords.length === 0 ? (
+                  {filteredRecords.length === 0 ? (
                     <tr>
                       <td colSpan={5} style={{ padding: '36px 20px', textAlign: 'center', color: '#64748b' }}>
                         {records.length === 0
-                          ? 'No continuing disbursement records could be fetched from Google Sheets.'
+                          ? `No ${selectedView} disbursement records could be fetched from Google Sheets.`
                           : 'No matching payee records found for your search query.'}
                       </td>
                     </tr>
                   ) : (
-                    filteredContinuingRecords.map((item, idx) => (
+                    filteredRecords.map((item, idx) => (
                       <tr
                         key={item.id}
                         style={{
@@ -437,20 +445,20 @@ export default function DisbursementClient({ initialContinuingData }: Disburseme
                   )}
                 </tbody>
                 {/* Table Footer with Summary Column Totals */}
-                {filteredContinuingRecords.length > 0 && (
+                {filteredRecords.length > 0 && (
                   <tfoot style={{ position: 'sticky', bottom: 0, zIndex: 9 }}>
                     <tr style={{ background: '#f8fafc', borderTop: '2px solid #cbd5e1', boxShadow: '0 -1px 3px rgba(0,0,0,0.06)', fontWeight: 700 }}>
                       <td colSpan={2} style={{ padding: '12px 14px', color: '#0f172a', background: '#f8fafc' }}>
-                        SUMMARY TOTAL ({filteredContinuingRecords.length} items)
+                        SUMMARY TOTAL ({filteredRecords.length} items)
                       </td>
                       <td style={{ padding: '12px 14px', textAlign: 'right', color: '#0f172a', fontVariantNumeric: 'tabular-nums', background: '#f8fafc' }}>
-                        {formatCurrency(filteredContinuingRecords.reduce((sum, r) => sum + r.totalObligation, 0))}
+                        {formatCurrency(filteredRecords.reduce((sum, r) => sum + r.totalObligation, 0))}
                       </td>
                       <td style={{ padding: '12px 14px', textAlign: 'right', color: '#15803d', fontVariantNumeric: 'tabular-nums', background: '#f8fafc' }}>
-                        {formatCurrency(filteredContinuingRecords.reduce((sum, r) => sum + r.grossAmount, 0))}
+                        {formatCurrency(filteredRecords.reduce((sum, r) => sum + r.grossAmount, 0))}
                       </td>
                       <td style={{ padding: '12px 14px', textAlign: 'right', color: '#b45309', fontVariantNumeric: 'tabular-nums', background: '#f8fafc' }}>
-                        {formatCurrency(filteredContinuingRecords.reduce((sum, r) => sum + r.unpaidObligation, 0))}
+                        {formatCurrency(filteredRecords.reduce((sum, r) => sum + r.unpaidObligation, 0))}
                       </td>
                     </tr>
                   </tfoot>

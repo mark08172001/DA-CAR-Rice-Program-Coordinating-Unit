@@ -12,7 +12,7 @@ export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
 import DisbursementClient from '@/components/DisbursementClient';
-import { fetchContinuingDisbursements } from '@/utils/fetchContinuingDisbursements';
+import { fetchContinuingDisbursements, fetchCurrentDisbursements } from '@/utils/fetchContinuingDisbursements';
 
 export default async function RiceDisbursementPage() {
   const cookieStore = await cookies();
@@ -51,7 +51,15 @@ export default async function RiceDisbursementPage() {
     );
   }
 
-  const continuingData = await fetchContinuingDisbursements();
+  const [continuingData, currentData] = await Promise.all([
+    fetchContinuingDisbursements(),
+    fetchCurrentDisbursements(),
+  ]);
 
-  return <DisbursementClient initialContinuingData={continuingData} />;
+  return (
+    <DisbursementClient
+      initialContinuingData={continuingData}
+      initialCurrentData={currentData}
+    />
+  );
 }

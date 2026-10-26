@@ -1,4 +1,4 @@
-export interface ContinuingDisbursementItem {
+export interface DisbursementItem {
   id: string;
   payee: string;
   totalObligation: number;
@@ -13,8 +13,8 @@ export interface ContinuingDisbursementItem {
   status?: string;
 }
 
-export interface FetchContinuingDisbursementResult {
-  records: ContinuingDisbursementItem[];
+export interface FetchDisbursementResult {
+  records: DisbursementItem[];
   totals: {
     totalObligation: number;
     grossAmount: number;
@@ -25,8 +25,13 @@ export interface FetchContinuingDisbursementResult {
   error?: string;
 }
 
+// Continuing Sheet: gid=380689862
 const CONTINUING_SHEET_URL =
   'https://docs.google.com/spreadsheets/d/1r1nx9Rhnixo_cUTq8XVU2ltuHbBiwMfKznkOOF9_j-Y/export?format=csv&gid=380689862';
+
+// Current Sheet: gid=2034607497
+const CURRENT_SHEET_URL =
+  'https://docs.google.com/spreadsheets/d/1r1nx9Rhnixo_cUTq8XVU2ltuHbBiwMfKznkOOF9_j-Y/export?format=csv&gid=2034607497';
 
 function parseNumber(val: string): number {
   if (!val) return 0;
@@ -71,9 +76,9 @@ function splitCSVRow(str: string): string[] {
   return res;
 }
 
-export async function fetchContinuingDisbursements(): Promise<FetchContinuingDisbursementResult> {
+async function parseSheetCsv(sheetUrl: string, prefix: string): Promise<FetchDisbursementResult> {
   try {
-    const res = await fetch(CONTINUING_SHEET_URL, {
+    const res = await fetch(sheetUrl, {
       next: { revalidate: 60 },
       headers: {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)',
@@ -88,8 +93,8 @@ export async function fetchContinuingDisbursements(): Promise<FetchContinuingDis
     const lines = csvText.split(/\r?\n/);
 
     let headerIndex = -1;
-    for (let i = 0; i < lines.length; i++) {
-      if (lines[i].includes('Payee') && lines[i].includes('TOTAL OBLIGATION')) {
+    for (let i = 0; i < Math.min(lines.length, 30); i++) {
+      if (lines[i].includes('Payee') && (lines[i].includes('TOTAL OBLIGATION') || lines[i].includes('Obligation'))) {
         headerIndex = i;
         break;
       }
@@ -108,7 +113,7 @@ export async function fetchContinuingDisbursements(): Promise<FetchContinuingDis
     const orsIdx = headers.findIndex((h) => h.toUpperCase().includes('ORS NUMBER'));
     const statusIdx = headers.findIndex((h) => h.toUpperCase().includes('ACCOUNTING STATUS') || h.toUpperCase() === 'STATUS');
 
-    const records: ContinuingDisbursementItem[] = [];
+    const records: DisbursementItem[] = [];
     let sumTotalOblig = 0;
     let sumGross = 0;
     let sumUnpaid = 0;
@@ -129,9 +134,9 @@ export async function fetchContinuingDisbursements(): Promise<FetchContinuingDis
         continue;
       }
 
-      const totalObligRaw = cols[totalObligIdx] || '';
-      const grossRaw = cols[grossIdx] || '';
-      const unpaidRaw = cols[unpaidIdx] || '';
+      const totalObligRaw = totalObligIdx !== -1 ? cols[totalObligIdx] : '';
+      const grossRaw = grossIdx !== -1 ? cols[grossIdx] : '';
+      const unpaidRaw = unpaidIdx !== -1 ? cols[unpaidIdx] : '';
       const particulars = particularsIdx !== -1 ? cols[particularsIdx] : '';
       const orsNumber = orsIdx !== -1 ? cols[orsIdx] : '';
       const status = statusIdx !== -1 ? cols[statusIdx] : '';
@@ -145,7 +150,7 @@ export async function fetchContinuingDisbursements(): Promise<FetchContinuingDis
       sumUnpaid += unpaidNum;
 
       records.push({
-        id: `disb-cont-${i}`,
+        id: `${prefix}-${i}`,
         payee,
         totalObligation: totalObligNum,
         totalObligationFormatted: formatMoney(totalObligNum),
@@ -170,7 +175,7 @@ export async function fetchContinuingDisbursements(): Promise<FetchContinuingDis
       fetchedAt: new Date().toISOString(),
     };
   } catch (err: any) {
-    console.error('fetchContinuingDisbursements error:', err);
+    console.error(`parseSheetCsv (${prefix}) error:`, err);
     return {
       records: [],
       totals: {
@@ -184,3 +189,15 @@ export async function fetchContinuingDisbursements(): Promise<FetchContinuingDis
     };
   }
 }
+
+export async function fetchContinuingDisbursements(): Promise<FetchDisbursementResult> {
+  return parseSheetCsv(CONTINUING_SHEET_URL, 'disb-cont');
+}
+
+export async function fetchCurrentDisbursements(): Promise<FetchDisbursementResult> {
+  return parseSheetCsv(CURRENT_SHEET_URL, 'disb-curr');
+}
+
+// Backwards-compatible alias
+export type ContinuingDisbursementItem = DisbursementItem;
+export type FetchContinuingDisbursementResult = FetchDisbursementResult;
