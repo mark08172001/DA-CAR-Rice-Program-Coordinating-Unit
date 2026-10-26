@@ -231,7 +231,7 @@ export default function DisbursementClient({ initialContinuingData }: Disburseme
               </div>
             </div>
 
-            {/* Card 2: Gross Amount (Disbursed) */}
+            {/* Card 2: Paid */}
             <div
               style={{
                 background: '#ffffff',
@@ -243,7 +243,7 @@ export default function DisbursementClient({ initialContinuingData }: Disburseme
               }}
             >
               <div style={{ fontSize: 12, fontWeight: 600, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
-                Gross Amount (Disbursed)
+                Paid
               </div>
               <div style={{ fontSize: 22, fontWeight: 700, color: '#2563eb', marginTop: 4 }}>
                 {formatCurrency(totals.grossAmount)}
@@ -377,10 +377,10 @@ export default function DisbursementClient({ initialContinuingData }: Disburseme
                     <th
                       onClick={() => toggleSort('grossAmount')}
                       style={{ padding: '10px 14px', textAlign: 'right', color: '#1e293b', fontWeight: 700, cursor: 'pointer', userSelect: 'none', background: '#f1f5f9' }}
-                      title="Sort by Gross Amount"
+                      title="Sort by Paid"
                     >
                       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: 6 }}>
-                        <span>GROSS AMOUNT</span>
+                        <span>PAID</span>
                         <ArrowUpDown size={12} style={{ color: '#94a3b8' }} />
                       </div>
                     </th>
