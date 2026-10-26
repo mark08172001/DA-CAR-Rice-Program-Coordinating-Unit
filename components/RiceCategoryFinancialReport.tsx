@@ -141,6 +141,18 @@ export default function RiceCategoryFinancialReport({
     });
   };
 
+  // Format fund source labels: 1101101 -> Current, 1102101 -> Continuing
+  const formatFundLabel = (fundCode: string) => {
+    const cleaned = (fundCode || '').toString().trim().replace(/^fund\s*/i, '');
+    if (cleaned === '1101101' || cleaned === '01101101') {
+      return 'Current';
+    }
+    if (cleaned === '1102101' || cleaned === '01102101') {
+      return 'Continuing';
+    }
+    return fundCode.toLowerCase().startsWith('fund') ? fundCode : `Fund ${fundCode}`;
+  };
+
   // Distinct funds available strictly for Rice line items (excluding STO FPMA-RICE)
   const availableFunds = useMemo(() => {
     const set = new Set<string>();
@@ -453,7 +465,7 @@ export default function RiceCategoryFinancialReport({
                 <option value="">All Funds Summed</option>
                 {availableFunds.map((f) => (
                   <option key={f} value={f}>
-                    {f.toLowerCase().startsWith('fund') ? f : `Fund ${f}`}
+                    {formatFundLabel(f)}
                   </option>
                 ))}
               </select>
