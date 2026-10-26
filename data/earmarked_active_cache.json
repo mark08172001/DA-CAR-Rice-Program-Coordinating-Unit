@@ -1,8 +1,8 @@
 {
   "success": true,
-  "count": 95,
+  "count": 96,
   "sourceUrl": "https://docs.google.com/spreadsheets/d/1prg2YjXMCUnTtod4F0rVgPL9Ij136F4jBv8t7fHUyI4/edit?gid=0#gid=0",
-  "fetchedAt": "2026-10-26T05:36:27.401Z",
+  "fetchedAt": "2026-10-26T05:54:40.961Z",
   "objectCodes": [
     "Agricultural and Forestry Equipment",
     "Agricultural and Marine Supplies Exp.",
@@ -2202,6 +2202,29 @@
       "description": "Agricultural and Marine Supplies Exp.",
       "allotmentClass": "MOOE",
       "amount": 9150,
+      "status": "ACTIVE",
+      "remarks": ""
+    },
+    {
+      "id": "em-active-1892",
+      "rowIndex": 1893,
+      "utilization": "Current",
+      "source": "01 GAA",
+      "sourceFund": "GAA",
+      "inputtedDate": "46321",
+      "dueDate": "46387",
+      "fund": "1101101",
+      "type": "PR",
+      "prNo": "2026-1465",
+      "earmarkNo": "EM-26-10-0093",
+      "requestedBy": "AFD-HRM&DS",
+      "particular": "PROCUREMENT OF SE-ICT EQUIPMENT FOR HRM&DS USE FOR HIGH VOLUME WORKLOADS -PAYROLL AND DTR PRINTING",
+      "pap": "310103100001000 ESETS RICE",
+      "rc": "",
+      "objectCode": "",
+      "description": "",
+      "allotmentClass": "",
+      "amount": 0,
       "status": "ACTIVE",
       "remarks": ""
     }

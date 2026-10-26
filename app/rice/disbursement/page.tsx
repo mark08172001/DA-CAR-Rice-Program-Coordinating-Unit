@@ -11,6 +11,8 @@ export const metadata = {
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
+import DisbursementClient from '@/components/DisbursementClient';
+
 export default async function RiceDisbursementPage() {
   const cookieStore = await cookies();
   const supabase = createClient(cookieStore);
@@ -48,9 +50,5 @@ export default async function RiceDisbursementPage() {
     );
   }
 
-  return (
-    <div className="page-container" style={{ minHeight: '60vh', padding: '32px 16px' }}>
-      {/* Blank page placeholder for future disbursement data */}
-    </div>
-  );
+  return <DisbursementClient />;
 }

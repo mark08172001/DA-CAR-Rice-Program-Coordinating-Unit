@@ -141,7 +141,7 @@ export default function RiceCategoryFinancialReport({
     });
   };
 
-  // Format fund source labels: 1101101 -> Current, 1102101 -> Continuing
+  // Format fund source labels: 1101101 -> Current, 1102101 -> Continuing, 01105422C -> Unprogrammed
   const formatFundLabel = (fundCode: string) => {
     const cleaned = (fundCode || '').toString().trim().replace(/^fund\s*/i, '');
     if (cleaned === '1101101' || cleaned === '01101101') {
@@ -149,6 +149,9 @@ export default function RiceCategoryFinancialReport({
     }
     if (cleaned === '1102101' || cleaned === '01102101') {
       return 'Continuing';
+    }
+    if (cleaned.toUpperCase() === '01105422C' || cleaned.toUpperCase() === '1105422C') {
+      return 'Unprogrammed';
     }
     return fundCode.toLowerCase().startsWith('fund') ? fundCode : `Fund ${fundCode}`;
   };
