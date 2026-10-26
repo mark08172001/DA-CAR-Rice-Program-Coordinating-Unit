@@ -46,7 +46,7 @@ export default async function RiceFarmersPage() {
         userRole="visitor"
         moduleInfo={{
           id: 'mod-beneficiary',
-          number: 'Module 03',
+          number: 'Module 04',
           title: 'Beneficiaries & Field Services',
           desc: 'RSBSA farmer registry and commodity voucher distributions.',
         }}
@@ -64,7 +64,7 @@ export default async function RiceFarmersPage() {
         userRole={userRole}
         moduleInfo={{
           id: 'mod-beneficiary',
-          number: 'Module 03',
+          number: 'Module 04',
           title: 'Beneficiaries & Field Services',
           desc: 'RSBSA farmer registry and commodity voucher distributions.',
         }}
@@ -81,7 +81,7 @@ export default async function RiceFarmersPage() {
         userRole={userRole}
         moduleInfo={{
           id: 'mod-beneficiary',
-          number: 'Module 03',
+          number: 'Module 04',
           title: 'Beneficiaries & Field Services',
           desc: 'RSBSA farmer registry and commodity voucher distributions.',
         }}

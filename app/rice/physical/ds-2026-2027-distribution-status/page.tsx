@@ -38,29 +38,11 @@ export default async function DSDistributionPage() {
   const userRole = access.role;
   const userName = access.fullName;
 
-  if (!activeEmail) {
-    return (
-      <ModuleAccessGuard
-        type="restricted"
-        userEmail="Guest / Outsider"
-        userName="Guest"
-        userRole="visitor"
-        moduleInfo={{
-          id: 'mod-rice',
-          number: 'Module 02',
-          title: 'Rice Program Operations',
-          desc: 'Official physical targets, program operations, and monitoring.',
-        }}
-        allowedModules={['mod-general']}
-      />
-    );
-  }
-
   if (access.status === 'suspended') {
     return (
       <ModuleAccessGuard
         type="suspended"
-        userEmail={activeEmail}
+        userEmail={activeEmail || ''}
         userName={userName}
         userRole={userRole}
         moduleInfo={{
@@ -69,24 +51,6 @@ export default async function DSDistributionPage() {
           title: 'Rice Program Operations',
           desc: 'Official physical targets, program operations, and monitoring.',
         }}
-      />
-    );
-  }
-
-  if (!isSuperAdmin && !allowed.includes('mod-rice')) {
-    return (
-      <ModuleAccessGuard
-        type="restricted"
-        userEmail={activeEmail}
-        userName={userName}
-        userRole={userRole}
-        moduleInfo={{
-          id: 'mod-rice',
-          number: 'Module 02',
-          title: 'Rice Program Operations',
-          desc: 'Official physical targets, program operations, and monitoring.',
-        }}
-        allowedModules={allowed}
       />
     );
   }

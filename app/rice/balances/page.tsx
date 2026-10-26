@@ -6,7 +6,7 @@ import { getAuthoritativeUserAccess } from '@/utils/adminStore';
 import ModuleAccessGuard from '@/components/ModuleAccessGuard';
 
 export const metadata = {
-  title: 'Obligation Budget | Module 04 | DA-CAR | Rice Program Coordinating Unit',
+  title: 'Obligation Budget | Module 03 | DA-CAR | Rice Program Coordinating Unit',
   description:
     'Obligation Budget and Utilization Rate monitoring for the DA-CAR Regional Rice Coordinating Unit.',
 };
@@ -36,55 +36,19 @@ export default async function RiceBalancesPage() {
   const userRole = access.role;
   const userName = access.fullName;
 
-  if (!activeEmail) {
-    return (
-      <ModuleAccessGuard
-        type="restricted"
-        userEmail="Guest / Outsider"
-        userName="Guest"
-        userRole="visitor"
-        moduleInfo={{
-          id: 'mod-finance',
-          number: 'Module 04',
-          title: 'Financial Management',
-          desc: 'Official financial category reports, obligation budget, and fund monitoring.',
-        }}
-        allowedModules={['mod-general']}
-      />
-    );
-  }
-
   if (access.status === 'suspended') {
     return (
       <ModuleAccessGuard
         type="suspended"
-        userEmail={activeEmail}
+        userEmail={activeEmail || ''}
         userName={userName}
         userRole={userRole}
         moduleInfo={{
           id: 'mod-finance',
-          number: 'Module 04',
+          number: 'Module 03',
           title: 'Financial Management',
           desc: 'Official financial category reports, obligation budget, and fund monitoring.',
         }}
-      />
-    );
-  }
-
-  if (!isSuperAdmin && !allowed.includes('mod-finance')) {
-    return (
-      <ModuleAccessGuard
-        type="restricted"
-        userEmail={activeEmail}
-        userName={userName}
-        userRole={userRole}
-        moduleInfo={{
-          id: 'mod-finance',
-          number: 'Module 04',
-          title: 'Financial Management',
-          desc: 'Official financial category reports, obligation budget, and fund monitoring.',
-        }}
-        allowedModules={allowed}
       />
     );
   }

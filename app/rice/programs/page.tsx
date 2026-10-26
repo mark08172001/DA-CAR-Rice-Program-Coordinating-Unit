@@ -35,29 +35,11 @@ export default async function RiceProgramsPage() {
   const userRole = access.role;
   const userName = access.fullName;
 
-  if (!activeEmail) {
-    return (
-      <ModuleAccessGuard
-        type="restricted"
-        userEmail="Guest / Outsider"
-        userName="Guest"
-        userRole="visitor"
-        moduleInfo={{
-          id: 'mod-rice',
-          number: 'Module 02',
-          title: 'Rice Program Operations',
-          desc: 'Official rice coordinating unit operations, programs, and monitoring reports.',
-        }}
-        allowedModules={['mod-general']}
-      />
-    );
-  }
-
   if (access.status === 'suspended') {
     return (
       <ModuleAccessGuard
         type="suspended"
-        userEmail={activeEmail}
+        userEmail={activeEmail || ''}
         userName={userName}
         userRole={userRole}
         moduleInfo={{
@@ -66,24 +48,6 @@ export default async function RiceProgramsPage() {
           title: 'Rice Program Operations',
           desc: 'Official rice coordinating unit operations, programs, and monitoring reports.',
         }}
-      />
-    );
-  }
-
-  if (!isSuperAdmin && !allowed.includes('mod-rice')) {
-    return (
-      <ModuleAccessGuard
-        type="restricted"
-        userEmail={activeEmail}
-        userName={userName}
-        userRole={userRole}
-        moduleInfo={{
-          id: 'mod-rice',
-          number: 'Module 02',
-          title: 'Rice Program Operations',
-          desc: 'Official rice coordinating unit operations, programs, and monitoring reports.',
-        }}
-        allowedModules={allowed}
       />
     );
   }

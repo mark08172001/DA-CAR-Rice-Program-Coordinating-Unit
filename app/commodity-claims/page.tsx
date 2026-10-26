@@ -51,7 +51,7 @@ export default async function CommodityClaimsPage() {
         userRole="visitor"
         moduleInfo={{
           id: 'mod-beneficiary',
-          number: 'Module 03',
+          number: 'Module 04',
           title: 'Beneficiaries & Field Services',
           desc: 'RSBSA farmer registry and commodity voucher distributions.',
         }}
@@ -69,7 +69,7 @@ export default async function CommodityClaimsPage() {
         userRole={userRole}
         moduleInfo={{
           id: 'mod-beneficiary',
-          number: 'Module 03',
+          number: 'Module 04',
           title: 'Beneficiaries & Field Services',
           desc: 'RSBSA farmer registry and commodity voucher distributions.',
         }}
@@ -86,7 +86,7 @@ export default async function CommodityClaimsPage() {
         userRole={userRole}
         moduleInfo={{
           id: 'mod-beneficiary',
-          number: 'Module 03',
+          number: 'Module 04',
           title: 'Beneficiaries & Field Services',
           desc: 'RSBSA farmer registry and commodity voucher distributions.',
         }}
@@ -112,7 +112,7 @@ export default async function CommodityClaimsPage() {
   return (
     <>
       <PageHero
-        eyebrow="Module 03: Beneficiaries & Field Services"
+        eyebrow="Module 04: Beneficiaries & Field Services"
         heading="Commodity Claims & Allocations Dashboard"
         description="Certified RSBSA farmer beneficiary transactions, subsidy redemptions, and regional distribution totals for hybrid palay seeds, organic fertilizers, and mechanization."
         parent={{ label: 'Field Services', href: '/rice/farmers' }}

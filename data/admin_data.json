@@ -13,10 +13,10 @@
         "mod-beneficiary",
         "mod-finance"
       ],
-      "last_sign_in_at": "2026-10-15 07:51:27",
-      "login_count": 125,
+      "last_sign_in_at": "2026-10-26 00:59:42",
+      "login_count": 126,
       "created_at": "2026-09-01T08:00:00Z",
-      "updated_at": "2026-10-15T07:51:27.809Z",
+      "updated_at": "2026-10-26T00:59:42.553Z",
       "notes": "Super Admin clearance. Unrestricted system-wide privileges."
     },
     {
@@ -74,6 +74,17 @@
     "jangmanwol0117@gmail.com"
   ],
   "login_logs": [
+    {
+      "id": "login-1792976382553",
+      "timestamp": "2026-10-26 00:59:42",
+      "email": "super.admin@car.da.gov.ph",
+      "full_name": "Regional Executive Director (Super Admin)",
+      "role": "super_admin",
+      "status": "SUCCESS",
+      "ip_address": "120.28.184.45 (Baguio RFO Node)",
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36 Edg/155.0.0.0",
+      "location": "Baguio City, Cordillera Administrative Region"
+    },
     {
       "id": "login-1792050687809",
       "timestamp": "2026-10-15 07:51:27",

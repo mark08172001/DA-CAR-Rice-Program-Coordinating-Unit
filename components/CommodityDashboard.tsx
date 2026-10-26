@@ -197,7 +197,7 @@ export default function CommodityDashboard({
           >
             <Lock size={18} style={{ color: '#dc2626', flexShrink: 0 }} />
             <div>
-              <strong>Voucher Claims Certification Restricted:</strong> The Super Administrator has revoked commodity voucher verification and redemption certification powers for your account (Module 03). Fund allocations and distribution statistics remain accessible in read-only audit mode.
+              <strong>Voucher Claims Certification Restricted:</strong> The Super Administrator has revoked commodity voucher verification and redemption certification powers for your account (Module 04). Fund allocations and distribution statistics remain accessible in read-only audit mode.
             </div>
           </div>
         )}

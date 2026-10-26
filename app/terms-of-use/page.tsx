@@ -20,8 +20,8 @@ export default function TermsOfUsePage() {
     },
     {
       num: '03',
-      title: 'Authorized Personnel Access (Modules 02–05)',
-      desc: 'Internal modules governing Registry of Allotments and Obligations (RAO) editing, RSBSA farmer registry modifications, and security controls require valid government credentials. Unauthorized access attempts, credential sharing, or automated scraping are strictly prohibited and subject to legal prosecution under RA 10175 (Cybercrime Prevention Act of 2012).',
+      title: 'Authorized Personnel Access (Modules 04–05)',
+      desc: 'Internal modules governing RSBSA farmer registry modifications, voucher releases, financial ledger alterations, and administrative security controls require valid government credentials. Unauthorized access attempts, credential sharing, or automated scraping are strictly prohibited and subject to legal prosecution under RA 10175 (Cybercrime Prevention Act of 2012).',
     },
     {
       num: '04',

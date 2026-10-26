@@ -33,25 +33,25 @@ export default function RiceHeroHeader() {
       'Official banner program interventions under PSS, ESETS, RD, and INS managed by the Regional Rice Program Coordinating Unit.';
     parent = { label: 'Rice Operations', href: '/rice/programs' };
   } else if (pathname.startsWith('/rice/farmers')) {
-    eyebrow = 'Module 03: Beneficiaries & Field Services';
+    eyebrow = 'Module 04: Beneficiaries & Field Services';
     heading = 'Beneficiaries & Farmers Directory';
     description =
       'Live beneficiary service records, RSBSA-verified farmer listings, PanaloKard assistance, and agricultural subsidy disbursements.';
     parent = { label: 'Field Services', href: '/rice/farmers' };
   } else if (pathname.startsWith('/rice/commodity-claims')) {
-    eyebrow = 'Module 03: Beneficiaries & Field Services';
+    eyebrow = 'Module 04: Beneficiaries & Field Services';
     heading = 'Commodity Claims Dashboard';
     description =
       'Certified RSBSA farmer beneficiary transactions, subsidy redemptions, and regional distribution totals for hybrid palay seeds and fertilizers.';
     parent = { label: 'Field Services', href: '/commodity-claims' };
   } else if (pathname.startsWith('/rice/balances')) {
-    eyebrow = 'Module 04: Financial Management';
+    eyebrow = 'Module 03: Financial Management';
     heading = 'Fund Balances & Obligation Budget';
     description =
       'Registry of Allotments and Obligations (RAO) tracking, utilization rates, category disbursements, and provincial fund allocations.';
     parent = { label: 'Financials', href: '/rice/balances' };
   } else if (pathname.startsWith('/rice/reports')) {
-    eyebrow = 'Module 04: Financial Management';
+    eyebrow = 'Module 03: Financial Management';
     heading = 'Official Regional Reports';
     description =
       'Official monitoring summaries, quarterly physical and financial accomplishments, and validated field inspection records.';

@@ -20,8 +20,8 @@ interface ModuleAccessGuardProps {
 const MODULE_LABELS: Record<string, string> = {
   'mod-general': 'Module 01: Portal & Executive',
   'mod-rice': 'Module 02: Rice Unit Operations',
-  'mod-beneficiary': 'Module 03: Beneficiaries & Field',
-  'mod-finance': 'Module 04: Financial Management',
+  'mod-finance': 'Module 03: Financial Management',
+  'mod-beneficiary': 'Module 04: Beneficiaries & Field',
   'mod-admin': 'Module 05: Super Admin Suite',
 };
 

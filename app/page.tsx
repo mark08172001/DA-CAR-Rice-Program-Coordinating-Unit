@@ -96,7 +96,7 @@ export default async function HomePage() {
   const userRole = (userAccount?.role || user?.user_metadata?.role || (activeEmail === 'super.admin@car.da.gov.ph' ? 'super_admin' : 'staff')).toLowerCase();
   const isSuperAdmin = userRole === 'super_admin' || activeEmail === 'super.admin@car.da.gov.ph';
   const allowedModules: string[] = isSuperAdmin
-    ? ['mod-general', 'mod-rice', 'mod-beneficiary', 'mod-finance', 'mod-admin']
+    ? ['mod-general', 'mod-rice', 'mod-finance', 'mod-beneficiary', 'mod-admin']
     : (userAccount?.allowed_modules || ['mod-general']);
 
   const canAccessRice = allowedModules.includes('mod-rice');
@@ -297,7 +297,7 @@ export default async function HomePage() {
                       <span>DA Personnel Gateway</span>
                     </div>
                     <p>
-                      Modules 02–04 (Rice Operations, RSBSA Beneficiaries, and Financials) require authorized sign-in.
+                      Module 04 (RSBSA Beneficiaries Directory and Voucher Claims) requires authorized sign-in.
                     </p>
                     <Link href="/login" className="button button-primary gate-login-btn">
                       <LogIn size={14} />
@@ -339,17 +339,10 @@ export default async function HomePage() {
                     <span>(074) 443-4921</span>
                   </span>
                 </div>
-                {canAccessRice ? (
-                  <Link href="/rice/physical" className="ops-btn-action-gold">
-                    <span>Visit Physical Operations</span>
-                    <span>→</span>
-                  </Link>
-                ) : (
-                  <Link href="/about" className="ops-btn-action-gold">
-                    <span>Learn About the Unit</span>
-                    <span>→</span>
-                  </Link>
-                )}
+                <Link href="/rice/physical" className="ops-btn-action-gold">
+                  <span>Visit Physical Operations</span>
+                  <span>→</span>
+                </Link>
               </div>
             </article>
 

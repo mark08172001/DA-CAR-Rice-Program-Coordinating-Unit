@@ -26,7 +26,7 @@ function getModuleForPath(pathname: string): { id: string; number: string; title
   ) {
     return {
       id: 'mod-finance',
-      number: 'Module 04',
+      number: 'Module 03',
       title: 'Financial Management',
       desc: 'Government obligation budget, financial category reports, and fund balances.',
     };
@@ -38,7 +38,7 @@ function getModuleForPath(pathname: string): { id: string; number: string; title
   ) {
     return {
       id: 'mod-beneficiary',
-      number: 'Module 03',
+      number: 'Module 04',
       title: 'Beneficiaries & Field Operations',
       desc: 'RSBSA farmer registry and commodity voucher distributions.',
     };

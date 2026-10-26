@@ -38,9 +38,9 @@ interface UsersManagementClientProps {
 
 const MODULE_OPTIONS = [
   { id: 'mod-general', label: 'Module 01: General Portal & Calendar', public: true },
-  { id: 'mod-rice', label: 'Module 02: Rice Unit Operations & Programs', public: false },
-  { id: 'mod-beneficiary', label: 'Module 03: Beneficiaries & Commodity Claims', public: false },
-  { id: 'mod-finance', label: 'Module 04: Financial Balances & Obligations', public: false },
+  { id: 'mod-rice', label: 'Module 02: Rice Unit Operations & Programs', public: true },
+  { id: 'mod-finance', label: 'Module 03: Financial Balances & Obligations', public: true },
+  { id: 'mod-beneficiary', label: 'Module 04: Beneficiaries & Commodity Claims', public: false },
 ];
 
 const getRoleDefaultPermissions = (role: string) => {
@@ -703,32 +703,28 @@ export default function UsersManagementClient({
               {/* 3. Granular Module Permissions Checkboxes */}
               {editStatus !== 'suspended' && (
                 <div className="form-group" style={{ marginTop: 16 }}>
-                  <label>Granular Module Access Limits</label>
+                  <label>Restricted Module Access Control</label>
                   <p style={{ margin: '2px 0 10px', fontSize: 12, color: 'var(--muted)' }}>
-                    Uncheck modules to revoke this staff member&apos;s permission to view or access them.
+                    Modules 01, 02, and 03 are open for public viewing. Use this checkbox to grant or revoke access to restricted Module 04:
                   </p>
                   <div className="module-toggles-list">
-                    {MODULE_OPTIONS.map((m) => {
+                    {MODULE_OPTIONS.filter((m) => !m.public).map((m) => {
                       const isAllowed = editModules.includes(m.id);
-                      const isPublic = m.public;
 
                       return (
                         <label
                           key={m.id}
-                          className={`module-toggle-item ${isAllowed ? 'allowed' : 'denied'} ${isPublic ? 'locked' : ''}`}
+                          className={`module-toggle-item ${isAllowed ? 'allowed' : 'denied'}`}
                         >
                           <input
                             type="checkbox"
                             checked={isAllowed}
-                            disabled={isPublic}
                             onChange={() => handleModuleToggle(m.id)}
                           />
                           <div style={{ flex: 1 }}>
                             <strong>{m.label}</strong>
                             <span style={{ fontSize: 11, color: isAllowed ? 'var(--green-700)' : '#dc2626' }}>
-                              {isPublic
-                                ? 'Always permitted'
-                                : isAllowed
+                              {isAllowed
                                 ? '✓ Access Granted'
                                 : '✗ Access Denied by Super Admin'}
                             </span>
@@ -796,7 +792,7 @@ export default function UsersManagementClient({
                       <div style={{ flex: 1 }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
                           <Coins size={14} style={{ color: editPermissions.can_edit_budget ? '#166534' : '#dc2626' }} />
-                          <strong>Edit Financial Obligations & Ledger (Module 04)</strong>
+                          <strong>Edit Financial Obligations & Ledger (Module 03)</strong>
                         </div>
                         <span style={{ fontSize: 11, color: editPermissions.can_edit_budget ? 'var(--green-700)' : '#dc2626' }}>
                           {editPermissions.can_edit_budget
@@ -823,7 +819,7 @@ export default function UsersManagementClient({
                       <div style={{ flex: 1 }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
                           <Users size={14} style={{ color: editPermissions.can_import_beneficiaries ? '#166534' : '#dc2626' }} />
-                          <strong>Import & Alter RSBSA Beneficiaries Registry (Module 03)</strong>
+                          <strong>Import & Alter RSBSA Beneficiaries Registry (Module 04)</strong>
                         </div>
                         <span style={{ fontSize: 11, color: editPermissions.can_import_beneficiaries ? 'var(--green-700)' : '#dc2626' }}>
                           {editPermissions.can_import_beneficiaries
@@ -850,7 +846,7 @@ export default function UsersManagementClient({
                       <div style={{ flex: 1 }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
                           <Package size={14} style={{ color: editPermissions.can_manage_claims ? '#166534' : '#dc2626' }} />
-                          <strong>Verify & Release Commodity Voucher Claims (Module 03)</strong>
+                          <strong>Verify & Release Commodity Voucher Claims (Module 04)</strong>
                         </div>
                         <span style={{ fontSize: 11, color: editPermissions.can_manage_claims ? 'var(--green-700)' : '#dc2626' }}>
                           {editPermissions.can_manage_claims

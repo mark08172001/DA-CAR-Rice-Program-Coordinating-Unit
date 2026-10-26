@@ -160,7 +160,7 @@ export async function POST(request: NextRequest) {
 
     if (!caller.isSuperAdmin && !caller.canEditBudget) {
       return NextResponse.json(
-        { success: false, error: 'Access Denied: The Super Administrator has revoked your permission to modify financial obligations and ledger balances (Module 04).' },
+        { success: false, error: 'Access Denied: The Super Administrator has revoked your permission to modify financial obligations and ledger balances (Module 03).' },
         { status: 403 }
       );
     }
@@ -281,7 +281,7 @@ export async function PUT(request: NextRequest) {
 
     if (!caller.isSuperAdmin && !caller.canEditBudget) {
       return NextResponse.json(
-        { success: false, error: 'Access Denied: The Super Administrator has revoked your permission to modify financial obligations and ledger balances (Module 04).' },
+        { success: false, error: 'Access Denied: The Super Administrator has revoked your permission to modify financial obligations and ledger balances (Module 03).' },
         { status: 403 }
       );
     }
@@ -317,7 +317,7 @@ export async function DELETE(request: NextRequest) {
 
     if (!caller.isSuperAdmin && !caller.canEditBudget) {
       return NextResponse.json(
-        { success: false, error: 'Access Denied: The Super Administrator has revoked your permission to modify or delete financial ledger balances (Module 04).' },
+        { success: false, error: 'Access Denied: The Super Administrator has revoked your permission to modify or delete financial ledger balances (Module 03).' },
         { status: 403 }
       );
     }

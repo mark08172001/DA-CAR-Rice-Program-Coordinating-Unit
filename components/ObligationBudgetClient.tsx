@@ -1746,7 +1746,7 @@ export default function ObligationBudgetClient({
         >
           <Lock size={18} style={{ color: '#dc2626', flexShrink: 0 }} />
           <div>
-            <strong>Financial Ledger Alterations Restricted:</strong> The Super Administrator has revoked editing and modification powers on financial ledger balances for your account (Module 04). All budget utilization records remain accessible in read-only audit mode.
+            <strong>Financial Ledger Alterations Restricted:</strong> The Super Administrator has revoked editing and modification powers on financial ledger balances for your account (Module 03). All budget utilization records remain accessible in read-only audit mode.
           </div>
         </div>
       )}

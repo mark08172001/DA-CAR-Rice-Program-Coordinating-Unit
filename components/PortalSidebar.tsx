@@ -252,23 +252,23 @@ export default function PortalSidebar({
       ],
     },
     {
-      id: 'mod-beneficiary',
-      moduleNumber: 'Module 03',
-      title: 'Beneficiaries & Field',
-      description: 'Farmers & voucher distributions',
-      items: [
-        { label: 'Beneficiary Directory', href: '/rice/farmers', icon: Users },
-        { label: 'Commodity Claims', href: '/commodity-claims', icon: Package },
-      ],
-    },
-    {
       id: 'mod-finance',
-      moduleNumber: 'Module 04',
+      moduleNumber: 'Module 03',
       title: 'Financial Management',
       description: 'Obligation budget & financial reports',
       items: [
         { label: 'Obligation & Disbursement', href: '/rice/balances', icon: Coins },
         { label: 'Financial Reports', href: '/rice/reports', icon: FileText },
+      ],
+    },
+    {
+      id: 'mod-beneficiary',
+      moduleNumber: 'Module 04',
+      title: 'Beneficiaries & Field',
+      description: 'Farmers & voucher distributions',
+      items: [
+        { label: 'Beneficiary Directory', href: '/rice/farmers', icon: Users },
+        { label: 'Commodity Claims', href: '/commodity-claims', icon: Package },
       ],
     },
     {
@@ -289,10 +289,12 @@ export default function PortalSidebar({
 
   // Determine which modules are visible based on visitor / staff access limits
   let visibleModules: NavModule[] = [];
+  const publicModuleIds = ['mod-general', 'mod-rice', 'mod-finance'];
+
   if (!user) {
-    visibleModules = modules.filter((mod) => mod.id === 'mod-general');
+    visibleModules = modules.filter((mod) => publicModuleIds.includes(mod.id));
   } else if (isSuperAdmin) {
-    visibleModules = modules; // Super Admin sees all modules 01-06
+    visibleModules = modules; // Super Admin sees all modules
   } else if (profile?.status === 'suspended') {
     visibleModules = []; // Suspended staff accounts have all internal module navigation revoked
   } else {
@@ -301,7 +303,7 @@ export default function PortalSidebar({
       ? profile.allowed_modules
       : ['mod-general'];
     visibleModules = modules.filter(
-      (mod) => (mod.id !== 'mod-admin' || isSuperAdminOrAdmin) && (mod.id === 'mod-general' || allowed.includes(mod.id))
+      (mod) => (mod.id !== 'mod-admin' || isSuperAdminOrAdmin) && (publicModuleIds.includes(mod.id) || allowed.includes(mod.id))
     );
   }
 
@@ -566,22 +568,22 @@ export default function PortalSidebar({
           <div className="sidebar-restricted-box">
             <div className="sidebar-restricted-badge">
               <Lock size={12} />
-              <span>Modules 02–05 Restricted</span>
+              <span>Module 4 Restricted</span>
             </div>
             <p className="sidebar-restricted-desc">
-              Internal Rice Operations, Beneficiary Registry, Financial Records, and Regional Intelligence are restricted to authorized DA personnel.
+              RSBSA Beneficiary Registry and Voucher Claims are restricted to authorized DA personnel.
             </p>
             <Link href="/login" onClick={onClose} className="sidebar-restricted-btn">
               <LogIn size={13} />
-              <span>Sign In to Unlock Modules</span>
+              <span>Sign In to Unlock</span>
             </Link>
           </div>
         )}
 
         {/* Minimized icon for outsiders indicating locked modules */}
         {!user && isCollapsed && (
-          <div className="minimized-lock-item" title="Modules 02–05 Restricted to DA Personnel">
-            <Link href="/login" onClick={onClose} className="minimized-lock-link" title="Sign In to unlock modules">
+          <div className="minimized-lock-item" title="Module 4 Restricted to Authorized DA Personnel">
+            <Link href="/login" onClick={onClose} className="minimized-lock-link" title="Sign In to unlock module">
               <Lock size={16} />
             </Link>
           </div>
