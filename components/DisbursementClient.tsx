@@ -9,11 +9,13 @@ export type DisbursementView = 'current' | 'continuing' | 'unpaid-prior-years';
 interface DisbursementClientProps {
   initialContinuingData?: FetchDisbursementResult;
   initialCurrentData?: FetchDisbursementResult;
+  initialUnpaidPriorYearsData?: FetchDisbursementResult;
 }
 
 export default function DisbursementClient({
   initialContinuingData,
   initialCurrentData,
+  initialUnpaidPriorYearsData,
 }: DisbursementClientProps) {
   const [selectedView, setSelectedView] = useState<DisbursementView>('current');
   const [searchQuery, setSearchQuery] = useState('');
@@ -40,12 +42,21 @@ export default function DisbursementClient({
         }
       );
     }
+    if (selectedView === 'unpaid-prior-years') {
+      return (
+        initialUnpaidPriorYearsData || {
+          records: [],
+          totals: { totalObligation: 0, grossAmount: 0, unpaidObligation: 0, count: 0 },
+          fetchedAt: '',
+        }
+      );
+    }
     return {
       records: [],
       totals: { totalObligation: 0, grossAmount: 0, unpaidObligation: 0, count: 0 },
       fetchedAt: '',
     };
-  }, [selectedView, initialCurrentData, initialContinuingData]);
+  }, [selectedView, initialCurrentData, initialContinuingData, initialUnpaidPriorYearsData]);
 
   const records = activeData.records;
   const totals = activeData.totals;
@@ -93,7 +104,7 @@ export default function DisbursementClient({
       ? 'Current Disbursements Ledger'
       : selectedView === 'continuing'
       ? 'Continuing Disbursements Ledger'
-      : 'Unpaid Prior Years';
+      : 'Unpaid Prior Years Disbursements Ledger';
 
   return (
     <div className="disbursement-page-wrapper" style={{ width: '100%', maxWidth: 1480, margin: '0 auto', padding: '16px 20px 48px' }}>
@@ -187,51 +198,32 @@ export default function DisbursementClient({
         </div>
       </div>
 
-      {/* VIEW: UNPAID PRIOR YEARS (Blank at first as requested) */}
-      {selectedView === 'unpaid-prior-years' && (
+      {/* Main Ledger View (Captures Payee, TOTAL OBLIGATION, PAID, UNPAID OBLIGATION) */}
+      <div id={`disbursement-${selectedView}-view`}>
+        {/* Summary KPI stat cards */}
         <div
-          id="disbursement-unpaid-view"
           style={{
-            minHeight: '400px',
-            background: '#ffffff',
-            border: '1px dashed #cbd5e1',
-            borderRadius: 12,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+            gap: 16,
+            marginBottom: 20,
           }}
         >
-          {/* Blank view for Unpaid Prior Years */}
-        </div>
-      )}
-
-      {/* VIEW: CURRENT or CONTINUING (Captures Payee, TOTAL OBLIGATION, PAID, UNPAID OBLIGATION) */}
-      {(selectedView === 'current' || selectedView === 'continuing') && (
-        <div id={`disbursement-${selectedView}-view`}>
-          {/* Summary KPI stat cards */}
+          {/* Card 1: Total Obligation */}
           <div
             style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-              gap: 16,
-              marginBottom: 20,
+              background: '#ffffff',
+              border: '1px solid #e2e8f0',
+              borderRadius: 10,
+              padding: '16px 20px',
+              boxShadow: '0 1px 3px rgba(0,0,0,0.03)',
+              borderTop: '3px solid #166534',
             }}
           >
-            {/* Card 1: Total Obligation */}
-            <div
-              style={{
-                background: '#ffffff',
-                border: '1px solid #e2e8f0',
-                borderRadius: 10,
-                padding: '16px 20px',
-                boxShadow: '0 1px 3px rgba(0,0,0,0.03)',
-                borderTop: '3px solid #166534',
-              }}
-            >
-              <div style={{ fontSize: 12, fontWeight: 600, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
-                Total Obligation ({selectedView === 'current' ? 'Current' : 'Continuing'})
-              </div>
-              <div style={{ fontSize: 22, fontWeight: 700, color: '#0f172a', marginTop: 4 }}>
+            <div style={{ fontSize: 12, fontWeight: 600, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+              Total Obligation ({selectedView === 'current' ? 'Current' : selectedView === 'continuing' ? 'Continuing' : 'Unpaid Prior Years'})
+            </div>
+            <div style={{ fontSize: 22, fontWeight: 700, color: '#0f172a', marginTop: 4 }}>
                 {formatCurrency(totals.totalObligation)}
               </div>
               <div style={{ fontSize: 11, color: '#64748b', marginTop: 4 }}>
@@ -467,7 +459,6 @@ export default function DisbursementClient({
             </div>
           </div>
         </div>
-      )}
-    </div>
+      </div>
   );
 }

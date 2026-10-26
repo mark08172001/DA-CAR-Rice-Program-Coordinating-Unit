@@ -33,6 +33,10 @@ const CONTINUING_SHEET_URL =
 const CURRENT_SHEET_URL =
   'https://docs.google.com/spreadsheets/d/1r1nx9Rhnixo_cUTq8XVU2ltuHbBiwMfKznkOOF9_j-Y/export?format=csv&gid=2034607497';
 
+// Unpaid Prior Years Sheet: gid=481468908
+const UNPAID_PRIOR_YEARS_SHEET_URL =
+  'https://docs.google.com/spreadsheets/d/1r1nx9Rhnixo_cUTq8XVU2ltuHbBiwMfKznkOOF9_j-Y/export?format=csv&gid=481468908';
+
 function parseNumber(val: string): number {
   if (!val) return 0;
   const cleaned = val.replace(/["',\s₱]/g, '');
@@ -79,7 +83,7 @@ function splitCSVRow(str: string): string[] {
 async function parseSheetCsv(sheetUrl: string, prefix: string): Promise<FetchDisbursementResult> {
   try {
     const res = await fetch(sheetUrl, {
-      next: { revalidate: 60 },
+      cache: 'no-store',
       headers: {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)',
       },
@@ -94,7 +98,8 @@ async function parseSheetCsv(sheetUrl: string, prefix: string): Promise<FetchDis
 
     let headerIndex = -1;
     for (let i = 0; i < Math.min(lines.length, 30); i++) {
-      if (lines[i].includes('Payee') && (lines[i].includes('TOTAL OBLIGATION') || lines[i].includes('Obligation'))) {
+      const upper = lines[i].toUpperCase();
+      if (upper.includes('PAYEE') && (upper.includes('TOTAL OBLIGATION') || upper.includes('OBLIGATION'))) {
         headerIndex = i;
         break;
       }
@@ -108,7 +113,7 @@ async function parseSheetCsv(sheetUrl: string, prefix: string): Promise<FetchDis
     const payeeIdx = headers.findIndex((h) => h.toUpperCase().includes('PAYEE'));
     const totalObligIdx = headers.findIndex((h) => h.toUpperCase() === 'TOTAL OBLIGATION');
     const grossIdx = headers.findIndex((h) => h.toUpperCase() === 'GROSS AMOUNT');
-    const unpaidIdx = headers.findIndex((h) => h.toUpperCase() === 'UNPAID OBLIGATION');
+    const unpaidIdx = headers.findLastIndex((h) => h.toUpperCase() === 'UNPAID OBLIGATION');
     const particularsIdx = headers.findIndex((h) => h.toUpperCase().includes('PARTICULAR'));
     const orsIdx = headers.findIndex((h) => h.toUpperCase().includes('ORS NUMBER'));
     const statusIdx = headers.findIndex((h) => h.toUpperCase().includes('ACCOUNTING STATUS') || h.toUpperCase() === 'STATUS');
@@ -196,6 +201,10 @@ export async function fetchContinuingDisbursements(): Promise<FetchDisbursementR
 
 export async function fetchCurrentDisbursements(): Promise<FetchDisbursementResult> {
   return parseSheetCsv(CURRENT_SHEET_URL, 'disb-curr');
+}
+
+export async function fetchUnpaidPriorYearsDisbursements(): Promise<FetchDisbursementResult> {
+  return parseSheetCsv(UNPAID_PRIOR_YEARS_SHEET_URL, 'disb-unpaid');
 }
 
 // Backwards-compatible alias
