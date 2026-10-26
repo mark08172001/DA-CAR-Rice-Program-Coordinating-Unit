@@ -50,6 +50,12 @@ export default function RiceHeroHeader() {
     description =
       'Registry of Allotments and Obligations (RAO) tracking, utilization rates, category disbursements, and provincial fund allocations.';
     parent = { label: 'Financials', href: '/rice/balances' };
+  } else if (pathname.startsWith('/rice/disbursement')) {
+    eyebrow = 'Module 03: Financial Management';
+    heading = 'Disbursement Records';
+    description =
+      'Official fund disbursement tracking, voucher settlements, and regional check releases for rice programs.';
+    parent = { label: 'Financials', href: '/rice/disbursement' };
   } else if (pathname.startsWith('/rice/reports')) {
     eyebrow = 'Module 03: Financial Management';
     heading = 'Official Regional Reports';

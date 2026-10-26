@@ -22,6 +22,7 @@ function getModuleForPath(pathname: string): { id: string; number: string; title
   }
   if (
     pathname.startsWith('/rice/balances') ||
+    pathname.startsWith('/rice/disbursement') ||
     pathname.startsWith('/rice/reports')
   ) {
     return {

@@ -29,7 +29,8 @@ import {
   Sliders,
   UserCheck,
   BarChart3,
-  Truck
+  Truck,
+  CreditCard,
 } from 'lucide-react';
 import { createClient } from '@/utils/supabase/client';
 
@@ -257,7 +258,8 @@ export default function PortalSidebar({
       title: 'Financial Management',
       description: 'Obligation budget & financial reports',
       items: [
-        { label: 'Obligation & Disbursement', href: '/rice/balances', icon: Coins },
+        { label: 'Obligation', href: '/rice/balances', icon: Coins },
+        { label: 'Disbursement', href: '/rice/disbursement', icon: CreditCard },
         { label: 'Financial Reports', href: '/rice/reports', icon: FileText },
       ],
     },
