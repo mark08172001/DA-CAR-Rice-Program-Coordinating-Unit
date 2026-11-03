@@ -2159,7 +2159,7 @@ button { color: inherit; }
 
 /* LEFT SIDEBAR - PREMIUM GLASSMORPHISM & AMBIENT GLOW EFFECTS */
 .portal-sidebar {
-  width: 290px;
+  width: 320px;
   flex-shrink: 0;
   background: 
     radial-gradient(circle at 15% 10%, rgba(34, 197, 94, 0.12), transparent 45%),
@@ -2253,6 +2253,7 @@ button { color: inherit; }
   font-size: 11px;
   color: rgba(255, 255, 255, 0.65);
   font-weight: 450;
+  white-space: nowrap;
 }
 
 .sidebar-minimize-btn {
@@ -2885,6 +2886,7 @@ button { color: inherit; }
     top: 0;
     left: 0;
     bottom: 0;
+    max-width: 85vw;
     transform: translateX(-100%);
   }
   .portal-sidebar.open {
@@ -6333,6 +6335,7 @@ select.form-control {
 
 /* Sidebar overrides for minimal look */
 .portal-sidebar {
+  width: 320px;
   background: #071f16 !important;
   border-right: 1px solid rgba(255, 255, 255, 0.06) !important;
 }
