@@ -7,8 +7,14 @@ export default function Footer() {
         <div className="footer-main">
           <div>
             <Link href="/" className="footer-brand">
-              <span className="brand-seal">
-                <img src="/da-seal.svg" alt="DA Seal" width={48} height={48} />
+              <span className="brand-seal" style={{ width: 48, height: 48 }}>
+                <img
+                  src="/da-logo.png"
+                  alt="Department of Agriculture Seal"
+                  width={48}
+                  height={48}
+                  style={{ width: '100%', height: '100%', objectFit: 'contain', borderRadius: '50%', filter: 'none' }}
+                />
               </span>
               <span>
                 <strong>DA-CAR</strong>

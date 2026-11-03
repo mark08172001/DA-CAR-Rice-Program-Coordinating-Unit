@@ -269,7 +269,7 @@ button { color: inherit; }
 .footer-main { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 45px; padding-bottom: 34px; }
 .footer-brand { display: flex; align-items: center; gap: 12px; }
 
-.footer-brand .brand-seal img { filter: brightness(0) invert(1); }
+.footer-brand .brand-seal img { filter: none; border-radius: 50%; }
 .footer-brand strong { display: block; color: white; font-size: 12px; }
 .footer-brand span { display: block; margin-top: 4px; color: #b8c9bd; font-size: 10px; }
 .footer-about { max-width: 330px; margin: 17px 0 0; color: #aebfb4; font-size: 11px; line-height: 1.8; }
