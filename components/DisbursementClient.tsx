@@ -261,12 +261,13 @@ export default function DisbursementClient({
                 minWidth: 220,
               }}
             >
-              <option value="all">All Rice PAP Codes ({records.length})</option>
+              <option value="all">All Rice PAP ({records.length})</option>
               {activePapCodes.map((code) => {
                 const count = records.filter((r) => r.ppaCode === code).length;
+                const nameOnly = code.replace(/^\d+\s*/, '');
                 return (
                   <option key={code} value={code}>
-                    {code} ({count})
+                    {nameOnly} ({count})
                   </option>
                 );
               })}
