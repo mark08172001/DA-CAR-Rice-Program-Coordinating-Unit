@@ -26,7 +26,7 @@ export default function DisbursementClient({
   const [selectedView, setSelectedView] = useState<DisbursementView>('current');
   const [papFilter, setPapFilter] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState('');
-  const [sortField, setSortField] = useState<'payee' | 'totalObligation' | 'grossAmount' | 'unpaidObligation'>('totalObligation');
+  const [sortField, setSortField] = useState<'payee' | 'totalObligation' | 'grossAmount' | 'unpaidObligation' | 'rate'>('totalObligation');
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('desc');
 
   const activePapCodes = useMemo(() => {
@@ -95,6 +95,12 @@ export default function DisbursementClient({
     }
 
     return [...list].sort((a, b) => {
+      if (sortField === 'rate') {
+        const rateA = a.totalObligation > 0 ? a.grossAmount / a.totalObligation : 0;
+        const rateB = b.totalObligation > 0 ? b.grossAmount / b.totalObligation : 0;
+        return sortDirection === 'asc' ? rateA - rateB : rateB - rateA;
+      }
+
       let valA: string | number = a[sortField];
       let valB: string | number = b[sortField];
 
@@ -118,7 +124,7 @@ export default function DisbursementClient({
     };
   }, [papFilter, searchQuery, totals, filteredRecords]);
 
-  const toggleSort = (field: 'payee' | 'totalObligation' | 'grossAmount' | 'unpaidObligation') => {
+  const toggleSort = (field: 'payee' | 'totalObligation' | 'grossAmount' | 'unpaidObligation' | 'rate') => {
     if (sortField === field) {
       setSortDirection((prev) => (prev === 'asc' ? 'desc' : 'asc'));
     } else {
@@ -347,6 +353,30 @@ export default function DisbursementClient({
               Outstanding balance payable
             </div>
           </div>
+
+          {/* Card 4: Disbursement Rate (%) */}
+          <div
+            style={{
+              background: '#ffffff',
+              border: '1px solid #e2e8f0',
+              borderRadius: 10,
+              padding: '16px 20px',
+              boxShadow: '0 1px 3px rgba(0,0,0,0.03)',
+              borderTop: '3px solid #059669',
+            }}
+          >
+            <div style={{ fontSize: 12, fontWeight: 600, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+              Disbursement Rate (%)
+            </div>
+            <div style={{ fontSize: 22, fontWeight: 700, color: '#059669', marginTop: 4 }}>
+              {displayTotals.totalObligation > 0
+                ? `${((displayTotals.grossAmount / displayTotals.totalObligation) * 100).toFixed(2)}%`
+                : '0.00%'}
+            </div>
+            <div style={{ fontSize: 11, color: '#64748b', marginTop: 4 }}>
+              Paid vs. Total Obligation
+            </div>
+          </div>
         </div>
 
         {/* Table Container Card */}
@@ -467,12 +497,22 @@ export default function DisbursementClient({
                       <ArrowUpDown size={12} style={{ color: '#94a3b8' }} />
                     </div>
                   </th>
+                  <th
+                    onClick={() => toggleSort('rate')}
+                    style={{ padding: '10px 14px', textAlign: 'right', color: '#1e293b', fontWeight: 700, cursor: 'pointer', userSelect: 'none', background: '#f1f5f9' }}
+                    title="Sort by % Disbursed"
+                  >
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: 6 }}>
+                      <span>% DISBURSED</span>
+                      <ArrowUpDown size={12} style={{ color: '#94a3b8' }} />
+                    </div>
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 {filteredRecords.length === 0 ? (
                   <tr>
-                    <td colSpan={5} style={{ padding: '36px 20px', textAlign: 'center', color: '#64748b' }}>
+                    <td colSpan={6} style={{ padding: '36px 20px', textAlign: 'center', color: '#64748b' }}>
                       {records.length === 0
                         ? `No ${selectedView} disbursement records found for this category.`
                         : 'No matching payee records found for your search query.'}
@@ -505,6 +545,26 @@ export default function DisbursementClient({
                       <td style={{ padding: '10px 14px', textAlign: 'right', fontWeight: 600, color: item.unpaidObligation > 0 ? '#b45309' : '#94a3b8', fontVariantNumeric: 'tabular-nums' }}>
                         {item.unpaidObligationFormatted}
                       </td>
+                      <td style={{ padding: '10px 14px', textAlign: 'right', fontWeight: 600, fontVariantNumeric: 'tabular-nums' }}>
+                        {(() => {
+                          const rate = item.totalObligation > 0 ? (item.grossAmount / item.totalObligation) * 100 : 0;
+                          return (
+                            <span
+                              style={{
+                                display: 'inline-block',
+                                padding: '2px 8px',
+                                borderRadius: 6,
+                                fontSize: 12,
+                                fontWeight: 700,
+                                background: rate >= 100 ? '#dcfce7' : rate > 0 ? '#eff6ff' : '#f1f5f9',
+                                color: rate >= 100 ? '#15803d' : rate > 0 ? '#1d4ed8' : '#64748b',
+                              }}
+                            >
+                              {rate.toFixed(2)}%
+                            </span>
+                          );
+                        })()}
+                      </td>
                     </tr>
                   ))
                 )}
@@ -524,6 +584,13 @@ export default function DisbursementClient({
                     </td>
                     <td style={{ padding: '12px 14px', textAlign: 'right', color: '#b45309', fontVariantNumeric: 'tabular-nums', background: '#f8fafc' }}>
                       {formatCurrency(filteredRecords.reduce((sum, r) => sum + r.unpaidObligation, 0))}
+                    </td>
+                    <td style={{ padding: '12px 14px', textAlign: 'right', color: '#059669', fontVariantNumeric: 'tabular-nums', background: '#f8fafc', fontWeight: 800 }}>
+                      {(() => {
+                        const sumTot = filteredRecords.reduce((sum, r) => sum + r.totalObligation, 0);
+                        const sumPaid = filteredRecords.reduce((sum, r) => sum + r.grossAmount, 0);
+                        return sumTot > 0 ? `${((sumPaid / sumTot) * 100).toFixed(2)}%` : '0.00%';
+                      })()}
                     </td>
                   </tr>
                 </tfoot>
