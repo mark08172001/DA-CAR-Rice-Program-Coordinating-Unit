@@ -1,3 +1,21 @@
+export const RICE_PROGRAM_PAP_CODES = [
+  '310101100001000 PSS RICE',
+  '310103100001000 ESETS RICE',
+  '310104100001000 RD RICE',
+  '310202100001000 INS RICE',
+] as const;
+
+export const UNPAID_PRIOR_YEARS_RICE_PAP_CODES = [
+  '310101100001000 PSS RICE',
+  '310103100001000 ESETS RICE',
+  '310104100001000 RD RICE',
+  '310202100001000 INS RICE',
+  '310201100001000 PAEF RICE',
+  '200000100009000 STO FPMA-RICE',
+] as const;
+
+export const CONTINUING_RICE_PAP_CODES = RICE_PROGRAM_PAP_CODES;
+
 export interface DisbursementItem {
   id: string;
   payee: string;
@@ -11,6 +29,7 @@ export interface DisbursementItem {
   orsNumber?: string;
   date?: string;
   status?: string;
+  ppaCode?: string;
 }
 
 export interface FetchDisbursementResult {
@@ -117,6 +136,14 @@ async function parseSheetCsv(sheetUrl: string, prefix: string): Promise<FetchDis
     const particularsIdx = headers.findIndex((h) => h.toUpperCase().includes('PARTICULAR'));
     const orsIdx = headers.findIndex((h) => h.toUpperCase().includes('ORS NUMBER'));
     const statusIdx = headers.findIndex((h) => h.toUpperCase().includes('ACCOUNTING STATUS') || h.toUpperCase() === 'STATUS');
+    const ppaIdx = headers.findIndex((h) => {
+      const u = h.toUpperCase();
+      return u.includes('GAA/PPA') || u.includes('PPA');
+    });
+    const papIdx = headers.findIndex((h) => {
+      const u = h.toUpperCase();
+      return u.includes('PAP CODE') || u.includes('PAP');
+    });
 
     const records: DisbursementItem[] = [];
     let sumTotalOblig = 0;
@@ -136,6 +163,35 @@ async function parseSheetCsv(sheetUrl: string, prefix: string): Promise<FetchDis
         payee.toUpperCase().includes('TOTAL') ||
         payee.toUpperCase().includes('GRAND')
       ) {
+        continue;
+      }
+
+      const ppaRaw = ppaIdx !== -1 ? (cols[ppaIdx] || '').trim() : '';
+      const papRaw = papIdx !== -1 ? (cols[papIdx] || '').trim() : '';
+      const combinedPpa = `${ppaRaw} ${papRaw}`.toUpperCase();
+
+      const targetCodes =
+        prefix === 'disb-unpaid'
+          ? UNPAID_PRIOR_YEARS_RICE_PAP_CODES
+          : prefix === 'disb-cont'
+            ? CONTINUING_RICE_PAP_CODES
+            : RICE_PROGRAM_PAP_CODES;
+
+      let matchedRiceCode: string | undefined = undefined;
+      for (const target of targetCodes) {
+        const tUpper = target.toUpperCase();
+        if (
+          combinedPpa.includes(tUpper) ||
+          (ppaRaw && tUpper.includes(ppaRaw.toUpperCase()) && ppaRaw.length > 10) ||
+          (papRaw && tUpper.includes(papRaw.toUpperCase()) && papRaw.length > 10)
+        ) {
+          matchedRiceCode = target;
+          break;
+        }
+      }
+
+      // Only retain records matching the official Rice PAP codes
+      if (!matchedRiceCode) {
         continue;
       }
 
@@ -166,6 +222,7 @@ async function parseSheetCsv(sheetUrl: string, prefix: string): Promise<FetchDis
         particulars,
         orsNumber,
         status,
+        ppaCode: matchedRiceCode || ppaRaw || papRaw || undefined,
       });
     }
 
