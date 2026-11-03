@@ -6346,20 +6346,18 @@ select.form-control {
 }
 
 .sidebar-wheat-badge {
-  width: 40px;
-  height: 40px;
-  border-radius: 9px;
-  background: rgba(245, 158, 11, 0.12);
-  border: 1px solid rgba(245, 158, 11, 0.28);
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 1.5px solid rgba(245, 158, 11, 0.4);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-}
-
-.sidebar-wheat-icon {
-  color: #fbbf24;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+  padding: 1px;
 }
 
 .sidebar-republic {

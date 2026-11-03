@@ -322,7 +322,13 @@ export default function PortalSidebar({
         <Link href="/" className="sidebar-brand" onClick={onClose} title="DA-CAR | Rice Program Coordinating Unit">
           <span className="sidebar-seal-wrapper">
             <div className="sidebar-wheat-badge">
-              <Wheat size={20} className="sidebar-wheat-icon" />
+              <img
+                src="/da-logo.png"
+                alt="Department of Agriculture Seal"
+                width={40}
+                height={40}
+                style={{ width: '100%', height: '100%', objectFit: 'contain', borderRadius: '50%' }}
+              />
             </div>
           </span>
           {!isCollapsed && (
