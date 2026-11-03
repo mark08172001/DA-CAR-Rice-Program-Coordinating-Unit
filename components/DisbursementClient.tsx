@@ -453,58 +453,58 @@ export default function DisbursementClient({
 
           {/* Data Table with Scroll & Sticky Header/Footer */}
           <div style={{ maxHeight: '650px', overflowY: 'auto', overflowX: 'auto', width: '100%', position: 'relative' }}>
-            <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: 13 }}>
+            <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: 12 }}>
               <thead style={{ position: 'sticky', top: 0, zIndex: 10 }}>
                 <tr style={{ background: '#f1f5f9', borderBottom: '2px solid #cbd5e1', boxShadow: '0 1px 2px rgba(0,0,0,0.05)' }}>
-                  <th style={{ padding: '10px 14px', width: '48px', color: '#475569', fontWeight: 700, background: '#f1f5f9' }}>#</th>
+                  <th style={{ padding: '8px 10px', width: '38px', color: '#475569', fontWeight: 700, fontSize: 11, background: '#f1f5f9', whiteSpace: 'nowrap' }}>#</th>
                   <th
                     onClick={() => toggleSort('payee')}
-                    style={{ padding: '10px 14px', color: '#1e293b', fontWeight: 700, cursor: 'pointer', userSelect: 'none', background: '#f1f5f9' }}
+                    style={{ padding: '8px 10px', color: '#1e293b', fontWeight: 700, fontSize: 11, cursor: 'pointer', userSelect: 'none', background: '#f1f5f9', whiteSpace: 'nowrap' }}
                     title="Sort by Payee"
                   >
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
                       <span>Payee</span>
-                      <ArrowUpDown size={12} style={{ color: '#94a3b8' }} />
+                      <ArrowUpDown size={11} style={{ color: '#94a3b8' }} />
                     </div>
                   </th>
                   <th
                     onClick={() => toggleSort('totalObligation')}
-                    style={{ padding: '10px 14px', textAlign: 'right', color: '#1e293b', fontWeight: 700, cursor: 'pointer', userSelect: 'none', background: '#f1f5f9' }}
+                    style={{ padding: '8px 10px', textAlign: 'right', color: '#1e293b', fontWeight: 700, fontSize: 11, cursor: 'pointer', userSelect: 'none', background: '#f1f5f9', whiteSpace: 'nowrap' }}
                     title="Sort by Total Obligation"
                   >
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: 6 }}>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: 5 }}>
                       <span>TOTAL OBLIGATION</span>
-                      <ArrowUpDown size={12} style={{ color: '#94a3b8' }} />
+                      <ArrowUpDown size={11} style={{ color: '#94a3b8' }} />
                     </div>
                   </th>
                   <th
                     onClick={() => toggleSort('grossAmount')}
-                    style={{ padding: '10px 14px', textAlign: 'right', color: '#1e293b', fontWeight: 700, cursor: 'pointer', userSelect: 'none', background: '#f1f5f9' }}
+                    style={{ padding: '8px 10px', textAlign: 'right', color: '#1e293b', fontWeight: 700, fontSize: 11, cursor: 'pointer', userSelect: 'none', background: '#f1f5f9', whiteSpace: 'nowrap' }}
                     title="Sort by Paid"
                   >
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: 6 }}>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: 5 }}>
                       <span>PAID</span>
-                      <ArrowUpDown size={12} style={{ color: '#94a3b8' }} />
+                      <ArrowUpDown size={11} style={{ color: '#94a3b8' }} />
                     </div>
                   </th>
                   <th
                     onClick={() => toggleSort('unpaidObligation')}
-                    style={{ padding: '10px 14px', textAlign: 'right', color: '#1e293b', fontWeight: 700, cursor: 'pointer', userSelect: 'none', background: '#f1f5f9' }}
+                    style={{ padding: '8px 10px', textAlign: 'right', color: '#1e293b', fontWeight: 700, fontSize: 11, cursor: 'pointer', userSelect: 'none', background: '#f1f5f9', whiteSpace: 'nowrap' }}
                     title="Sort by Unpaid Obligation"
                   >
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: 6 }}>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: 5 }}>
                       <span>UNPAID OBLIGATION</span>
-                      <ArrowUpDown size={12} style={{ color: '#94a3b8' }} />
+                      <ArrowUpDown size={11} style={{ color: '#94a3b8' }} />
                     </div>
                   </th>
                   <th
                     onClick={() => toggleSort('rate')}
-                    style={{ padding: '10px 14px', textAlign: 'right', color: '#1e293b', fontWeight: 700, cursor: 'pointer', userSelect: 'none', background: '#f1f5f9' }}
+                    style={{ padding: '8px 10px', textAlign: 'right', color: '#1e293b', fontWeight: 700, fontSize: 11, cursor: 'pointer', userSelect: 'none', background: '#f1f5f9', whiteSpace: 'nowrap' }}
                     title="Sort by % Disbursed"
                   >
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: 6 }}>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: 5 }}>
                       <span>% DISBURSED</span>
-                      <ArrowUpDown size={12} style={{ color: '#94a3b8' }} />
+                      <ArrowUpDown size={11} style={{ color: '#94a3b8' }} />
                     </div>
                   </th>
                 </tr>
@@ -527,34 +527,34 @@ export default function DisbursementClient({
                         background: idx % 2 === 0 ? '#ffffff' : '#fafafa',
                       }}
                     >
-                      <td style={{ padding: '10px 14px', color: '#94a3b8', fontSize: 12 }}>{idx + 1}</td>
-                      <td style={{ padding: '10px 14px', color: '#0f172a', fontWeight: 600 }}>
+                      <td style={{ padding: '8px 10px', color: '#94a3b8', fontSize: 11, whiteSpace: 'nowrap' }}>{idx + 1}</td>
+                      <td style={{ padding: '8px 10px', color: '#0f172a', fontWeight: 600, fontSize: 12 }}>
                         <span>{item.payee}</span>
                         {item.particulars && (
-                          <div style={{ fontSize: 11, fontWeight: 400, color: '#64748b', marginTop: 2, maxWidth: 500, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }} title={item.particulars}>
+                          <div style={{ fontSize: 10.5, fontWeight: 400, color: '#64748b', marginTop: 1, maxWidth: 450, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }} title={item.particulars}>
                             {item.particulars}
                           </div>
                         )}
                       </td>
-                      <td style={{ padding: '10px 14px', textAlign: 'right', fontWeight: 600, color: '#0f172a', fontVariantNumeric: 'tabular-nums' }}>
+                      <td style={{ padding: '8px 10px', textAlign: 'right', fontWeight: 600, color: '#0f172a', fontVariantNumeric: 'tabular-nums', fontSize: 12, whiteSpace: 'nowrap' }}>
                         {item.totalObligationFormatted}
                       </td>
-                      <td style={{ padding: '10px 14px', textAlign: 'right', fontWeight: 600, color: item.grossAmount > 0 ? '#15803d' : '#94a3b8', fontVariantNumeric: 'tabular-nums' }}>
+                      <td style={{ padding: '8px 10px', textAlign: 'right', fontWeight: 600, color: item.grossAmount > 0 ? '#15803d' : '#94a3b8', fontVariantNumeric: 'tabular-nums', fontSize: 12, whiteSpace: 'nowrap' }}>
                         {item.grossAmountFormatted}
                       </td>
-                      <td style={{ padding: '10px 14px', textAlign: 'right', fontWeight: 600, color: item.unpaidObligation > 0 ? '#b45309' : '#94a3b8', fontVariantNumeric: 'tabular-nums' }}>
+                      <td style={{ padding: '8px 10px', textAlign: 'right', fontWeight: 600, color: item.unpaidObligation > 0 ? '#b45309' : '#94a3b8', fontVariantNumeric: 'tabular-nums', fontSize: 12, whiteSpace: 'nowrap' }}>
                         {item.unpaidObligationFormatted}
                       </td>
-                      <td style={{ padding: '10px 14px', textAlign: 'right', fontWeight: 600, fontVariantNumeric: 'tabular-nums' }}>
+                      <td style={{ padding: '8px 10px', textAlign: 'right', fontWeight: 600, fontVariantNumeric: 'tabular-nums', whiteSpace: 'nowrap' }}>
                         {(() => {
                           const rate = item.totalObligation > 0 ? (item.grossAmount / item.totalObligation) * 100 : 0;
                           return (
                             <span
                               style={{
                                 display: 'inline-block',
-                                padding: '2px 8px',
-                                borderRadius: 6,
-                                fontSize: 12,
+                                padding: '1px 6px',
+                                borderRadius: 5,
+                                fontSize: 11,
                                 fontWeight: 700,
                                 background: rate >= 100 ? '#dcfce7' : rate > 0 ? '#eff6ff' : '#f1f5f9',
                                 color: rate >= 100 ? '#15803d' : rate > 0 ? '#1d4ed8' : '#64748b',
@@ -573,19 +573,19 @@ export default function DisbursementClient({
               {filteredRecords.length > 0 && (
                 <tfoot style={{ position: 'sticky', bottom: 0, zIndex: 9 }}>
                   <tr style={{ background: '#f8fafc', borderTop: '2px solid #cbd5e1', boxShadow: '0 -1px 3px rgba(0,0,0,0.06)', fontWeight: 700 }}>
-                    <td colSpan={2} style={{ padding: '12px 14px', color: '#0f172a', background: '#f8fafc' }}>
+                    <td colSpan={2} style={{ padding: '10px 10px', color: '#0f172a', background: '#f8fafc', fontSize: 11.5, whiteSpace: 'nowrap' }}>
                       SUMMARY TOTAL ({filteredRecords.length} items)
                     </td>
-                    <td style={{ padding: '12px 14px', textAlign: 'right', color: '#0f172a', fontVariantNumeric: 'tabular-nums', background: '#f8fafc' }}>
+                    <td style={{ padding: '10px 10px', textAlign: 'right', color: '#0f172a', fontVariantNumeric: 'tabular-nums', background: '#f8fafc', fontSize: 12, whiteSpace: 'nowrap' }}>
                       {formatCurrency(filteredRecords.reduce((sum, r) => sum + r.totalObligation, 0))}
                     </td>
-                    <td style={{ padding: '12px 14px', textAlign: 'right', color: '#15803d', fontVariantNumeric: 'tabular-nums', background: '#f8fafc' }}>
+                    <td style={{ padding: '10px 10px', textAlign: 'right', color: '#15803d', fontVariantNumeric: 'tabular-nums', background: '#f8fafc', fontSize: 12, whiteSpace: 'nowrap' }}>
                       {formatCurrency(filteredRecords.reduce((sum, r) => sum + r.grossAmount, 0))}
                     </td>
-                    <td style={{ padding: '12px 14px', textAlign: 'right', color: '#b45309', fontVariantNumeric: 'tabular-nums', background: '#f8fafc' }}>
+                    <td style={{ padding: '10px 10px', textAlign: 'right', color: '#b45309', fontVariantNumeric: 'tabular-nums', background: '#f8fafc', fontSize: 12, whiteSpace: 'nowrap' }}>
                       {formatCurrency(filteredRecords.reduce((sum, r) => sum + r.unpaidObligation, 0))}
                     </td>
-                    <td style={{ padding: '12px 14px', textAlign: 'right', color: '#059669', fontVariantNumeric: 'tabular-nums', background: '#f8fafc', fontWeight: 800 }}>
+                    <td style={{ padding: '10px 10px', textAlign: 'right', color: '#059669', fontVariantNumeric: 'tabular-nums', background: '#f8fafc', fontWeight: 800, fontSize: 12, whiteSpace: 'nowrap' }}>
                       {(() => {
                         const sumTot = filteredRecords.reduce((sum, r) => sum + r.totalObligation, 0);
                         const sumPaid = filteredRecords.reduce((sum, r) => sum + r.grossAmount, 0);

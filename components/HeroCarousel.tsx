@@ -16,7 +16,7 @@ const slides = [
     ctaText: 'View allocations ↓',
     ctaHref: '#rice-dashboard',
     ctaSubtext: 'RCEF & National Rice Program',
-    image: '/hero-support.jpg',
+    image: '/real-palay-planting.jpg',
   },
   {
     kicker: '— CORDILLERA RICE INITIATIVES',
@@ -30,7 +30,7 @@ const slides = [
     ctaText: 'Explore programs ↓',
     ctaHref: '#portal-services',
     ctaSubtext: 'Regional Rice Program Coordination',
-    image: '/hero-terraces.jpg',
+    image: '/real-banaue-harvest.jpg',
   },
   {
     kicker: '— FIELD EXTENSION & OPERATIONS',
@@ -44,7 +44,7 @@ const slides = [
     ctaText: 'Check calendar ↓',
     ctaHref: '#event-calendar',
     ctaSubtext: 'Agricultural Extension Operations',
-    image: '/hero-machinery.jpg',
+    image: '/real-maligcong-farmer.jpg',
   },
 ];
 
