@@ -82,9 +82,6 @@ export default function AboutPage() {
                 <p className="ops-card-desc-muted" style={{ marginTop: 12 }}>
                   The Rice Program Coordinating Unit of DA-CAR serves as the lead administrative, technical, and monitoring body for all national rice banner interventions across Abra, Apayao, Benguet, Ifugao, Kalinga, and Mountain Province.
                 </p>
-                <p className="ops-card-desc-muted" style={{ marginTop: 8 }}>
-                  Our mission is to achieve sustainable regional rice self-sufficiency, preserve UNESCO-recognized terrace ecosystems, elevate farmer incomes, and ensure transparent Registry of Allotments and Obligations (RAO) financial stewardship.
-                </p>
               </div>
 
               <div className="ops-card-bottom-row" style={{ marginTop: 20 }}>
