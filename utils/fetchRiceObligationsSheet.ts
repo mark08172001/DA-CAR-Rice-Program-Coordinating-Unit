@@ -149,7 +149,51 @@ function parseCSV(text: string): string[][] {
   return lines;
 }
 
-export async function fetchRiceObligationsFromGoogleSheet(): Promise<RiceObligationsSheetResult> {
+const OBLIGATION_CACHE_TTL_MS = 60 * 1000; // 60 seconds TTL
+
+interface ObligationsCacheEntry {
+  data: RiceObligationsSheetResult;
+  timestamp: number;
+}
+
+function getDiskObligCache(): ObligationsCacheEntry | null {
+  if (typeof window !== 'undefined') return null;
+  try {
+    const fs = require('fs');
+    const path = require('path');
+    const file = path.join(process.cwd(), 'data', 'rice_obligations_cache.json');
+    if (fs.existsSync(file)) {
+      const raw = fs.readFileSync(file, 'utf8');
+      return JSON.parse(raw);
+    }
+  } catch {
+    // ignore
+  }
+  return null;
+}
+
+function saveDiskObligCache(entry: ObligationsCacheEntry) {
+  if (typeof window !== 'undefined') return;
+  try {
+    const fs = require('fs');
+    const path = require('path');
+    const file = path.join(process.cwd(), 'data', 'rice_obligations_cache.json');
+    fs.writeFileSync(file, JSON.stringify(entry), 'utf8');
+  } catch {
+    // ignore
+  }
+}
+
+const gOblig = globalThis as unknown as {
+  __daObligationsCache?: ObligationsCacheEntry | null;
+  __daObligationsInflight?: Promise<RiceObligationsSheetResult> | null;
+};
+
+if (!gOblig.__daObligationsCache) {
+  gOblig.__daObligationsCache = getDiskObligCache();
+}
+
+async function doFetchRiceObligationsFromGoogleSheet(): Promise<RiceObligationsSheetResult> {
   const now = new Date().toISOString();
   try {
     const cacheBusterUrl = `${TARGET_GOOGLE_SHEET_URL}&_cb=${Date.now()}`;
@@ -294,5 +338,60 @@ export async function fetchRiceObligationsFromGoogleSheet(): Promise<RiceObligat
       sourceUrl: TARGET_GOOGLE_SHEET_URL,
     };
   }
+}
+
+export async function fetchRiceObligationsFromGoogleSheet(
+  forceRefresh = false
+): Promise<RiceObligationsSheetResult> {
+  const now = Date.now();
+  const cached = gOblig.__daObligationsCache;
+
+  // 1. Fresh cache: return instantly (< 1ms)
+  if (!forceRefresh && cached && now - cached.timestamp < OBLIGATION_CACHE_TTL_MS) {
+    return cached.data;
+  }
+
+  // 2. Stale cache: return immediately and revalidate in background
+  if (!forceRefresh && cached) {
+    if (!gOblig.__daObligationsInflight) {
+      gOblig.__daObligationsInflight = doFetchRiceObligationsFromGoogleSheet()
+        .then((fresh) => {
+          if (fresh.categories && fresh.categories.length > 0) {
+            const entry = { data: fresh, timestamp: Date.now() };
+            gOblig.__daObligationsCache = entry;
+            saveDiskObligCache(entry);
+          }
+          return fresh;
+        })
+        .catch((err) => {
+          console.warn('[Obligations] Background revalidation failed:', err);
+          return cached.data;
+        })
+        .finally(() => {
+          gOblig.__daObligationsInflight = null;
+        });
+    }
+    return cached.data;
+  }
+
+  // 3. Cold start: coalesce concurrent requests
+  if (gOblig.__daObligationsInflight) {
+    return gOblig.__daObligationsInflight;
+  }
+
+  gOblig.__daObligationsInflight = doFetchRiceObligationsFromGoogleSheet()
+    .then((fresh) => {
+      if (fresh.categories && fresh.categories.length > 0) {
+        const entry = { data: fresh, timestamp: Date.now() };
+        gOblig.__daObligationsCache = entry;
+        saveDiskObligCache(entry);
+      }
+      return fresh;
+    })
+    .finally(() => {
+      gOblig.__daObligationsInflight = null;
+    });
+
+  return gOblig.__daObligationsInflight;
 }
 

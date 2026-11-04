@@ -252,16 +252,134 @@ async function parseSheetCsv(sheetUrl: string, prefix: string): Promise<FetchDis
   }
 }
 
-export async function fetchContinuingDisbursements(): Promise<FetchDisbursementResult> {
-  return parseSheetCsv(CONTINUING_SHEET_URL, 'disb-cont');
+// In-memory + disk cache for ultra-fast sub-millisecond retrieval with SWR revalidation
+const DISBURSEMENT_CACHE_TTL_MS = 60 * 1000; // 60 seconds TTL
+
+interface DisbursementCacheEntry {
+  data: FetchDisbursementResult;
+  timestamp: number;
 }
 
-export async function fetchCurrentDisbursements(): Promise<FetchDisbursementResult> {
-  return parseSheetCsv(CURRENT_SHEET_URL, 'disb-curr');
+function getDiskDisbCache(): Record<string, DisbursementCacheEntry> | null {
+  if (typeof window !== 'undefined') return null;
+  try {
+    const fs = require('fs');
+    const path = require('path');
+    const file = path.join(process.cwd(), 'data', 'disbursements_cache.json');
+    if (fs.existsSync(file)) {
+      const raw = fs.readFileSync(file, 'utf8');
+      return JSON.parse(raw);
+    }
+  } catch {
+    // ignore
+  }
+  return null;
 }
 
-export async function fetchUnpaidPriorYearsDisbursements(): Promise<FetchDisbursementResult> {
-  return parseSheetCsv(UNPAID_PRIOR_YEARS_SHEET_URL, 'disb-unpaid');
+function saveDiskDisbCache(cacheMap: Map<string, DisbursementCacheEntry>) {
+  if (typeof window !== 'undefined') return;
+  try {
+    const fs = require('fs');
+    const path = require('path');
+    const file = path.join(process.cwd(), 'data', 'disbursements_cache.json');
+    const obj: Record<string, DisbursementCacheEntry> = {};
+    cacheMap.forEach((val, key) => {
+      obj[key] = val;
+    });
+    fs.writeFileSync(file, JSON.stringify(obj), 'utf8');
+  } catch {
+    // ignore
+  }
+}
+
+const gDisb = globalThis as unknown as {
+  __daDisbCache?: Map<string, DisbursementCacheEntry>;
+  __daDisbInflight?: Map<string, Promise<FetchDisbursementResult>>;
+};
+
+if (!gDisb.__daDisbCache) {
+  gDisb.__daDisbCache = new Map();
+  const disk = getDiskDisbCache();
+  if (disk) {
+    Object.entries(disk).forEach(([k, v]) => {
+      gDisb.__daDisbCache!.set(k, v);
+    });
+  }
+}
+if (!gDisb.__daDisbInflight) {
+  gDisb.__daDisbInflight = new Map();
+}
+
+const memoryCache = gDisb.__daDisbCache;
+const inflightFetches = gDisb.__daDisbInflight;
+
+async function parseSheetCsvCached(
+  sheetUrl: string,
+  prefix: string,
+  forceRefresh = false
+): Promise<FetchDisbursementResult> {
+  const cached = memoryCache.get(sheetUrl);
+  const now = Date.now();
+
+  // 1. Fresh cache: return instantly (< 1ms)
+  if (!forceRefresh && cached && now - cached.timestamp < DISBURSEMENT_CACHE_TTL_MS) {
+    return cached.data;
+  }
+
+  // 2. Stale cache: return immediately and revalidate in background
+  if (!forceRefresh && cached) {
+    if (!inflightFetches.has(sheetUrl)) {
+      const bgPromise = parseSheetCsv(sheetUrl, prefix)
+        .then((fresh) => {
+          if (!fresh.error && fresh.records.length > 0) {
+            memoryCache.set(sheetUrl, { data: fresh, timestamp: Date.now() });
+            saveDiskDisbCache(memoryCache);
+          }
+          return fresh;
+        })
+        .catch((err) => {
+          console.warn(`[Disbursement] Background refresh failed for ${prefix}:`, err);
+          return cached.data;
+        })
+        .finally(() => {
+          inflightFetches.delete(sheetUrl);
+        });
+      inflightFetches.set(sheetUrl, bgPromise);
+    }
+    return cached.data;
+  }
+
+  // 3. Cold start: coalesce concurrent inflight requests
+  if (inflightFetches.has(sheetUrl)) {
+    return inflightFetches.get(sheetUrl)!;
+  }
+
+  const fetchPromise = parseSheetCsv(sheetUrl, prefix)
+    .then((fresh) => {
+      if (!fresh.error && fresh.records.length > 0) {
+        memoryCache.set(sheetUrl, { data: fresh, timestamp: Date.now() });
+        saveDiskDisbCache(memoryCache);
+      }
+      return fresh;
+    })
+    .finally(() => {
+      inflightFetches.delete(sheetUrl);
+    });
+
+  inflightFetches.set(sheetUrl, fetchPromise);
+  return fetchPromise;
+}
+
+export async function fetchContinuingDisbursements(forceRefresh = false): Promise<FetchDisbursementResult> {
+  return parseSheetCsvCached(CONTINUING_SHEET_URL, 'disb-cont', forceRefresh);
+}
+
+export async function fetchCurrentDisbursements(forceRefresh = false): Promise<FetchDisbursementResult> {
+  return parseSheetCsvCached(CURRENT_SHEET_URL, 'disb-curr', forceRefresh);
+}
+
+export async function fetchUnpaidPriorYearsDisbursements(forceRefresh = false): Promise<FetchDisbursementResult> {
+  return parseSheetCsvCached(UNPAID_PRIOR_YEARS_SHEET_URL, 'disb-unpaid', forceRefresh);
 }
 
 // Backwards-compatible alias

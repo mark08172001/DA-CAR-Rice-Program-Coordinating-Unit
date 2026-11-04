@@ -66,9 +66,14 @@ function saveLocalCache(payload: any) {
   }
 }
 
-export async function GET(request: NextRequest) {
+const EARMARKED_CACHE_TTL_MS = 60 * 1000; // 60 seconds TTL
+let memEarmarkedCache: any = null;
+let isEarmarkedRevalidating = false;
+
+async function revalidateEarmarkedInBackground(): Promise<any> {
+  if (isEarmarkedRevalidating) return memEarmarkedCache;
+  isEarmarkedRevalidating = true;
   try {
-    // Attempt live fetch with cache-busting
     const fetchUrl = `${GOOGLE_SHEET_EXPORT_URL}&_cb=${Date.now()}`;
     const response = await fetch(fetchUrl, {
       method: 'GET',
@@ -78,7 +83,6 @@ export async function GET(request: NextRequest) {
         Accept: 'text/csv, application/csv, text/plain, */*',
       },
       cache: 'no-store',
-      next: { revalidate: 0 },
     });
 
     if (response.ok) {
@@ -151,29 +155,73 @@ export async function GET(request: NextRequest) {
           objectCodes: Array.from(objectCodesSet).sort(),
           rows: parsedRows,
         };
+        memEarmarkedCache = result;
         saveLocalCache(result);
-        return NextResponse.json(result);
+        return result;
       }
     }
   } catch (err) {
-    console.warn('Error fetching live Google Sheet for Earmarks, falling back to cache:', err);
+    console.warn('[Earmarked] Background revalidation error:', err);
+  } finally {
+    isEarmarkedRevalidating = false;
   }
+  return memEarmarkedCache;
+}
 
-  // Fallback to local cache
-  const cached = getLocalCache();
-  if (cached) {
-    return NextResponse.json({
-      ...cached,
-      isFallback: true,
-      sourceUrl: GOOGLE_SHEET_REF_URL,
-    });
+export async function GET(request: NextRequest) {
+  try {
+    const { searchParams } = new URL(request.url);
+    const forceRefresh = searchParams.get('refresh') === 'true' || searchParams.get('force') === 'true';
+
+    // 1. Fast path: Memory or local disk cache
+    if (!memEarmarkedCache) {
+      memEarmarkedCache = getLocalCache();
+    }
+
+    if (!forceRefresh && memEarmarkedCache && memEarmarkedCache.rows && memEarmarkedCache.rows.length > 0) {
+      const cacheAge = memEarmarkedCache.fetchedAt
+        ? Date.now() - new Date(memEarmarkedCache.fetchedAt).getTime()
+        : Infinity;
+
+      // If older than 60s, trigger silent background revalidation without making client wait
+      if (cacheAge > EARMARKED_CACHE_TTL_MS) {
+        revalidateEarmarkedInBackground();
+      }
+
+      return NextResponse.json({
+        success: true,
+        count: memEarmarkedCache.count,
+        sourceUrl: GOOGLE_SHEET_REF_URL,
+        fetchedAt: memEarmarkedCache.fetchedAt,
+        objectCodes: memEarmarkedCache.objectCodes || [],
+        rows: memEarmarkedCache.rows,
+      });
+    }
+
+    // 2. Cold start or forced refresh
+    const fresh = await revalidateEarmarkedInBackground();
+    if (fresh) {
+      return NextResponse.json(fresh);
+    }
+
+    const fallback = getLocalCache();
+    if (fallback) {
+      return NextResponse.json(fallback);
+    }
+
+    return NextResponse.json(
+      { success: false, error: 'Failed to fetch earmarked data.' },
+      { status: 500 }
+    );
+  } catch (err: any) {
+    console.error('Earmarked sheet GET error:', err);
+    const fallback = getLocalCache();
+    if (fallback) {
+      return NextResponse.json(fallback);
+    }
+    return NextResponse.json(
+      { success: false, error: err.message || 'Server error' },
+      { status: 500 }
+    );
   }
-
-  return NextResponse.json(
-    {
-      success: false,
-      error: 'Failed to fetch Earmarked 2026 Google Sheet and no local cache available.',
-    },
-    { status: 500 }
-  );
 }

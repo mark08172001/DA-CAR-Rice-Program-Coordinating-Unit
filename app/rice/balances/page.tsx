@@ -14,19 +14,36 @@ export const metadata = {
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
-export default async function RiceBalancesPage() {
-  const cookieStore = await cookies();
-  const supabase = createClient(cookieStore);
-  const { data: { user } } = await supabase.auth.getUser();
+export default async function RiceBalancesPage({
+  searchParams,
+}: {
+  searchParams?: Promise<{ [key: string]: string | string[] | undefined }>;
+}) {
+  const resolvedSearchParams = searchParams ? await searchParams : {};
+  const forceRefresh = resolvedSearchParams.refresh === 'true' || resolvedSearchParams.force === 'true';
 
-  let activeEmail = user?.email;
-  if (!activeEmail) {
-    const adminSessionCookie = cookieStore.get('da_admin_session')?.value;
-    if (adminSessionCookie) {
-      try {
-        const parsed = JSON.parse(decodeURIComponent(adminSessionCookie));
-        if (parsed?.email) activeEmail = parsed.email;
-      } catch {}
+  const cookieStore = await cookies();
+  const allCookies = cookieStore.getAll();
+  const hasAuthCookie = allCookies.some(
+    (c) => c.name.startsWith('sb-') || c.name === 'da_admin_session'
+  );
+
+  let activeEmail: string | undefined;
+  let supabase: any = null;
+
+  if (hasAuthCookie) {
+    supabase = createClient(cookieStore);
+    const { data: { user } } = await supabase.auth.getUser();
+    activeEmail = user?.email;
+
+    if (!activeEmail) {
+      const adminSessionCookie = cookieStore.get('da_admin_session')?.value;
+      if (adminSessionCookie) {
+        try {
+          const parsed = JSON.parse(decodeURIComponent(adminSessionCookie));
+          if (parsed?.email) activeEmail = parsed.email;
+        } catch {}
+      }
     }
   }
 
@@ -55,7 +72,7 @@ export default async function RiceBalancesPage() {
 
   const canEditBudget = isSuperAdmin || access.permissions.can_edit_budget !== false;
 
-  const result = await fetchRiceObligationsFromGoogleSheet();
+  const result = await fetchRiceObligationsFromGoogleSheet(forceRefresh);
 
   return (
     <section className="content-section" style={{ padding: '24px 0 60px' }}>

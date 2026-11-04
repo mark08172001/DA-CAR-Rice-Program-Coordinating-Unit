@@ -1,12 +1,12 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { fetchRiceObligationsFromGoogleSheet } from '@/utils/fetchRiceObligationsSheet';
 
 export const dynamic = 'force-dynamic';
-export const revalidate = 0;
 
-export async function GET() {
+export async function GET(request: NextRequest) {
   try {
-    const data = await fetchRiceObligationsFromGoogleSheet();
+    const forceRefresh = request.nextUrl.searchParams.get('refresh') === 'true';
+    const data = await fetchRiceObligationsFromGoogleSheet(forceRefresh);
     return NextResponse.json({ success: true, ...data });
   } catch (err: any) {
     return NextResponse.json(
