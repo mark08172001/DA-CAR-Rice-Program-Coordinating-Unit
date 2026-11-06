@@ -38,8 +38,8 @@ export default function RiceHeroHeader() {
     heading = 'Disbursement Records';
     description =
       'Official fund disbursement tracking, voucher settlements, and regional check releases for rice programs.';
-  } else if (pathname.startsWith('/rice/reports')) {
-    heading = 'Official Regional Reports';
+  } else if (pathname.startsWith('/rice/reports') || pathname === '/') {
+    heading = 'Official Financial Report';
     description =
       'Official monitoring summaries, quarterly physical and financial accomplishments, and validated field inspection records.';
   }
