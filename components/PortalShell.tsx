@@ -34,7 +34,6 @@ function getModuleForPath(pathname: string): { id: string; number: string; title
   }
   if (
     pathname.startsWith('/commodity-claims') ||
-    pathname.startsWith('/rice/commodity-claims') ||
     pathname.startsWith('/rice/farmers')
   ) {
     return {

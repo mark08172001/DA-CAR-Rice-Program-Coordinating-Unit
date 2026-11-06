@@ -9,7 +9,7 @@ import ModuleAccessGuard from '@/components/ModuleAccessGuard';
 import { fetchCommodityClaimsFromGoogleSheet } from '@/utils/fetchCommodityClaimsSheet';
 
 export const metadata: Metadata = {
-  title: 'Commodity Claims Dashboard | DA-CAR | Rice Program Coordinating Unit',
+  title: 'Commodity Claims | DA-CAR | Rice Program Coordinating Unit',
   description:
     'Official monitoring of beneficiary claims, hybrid seeds, fertilizers, and agricultural input distributions across Cordillera provinces.',
 };
@@ -112,7 +112,7 @@ export default async function CommodityClaimsPage() {
   return (
     <>
       <PageHero
-        eyebrow="Module 03: Beneficiaries & Field Services"
+        eyebrow="Beneficiaries & Field Services"
         heading="Commodity Claims & Allocations Dashboard"
         description="Certified RSBSA farmer beneficiary transactions, subsidy redemptions, and regional distribution totals for hybrid palay seeds, organic fertilizers, and mechanization."
         parent={{ label: 'Field Services', href: '/rice/farmers' }}

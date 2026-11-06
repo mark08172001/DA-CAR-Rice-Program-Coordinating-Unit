@@ -1728,29 +1728,6 @@ export default function ObligationBudgetClient({
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
-      {/* FINANCIAL LEDGER ALTERATION RESTRICTION NOTICE */}
-      {!canEdit && (
-        <div
-          style={{
-            padding: '12px 18px',
-            backgroundColor: '#fef2f2',
-            border: '1px solid #fecaca',
-            borderRadius: 8,
-            display: 'flex',
-            alignItems: 'center',
-            gap: 12,
-            color: '#991b1b',
-            fontSize: 13,
-            lineHeight: 1.5,
-          }}
-        >
-          <Lock size={18} style={{ color: '#dc2626', flexShrink: 0 }} />
-          <div>
-            <strong>Financial Ledger Alterations Restricted:</strong> The Super Administrator has revoked editing and modification powers on financial ledger balances for your account (Module 02). All budget utilization records remain accessible in read-only audit mode.
-          </div>
-        </div>
-      )}
-
       {/* EXECUTIVE TOP HEADER CARD */}
       <header
         style={{

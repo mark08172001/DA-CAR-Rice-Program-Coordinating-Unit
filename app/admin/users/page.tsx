@@ -7,7 +7,7 @@ import { getAccounts, getAccountByEmail, syncProfilesFromSupabase, getDeletedEma
 import { createAdminClient } from '@/utils/supabase/admin';
 
 export const metadata = {
-  title: 'Staff Access Control & Accounts | Super Admin Suite | DA-CAR | Rice Program Coordinating Unit',
+  title: 'Staff Access Control | DA-CAR | Rice Program Coordinating Unit',
   description: 'Super Admin management portal to limit staff permissions, control module access, and monitor user logins.',
 };
 
@@ -71,7 +71,7 @@ export default async function AdminUsersPage() {
   return (
     <>
       <PageHero
-        eyebrow="Module 04: Super Admin Suite"
+        eyebrow="Super Admin Suite"
         heading="User Accounts & Staff Access Control"
         description="Monitor registered accounts, inspect user login history, and exercise administrative powers to limit, grant, or suspend staff access to specific modules."
         parent={{ label: 'Admin Portal', href: '/admin' }}

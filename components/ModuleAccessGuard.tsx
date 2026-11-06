@@ -110,11 +110,11 @@ export default function ModuleAccessGuard({
                   <Home size={15} /> Back to Portal Home
                 </Link>
                 <Link
-                  href="/about"
+                  href="/contact"
                   className="button button-primary"
                   style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}
                 >
-                  About Coordinating Unit
+                  Contact Support
                 </Link>
               </div>
             </div>
@@ -317,11 +317,11 @@ export default function ModuleAccessGuard({
                 <Home size={15} /> Return to Portal Home
               </Link>
               <Link
-                href="/about"
+                href="/rice/reports"
                 className="button button-outline"
                 style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}
               >
-                <ArrowLeft size={15} /> View General Directory
+                <ArrowLeft size={15} /> View Financial Reports
               </Link>
               {(userEmail === 'Guest / Outsider' || userRole === 'visitor') && (
                 <Link

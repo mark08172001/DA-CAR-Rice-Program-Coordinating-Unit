@@ -6,7 +6,7 @@ import { getAuthoritativeUserAccess } from '@/utils/adminStore';
 import ModuleAccessGuard from '@/components/ModuleAccessGuard';
 
 export const metadata = {
-  title: 'Financial Category Reports | Module 02 | DA-CAR | Rice Program Coordinating Unit',
+  title: 'Financial Reports | DA-CAR | Rice Program Coordinating Unit',
   description: 'Official financial category reports for DA-CAR Rice Program Coordinating Unit.',
 };
 
@@ -19,19 +19,31 @@ export default async function RiceReportsPage({
   searchParams?: Promise<{ category?: string }> | { category?: string };
 }) {
   const cookieStore = await cookies();
-  const supabase = createClient(cookieStore);
-  const { data: { user } } = await supabase.auth.getUser();
+  const allCookies = cookieStore.getAll();
+  const hasAuthCookie = allCookies.some(
+    (c) => c.name.startsWith('sb-') || c.name === 'da_admin_session'
+  );
 
-  let activeEmail = user?.email;
-  if (!activeEmail) {
-    const adminSessionCookie = cookieStore.get('da_admin_session')?.value;
-    if (adminSessionCookie) {
-      try {
-        const parsed = JSON.parse(decodeURIComponent(adminSessionCookie));
-        if (parsed?.email) {
-          activeEmail = parsed.email;
-        }
-      } catch {}
+  let activeEmail: string | undefined;
+  let supabase: any = null;
+
+  if (hasAuthCookie) {
+    supabase = createClient(cookieStore);
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+    activeEmail = user?.email;
+
+    if (!activeEmail) {
+      const adminSessionCookie = cookieStore.get('da_admin_session')?.value;
+      if (adminSessionCookie) {
+        try {
+          const parsed = JSON.parse(decodeURIComponent(adminSessionCookie));
+          if (parsed?.email) {
+            activeEmail = parsed.email;
+          }
+        } catch {}
+      }
     }
   }
 

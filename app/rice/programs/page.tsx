@@ -1,12 +1,13 @@
 import ProgramsClient from '@/components/ProgramsClient';
 import { createClient } from '@/utils/supabase/server';
 import { cookies } from 'next/headers';
+import { redirect } from 'next/navigation';
 import { getAuthoritativeUserAccess } from '@/utils/adminStore';
 import { getAuthoritativePrograms } from '@/utils/programsStore';
 import ModuleAccessGuard from '@/components/ModuleAccessGuard';
 
 export const metadata = {
-  title: 'Rice Programs Register | Module 01 | DA-CAR | Rice Program Coordinating Unit',
+  title: 'Programs | DA-CAR | Rice Program Coordinating Unit',
   description: 'Official banner program interventions under PSS, ESETS, RD, and INS managed by the Rice Coordinating Unit.',
 };
 
@@ -25,7 +26,7 @@ export default async function RiceProgramsPage() {
       try {
         const parsed = JSON.parse(decodeURIComponent(adminCookie));
         if (parsed?.email) activeEmail = parsed.email;
-      } catch {}
+      } catch { }
     }
   }
 
@@ -35,6 +36,12 @@ export default async function RiceProgramsPage() {
   const userRole = access.role;
   const userName = access.fullName;
 
+  // 1. Authentication Required - Visitors must sign in to access Rice Programs
+  if (!activeEmail) {
+    redirect('/login?next=/rice/programs');
+  }
+
+  // 2. Suspended Account Check
   if (access.status === 'suspended') {
     return (
       <ModuleAccessGuard
@@ -44,8 +51,8 @@ export default async function RiceProgramsPage() {
         userRole={userRole}
         moduleInfo={{
           id: 'mod-rice',
-          number: 'Module 01',
-          title: 'Physical & Programs',
+          number: '',
+          title: 'Rice Programs Register',
           desc: 'Official rice coordinating unit operations, programs, and monitoring reports.',
         }}
       />

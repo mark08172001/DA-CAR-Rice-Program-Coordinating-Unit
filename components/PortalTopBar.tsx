@@ -69,16 +69,19 @@ export default function PortalTopBar({
   }, []);
 
   // Determine current active module name based on pathname
-  let currentModuleName = 'Public Portal';
-  let currentPageTitle = 'Overview';
+  let currentModuleName = 'Financial Management';
+  let currentPageTitle = 'Financial Reports';
 
-  if (pathname === '/') {
-    currentModuleName = 'Public Portal';
-    currentPageTitle = 'Overview';
+  if (pathname === '/' || pathname.startsWith('/rice/reports')) {
+    currentModuleName = 'Financial Management';
+    currentPageTitle = 'Financial Reports';
   } else if (pathname.startsWith('/rice/balances')) {
     currentModuleName = 'Financial Management';
-    currentPageTitle = 'Obligation & Disbursement';
-  } else if (pathname.startsWith('/commodity-claims') || pathname.startsWith('/rice/commodity-claims')) {
+    currentPageTitle = 'Obligation';
+  } else if (pathname.startsWith('/rice/disbursement')) {
+    currentModuleName = 'Financial Management';
+    currentPageTitle = 'Disbursement';
+  } else if (pathname.startsWith('/commodity-claims')) {
     currentModuleName = 'Beneficiaries & Field';
     currentPageTitle = 'Commodity Claims';
   } else if (pathname.startsWith('/rice/farmers')) {
@@ -86,37 +89,28 @@ export default function PortalTopBar({
     currentPageTitle = 'Beneficiary Directory';
   } else if (pathname.startsWith('/rice/programs')) {
     currentModuleName = 'Rice Coordinating Unit';
-    currentPageTitle = 'Programs Register';
+    currentPageTitle = 'Programs';
   } else if (pathname.startsWith('/rice/physical/ds-2026-2027-distribution-status')) {
     currentModuleName = 'Rice Coordinating Unit';
     currentPageTitle = 'DS 2026-2027 Distribution Status';
   } else if (pathname.startsWith('/rice/physical')) {
     currentModuleName = 'Rice Coordinating Unit';
-    currentPageTitle = 'Physical Targets & Accomplishment';
-  } else if (pathname.startsWith('/rice/reports')) {
-    currentModuleName = 'Financial Management';
-    currentPageTitle = 'Financial Reports';
+    currentPageTitle = 'Physical';
   } else if (pathname.startsWith('/rice')) {
     currentModuleName = 'Rice Coordinating Unit';
     currentPageTitle = 'Operations Dashboard';
-  } else if (pathname === '/about') {
-    currentModuleName = 'Public Portal';
-    currentPageTitle = 'About Coordinating Unit';
-  } else if (pathname === '/provinces') {
-    currentModuleName = 'Public Portal';
-    currentPageTitle = 'CAR Provinces Directory';
-  } else if (pathname === '/market-prices') {
-    currentModuleName = 'Public Portal';
-    currentPageTitle = 'Market Prices';
-  } else if (pathname === '/weather') {
-    currentModuleName = 'Public Portal';
-    currentPageTitle = 'Agricultural Weather';
   } else if (pathname === '/login') {
     currentModuleName = 'Authentication';
     currentPageTitle = 'Staff Sign In';
   } else if (pathname === '/signup') {
     currentModuleName = 'Registration';
     currentPageTitle = 'Account Registration';
+  } else if (pathname === '/admin/users') {
+    currentModuleName = 'Admin Suite';
+    currentPageTitle = 'Staff Access Control';
+  } else if (pathname === '/admin/profiles') {
+    currentModuleName = 'Admin Suite';
+    currentPageTitle = 'Profile Database';
   } else if (pathname.startsWith('/admin')) {
     currentModuleName = 'Admin Suite';
     currentPageTitle = 'Super Administrator';

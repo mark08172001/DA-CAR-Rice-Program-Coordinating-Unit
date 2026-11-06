@@ -69,11 +69,7 @@ export const createClient = async (request: NextRequest) => {
   // Module 01 & Publicly Permitted Paths for outsiders
   const isModule1Path =
     pathname === '/' ||
-    pathname === '/about' ||
     pathname === '/contact' ||
-    pathname === '/provinces' ||
-    pathname === '/weather' ||
-    pathname === '/market-prices' ||
     pathname === '/privacy-policy' ||
     pathname === '/terms-of-use' ||
     pathname === '/login' ||
@@ -82,9 +78,15 @@ export const createClient = async (request: NextRequest) => {
     pathname.startsWith('/api/auth') ||
     pathname.startsWith('/api/beneficiaries') ||
     pathname.startsWith('/api/obligations') ||
-    pathname.startsWith('/api/rice/programs') ||
     (pathname === '/api/admin/logs' && request.method === 'POST') ||
     pathname.startsWith('/_next');
+
+  // Programs page requires authentication — redirect guests directly to sign in
+  if (pathname.startsWith('/rice/programs') && !user) {
+    const loginUrl = new URL('/login', request.url);
+    loginUrl.searchParams.set('next', pathname);
+    return NextResponse.redirect(loginUrl);
+  }
 
   // 1. Strict protection for Super Admin Suite (/admin and /api/admin)
   const isAdminPath = pathname.startsWith('/admin') || pathname.startsWith('/api/admin');

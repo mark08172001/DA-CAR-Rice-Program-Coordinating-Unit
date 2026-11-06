@@ -6,7 +6,7 @@ import { getAuthoritativeUserAccess } from '@/utils/adminStore';
 import ModuleAccessGuard from '@/components/ModuleAccessGuard';
 
 export const metadata = {
-  title: 'Obligation Budget | Module 02 | DA-CAR | Rice Program Coordinating Unit',
+  title: 'Obligation | DA-CAR | Rice Program Coordinating Unit',
   description:
     'Obligation Budget and Utilization Rate monitoring for the DA-CAR Regional Rice Coordinating Unit.',
 };

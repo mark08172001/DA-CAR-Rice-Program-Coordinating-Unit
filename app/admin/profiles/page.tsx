@@ -7,7 +7,7 @@ import { getAccounts, getAccountByEmail, syncProfilesFromSupabase, getDeletedEma
 import { createAdminClient } from '@/utils/supabase/admin';
 
 export const metadata = {
-  title: 'Profile Database & Registered Users | Super Admin Suite | DA-CAR | Rice Program Coordinating Unit',
+  title: 'Profile Database | DA-CAR | Rice Program Coordinating Unit',
   description: 'Access the PostgreSQL profiles table, inspect registered personnel accounts, manage clearance roles, and view user records.',
 };
 
@@ -99,7 +99,7 @@ export default async function AdminProfilesPage() {
   return (
     <>
       <PageHero
-        eyebrow="Module 04: Super Admin Suite"
+        eyebrow="Super Admin Suite"
         heading="User Profile Database & Registered Personnel"
         description="Direct administrative access to the PostgreSQL public.profiles table, registered accounts directory, clearance approval status, and database UUID records."
         parent={{ label: 'Admin Portal', href: '/admin' }}

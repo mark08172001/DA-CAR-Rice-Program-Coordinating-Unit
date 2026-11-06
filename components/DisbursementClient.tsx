@@ -183,20 +183,6 @@ export default function DisbursementClient({
               <h1 style={{ margin: 0, fontSize: 20, fontWeight: 700, color: '#0f172a' }}>
                 Disbursement
               </h1>
-              <span
-                style={{
-                  fontSize: 11,
-                  fontWeight: 600,
-                  background: '#dcfce7',
-                  color: '#15803d',
-                  padding: '2px 8px',
-                  borderRadius: 12,
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.04em',
-                }}
-              >
-                Module 02
-              </span>
             </div>
             <p style={{ margin: '2px 0 0', fontSize: 12, color: '#64748b' }}>
               Financial Management &bull; Registry of Allotments, Obligations and Disbursements

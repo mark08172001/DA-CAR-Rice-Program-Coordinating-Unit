@@ -28,8 +28,8 @@ export default function Footer() {
           <div>
             <h3>Quick Links</h3>
             <nav className="footer-links" aria-label="Footer navigation">
-              <Link href="/about">About Coordinating Unit</Link>
-              <Link href="/#event-calendar">Field Activities Calendar</Link>
+              <Link href="/rice/balances">Obligation Budget</Link>
+              <Link href="/rice/disbursement">Disbursement Ledger</Link>
               <Link href="/login">Staff Portal Sign In</Link>
             </nav>
           </div>

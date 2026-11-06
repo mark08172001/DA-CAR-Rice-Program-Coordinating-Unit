@@ -33,20 +33,18 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 Every page is in its own clearly named folder with a dedicated `page.tsx` for easy maintenance:
 
-- `app/page.tsx` — Main Home Portal (Hero carousel, priority strip, commodity allocation dashboard)
-- `app/about/page.tsx` — About the Rice Program Coordinating Unit
-- `app/contact/page.tsx` — Department Contact directory & interactive inquiry form
-- `app/provinces/page.tsx` — Cordillera 6-province agricultural directory
-- `app/market-prices/page.tsx` — Regional commodity market prices
-- `app/weather/page.tsx` — Agriculture weather stations and monitoring
+- `app/page.tsx` — Financial Reports Landing Page (Official financial category reports, ongoing vs completed, budget summaries)
 - `app/privacy-policy/page.tsx` — Data Privacy notice
 - `app/terms-of-use/page.tsx` — Terms of use
-- `app/rice/page.tsx` — Rice Coordinating Unit Operations Dashboard
 - `app/rice/balances/page.tsx` — Financial balances, disbursements, charts, and transaction modal
+- `app/rice/disbursement/page.tsx` — Disbursement Ledger
 - `app/rice/farmers/page.tsx` — Beneficiary registry with search and location sorting
 - `app/rice/programs/page.tsx` — Rice programs register with status and location filters
 - `app/rice/reports/page.tsx` — Official monitoring reports (ongoing vs completed)
-- `app/rice/contact/page.tsx` — Rice Unit contact form
+- `app/rice/physical/page.tsx` — Physical Targets & Accomplishments
+- `app/commodity-claims/page.tsx` — Commodity Claims Dashboard
+- `app/admin/users/page.tsx` — Staff Access Control
+- `app/admin/profiles/page.tsx` — Profile Database
 - `app/api/transactions/[balanceId]/route.ts` — Transaction history API endpoint
 
 ## Supabase Tables

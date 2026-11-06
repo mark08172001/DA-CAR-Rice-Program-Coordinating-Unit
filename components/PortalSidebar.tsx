@@ -4,9 +4,6 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import {
-  Home,
-  Calendar,
-  Info,
   Wheat,
   FileText,
   Users,
@@ -49,14 +46,9 @@ interface NavItem {
   badgeType?: 'gold' | 'green' | 'muted';
   isSubItem?: boolean;
   subItems?: NavItem[];
-}
-
-interface NavModule {
-  id: string;
-  moduleNumber: string;
-  title: string;
-  description: string;
-  items: NavItem[];
+  requireAuth?: boolean;
+  requireBeneficiary?: boolean;
+  requireAdmin?: boolean;
 }
 
 export default function PortalSidebar({
@@ -72,20 +64,8 @@ export default function PortalSidebar({
   const [user, setUser] = useState<any>(null);
   const [profile, setProfile] = useState<any>(null);
 
-  // Module accordion state: ALL modules are closed by default when opening the website
-  const [openModules, setOpenModules] = useState<Record<string, boolean>>({});
-
-  // Sub-items dropdown state (e.g. Physical -> DS Distribution)
-  const [openSubMenus, setOpenSubMenus] = useState<Record<string, boolean>>({
-    '/rice/physical': true,
-  });
-
-  const toggleModule = (moduleId: string) => {
-    setOpenModules((prev) => ({
-      ...prev,
-      [moduleId]: !prev[moduleId],
-    }));
-  };
+  // Sub-items dropdown state (closed by default on website load/reload)
+  const [openSubMenus, setOpenSubMenus] = useState<Record<string, boolean>>({});
 
   const toggleSubMenu = (itemHref: string, e: React.MouseEvent) => {
     e.preventDefault();
@@ -217,97 +197,59 @@ export default function PortalSidebar({
     window.location.href = '/';
   };
 
-  // Modules Definition
-  const modules: NavModule[] = [
+  // Navigation Links (Clean Flat Structure)
+  const navItems: NavItem[] = [
+    { label: 'Financial Reports', href: '/rice/reports', icon: FileText },
+    { label: 'Obligation', href: '/rice/balances', icon: Coins },
+    { label: 'Disbursement', href: '/rice/disbursement', icon: CreditCard },
     {
-      id: 'mod-general',
-      moduleNumber: 'Public Portal',
-      title: 'Home',
-      description: 'Core agency directory & calendar',
-      items: [
-        { label: 'Portal Home', href: '/', icon: Home },
-        { label: 'Field Event Calendar', href: '/#event-calendar', icon: Calendar },
-        { label: 'About Coordinating Unit', href: '/about', icon: Info },
-      ],
-    },
-    {
-      id: 'mod-rice',
-      moduleNumber: 'Module 01',
-      title: 'Physical & Programs',
-      description: 'Target KPIs & operational programs',
-      items: [
+      label: 'Physical',
+      href: '/rice/physical',
+      icon: BarChart3,
+      subItems: [
         {
-          label: 'Physical',
-          href: '/rice/physical',
-          icon: BarChart3,
-          subItems: [
-            {
-              label: 'DS 2026-2027 Distribution Status',
-              href: '/rice/physical/ds-2026-2027-distribution-status',
-              icon: Truck,
-              isSubItem: true,
-            },
-          ],
+          label: 'DS 2026-2027 Distribution Status',
+          href: '/rice/physical/ds-2026-2027-distribution-status',
+          icon: Truck,
+          isSubItem: true,
         },
-        { label: 'Programs', href: '/rice/programs', icon: Wheat },
       ],
     },
-    {
-      id: 'mod-finance',
-      moduleNumber: 'Module 02',
-      title: 'Financial Management',
-      description: 'Obligation budget & financial reports',
-      items: [
-        { label: 'Obligation', href: '/rice/balances', icon: Coins },
-        { label: 'Disbursement', href: '/rice/disbursement', icon: CreditCard },
-        { label: 'Financial Reports', href: '/rice/reports', icon: FileText },
-      ],
-    },
-    {
-      id: 'mod-beneficiary',
-      moduleNumber: 'Module 03',
-      title: 'Beneficiaries',
-      description: 'Farmers & voucher distributions',
-      items: [
-        { label: 'Beneficiary Directory', href: '/rice/farmers', icon: Users },
-        { label: 'Commodity Claims', href: '/commodity-claims', icon: Package },
-      ],
-    },
-    {
-      id: 'mod-admin',
-      moduleNumber: 'Module 04',
-      title: 'Super Admin',
-      description: 'Access limits & staff profiles',
-      items: [
-        { label: 'Staff Access Control', href: '/admin/users', icon: Users },
-        { label: 'Profile Database', href: '/admin/profiles', icon: Users },
-      ],
-    },
+    { label: 'Programs', href: '/rice/programs', icon: Wheat, requireAuth: true },
+    { label: 'Beneficiary Directory', href: '/rice/farmers', icon: Users, requireBeneficiary: true },
+    { label: 'Commodity Claims', href: '/commodity-claims', icon: Package, requireBeneficiary: true },
+    { label: 'Staff Access Control', href: '/admin/users', icon: UserCheck, requireAdmin: true },
+    { label: 'Profile Database', href: '/admin/profiles', icon: Users, requireAdmin: true },
   ];
 
   const userRole = (profile?.role || user?.user_metadata?.role || (user?.email === 'super.admin@car.da.gov.ph' ? 'super_admin' : 'staff')).toLowerCase();
-  const isSuperAdmin = user && (userRole === 'super_admin' || user?.email === 'super.admin@car.da.gov.ph');
-  const isSuperAdminOrAdmin = user && (['super_admin', 'admin'].includes(userRole) || user?.email?.includes('admin'));
+  const isSuperAdmin = Boolean(user && (userRole === 'super_admin' || user?.email === 'super.admin@car.da.gov.ph'));
+  const isSuperAdminOrAdmin = Boolean(user && (['super_admin', 'admin'].includes(userRole) || user?.email?.includes('admin')));
+  const allowed = Array.isArray(profile?.allowed_modules) ? profile.allowed_modules : [];
+  const hasBeneficiaryAccess = isSuperAdmin || allowed.includes('mod-beneficiary');
+  const isSuspended = profile?.status === 'suspended';
 
-  // Determine which modules are visible based on visitor / staff access limits
-  let visibleModules: NavModule[] = [];
-  const publicModuleIds = ['mod-general', 'mod-rice', 'mod-finance'];
+  const visibleNavItems = navItems.filter((item) => {
+    if (isSuspended) return false;
+    if (item.requireAdmin) return isSuperAdminOrAdmin;
+    if (item.requireBeneficiary) return hasBeneficiaryAccess;
+    if (item.requireAuth) return Boolean(user);
+    return true;
+  });
 
-  if (!user) {
-    visibleModules = modules.filter((mod) => publicModuleIds.includes(mod.id));
-  } else if (isSuperAdmin) {
-    visibleModules = modules; // Super Admin sees all modules
-  } else if (profile?.status === 'suspended') {
-    visibleModules = []; // Suspended staff accounts have all internal module navigation revoked
-  } else {
-    // For regular staff / admin / officer: check allowed modules strictly configured by Super Admin
-    const allowed = Array.isArray(profile?.allowed_modules)
-      ? profile.allowed_modules
-      : ['mod-general'];
-    visibleModules = modules.filter(
-      (mod) => (mod.id !== 'mod-admin' || isSuperAdminOrAdmin) && (publicModuleIds.includes(mod.id) || allowed.includes(mod.id))
-    );
-  }
+  const isItemActive = (href: string) => {
+    if (href === '/' || href === '/rice/reports') {
+      return pathname === '/' || pathname === '/rice/reports';
+    }
+    if (href === '/rice') {
+      return pathname === '/rice';
+    }
+    if (href.includes('#')) {
+      const base = href.split('#')[0];
+      return pathname === (base || '/');
+    }
+    return pathname === href || pathname.startsWith(href + '/');
+  };
 
   const displayName = profile?.full_name || user?.user_metadata?.full_name || user?.email?.split('@')[0] || 'Personnel';
   const roleName = userRole.toUpperCase().replace('_', ' ');
@@ -315,7 +257,7 @@ export default function PortalSidebar({
   return (
     <aside
       className={`portal-sidebar ${isOpen ? 'open' : ''} ${isCollapsed ? 'minimized' : ''}`}
-      aria-label="Portal Module Navigation"
+      aria-label="Portal Navigation"
     >
       {/* Sidebar Header Brand */}
       <div className="sidebar-brand-box">
@@ -372,214 +314,172 @@ export default function PortalSidebar({
         </div>
       )}
 
-      {/* Navigation Modules List */}
+      {/* Navigation Links (Clean Flat List) */}
       <div className="sidebar-modules-scroll">
-        {visibleModules.map((mod) => {
-          const isModuleOpen = !!openModules[mod.id];
-          const isGeneral = mod.id === 'mod-general';
-          const hasActiveChild = mod.items.some((item) => {
-            if (item.href === '/') return pathname === '/';
-            if (item.href.includes('#')) {
-              const base = item.href.split('#')[0];
-              return pathname === (base || '/');
-            }
-            return pathname === item.href || pathname.startsWith(item.href + '/');
-          });
+        <nav className="module-nav-list" aria-label="Portal Navigation" style={{ padding: '6px 6px 14px' }}>
+          {visibleNavItems.map((item, idx) => {
+            const IconComponent = item.icon;
+            const isActive = isItemActive(item.href);
+            const hasSubItems = Boolean(item.subItems && item.subItems.length > 0);
+            const isSubOpen = Boolean(openSubMenus[item.href]);
+            const isFirstAdminItem = item.requireAdmin && !visibleNavItems[idx - 1]?.requireAdmin;
 
-          return (
-            <section
-              key={mod.id}
-              className={`module-section ${hasActiveChild ? 'module-active' : ''} ${isGeneral ? 'module-section-flat' : ''}`}
-              title={isCollapsed ? `${mod.moduleNumber}: ${mod.title}` : undefined}
-            >
-              {/* Category label for Public Portal (flat minimal header) or Accordion Button for other modules */}
-              {!isCollapsed && (
-                isGeneral ? (
-                  <div className="sidebar-section-label">
-                    <span>PUBLIC PORTAL</span>
-                  </div>
-                ) : (
-                  <button
-                    type="button"
-                    onClick={() => toggleModule(mod.id)}
-                    className="module-header-btn"
-                    aria-expanded={isModuleOpen}
+            return (
+              <div key={item.label} className="module-item-group">
+                {isFirstAdminItem && !isCollapsed && (
+                  <div
+                    style={{
+                      padding: '14px 10px 6px',
+                      fontSize: '10.5px',
+                      fontWeight: 700,
+                      letterSpacing: '0.08em',
+                      textTransform: 'uppercase',
+                      color: 'rgba(255, 255, 255, 0.45)',
+                      borderTop: '1px solid rgba(255, 255, 255, 0.08)',
+                      marginTop: 8,
+                    }}
                   >
-                    <div className="module-title-col">
-                      <span className="module-code">{mod.moduleNumber}</span>
-                      <h3 className="module-heading">{mod.title}</h3>
-                    </div>
-                    <ChevronDown
-                      size={14}
-                      className={`module-chevron ${!isModuleOpen ? 'collapsed' : ''}`}
-                    />
-                  </button>
-                )
-              )}
+                    Administration
+                  </div>
+                )}
+                {isFirstAdminItem && isCollapsed && (
+                  <div
+                    style={{
+                      height: 1,
+                      background: 'rgba(255, 255, 255, 0.1)',
+                      margin: '10px 4px',
+                    }}
+                  />
+                )}
+                <Link
+                  href={item.href}
+                  onClick={onClose}
+                  className={`module-link ${isActive ? 'active' : ''}`}
+                  title={item.label}
+                >
+                  <span className="module-link-left">
+                    <IconComponent size={isCollapsed ? 18 : 16} className="module-link-icon" />
+                    {!isCollapsed && <span className="module-link-title">{item.label}</span>}
+                  </span>
 
-              {/* Module Navigation Items */}
-              {(isGeneral || isModuleOpen || isCollapsed) && (
-                <nav className="module-nav-list" aria-label={mod.title}>
-                  {mod.items.map((item) => {
-                    const IconComponent = item.icon;
-                    let isActive = false;
-                    if (item.href === '/') {
-                      isActive = pathname === '/';
-                    } else if (item.href === '/rice') {
-                      isActive = pathname === '/rice';
-                    } else if (item.href.includes('#')) {
-                      const base = item.href.split('#')[0];
-                      isActive = pathname === (base || '/');
-                    } else {
-                      isActive = pathname === item.href || pathname.startsWith(item.href + '/');
-                    }
-
-                    const hasSubItems = Boolean(item.subItems && item.subItems.length > 0);
-                    const isSubOpen = Boolean(openSubMenus[item.href]);
-
-                    return (
-                      <div key={item.label} className="module-item-group">
-                        <Link
-                          href={item.href}
-                          onClick={(e) => {
-                            if (hasSubItems) {
-                              setOpenSubMenus((prev) => ({
-                                ...prev,
-                                [item.href]: true,
-                              }));
-                            }
-                            onClose();
+                  {!isCollapsed && (
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                      {item.badge && (
+                        <span className={`module-badge badge-${item.badgeType || 'muted'}`}>
+                          {item.badge}
+                        </span>
+                      )}
+                      {hasSubItems && (
+                        <button
+                          type="button"
+                          onClick={(e) => toggleSubMenu(item.href, e)}
+                          style={{
+                            border: 'none',
+                            background: 'transparent',
+                            color: 'rgba(255, 255, 255, 0.7)',
+                            cursor: 'pointer',
+                            display: 'flex',
+                            alignItems: 'center',
+                            padding: '2px 4px',
+                            borderRadius: 3,
                           }}
-                          className={`module-link ${isActive ? 'active' : ''}`}
-                          title={item.label}
+                          aria-label={`Toggle ${item.label} sub-items`}
                         >
-                          <span className="module-link-left">
-                            <IconComponent size={isCollapsed ? 18 : 16} className="module-link-icon" />
-                            {!isCollapsed && <span className="module-link-title">{item.label}</span>}
+                          <ChevronDown
+                            size={13}
+                            style={{
+                              transform: isSubOpen ? 'rotate(0deg)' : 'rotate(-90deg)',
+                              transition: 'transform 0.2s ease',
+                            }}
+                          />
+                        </button>
+                      )}
+                    </div>
+                  )}
+
+                  {isCollapsed && item.badge && (
+                    <span className="minimized-badge-dot" title={item.badge} />
+                  )}
+                </Link>
+
+                {/* Collapsible Sub-Items Dropdown */}
+                {hasSubItems && !isCollapsed && isSubOpen && (
+                  <div className="module-subnav-list" style={{ marginTop: '2px', marginBottom: '4px' }}>
+                    {item.subItems!.map((sub) => {
+                      const isSubActive = pathname === sub.href;
+                      return (
+                        <Link
+                          key={sub.label}
+                          href={sub.href}
+                          onClick={onClose}
+                          className={`module-link ${isSubActive ? 'active' : ''} module-sublink`}
+                          title={sub.label}
+                          style={{
+                            marginLeft: '14px',
+                            paddingLeft: '8px',
+                            position: 'relative',
+                          }}
+                        >
+                          <span className="module-link-left" style={{ alignItems: 'flex-start' }}>
+                            {/* Hierarchical L-shaped tree branch */}
+                            <span
+                              aria-hidden="true"
+                              style={{
+                                display: 'inline-block',
+                                width: '13px',
+                                height: '14px',
+                                borderLeft: '2.5px solid rgba(255, 255, 255, 0.75)',
+                                borderBottom: '2.5px solid rgba(255, 255, 255, 0.75)',
+                                borderBottomLeftRadius: '2px',
+                                marginRight: '6px',
+                                marginTop: '2px',
+                                flexShrink: 0,
+                              }}
+                            />
+                            <span
+                              className="module-link-title"
+                              style={{
+                                whiteSpace: 'normal',
+                                lineHeight: '1.25',
+                                fontSize: '12px',
+                                fontWeight: 500,
+                              }}
+                            >
+                              {sub.label === 'DS 2026-2027 Distribution Status' ? (
+                                <>
+                                  <span style={{ display: 'block', fontWeight: 600 }}>DS 2026-2027</span>
+                                  <span style={{ display: 'block', fontSize: '11px', opacity: 0.88 }}>Distribution status</span>
+                                </>
+                              ) : (
+                                sub.label
+                              )}
+                            </span>
                           </span>
 
-                          {!isCollapsed && (
-                            <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-                              {item.badge && (
-                                <span className={`module-badge badge-${item.badgeType || 'muted'}`}>
-                                  {item.badge}
-                                </span>
-                              )}
-                              {hasSubItems && (
-                                <button
-                                  type="button"
-                                  onClick={(e) => toggleSubMenu(item.href, e)}
-                                  style={{
-                                    border: 'none',
-                                    background: 'transparent',
-                                    color: 'rgba(255, 255, 255, 0.7)',
-                                    cursor: 'pointer',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    padding: '2px 4px',
-                                    borderRadius: 3,
-                                  }}
-                                  aria-label={`Toggle ${item.label} sub-items`}
-                                >
-                                  <ChevronDown
-                                    size={13}
-                                    style={{
-                                      transform: isSubOpen ? 'rotate(0deg)' : 'rotate(-90deg)',
-                                      transition: 'transform 0.2s ease',
-                                    }}
-                                  />
-                                </button>
-                              )}
-                            </div>
-                          )}
-
-                          {isCollapsed && item.badge && (
-                            <span className="minimized-badge-dot" title={item.badge} />
+                          {sub.badge && (
+                            <span className={`module-badge badge-${sub.badgeType || 'muted'}`}>
+                              {sub.badge}
+                            </span>
                           )}
                         </Link>
-
-                        {/* Collapsible Sub-Items Dropdown */}
-                        {hasSubItems && !isCollapsed && isSubOpen && (
-                          <div className="module-subnav-list" style={{ marginTop: '2px', marginBottom: '4px' }}>
-                            {item.subItems!.map((sub) => {
-                              const isSubActive = pathname === sub.href;
-                              return (
-                                <Link
-                                  key={sub.label}
-                                  href={sub.href}
-                                  onClick={onClose}
-                                  className={`module-link ${isSubActive ? 'active' : ''} module-sublink`}
-                                  title={sub.label}
-                                  style={{
-                                    marginLeft: '14px',
-                                    paddingLeft: '8px',
-                                    position: 'relative',
-                                  }}
-                                >
-                                  <span className="module-link-left" style={{ alignItems: 'flex-start' }}>
-                                    {/* Hierarchical L-shaped tree branch */}
-                                    <span
-                                      aria-hidden="true"
-                                      style={{
-                                        display: 'inline-block',
-                                        width: '13px',
-                                        height: '14px',
-                                        borderLeft: '2.5px solid rgba(255, 255, 255, 0.75)',
-                                        borderBottom: '2.5px solid rgba(255, 255, 255, 0.75)',
-                                        borderBottomLeftRadius: '2px',
-                                        marginRight: '6px',
-                                        marginTop: '2px',
-                                        flexShrink: 0,
-                                      }}
-                                    />
-                                    <span
-                                      className="module-link-title"
-                                      style={{
-                                        whiteSpace: 'normal',
-                                        lineHeight: '1.25',
-                                        fontSize: '12px',
-                                        fontWeight: 500,
-                                      }}
-                                    >
-                                      {sub.label === 'DS 2026-2027 Distribution Status' ? (
-                                        <>
-                                          <span style={{ display: 'block', fontWeight: 600 }}>DS 2026-2027</span>
-                                          <span style={{ display: 'block', fontSize: '11px', opacity: 0.88 }}>Distribution status</span>
-                                        </>
-                                      ) : (
-                                        sub.label
-                                      )}
-                                    </span>
-                                  </span>
-
-                                  {sub.badge && (
-                                    <span className={`module-badge badge-${sub.badgeType || 'muted'}`}>
-                                      {sub.badge}
-                                    </span>
-                                  )}
-                                </Link>
-                              );
-                            })}
-                          </div>
-                        )}
-                      </div>
-                    );
-                  })}
-                </nav>
-              )}
-            </section>
-          );
-        })}
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </nav>
 
         {/* Informational Restricted Notice for outsiders */}
         {!user && !isCollapsed && (
           <div className="sidebar-restricted-box">
             <div className="sidebar-restricted-badge">
               <Lock size={12} />
-              <span>Module 3 Restricted</span>
+              <span>Authorized Access</span>
             </div>
             <p className="sidebar-restricted-desc">
-              RSBSA Beneficiary Registry and Voucher Claims are restricted to authorized DA personnel.
+              Rice Programs, Beneficiary Registry, and Voucher Claims are restricted to authorized DA personnel.
             </p>
             <Link href="/login" onClick={onClose} className="sidebar-restricted-btn">
               <LogIn size={13} />
@@ -588,10 +488,10 @@ export default function PortalSidebar({
           </div>
         )}
 
-        {/* Minimized icon for outsiders indicating locked modules */}
+        {/* Minimized icon for outsiders indicating locked items */}
         {!user && isCollapsed && (
-          <div className="minimized-lock-item" title="Module 3 Restricted to Authorized DA Personnel">
-            <Link href="/login" onClick={onClose} className="minimized-lock-link" title="Sign In to unlock module">
+          <div className="minimized-lock-item" title="Programs & Beneficiary Registry Restricted to Authorized DA Personnel">
+            <Link href="/login" onClick={onClose} className="minimized-lock-link" title="Sign In to unlock">
               <Lock size={16} />
             </Link>
           </div>
