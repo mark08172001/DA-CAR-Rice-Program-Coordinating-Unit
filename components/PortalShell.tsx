@@ -6,6 +6,7 @@ import PortalSidebar from './PortalSidebar';
 import PortalTopBar from './PortalTopBar';
 import Footer from './Footer';
 import ModuleAccessGuard from './ModuleAccessGuard';
+import CircleLoading from './CircleLoading';
 
 interface PortalShellProps {
   children: React.ReactNode;
@@ -63,7 +64,42 @@ export default function PortalShell({ children }: PortalShellProps) {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [currentUser, setCurrentUser] = useState<any>(null);
   const [currentAccount, setCurrentAccount] = useState<any>(null);
+  const [isNavigating, setIsNavigating] = useState(false);
   const pathname = usePathname();
+
+  // Reset loading indicator on route settlement
+  useEffect(() => {
+    setIsNavigating(false);
+  }, [pathname]);
+
+  // Trigger blurred circle loading when navigating between pages
+  useEffect(() => {
+    const handleLinkClick = (e: MouseEvent) => {
+      // Ignore clicks on buttons (e.g. Physical dropdown chevron toggle)
+      const targetElement = e.target as HTMLElement | null;
+      if (targetElement?.closest('button')) return;
+
+      const anchor = targetElement?.closest('a');
+      if (!anchor || !anchor.href || anchor.target === '_blank') return;
+
+      try {
+        const url = new URL(anchor.href, window.location.href);
+        if (url.origin === window.location.origin) {
+          const currentPath = window.location.pathname.replace(/\/$/, '') || '/';
+          const nextPath = url.pathname.replace(/\/$/, '') || '/';
+          if (currentPath !== nextPath || url.search !== window.location.search) {
+            setIsNavigating(true);
+          }
+        }
+      } catch {
+        // invalid URL fallback
+      }
+    };
+
+    // Capture phase ensures we detect the navigation before React preventDefault
+    document.addEventListener('click', handleLinkClick, true);
+    return () => document.removeEventListener('click', handleLinkClick, true);
+  }, []);
 
   // Load saved minimize preference from localStorage on mount
   useEffect(() => {
@@ -227,7 +263,10 @@ export default function PortalShell({ children }: PortalShellProps) {
   }
 
   return (
-    <div className={`portal-shell ${isCollapsed ? 'sidebar-collapsed' : ''}`}>
+    <div className={`portal-shell ${isCollapsed ? 'sidebar-collapsed' : ''} ${isNavigating ? 'is-page-loading' : ''}`}>
+      {/* Blurred Background Circle Loading Overlay during page transition */}
+      {isNavigating && <CircleLoading text="Loading..." />}
+
       {/* Left-docked Modular Sidebar */}
       <PortalSidebar
         isOpen={sidebarOpen}

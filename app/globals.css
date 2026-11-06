@@ -6448,6 +6448,17 @@ select.form-control {
   transform: none !important;
 }
 
+/* Remove background highlight & left border on branched child sub-links */
+.portal-sidebar .module-sublink,
+.portal-sidebar .module-sublink.active,
+.portal-sidebar .module-sublink:hover {
+  background: transparent !important;
+  border-left: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
 .portal-sidebar .module-link.active .module-link-icon {
   color: #f59e0b !important;
   opacity: 1 !important;
