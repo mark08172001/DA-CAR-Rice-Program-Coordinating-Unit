@@ -306,13 +306,7 @@ export default function PortalSidebar({
         </button>
       </div>
 
-      {/* Module Overview Indicator */}
-      {!isCollapsed && (
-        <div className="sidebar-region-pill">
-          <span className="sidebar-live-dot"></span>
-          <span>Cordillera Administrative Region</span>
-        </div>
-      )}
+
 
       {/* Navigation Links (Clean Flat List) */}
       <div className="sidebar-modules-scroll">
