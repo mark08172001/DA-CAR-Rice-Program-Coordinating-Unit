@@ -185,7 +185,7 @@ export default function DisbursementClient({
               </h1>
             </div>
             <p style={{ margin: '2px 0 0', fontSize: 12, color: '#64748b' }}>
-              Financial Management &bull; Registry of Allotments, Obligations and Disbursements
+              Registry of Allotments, Obligations and Disbursements
             </p>
           </div>
         </div>

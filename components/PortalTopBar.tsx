@@ -68,51 +68,38 @@ export default function PortalTopBar({
     setCurrentTime(formatted);
   }, []);
 
-  // Determine current active module name based on pathname
-  let currentModuleName = 'Financial Management';
+  // Determine current active page & optional parent category for breadcrumbs
+  let parentTitle: string | null = null;
   let currentPageTitle = 'Financial Reports';
 
   if (pathname === '/' || pathname.startsWith('/rice/reports')) {
-    currentModuleName = 'Financial Management';
     currentPageTitle = 'Financial Reports';
   } else if (pathname.startsWith('/rice/balances')) {
-    currentModuleName = 'Financial Management';
     currentPageTitle = 'Obligation';
   } else if (pathname.startsWith('/rice/disbursement')) {
-    currentModuleName = 'Financial Management';
     currentPageTitle = 'Disbursement';
   } else if (pathname.startsWith('/commodity-claims')) {
-    currentModuleName = 'Beneficiaries & Field';
     currentPageTitle = 'Commodity Claims';
   } else if (pathname.startsWith('/rice/farmers')) {
-    currentModuleName = 'Beneficiaries & Field';
     currentPageTitle = 'Beneficiary Directory';
   } else if (pathname.startsWith('/rice/programs')) {
-    currentModuleName = 'Rice Coordinating Unit';
     currentPageTitle = 'Programs';
   } else if (pathname.startsWith('/rice/physical/ds-2026-2027-distribution-status')) {
-    currentModuleName = 'Rice Coordinating Unit';
+    parentTitle = 'Physical';
     currentPageTitle = 'DS 2026-2027 Distribution Status';
   } else if (pathname.startsWith('/rice/physical')) {
-    currentModuleName = 'Rice Coordinating Unit';
     currentPageTitle = 'Physical';
   } else if (pathname.startsWith('/rice')) {
-    currentModuleName = 'Rice Coordinating Unit';
     currentPageTitle = 'Operations Dashboard';
   } else if (pathname === '/login') {
-    currentModuleName = 'Authentication';
     currentPageTitle = 'Staff Sign In';
   } else if (pathname === '/signup') {
-    currentModuleName = 'Registration';
     currentPageTitle = 'Account Registration';
   } else if (pathname === '/admin/users') {
-    currentModuleName = 'Admin Suite';
     currentPageTitle = 'Staff Access Control';
   } else if (pathname === '/admin/profiles') {
-    currentModuleName = 'Admin Suite';
     currentPageTitle = 'Profile Database';
   } else if (pathname.startsWith('/admin')) {
-    currentModuleName = 'Admin Suite';
     currentPageTitle = 'Super Administrator';
   }
 
@@ -131,9 +118,15 @@ export default function PortalTopBar({
             </button>
 
             <nav className="topbar-breadcrumb" aria-label="Breadcrumb">
-              <span className="breadcrumb-module">{currentModuleName}</span>
-              <span className="breadcrumb-divider">/</span>
-              <span className="breadcrumb-page">{currentPageTitle}</span>
+              {parentTitle ? (
+                <>
+                  <span className="breadcrumb-parent">{parentTitle}</span>
+                  <span className="breadcrumb-divider">/</span>
+                  <span className="breadcrumb-page">{currentPageTitle}</span>
+                </>
+              ) : (
+                <span className="breadcrumb-page">{currentPageTitle}</span>
+              )}
             </nav>
           </div>
 

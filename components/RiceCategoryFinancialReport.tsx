@@ -433,7 +433,7 @@ export default function RiceCategoryFinancialReport({
                 ? 'RICE FINANCIAL REPORT 2026 • GRAND TOTAL'
                 : 'RICE FINANCIAL REPORT 2026'}
             </h1>
-            <span className="rice-report-badge">FINANCIAL MANAGEMENT • DA-CAR</span>
+            <span className="rice-report-badge">DA-CAR RICE PROGRAM</span>
           </div>
 
           <div className="top-header-right">

@@ -6502,13 +6502,20 @@ select.form-control {
   font-weight: 600 !important;
 }
 
+.breadcrumb-parent {
+  color: #64748b !important;
+  font-weight: 500 !important;
+  font-size: 13.5px !important;
+}
+
 .breadcrumb-divider {
-  color: #cbd5e1 !important;
+  color: #94a3b8 !important;
 }
 
 .breadcrumb-page {
-  color: #64748b !important;
-  font-weight: 500 !important;
+  color: #0f172a !important;
+  font-weight: 650 !important;
+  font-size: 13.5px !important;
 }
 
 .topbar-why-btn {
