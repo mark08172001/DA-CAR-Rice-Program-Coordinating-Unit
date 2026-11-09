@@ -21,6 +21,7 @@ import {
   Globe,
   TableProperties,
   ArrowRight,
+  X,
 } from 'lucide-react';
 
 interface Props {
@@ -66,6 +67,35 @@ export default function RiceCategoryFinancialReport({
   const [selectedFund, setSelectedFund] = useState<string>(''); // Default: All Funds Summed (Grand Total: ₱731.74M)
   const [grandTotalTableView, setGrandTotalTableView] = useState<'categories' | 'lineItems'>('categories');
   const [catChangeKey, setCatChangeKey] = useState(0);
+
+  // Executive MFO Overview Modal: only opens once upon initially opening the website in the browser session
+  const [showMfoOverview, setShowMfoOverview] = useState(false);
+  const [dontShowAgain, setDontShowAgain] = useState(false);
+
+  useEffect(() => {
+    try {
+      const alreadyShownInSession = sessionStorage.getItem('da_mfo_overview_shown');
+      const permanentlyDisabled = localStorage.getItem('da_mfo_overview_auto_disabled') === 'true';
+
+      // Only show automatically once upon opening the website in this session
+      if (!alreadyShownInSession && !permanentlyDisabled) {
+        setShowMfoOverview(true);
+        sessionStorage.setItem('da_mfo_overview_shown', 'true');
+      }
+    } catch {
+      // In case storage is restricted
+    }
+  }, []);
+
+  const handleCloseOverview = () => {
+    setShowMfoOverview(false);
+    try {
+      sessionStorage.setItem('da_mfo_overview_shown', 'true');
+      if (dontShowAgain) {
+        localStorage.setItem('da_mfo_overview_auto_disabled', 'true');
+      }
+    } catch {}
+  };
 
   // Sync category if initialCategory changes or URL search changes
   useEffect(() => {
@@ -339,6 +369,131 @@ export default function RiceCategoryFinancialReport({
     });
   }, [filteredRows]);
 
+  // Comprehensive MFO Financial Overview calculation (PSS, INS, ESETS, RD, and Grand Total)
+  const mfoOverviewData = useMemo(() => {
+    const riceRows = rows.filter((r) => {
+      const f = (r.fund || '').toLowerCase().trim();
+      const p = (r.pap || '').toLowerCase().trim();
+      const rc = (r.rc || '').toLowerCase().trim();
+      const cls = (r.class || '').toLowerCase().trim();
+      const src = (r.source || '').toLowerCase().trim();
+      const desc = (r.description || '').toLowerCase().trim();
+      const obj = (r.obj_code || '').toLowerCase().trim();
+
+      if (
+        f.includes('total') ||
+        p.includes('total') ||
+        rc.includes('total') ||
+        cls.includes('total') ||
+        src.includes('total') ||
+        desc.includes('total')
+      ) {
+        return false;
+      }
+      if (!desc && !obj) return false;
+      if (selectedFund && (r.fund || '').trim() !== selectedFund) return false;
+      if (p.includes('fpma') || p.includes('sto')) return false;
+      return p.includes('rice');
+    });
+
+    const programCategories = [
+      {
+        id: 'PSS RICE' as CategoryType,
+        shortCode: 'PSS',
+        label: 'Production Support Services',
+        badgeBg: '#ecfdf5',
+        badgeColor: '#059669',
+        badgeBorder: '#a7f3d0',
+        pCheck: (p: string) => p.includes('pss'),
+      },
+      {
+        id: 'INS RICE' as CategoryType,
+        shortCode: 'INS',
+        label: 'Irrigation Network Services',
+        badgeBg: '#f0f9ff',
+        badgeColor: '#0284c7',
+        badgeBorder: '#bae6fd',
+        pCheck: (p: string) => p.includes('ins'),
+      },
+      {
+        id: 'ESETS RICE' as CategoryType,
+        shortCode: 'ESETS',
+        label: 'Extension Support, Education & Training',
+        badgeBg: '#fffbeb',
+        badgeColor: '#d97706',
+        badgeBorder: '#fde68a',
+        pCheck: (p: string) => p.includes('esets'),
+      },
+      {
+        id: 'RD RICE' as CategoryType,
+        shortCode: 'RD',
+        label: 'Research & Development',
+        badgeBg: '#f5f3ff',
+        badgeColor: '#7c3aed',
+        badgeBorder: '#ddd6fe',
+        pCheck: (p: string) => p.includes('rd') || p.includes('research'),
+      },
+    ];
+
+    const items = programCategories.map((m) => {
+      const subset = riceRows.filter((r) => m.pCheck((r.pap || '').toLowerCase()));
+      const allocation = subset.reduce((s, r) => s + (Number(r.adjusted_allotment) || 0), 0);
+      const obligation = subset.reduce((s, r) => s + (Number(r.total_obligation) || 0), 0);
+      const disbursement = subset.reduce((s, r) => s + (Number(r.disbursement) || 0), 0);
+      const unobligated = subset.reduce(
+        (s, r) =>
+          s +
+          (r.unobligated_allotment !== undefined && r.unobligated_allotment !== null
+            ? Number(r.unobligated_allotment)
+            : (Number(r.adjusted_allotment) || 0) - (Number(r.total_obligation) || 0)),
+        0
+      );
+      const unpaid = subset.reduce(
+        (s, r) =>
+          s +
+          (r.unpaid !== undefined && r.unpaid !== null
+            ? Number(r.unpaid)
+            : Math.max(0, (Number(r.total_obligation) || 0) - (Number(r.disbursement) || 0))),
+        0
+      );
+      const obligationRate = allocation > 0 ? (obligation / allocation) * 100 : 0;
+      const disbursementRate = obligation > 0 ? (disbursement / obligation) * 100 : 0;
+
+      return {
+        ...m,
+        count: subset.length,
+        allocation,
+        obligation,
+        disbursement,
+        unobligated,
+        unpaid,
+        obligationRate,
+        disbursementRate,
+      };
+    });
+
+    const grandAllocation = items.reduce((s, i) => s + i.allocation, 0);
+    const grandObligation = items.reduce((s, i) => s + i.obligation, 0);
+    const grandDisbursement = items.reduce((s, i) => s + i.disbursement, 0);
+    const grandUnobligated = items.reduce((s, i) => s + i.unobligated, 0);
+    const grandUnpaid = items.reduce((s, i) => s + i.unpaid, 0);
+    const grandObligationRate = grandAllocation > 0 ? (grandObligation / grandAllocation) * 100 : 0;
+    const grandDisbursementRate = grandObligation > 0 ? (grandDisbursement / grandObligation) * 100 : 0;
+
+    return {
+      items,
+      grandTotal: {
+        allocation: grandAllocation,
+        obligation: grandObligation,
+        disbursement: grandDisbursement,
+        unobligated: grandUnobligated,
+        unpaid: grandUnpaid,
+        obligationRate: grandObligationRate,
+        disbursementRate: grandDisbursementRate,
+      },
+    };
+  }, [rows, selectedFund]);
+
   // Financial aggregates: Allocation, Total Obligation, Unobligated, Earmark, Unallocated, Disbursement, Unpaid
   // Directly sums line items, matching the obligations spreadsheet Grand Total exactly
   const stats = useMemo(() => {
@@ -452,6 +607,17 @@ export default function RiceCategoryFinancialReport({
           </div>
 
           <div className="top-header-right">
+            {/* Executive Overview Summary Button */}
+            <button
+              type="button"
+              onClick={() => setShowMfoOverview(true)}
+              className="mfo-overview-header-btn"
+              title="Open Executive Financial Overview (Allotment, Obligation, Disbursement)"
+            >
+              <BarChart3 size={13} style={{ color: '#166534' }} />
+              <span>Budget Overview</span>
+            </button>
+
             {/* Live Google Spreadsheet Real-Time Indicator & Action */}
             <div className="report-header-sync-pill">
               <span className={`sync-status-dot ${isLiveSyncing ? 'syncing' : 'active'}`} />
@@ -829,6 +995,353 @@ export default function RiceCategoryFinancialReport({
           onClearRcFilter={() => setSelectedRc('')}
           categoryChangeKey={catChangeKey}
         />
+
+        {/* EXECUTIVE BUDGET FINANCIAL OVERVIEW MODAL (AUTOMATICALLY SHOWN UPON OPENING THE WEBSITE) */}
+        {showMfoOverview && (
+          <div
+            className="modal-backdrop mfo-overview-modal-backdrop"
+            onClick={handleCloseOverview}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="overview-title"
+          >
+            <div
+              className="executive-modal-card"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Header */}
+              <div className="executive-modal-header">
+                <div className="executive-header-left">
+                  <div className="executive-icon-badge">
+                    <BarChart3 size={22} />
+                  </div>
+                  <div>
+                    <div className="executive-title-row">
+                      <h3 id="overview-title" className="executive-title">
+                        DA-CAR Rice Program • Executive Financial Overview
+                      </h3>
+                      <span className="executive-year-badge">2026 REGISTRY</span>
+                    </div>
+                    <p className="executive-subtitle">
+                      Official summary of Allotment, Obligation, and Disbursement across Rice Banner Programs
+                    </p>
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  onClick={handleCloseOverview}
+                  className="modal-close"
+                  aria-label="Close overview modal"
+                  title="Close"
+                >
+                  <X size={18} />
+                </button>
+              </div>
+
+              {/* Modal Body */}
+              <div className="executive-modal-body">
+                {/* 4 Executive KPI Cards */}
+                <div className="executive-kpi-grid">
+                  {/* 1. Total Allotment */}
+                  <div className="executive-kpi-card kpi-allotment">
+                    <div className="kpi-head-row">
+                      <div className="kpi-label-group">
+                        <Coins size={15} style={{ color: '#d97706' }} />
+                        <span>Total Allotment</span>
+                      </div>
+                      <span className="kpi-pill-badge amber">100% Budget</span>
+                    </div>
+                    <div className="kpi-amount-display">
+                      {formatShortMoney(mfoOverviewData.grandTotal.allocation)}
+                    </div>
+                    <div className="kpi-footnote">
+                      ₱{formatExactNumber(mfoOverviewData.grandTotal.allocation)} authorized
+                    </div>
+                  </div>
+
+                  {/* 2. Total Obligation */}
+                  <div className="executive-kpi-card kpi-obligation">
+                    <div className="kpi-head-row">
+                      <div className="kpi-label-group">
+                        <TrendingUp size={15} style={{ color: '#16a34a' }} />
+                        <span>Total Obligation</span>
+                      </div>
+                      <span className={`kpi-pill-badge ${mfoOverviewData.grandTotal.obligationRate >= 85 ? 'green' : 'amber'}`}>
+                        {mfoOverviewData.grandTotal.obligationRate.toFixed(2)}%
+                      </span>
+                    </div>
+                    <div className="kpi-amount-display" style={{ color: '#15803d' }}>
+                      {formatShortMoney(mfoOverviewData.grandTotal.obligation)}
+                    </div>
+                    <div className="kpi-meter-track">
+                      <div
+                        className="kpi-meter-fill green"
+                        style={{ width: `${Math.min(100, mfoOverviewData.grandTotal.obligationRate)}%` }}
+                      />
+                    </div>
+                    <div className="kpi-footnote">
+                      DBM Target: <strong>85.0%</strong> • {mfoOverviewData.grandTotal.obligationRate >= 85 ? 'Target Met ✓' : 'Under Target'}
+                    </div>
+                  </div>
+
+                  {/* 3. Total Disbursement */}
+                  <div className="executive-kpi-card kpi-disbursement">
+                    <div className="kpi-head-row">
+                      <div className="kpi-label-group">
+                        <CreditCard size={15} style={{ color: '#0284c7' }} />
+                        <span>Total Disbursement</span>
+                      </div>
+                      <span className="kpi-pill-badge blue">
+                        {mfoOverviewData.grandTotal.disbursementRate.toFixed(2)}%
+                      </span>
+                    </div>
+                    <div className="kpi-amount-display" style={{ color: '#0369a1' }}>
+                      {formatShortMoney(mfoOverviewData.grandTotal.disbursement)}
+                    </div>
+                    <div className="kpi-meter-track">
+                      <div
+                        className="kpi-meter-fill blue"
+                        style={{ width: `${Math.min(100, mfoOverviewData.grandTotal.disbursementRate)}%` }}
+                      />
+                    </div>
+                    <div className="kpi-footnote">
+                      Of obligated funds disbursed & paid
+                    </div>
+                  </div>
+
+                  {/* 4. Remaining Balances */}
+                  <div className="executive-kpi-card kpi-balance">
+                    <div className="kpi-head-row">
+                      <div className="kpi-label-group">
+                        <Layers size={15} style={{ color: '#7c3aed' }} />
+                        <span>Remaining Balances</span>
+                      </div>
+                    </div>
+                    <div className="kpi-amount-display">
+                      {formatShortMoney(mfoOverviewData.grandTotal.unobligated)}
+                    </div>
+                    <div className="kpi-footnote" style={{ display: 'flex', justifyContent: 'space-between', gap: 6 }}>
+                      <span>Unoblig: <strong>{formatShortMoney(mfoOverviewData.grandTotal.unobligated)}</strong></span>
+                      <span>Unpaid: <strong>{formatShortMoney(mfoOverviewData.grandTotal.unpaid)}</strong></span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Programs Comparison Table */}
+                <div className="executive-table-wrapper-box">
+                  <div className="executive-table-top-toolbar">
+                    <div>
+                      <span className="executive-toolbar-title">
+                        Banner Programs Financial Performance
+                      </span>
+                      <span className="executive-toolbar-desc">
+                        (Click any row to filter detailed records)
+                      </span>
+                    </div>
+                    <div className="executive-target-legend">
+                      <span className="legend-tag">
+                        <span className="legend-circle green" />
+                        &ge;85% DBM Target
+                      </span>
+                      <span className="legend-tag">
+                        <span className="legend-circle amber" />
+                        &lt;85% Under Target
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="table-responsive-wrapper" style={{ overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
+                    <table className="executive-data-table">
+                      <thead>
+                        <tr>
+                          <th style={{ textAlign: 'left', minWidth: 240 }}>Program Category</th>
+                          <th style={{ textAlign: 'right' }}>Budget (Allotment)</th>
+                          <th style={{ textAlign: 'right' }}>Obligation</th>
+                          <th style={{ textAlign: 'center', minWidth: 100 }}>Oblig. Rate</th>
+                          <th style={{ textAlign: 'right' }}>Disbursement</th>
+                          <th style={{ textAlign: 'center', minWidth: 100 }}>Disb. Rate</th>
+                          <th style={{ textAlign: 'right' }}>Unobligated</th>
+                          <th style={{ textAlign: 'center', width: 90 }}>Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {mfoOverviewData.items.map((m: any) => {
+                          const isMet = m.obligationRate >= 85;
+                          return (
+                            <tr
+                              key={m.id}
+                              className="executive-row-item"
+                              onClick={() => {
+                                handleCategoryChange(m.id as CategoryType);
+                                setShowMfoOverview(false);
+                              }}
+                              title={`Click to open ${m.label} details`}
+                            >
+                              <td style={{ padding: '12px 16px' }}>
+                                <div className="program-col-content">
+                                  <span
+                                    className="program-badge-chip"
+                                    style={{
+                                      backgroundColor: m.badgeBg,
+                                      color: m.badgeColor,
+                                      borderColor: m.badgeBorder,
+                                    }}
+                                  >
+                                    {m.shortCode}
+                                  </span>
+                                  <div>
+                                    <strong className="program-full-title">{m.label}</strong>
+                                    <span className="program-items-sub">{m.count} active line items</span>
+                                  </div>
+                                </div>
+                              </td>
+                              <td className="table-num" style={{ textAlign: 'right', fontWeight: 600, color: '#0f172a' }}>
+                                {formatMoney(m.allocation)}
+                              </td>
+                              <td className="table-num" style={{ textAlign: 'right', fontWeight: 600, color: '#166534' }}>
+                                {formatMoney(m.obligation)}
+                              </td>
+                              <td style={{ textAlign: 'center', padding: '12px 10px' }}>
+                                <span className={`status-rate-pill ${isMet ? 'met' : 'under'}`}>
+                                  {m.obligationRate.toFixed(2)}%
+                                </span>
+                              </td>
+                              <td className="table-num" style={{ textAlign: 'right', fontWeight: 600, color: '#0284c7' }}>
+                                {formatMoney(m.disbursement)}
+                              </td>
+                              <td style={{ textAlign: 'center', padding: '12px 10px' }}>
+                                <span className="status-rate-pill disb">
+                                  {m.disbursementRate.toFixed(2)}%
+                                </span>
+                              </td>
+                              <td className="table-num" style={{ textAlign: 'right', color: '#64748b' }}>
+                                {formatMoney(m.unobligated)}
+                              </td>
+                              <td style={{ textAlign: 'center', padding: '12px 14px' }}>
+                                <button
+                                  type="button"
+                                  className="row-action-open-btn"
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    handleCategoryChange(m.id as CategoryType);
+                                    setShowMfoOverview(false);
+                                  }}
+                                >
+                                  <span>Open</span>
+                                  <ArrowRight size={11} />
+                                </button>
+                              </td>
+                            </tr>
+                          );
+                        })}
+                      </tbody>
+                      <tfoot>
+                        <tr className="executive-tfoot-row">
+                          <td style={{ padding: '14px 16px' }}>
+                            <div className="program-col-content">
+                              <span className="total-badge-chip">
+                                TOTAL
+                              </span>
+                              <strong className="program-full-title" style={{ color: '#064e3b', fontWeight: 800 }}>
+                                TOTAL BANNER RICE PROGRAM
+                              </strong>
+                            </div>
+                          </td>
+                          <td className="table-num" style={{ textAlign: 'right', color: '#064e3b', fontWeight: 800 }}>
+                            {formatMoney(mfoOverviewData.grandTotal.allocation)}
+                          </td>
+                          <td className="table-num" style={{ textAlign: 'right', color: '#166534', fontWeight: 800 }}>
+                            {formatMoney(mfoOverviewData.grandTotal.obligation)}
+                          </td>
+                          <td style={{ textAlign: 'center', padding: '14px 10px' }}>
+                            <span
+                              className="status-rate-pill met"
+                              style={{
+                                background: mfoOverviewData.grandTotal.obligationRate >= 85 ? '#15803d' : '#b45309',
+                                color: '#ffffff',
+                                borderColor: 'transparent',
+                                fontWeight: 800,
+                              }}
+                            >
+                              {mfoOverviewData.grandTotal.obligationRate.toFixed(2)}%
+                            </span>
+                          </td>
+                          <td className="table-num" style={{ textAlign: 'right', color: '#0284c7', fontWeight: 800 }}>
+                            {formatMoney(mfoOverviewData.grandTotal.disbursement)}
+                          </td>
+                          <td style={{ textAlign: 'center', padding: '14px 10px' }}>
+                            <span
+                              className="status-rate-pill disb"
+                              style={{
+                                background: '#0284c7',
+                                color: '#ffffff',
+                                borderColor: 'transparent',
+                                fontWeight: 800,
+                              }}
+                            >
+                              {mfoOverviewData.grandTotal.disbursementRate.toFixed(2)}%
+                            </span>
+                          </td>
+                          <td className="table-num" style={{ textAlign: 'right', color: '#064e3b', fontWeight: 700 }}>
+                            {formatMoney(mfoOverviewData.grandTotal.unobligated)}
+                          </td>
+                          <td style={{ textAlign: 'center', padding: '14px 14px' }}>
+                            <button
+                              type="button"
+                              className="total-view-all-btn"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                handleCategoryChange('ALL RICE (GRAND TOTAL)');
+                                setShowMfoOverview(false);
+                              }}
+                            >
+                              <span>View All</span>
+                            </button>
+                          </td>
+                        </tr>
+                      </tfoot>
+                    </table>
+                  </div>
+                </div>
+              </div>
+
+              {/* Modal Footer */}
+              <div className="executive-modal-footer">
+                <label style={{ display: 'flex', alignItems: 'center', gap: 7, fontSize: 12.5, color: '#64748b', cursor: 'pointer', userSelect: 'none' }}>
+                  <input
+                    type="checkbox"
+                    checked={dontShowAgain}
+                    onChange={(e) => setDontShowAgain(e.target.checked)}
+                    style={{ cursor: 'pointer' }}
+                  />
+                  <span>Don't show automatically on page open</span>
+                </label>
+
+                <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      handleCategoryChange('ALL RICE (GRAND TOTAL)');
+                      handleCloseOverview();
+                    }}
+                    className="button button-outline"
+                    style={{ fontSize: 12.5, padding: '7px 14px' }}
+                  >
+                    Explore Detailed Reports
+                  </button>
+                  <button
+                    type="button"
+                    onClick={handleCloseOverview}
+                    className="button button-primary"
+                    style={{ fontSize: 12.5, padding: '7px 18px', background: '#15803d', borderColor: '#166534', color: '#ffffff' }}
+                  >
+                    Close Overview
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </main>
     </div>
   );
