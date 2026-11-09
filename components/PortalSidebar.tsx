@@ -28,6 +28,8 @@ import {
   BarChart3,
   Truck,
   CreditCard,
+  FileBarChart,
+  Loader2,
 } from 'lucide-react';
 import { createClient } from '@/utils/supabase/client';
 
@@ -63,6 +65,26 @@ export default function PortalSidebar({
   // Auth state
   const [user, setUser] = useState<any>(null);
   const [profile, setProfile] = useState<any>(null);
+
+  // Comprehensive Presentation Export State
+  const [isGeneratingReport, setIsGeneratingReport] = useState(false);
+  const [reportToast, setReportToast] = useState<string | null>(null);
+
+  const handleGenerateReport = async () => {
+    if (isGeneratingReport) return;
+    try {
+      setIsGeneratingReport(true);
+      const { exportComprehensiveRiceReport } = await import('@/utils/reportPresentationExport');
+      const filename = await exportComprehensiveRiceReport();
+      setReportToast(`Report generated: ${filename}`);
+      setTimeout(() => setReportToast(null), 5000);
+    } catch (err: any) {
+      console.error('Error generating report from sidebar:', err);
+      alert('Failed to generate report: ' + (err?.message || 'Unknown error'));
+    } finally {
+      setIsGeneratingReport(false);
+    }
+  };
 
   // Sub-items dropdown state (closed by default on website load/reload)
   const [openSubMenus, setOpenSubMenus] = useState<Record<string, boolean>>({});
@@ -554,6 +576,56 @@ export default function PortalSidebar({
                         })}
                       </div>
                     </div>
+                  </div>
+                )}
+                {/* Generate Report Action Button right after the 4 Core Reporting Modules */}
+                {item.href === '/rice/physical' && (
+                  <div
+                    key="sidebar-generate-report-item"
+                    style={{
+                      marginTop: isCollapsed ? 6 : 8,
+                      marginBottom: isCollapsed ? 8 : 10,
+                      padding: isCollapsed ? 0 : '0 2px',
+                    }}
+                  >
+                    <button
+                      type="button"
+                      onClick={handleGenerateReport}
+                      disabled={isGeneratingReport}
+                      className="sidebar-generate-report-btn"
+                      title="Generate report (.pptx)"
+                      aria-label="Generate report"
+                    >
+                      <span className="sidebar-generate-report-left">
+                        {isGeneratingReport ? (
+                          <Loader2 size={isCollapsed ? 18 : 16} className="spin" style={{ color: '#34d399', flexShrink: 0 }} />
+                        ) : (
+                          <FileBarChart size={isCollapsed ? 18 : 16} style={{ color: '#34d399', flexShrink: 0 }} />
+                        )}
+                        {!isCollapsed && (
+                          <span className="sidebar-generate-report-title">
+                            {isGeneratingReport ? 'Generating report...' : 'Generate report'}
+                          </span>
+                        )}
+                      </span>
+                    </button>
+                    {reportToast && !isCollapsed && (
+                      <div
+                        style={{
+                          margin: '6px 2px 0',
+                          padding: '6px 8px',
+                          borderRadius: 6,
+                          background: 'rgba(16, 185, 129, 0.15)',
+                          border: '1px solid rgba(52, 211, 153, 0.35)',
+                          color: '#a7f3d0',
+                          fontSize: '11px',
+                          lineHeight: '1.25',
+                          wordBreak: 'break-all',
+                        }}
+                      >
+                        ✓ {reportToast}
+                      </div>
+                    )}
                   </div>
                 )}
               </div>

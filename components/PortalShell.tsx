@@ -72,6 +72,16 @@ export default function PortalShell({ children }: PortalShellProps) {
     setIsNavigating(false);
   }, [pathname]);
 
+  // Safety fallback: prevent infinite loading overlay if navigation does not complete
+  useEffect(() => {
+    if (isNavigating) {
+      const timer = setTimeout(() => {
+        setIsNavigating(false);
+      }, 3500);
+      return () => clearTimeout(timer);
+    }
+  }, [isNavigating]);
+
   // Trigger blurred circle loading when navigating between pages
   useEffect(() => {
     const handleLinkClick = (e: MouseEvent) => {
@@ -80,10 +90,24 @@ export default function PortalShell({ children }: PortalShellProps) {
       if (targetElement?.closest('button')) return;
 
       const anchor = targetElement?.closest('a');
-      if (!anchor || !anchor.href || anchor.target === '_blank') return;
+      if (
+        !anchor ||
+        !anchor.href ||
+        anchor.target === '_blank' ||
+        anchor.hasAttribute('download') ||
+        anchor.getAttribute('download') !== null ||
+        anchor.href.startsWith('blob:') ||
+        anchor.href.startsWith('data:') ||
+        anchor.href.startsWith('javascript:') ||
+        anchor.href.startsWith('mailto:') ||
+        anchor.href.startsWith('tel:')
+      ) {
+        return;
+      }
 
       try {
         const url = new URL(anchor.href, window.location.href);
+        // Ignore hash-only navigation (e.g. #view, #details)
         if (url.origin === window.location.origin) {
           const currentPath = window.location.pathname.replace(/\/$/, '') || '/';
           const nextPath = url.pathname.replace(/\/$/, '') || '/';

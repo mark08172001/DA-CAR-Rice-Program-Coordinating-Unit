@@ -35,8 +35,9 @@ yarn-error.log*
 .env
 !.env.example
 
-# Editor
-.idea/
+# Scratch & Temporary analysis
+scratch/
+public/briefer/
 .vscode/
 *.suo
 *.ntvs*

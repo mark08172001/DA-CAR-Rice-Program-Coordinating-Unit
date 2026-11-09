@@ -78,6 +78,7 @@ export const createClient = async (request: NextRequest) => {
     pathname.startsWith('/api/auth') ||
     pathname.startsWith('/api/beneficiaries') ||
     pathname.startsWith('/api/obligations') ||
+    pathname.startsWith('/api/rice') ||
     (pathname === '/api/admin/logs' && request.method === 'POST') ||
     pathname.startsWith('/_next');
 

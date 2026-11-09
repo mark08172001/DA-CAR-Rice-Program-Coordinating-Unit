@@ -10,7 +10,6 @@ import {
   Coins,
   CreditCard,
   Building,
-  CheckCircle2,
   Calendar,
   Layers,
   ChevronRight,

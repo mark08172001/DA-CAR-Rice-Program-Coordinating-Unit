@@ -6,7 +6,6 @@ import {
   BarChart3,
   TrendingUp,
   Target,
-  CheckCircle2,
   Calendar,
   Layers,
   MapPin,
