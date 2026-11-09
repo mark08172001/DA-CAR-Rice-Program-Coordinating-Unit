@@ -295,13 +295,11 @@ export default function PortalSidebar({
               />
             </div>
           </span>
-          {!isCollapsed && (
-            <div className="sidebar-brand-text">
-              <span className="sidebar-republic">REPUBLIC OF THE PHILIPPINES</span>
-              <strong>DA-CAR</strong>
-              <span className="sidebar-portal-tag">Rice Program Coordinating Unit</span>
-            </div>
-          )}
+          <div className="sidebar-brand-text">
+            <span className="sidebar-republic">REPUBLIC OF THE PHILIPPINES</span>
+            <strong>DA-CAR</strong>
+            <span className="sidebar-portal-tag">Rice Program Coordinating Unit</span>
+          </div>
         </Link>
 
         {/* Desktop Minimize Toggle Button */}
@@ -309,11 +307,17 @@ export default function PortalSidebar({
           <button
             type="button"
             onClick={onToggleCollapse}
-            className="sidebar-minimize-btn"
+            className={`sidebar-minimize-btn ${isCollapsed ? 'is-collapsed' : ''}`}
             aria-label={isCollapsed ? 'Expand sidebar' : 'Minimize sidebar'}
             title={isCollapsed ? 'Expand sidebar' : 'Minimize sidebar'}
           >
-            {isCollapsed ? <PanelLeftOpen size={16} /> : <PanelLeftClose size={16} />}
+            <PanelLeftClose
+              size={16}
+              style={{
+                transform: isCollapsed ? 'rotate(180deg)' : 'rotate(0deg)',
+                transition: 'transform 0.35s cubic-bezier(0.4, 0, 0.2, 1)',
+              }}
+            />
           </button>
         )}
 
@@ -380,7 +384,7 @@ export default function PortalSidebar({
                   >
                     <span className="module-link-left">
                       <IconComponent size={isCollapsed ? 18 : 16} className="module-link-icon" />
-                      {!isCollapsed && <span className="module-link-title">{item.label}</span>}
+                      <span className="module-link-title">{item.label}</span>
                     </span>
 
                     {!isCollapsed && item.badge && (
@@ -398,30 +402,13 @@ export default function PortalSidebar({
                     <button
                       type="button"
                       onClick={(e) => toggleSubMenu(item.href, e)}
-                      style={{
-                        position: 'absolute',
-                        right: 8,
-                        top: '50%',
-                        transform: 'translateY(-50%)',
-                        border: 'none',
-                        background: 'transparent',
-                        color: 'rgba(255, 255, 255, 0.7)',
-                        cursor: 'pointer',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        padding: '4px',
-                        borderRadius: 4,
-                        zIndex: 3,
-                      }}
+                      className={`sidebar-submenu-toggle ${isSubOpen ? 'is-open' : ''}`}
                       aria-label={`Toggle ${item.label} sub-items`}
+                      title={isSubOpen ? 'Collapse sub-items' : 'Expand sub-items'}
                     >
                       <ChevronDown
-                        size={13}
-                        style={{
-                          transform: isSubOpen ? 'rotate(0deg)' : 'rotate(-90deg)',
-                          transition: 'transform 0.2s ease',
-                        }}
+                        size={14}
+                        className="sidebar-chevron"
                       />
                     </button>
                   )}
@@ -602,11 +589,9 @@ export default function PortalSidebar({
                         ) : (
                           <FileBarChart size={isCollapsed ? 18 : 16} style={{ color: '#34d399', flexShrink: 0 }} />
                         )}
-                        {!isCollapsed && (
-                          <span className="sidebar-generate-report-title">
-                            {isGeneratingReport ? 'Generating report...' : 'Generate report'}
-                          </span>
-                        )}
+                        <span className="sidebar-generate-report-title">
+                          {isGeneratingReport ? 'Generating report...' : 'Generate report'}
+                        </span>
                       </span>
                     </button>
                     {reportToast && !isCollapsed && (
@@ -668,33 +653,31 @@ export default function PortalSidebar({
               <span className="sidebar-user-avatar">
                 {displayName.charAt(0).toUpperCase()}
               </span>
-              {!isCollapsed && (
-                <div className="sidebar-user-details">
-                  <strong className="sidebar-user-name">{displayName}</strong>
-                  <span className="sidebar-user-dept">{profile?.department || 'Rice Coordinating Unit'}</span>
-                  <div style={{ display: 'flex', gap: 4, alignItems: 'center', marginTop: 2, flexWrap: 'wrap' }}>
-                    <span className={`sidebar-role-tag role-${roleName.toLowerCase()}`}>{roleName}</span>
-                    {profile?.status === 'restricted' && (
-                      <span
-                        className="sidebar-role-tag"
-                        style={{ background: '#fef3c7', color: '#92400e', border: '1px solid #fde68a', fontSize: 10 }}
-                        title="Accessibility limited to specific modules by Super Admin"
-                      >
-                        RESTRICTED
-                      </span>
-                    )}
-                    {profile?.status === 'suspended' && (
-                      <span
-                        className="sidebar-role-tag"
-                        style={{ background: '#fee2e2', color: '#991b1b', border: '1px solid #fecaca', fontSize: 10 }}
-                        title="Account suspended by Super Admin"
-                      >
-                        SUSPENDED
-                      </span>
-                    )}
-                  </div>
+              <div className="sidebar-user-details">
+                <strong className="sidebar-user-name">{displayName}</strong>
+                <span className="sidebar-user-dept">{profile?.department || 'Rice Coordinating Unit'}</span>
+                <div style={{ display: 'flex', gap: 4, alignItems: 'center', marginTop: 2, flexWrap: 'wrap' }}>
+                  <span className={`sidebar-role-tag role-${roleName.toLowerCase()}`}>{roleName}</span>
+                  {profile?.status === 'restricted' && (
+                    <span
+                      className="sidebar-role-tag"
+                      style={{ background: '#fef3c7', color: '#92400e', border: '1px solid #fde68a', fontSize: 10 }}
+                      title="Accessibility limited to specific modules by Super Admin"
+                    >
+                      RESTRICTED
+                    </span>
+                  )}
+                  {profile?.status === 'suspended' && (
+                    <span
+                      className="sidebar-role-tag"
+                      style={{ background: '#fee2e2', color: '#991b1b', border: '1px solid #fecaca', fontSize: 10 }}
+                      title="Account suspended by Super Admin"
+                    >
+                      SUSPENDED
+                    </span>
+                  )}
                 </div>
-              )}
+              </div>
             </div>
             <button
               type="button"
@@ -703,17 +686,15 @@ export default function PortalSidebar({
               title="Sign out of administrative portal"
             >
               <LogOut size={15} />
-              {!isCollapsed && <span>Sign Out</span>}
+              <span>Sign Out</span>
             </button>
           </div>
         ) : (
           <div className="sidebar-auth-actions">
-            {!isCollapsed && (
-              <div className="sidebar-auth-note">
-                <ShieldCheck size={14} className="sidebar-shield-icon" />
-                <span>Staff & Officer Portal Access</span>
-              </div>
-            )}
+            <div className="sidebar-auth-note">
+              <ShieldCheck size={14} className="sidebar-shield-icon" />
+              <span>Staff & Officer Portal Access</span>
+            </div>
             <div className="sidebar-auth-btns">
               <Link
                 href="/login"
@@ -722,7 +703,7 @@ export default function PortalSidebar({
                 title="Sign In"
               >
                 <LogIn size={15} />
-                {!isCollapsed && <span>Sign In</span>}
+                <span>Sign In</span>
               </Link>
               <Link
                 href="/signup"
@@ -731,7 +712,7 @@ export default function PortalSidebar({
                 title="Register"
               >
                 <UserPlus size={15} />
-                {!isCollapsed && <span>Register</span>}
+                <span>Register</span>
               </Link>
             </div>
           </div>

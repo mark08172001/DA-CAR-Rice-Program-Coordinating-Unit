@@ -299,14 +299,12 @@ export default function PortalShell({ children }: PortalShellProps) {
         onToggleCollapse={handleToggleCollapse}
       />
 
-      {/* Mobile Drawer Backdrop Overlay */}
-      {sidebarOpen && (
-        <div
-          className="sidebar-backdrop"
-          onClick={() => setSidebarOpen(false)}
-          aria-hidden="true"
-        />
-      )}
+      {/* Mobile Drawer Backdrop Overlay with smooth fade in & out animation */}
+      <div
+        className={`sidebar-backdrop ${sidebarOpen ? 'active' : ''}`}
+        onClick={() => setSidebarOpen(false)}
+        aria-hidden="true"
+      />
 
       {/* Main Content Area */}
       <div className="portal-main-wrapper">
