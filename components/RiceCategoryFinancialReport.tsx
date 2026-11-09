@@ -131,6 +131,22 @@ export default function RiceCategoryFinancialReport({
     return `₱${n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
   };
 
+  // Format compact numbers specifically for vertical bar tops to prevent collision (e.g. 713.90M, 634.02M)
+  const formatBarTop = (val: number | undefined | null) => {
+    const n = Number(val) || 0;
+    if (n === 0) return '0.00';
+    if (Math.abs(n) >= 1_000_000_000) {
+      return `${(n / 1_000_000_000).toFixed(2)}B`;
+    }
+    if (Math.abs(n) >= 1_000_000) {
+      return `${(n / 1_000_000).toFixed(2)}M`;
+    }
+    if (Math.abs(n) >= 1_000) {
+      return `${(n / 1_000).toFixed(1)}K`;
+    }
+    return n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  };
+
   // Format exact subtext for allocation
   const formatExactNumber = (val: number | undefined | null) => {
     const n = Number(val) || 0;
@@ -539,8 +555,16 @@ export default function RiceCategoryFinancialReport({
                   return (
                     <div key={idx} className="bar-col-item">
                       {/* Value label on top of bar */}
-                      <div className="bar-top-value">
-                        {bar.value > 0 ? bar.value.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : '0.00'}
+                      <div
+                        className="bar-top-value"
+                        title={`${bar.label}: ₱${bar.value.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`}
+                      >
+                        <span className="bar-top-full">
+                          {bar.value > 0 ? bar.value.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : '0.00'}
+                        </span>
+                        <span className="bar-top-compact">
+                          {formatBarTop(bar.value)}
+                        </span>
                       </div>
 
                       {/* Bar pillar */}

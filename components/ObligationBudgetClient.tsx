@@ -1065,6 +1065,7 @@ function ObligationRateAllotmentGraph({
 
   return (
     <div
+      className="obligation-benchmark-card"
       style={{
         backgroundColor: '#ffffff',
         border: '1px solid #e2e8f0',
@@ -1277,17 +1278,35 @@ function ObligationRateAllotmentGraph({
           </div>
         </div>
 
-        {/* Chart Canvas with Y-Axis and Columns */}
+        {/* Scrollable Container on Mobile Viewports */}
         <div
+          className="obligation-graph-scroll-wrap"
           style={{
-            position: 'relative',
-            height: chartHeight,
-            paddingLeft: 44,
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'flex-end',
+            width: '100%',
+            overflowX: 'auto',
+            WebkitOverflowScrolling: 'touch',
+            paddingBottom: 6,
           }}
         >
+          <div
+            className="obligation-graph-scroll-inner"
+            style={{
+              minWidth: 580,
+              position: 'relative',
+            }}
+          >
+            {/* Chart Canvas with Y-Axis and Columns */}
+            <div
+              style={{
+                position: 'relative',
+                height: chartHeight,
+                paddingLeft: 44,
+                paddingRight: 76,
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'flex-end',
+              }}
+            >
           {/* Y-Axis Labels & Horizontal Gridlines */}
           <div
             style={{
@@ -1534,6 +1553,7 @@ function ObligationRateAllotmentGraph({
             gap: 16,
             textAlign: 'center',
             paddingLeft: 44,
+            paddingRight: 76,
             marginTop: 4,
           }}
         >
@@ -1586,6 +1606,8 @@ function ObligationRateAllotmentGraph({
               </div>
             );
           })}
+        </div>
+          </div>
         </div>
       </div>
     </div>
@@ -2023,6 +2045,13 @@ export default function ObligationBudgetClient({
           }
         }
         @media (max-width: 640px) {
+          .obligation-benchmark-card {
+            padding: 16px 12px !important;
+          }
+          .obligation-graph-scroll-wrap {
+            margin-left: -4px;
+            margin-right: -4px;
+          }
           .obligation-budget-grid {
             grid-template-columns: 1fr !important;
           }

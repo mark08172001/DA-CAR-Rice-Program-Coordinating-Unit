@@ -291,19 +291,19 @@ export default function PortalShell({ children }: PortalShellProps) {
       {/* Blurred Background Circle Loading Overlay during page transition */}
       {isNavigating && <CircleLoading text="Loading..." />}
 
+      {/* Mobile Drawer Backdrop Overlay with smooth fade in & out animation */}
+      <div
+        className={`sidebar-backdrop ${sidebarOpen ? 'active' : ''}`}
+        onClick={() => setSidebarOpen(false)}
+        aria-hidden="true"
+      />
+
       {/* Left-docked Modular Sidebar */}
       <PortalSidebar
         isOpen={sidebarOpen}
         onClose={() => setSidebarOpen(false)}
         isCollapsed={isCollapsed}
         onToggleCollapse={handleToggleCollapse}
-      />
-
-      {/* Mobile Drawer Backdrop Overlay with smooth fade in & out animation */}
-      <div
-        className={`sidebar-backdrop ${sidebarOpen ? 'active' : ''}`}
-        onClick={() => setSidebarOpen(false)}
-        aria-hidden="true"
       />
 
       {/* Main Content Area */}

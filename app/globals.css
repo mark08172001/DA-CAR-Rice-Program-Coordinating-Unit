@@ -2893,18 +2893,18 @@ button { color: inherit; }
   flex: 1;
 }
 
-/* BACKDROP OVERLAY ON MOBILE - SMOOTH FADE IN & OUT TRANSITIONS */
+/* BACKDROP OVERLAY ON MOBILE - SMOOTH FADE IN & OUT TRANSITIONS (NO BLUR) */
 .sidebar-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(8, 28, 20, 0.65);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
   z-index: 1040;
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transition: opacity 0.32s cubic-bezier(0.2, 0.8, 0.2, 1), visibility 0.32s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition: opacity 0.28s cubic-bezier(0.2, 0.8, 0.2, 1), visibility 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .sidebar-backdrop.active {
@@ -2928,7 +2928,7 @@ button { color: inherit; }
     transition: transform 0.32s cubic-bezier(0.32, 0.72, 0, 1), box-shadow 0.32s ease !important;
     box-shadow: none !important;
     will-change: transform;
-    z-index: 1000 !important;
+    z-index: 1050 !important;
   }
   .portal-sidebar.open,
   .portal-sidebar.minimized.open {
@@ -5823,11 +5823,31 @@ select.form-control {
   .chart-canvas-container {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
-    min-height: 270px;
-    padding-bottom: 44px;
+    min-height: 280px;
+    padding-bottom: 48px;
   }
   .bars-columns-wrap {
-    min-width: 440px;
+    min-width: 500px;
+    padding: 0 16px;
+    justify-content: space-between;
+  }
+  .bar-col-item {
+    width: 54px;
+    flex-shrink: 0;
+  }
+  .bar-top-value {
+    font-size: 10px;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 6px;
+  }
+  .bar-top-compact {
+    display: inline !important;
+    font-size: 10px;
+    font-weight: 700;
+  }
+  .bar-top-full {
+    display: none !important;
   }
 }
 
@@ -5896,6 +5916,26 @@ select.form-control {
   margin-bottom: 5px;
   white-space: nowrap;
   letter-spacing: -0.2px;
+}
+
+.bar-top-full {
+  display: none;
+}
+
+.bar-top-compact {
+  display: inline;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.2px;
+}
+
+@media (min-width: 1440px) {
+  .bar-top-full {
+    display: inline;
+  }
+  .bar-top-compact {
+    display: none;
+  }
 }
 
 .bar-pillar-track {
