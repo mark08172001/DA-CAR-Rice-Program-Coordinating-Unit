@@ -607,15 +607,15 @@ export default function RiceCategoryFinancialReport({
           </div>
 
           <div className="top-header-right">
-            {/* Executive Overview Summary Button */}
+            {/* Financial Overview Summary Button */}
             <button
               type="button"
               onClick={() => setShowMfoOverview(true)}
               className="mfo-overview-header-btn"
-              title="Open Executive Financial Overview (Allotment, Obligation, Disbursement)"
+              title="Open Financial Overview (Allotment, Obligation, Disbursement)"
             >
               <BarChart3 size={13} style={{ color: '#166534' }} />
-              <span>Budget Overview</span>
+              <span>Financial Overview</span>
             </button>
 
             {/* Live Google Spreadsheet Real-Time Indicator & Action */}
@@ -1018,7 +1018,7 @@ export default function RiceCategoryFinancialReport({
                   <div>
                     <div className="executive-title-row">
                       <h3 id="overview-title" className="executive-title">
-                        DA-CAR Rice Program • Executive Financial Overview
+                        DA-CAR Rice Program • Financial Overview
                       </h3>
                       <span className="executive-year-badge">2026 REGISTRY</span>
                     </div>
