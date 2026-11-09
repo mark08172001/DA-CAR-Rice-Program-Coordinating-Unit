@@ -62,6 +62,9 @@ export default function PortalSidebar({
   const pathname = usePathname();
   const router = useRouter();
 
+  // On mobile drawer (when isOpen is true), sidebar should always be expanded/full-featured
+  const effectiveCollapsed = isCollapsed && !isOpen;
+
   // Auth state
   const [user, setUser] = useState<any>(null);
   const [profile, setProfile] = useState<any>(null);
@@ -278,7 +281,7 @@ export default function PortalSidebar({
 
   return (
     <aside
-      className={`portal-sidebar ${isOpen ? 'open' : ''} ${isCollapsed ? 'minimized' : ''}`}
+      className={`portal-sidebar ${isOpen ? 'open' : ''} ${effectiveCollapsed ? 'minimized' : ''}`}
       aria-label="Portal Navigation"
     >
       {/* Sidebar Header Brand */}
@@ -307,14 +310,14 @@ export default function PortalSidebar({
           <button
             type="button"
             onClick={onToggleCollapse}
-            className={`sidebar-minimize-btn ${isCollapsed ? 'is-collapsed' : ''}`}
-            aria-label={isCollapsed ? 'Expand sidebar' : 'Minimize sidebar'}
-            title={isCollapsed ? 'Expand sidebar' : 'Minimize sidebar'}
+            className={`sidebar-minimize-btn ${effectiveCollapsed ? 'is-collapsed' : ''}`}
+            aria-label={effectiveCollapsed ? 'Expand sidebar' : 'Minimize sidebar'}
+            title={effectiveCollapsed ? 'Expand sidebar' : 'Minimize sidebar'}
           >
             <PanelLeftClose
               size={16}
               style={{
-                transform: isCollapsed ? 'rotate(180deg)' : 'rotate(0deg)',
+                transform: effectiveCollapsed ? 'rotate(180deg)' : 'rotate(0deg)',
                 transition: 'transform 0.35s cubic-bezier(0.4, 0, 0.2, 1)',
               }}
             />
@@ -346,7 +349,7 @@ export default function PortalSidebar({
 
             return (
               <div key={item.label} className="module-item-group">
-                {isFirstAdminItem && !isCollapsed && (
+                {isFirstAdminItem && !effectiveCollapsed && (
                   <div
                     style={{
                       padding: '14px 10px 6px',
@@ -362,7 +365,7 @@ export default function PortalSidebar({
                     Administration
                   </div>
                 )}
-                {isFirstAdminItem && isCollapsed && (
+                {isFirstAdminItem && effectiveCollapsed && (
                   <div
                     style={{
                       height: 1,
@@ -379,26 +382,26 @@ export default function PortalSidebar({
                     title={item.label}
                     style={{
                       flex: 1,
-                      paddingRight: hasSubItems && !isCollapsed ? '34px' : undefined,
+                      paddingRight: hasSubItems && !effectiveCollapsed ? '34px' : undefined,
                     }}
                   >
                     <span className="module-link-left">
-                      <IconComponent size={isCollapsed ? 18 : 16} className="module-link-icon" />
+                      <IconComponent size={effectiveCollapsed ? 18 : 16} className="module-link-icon" />
                       <span className="module-link-title">{item.label}</span>
                     </span>
 
-                    {!isCollapsed && item.badge && (
+                    {!effectiveCollapsed && item.badge && (
                       <span className={`module-badge badge-${item.badgeType || 'muted'}`}>
                         {item.badge}
                       </span>
                     )}
 
-                    {isCollapsed && item.badge && (
+                    {effectiveCollapsed && item.badge && (
                       <span className="minimized-badge-dot" title={item.badge} />
                     )}
                   </Link>
 
-                  {hasSubItems && !isCollapsed && (
+                  {hasSubItems && !effectiveCollapsed && (
                     <button
                       type="button"
                       onClick={(e) => toggleSubMenu(item.href, e)}
@@ -415,7 +418,7 @@ export default function PortalSidebar({
                 </div>
 
                 {/* Branched Menu Sub-Items Dropdown (React Bits Effect) */}
-                {hasSubItems && !isCollapsed && (
+                {hasSubItems && !effectiveCollapsed && (
                   <div
                     className="sidebar-branched-body"
                     style={{
@@ -570,9 +573,9 @@ export default function PortalSidebar({
                   <div
                     key="sidebar-generate-report-item"
                     style={{
-                      marginTop: isCollapsed ? 6 : 8,
-                      marginBottom: isCollapsed ? 8 : 10,
-                      padding: isCollapsed ? 0 : '0 2px',
+                      marginTop: effectiveCollapsed ? 6 : 8,
+                      marginBottom: effectiveCollapsed ? 8 : 10,
+                      padding: effectiveCollapsed ? 0 : '0 2px',
                     }}
                   >
                     <button
@@ -585,16 +588,16 @@ export default function PortalSidebar({
                     >
                       <span className="sidebar-generate-report-left">
                         {isGeneratingReport ? (
-                          <Loader2 size={isCollapsed ? 18 : 16} className="spin" style={{ color: '#34d399', flexShrink: 0 }} />
+                          <Loader2 size={effectiveCollapsed ? 18 : 16} className="spin" style={{ color: '#34d399', flexShrink: 0 }} />
                         ) : (
-                          <FileBarChart size={isCollapsed ? 18 : 16} style={{ color: '#34d399', flexShrink: 0 }} />
+                          <FileBarChart size={effectiveCollapsed ? 18 : 16} style={{ color: '#34d399', flexShrink: 0 }} />
                         )}
                         <span className="sidebar-generate-report-title">
                           {isGeneratingReport ? 'Generating report...' : 'Generate report'}
                         </span>
                       </span>
                     </button>
-                    {reportToast && !isCollapsed && (
+                    {reportToast && !effectiveCollapsed && (
                       <div
                         style={{
                           margin: '6px 2px 0',
@@ -619,7 +622,7 @@ export default function PortalSidebar({
         </nav>
 
         {/* Informational Restricted Notice for outsiders */}
-        {!user && !isCollapsed && (
+        {!user && !effectiveCollapsed && (
           <div className="sidebar-restricted-box">
             <div className="sidebar-restricted-badge">
               <Lock size={12} />
@@ -636,7 +639,7 @@ export default function PortalSidebar({
         )}
 
         {/* Minimized icon for outsiders indicating locked items */}
-        {!user && isCollapsed && (
+        {!user && effectiveCollapsed && (
           <div className="minimized-lock-item" title="Programs & Beneficiary Registry Restricted to Authorized DA Personnel">
             <Link href="/login" onClick={onClose} className="minimized-lock-link" title="Sign In to unlock">
               <Lock size={16} />
@@ -648,7 +651,7 @@ export default function PortalSidebar({
       {/* Sidebar Footer User / Auth Module */}
       <div className="sidebar-user-footer">
         {user ? (
-          <div className="sidebar-user-card" title={isCollapsed ? `${displayName} (${roleName})` : undefined}>
+          <div className="sidebar-user-card" title={effectiveCollapsed ? `${displayName} (${roleName})` : undefined}>
             <div className="sidebar-user-info">
               <span className="sidebar-user-avatar">
                 {displayName.charAt(0).toUpperCase()}

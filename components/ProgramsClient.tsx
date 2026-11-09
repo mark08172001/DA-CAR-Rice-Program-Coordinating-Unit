@@ -924,6 +924,7 @@ export default function ProgramsClient({
                 maxHeight: '600px',
                 overflowY: 'auto',
                 overflowX: 'auto',
+                WebkitOverflowScrolling: 'touch',
                 scrollbarWidth: 'thin',
                 scrollbarColor: '#cbd5e1 #f8fafc',
               }}
@@ -931,6 +932,7 @@ export default function ProgramsClient({
               <table
                 style={{
                   width: '100%',
+                  minWidth: 920,
                   borderCollapse: 'separate',
                   borderSpacing: 0,
                   textAlign: 'left',

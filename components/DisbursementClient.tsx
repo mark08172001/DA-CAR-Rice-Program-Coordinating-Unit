@@ -439,8 +439,8 @@ export default function DisbursementClient({
           </div>
 
           {/* Data Table with Scroll & Sticky Header/Footer */}
-          <div style={{ maxHeight: '650px', overflowY: 'auto', overflowX: 'auto', width: '100%', position: 'relative' }}>
-            <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: 12 }}>
+          <div style={{ maxHeight: '650px', overflowY: 'auto', overflowX: 'auto', WebkitOverflowScrolling: 'touch', width: '100%', position: 'relative' }}>
+            <table style={{ width: '100%', minWidth: 700, borderCollapse: 'collapse', textAlign: 'left', fontSize: 12 }}>
               <thead style={{ position: 'sticky', top: 0, zIndex: 10 }}>
                 <tr style={{ background: '#f1f5f9', borderBottom: '2px solid #cbd5e1', boxShadow: '0 1px 2px rgba(0,0,0,0.05)' }}>
                   <th style={{ padding: '8px 10px', width: '38px', color: '#475569', fontWeight: 700, fontSize: 11, background: '#f1f5f9', whiteSpace: 'nowrap' }}>#</th>

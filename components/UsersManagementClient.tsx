@@ -401,7 +401,7 @@ export default function UsersManagementClient({
       </div>
 
       {/* Accounts Table */}
-      <div className="table-responsive-wrapper surface surface-pad" style={{ padding: 0, overflow: 'hidden' }}>
+      <div className="table-responsive-wrapper surface surface-pad" style={{ padding: 0, overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
         <table className="portal-data-table" aria-label="Registered personnel accounts">
           <thead>
             <tr>
