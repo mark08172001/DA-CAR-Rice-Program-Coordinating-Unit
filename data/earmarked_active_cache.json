@@ -1,8 +1,8 @@
 {
   "success": true,
-  "count": 57,
+  "count": 56,
   "sourceUrl": "https://docs.google.com/spreadsheets/d/1prg2YjXMCUnTtod4F0rVgPL9Ij136F4jBv8t7fHUyI4/edit?gid=0#gid=0",
-  "fetchedAt": "2026-11-09T08:44:41.220Z",
+  "fetchedAt": "2026-11-11T01:00:11.337Z",
   "objectCodes": [
     "Agricultural and Forestry Equipment",
     "Agricultural and Marine Supplies Exp.",
@@ -895,29 +895,6 @@
       "remarks": ""
     },
     {
-      "id": "em-active-1795",
-      "rowIndex": 1796,
-      "utilization": "Current",
-      "source": "01 GAA",
-      "sourceFund": "GAA",
-      "inputtedDate": "46303",
-      "dueDate": "46387",
-      "fund": "1101101",
-      "type": "PR",
-      "prNo": "2026-1382",
-      "earmarkNo": "EM-26-10-0026",
-      "requestedBy": "FOD-RICE PROGRAM",
-      "particular": "FOR MEALS SNACKS LODGING HALL RENTAL ,AEW KITS AND PROMOTIONAL MATERIALS FOR THE CONDUCT OF THE INTERIM RICE INDUSTRY DEVELOPMENT OFFICE ORGANIZATIONAL AND OPERATIONAL ALIGNMENT WORKSHOP UNDER THE RICE PROGRAM UNDER RICE PROGRAM",
-      "pap": "310103100001000 ESETS RICE",
-      "rc": "05-001-03-00014-12-01 RRP-ORRP",
-      "objectCode": "50202010-02",
-      "description": "Training Expenses",
-      "allotmentClass": "MOOE",
-      "amount": 999000,
-      "status": "ACTIVE",
-      "remarks": ""
-    },
-    {
       "id": "em-active-1796",
       "rowIndex": 1797,
       "utilization": "Current",
@@ -1258,7 +1235,7 @@
       "objectCode": "50202010-02",
       "description": "Training Expenses",
       "allotmentClass": "MOOE",
-      "amount": 85000,
+      "amount": 115000,
       "status": "ACTIVE",
       "remarks": ""
     },

@@ -472,7 +472,22 @@ export default function RiceCategoryFinancialReport({
       };
     });
 
+    const isCurrentFund = (f: string) => {
+      const cleaned = (f || '').toString().trim().replace(/^fund\s*/i, '');
+      return cleaned === '1101101' || cleaned === '01101101' || cleaned.toLowerCase().includes('current');
+    };
+    const isContinuingFund = (f: string) => {
+      const cleaned = (f || '').toString().trim().replace(/^fund\s*/i, '');
+      return cleaned === '1102101' || cleaned === '01102101' || cleaned.toLowerCase().includes('continuing');
+    };
+
     const grandAllocation = items.reduce((s, i) => s + i.allocation, 0);
+    const grandCurrentAllocation = riceRows
+      .filter((r) => isCurrentFund(r.fund) && programCategories.some((m) => m.pCheck((r.pap || '').toLowerCase())))
+      .reduce((s, r) => s + (Number(r.adjusted_allotment) || 0), 0);
+    const grandContinuingAllocation = riceRows
+      .filter((r) => isContinuingFund(r.fund) && programCategories.some((m) => m.pCheck((r.pap || '').toLowerCase())))
+      .reduce((s, r) => s + (Number(r.adjusted_allotment) || 0), 0);
     const grandObligation = items.reduce((s, i) => s + i.obligation, 0);
     const grandDisbursement = items.reduce((s, i) => s + i.disbursement, 0);
     const grandUnobligated = items.reduce((s, i) => s + i.unobligated, 0);
@@ -484,6 +499,8 @@ export default function RiceCategoryFinancialReport({
       items,
       grandTotal: {
         allocation: grandAllocation,
+        currentAllocation: grandCurrentAllocation,
+        continuingAllocation: grandContinuingAllocation,
         obligation: grandObligation,
         disbursement: grandDisbursement,
         unobligated: grandUnobligated,
@@ -1020,7 +1037,7 @@ export default function RiceCategoryFinancialReport({
                       <h3 id="overview-title" className="executive-title">
                         DA-CAR Rice Program • Financial Overview
                       </h3>
-                      <span className="executive-year-badge">2026 REGISTRY</span>
+                      <span className="executive-year-badge">2026 BUDGET</span>
                     </div>
                     <p className="executive-subtitle">
                       Official summary of Allotment, Obligation, and Disbursement across Rice Banner Programs
@@ -1054,8 +1071,13 @@ export default function RiceCategoryFinancialReport({
                     <div className="kpi-amount-display">
                       {formatShortMoney(mfoOverviewData.grandTotal.allocation)}
                     </div>
-                    <div className="kpi-footnote">
-                      ₱{formatExactNumber(mfoOverviewData.grandTotal.allocation)} authorized
+                    <div
+                      className="kpi-footnote"
+                      style={{ display: 'flex', justifyContent: 'space-between', gap: 6 }}
+                      title={`Current: ₱${formatExactNumber(mfoOverviewData.grandTotal.currentAllocation)} | Continuing: ₱${formatExactNumber(mfoOverviewData.grandTotal.continuingAllocation)}`}
+                    >
+                      <span>Current: <strong>{formatShortMoney(mfoOverviewData.grandTotal.currentAllocation)}</strong></span>
+                      <span>Continuing: <strong>{formatShortMoney(mfoOverviewData.grandTotal.continuingAllocation)}</strong></span>
                     </div>
                   </div>
 
@@ -1066,7 +1088,7 @@ export default function RiceCategoryFinancialReport({
                         <TrendingUp size={15} style={{ color: '#16a34a' }} />
                         <span>Total Obligation</span>
                       </div>
-                      <span className={`kpi-pill-badge ${mfoOverviewData.grandTotal.obligationRate >= 85 ? 'green' : 'amber'}`}>
+                      <span className={`kpi-pill-badge ${mfoOverviewData.grandTotal.obligationRate >= 80 ? 'green' : 'amber'}`}>
                         {mfoOverviewData.grandTotal.obligationRate.toFixed(2)}%
                       </span>
                     </div>
@@ -1080,7 +1102,7 @@ export default function RiceCategoryFinancialReport({
                       />
                     </div>
                     <div className="kpi-footnote">
-                      DBM Target: <strong>85.0%</strong> • {mfoOverviewData.grandTotal.obligationRate >= 85 ? 'Target Met ✓' : 'Under Target'}
+                      Target: <strong>80.0%</strong> • {mfoOverviewData.grandTotal.obligationRate >= 80 ? 'Target Met ✓' : 'Under Target'}
                     </div>
                   </div>
 
@@ -1132,7 +1154,7 @@ export default function RiceCategoryFinancialReport({
                   <div className="executive-table-top-toolbar">
                     <div>
                       <span className="executive-toolbar-title">
-                        Banner Programs Financial Performance
+                        Rice Program Performance
                       </span>
                       <span className="executive-toolbar-desc">
                         (Click any row to filter detailed records)
@@ -1141,11 +1163,11 @@ export default function RiceCategoryFinancialReport({
                     <div className="executive-target-legend">
                       <span className="legend-tag">
                         <span className="legend-circle green" />
-                        &ge;85% DBM Target
+                        &ge;80% Target
                       </span>
                       <span className="legend-tag">
                         <span className="legend-circle amber" />
-                        &lt;85% Under Target
+                        &lt;80% Under Target
                       </span>
                     </div>
                   </div>
@@ -1166,7 +1188,7 @@ export default function RiceCategoryFinancialReport({
                       </thead>
                       <tbody>
                         {mfoOverviewData.items.map((m: any) => {
-                          const isMet = m.obligationRate >= 85;
+                          const isMet = m.obligationRate >= 80;
                           return (
                             <tr
                               key={m.id}
@@ -1257,7 +1279,7 @@ export default function RiceCategoryFinancialReport({
                             <span
                               className="status-rate-pill met"
                               style={{
-                                background: mfoOverviewData.grandTotal.obligationRate >= 85 ? '#15803d' : '#b45309',
+                                background: mfoOverviewData.grandTotal.obligationRate >= 80 ? '#15803d' : '#b45309',
                                 color: '#ffffff',
                                 borderColor: 'transparent',
                                 fontWeight: 800,
