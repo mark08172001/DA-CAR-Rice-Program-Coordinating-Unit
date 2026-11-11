@@ -1835,7 +1835,7 @@ export default function ObligationBudgetClient({
               }}
             />
             <span style={{ fontSize: 11.5, fontWeight: 700, color: '#0f291e' }}>
-              {isSyncing ? 'Fetching...' : 'Live'}
+              Live
             </span>
 
             <button
@@ -1856,6 +1856,7 @@ export default function ObligationBudgetClient({
                 padding: '2px 4px',
               }}
               title="Pull latest live figures directly from Google Sheets"
+              aria-label="Sync live data"
             >
               <RefreshCw
                 size={12}
@@ -1863,7 +1864,6 @@ export default function ObligationBudgetClient({
                   animation: isSyncing ? 'spin 0.9s linear infinite' : 'none',
                 }}
               />
-              <span>{isSyncing ? 'Syncing...' : 'Sync'}</span>
             </button>
           </div>
         </div>

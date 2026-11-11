@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { ObligationBalanceRow } from '@/utils/obligationsStore';
 import EarmarkedRegistryTable from './EarmarkedRegistryTable';
 import {
@@ -95,6 +95,76 @@ export default function RiceCategoryFinancialReport({
         localStorage.setItem('da_mfo_overview_auto_disabled', 'true');
       }
     } catch {}
+  };
+
+  // Website version adjustable modal sizing via corner & edge dragging
+  const [modalSize, setModalSize] = useState<{ width: number | null; height: number | null }>({
+    width: null,
+    height: null,
+  });
+  const [isResizing, setIsResizing] = useState(false);
+  const modalCardRef = useRef<HTMLDivElement | null>(null);
+
+  const handleResizeStart = (
+    e: React.PointerEvent,
+    direction: 'se' | 'sw' | 'ne' | 'nw' | 'e' | 's' | 'w'
+  ) => {
+    // Only enabled on website (desktop) viewport
+    if (typeof window === 'undefined' || window.innerWidth <= 840) return;
+    if (e.button !== 0) return;
+    e.preventDefault();
+    e.stopPropagation();
+
+    const card = modalCardRef.current;
+    if (!card) return;
+
+    const startRect = card.getBoundingClientRect();
+    const startX = e.clientX;
+    const startY = e.clientY;
+    const startW = startRect.width;
+    const startH = startRect.height;
+
+    setIsResizing(true);
+    document.body.style.userSelect = 'none';
+
+    const onPointerMove = (ev: PointerEvent) => {
+      const dx = ev.clientX - startX;
+      const dy = ev.clientY - startY;
+
+      const minW = 620;
+      const maxW = Math.min(1600, window.innerWidth - 32);
+      const minH = 420;
+      const maxH = Math.min(window.innerHeight - 36, 1200);
+
+      let newW = startW;
+      let newH = startH;
+
+      if (direction === 'se' || direction === 'ne' || direction === 'e') {
+        newW = Math.max(minW, Math.min(maxW, startW + dx * 2));
+      } else if (direction === 'sw' || direction === 'nw' || direction === 'w') {
+        newW = Math.max(minW, Math.min(maxW, startW - dx * 2));
+      }
+
+      if (direction === 'se' || direction === 'sw' || direction === 's') {
+        newH = Math.max(minH, Math.min(maxH, startH + dy));
+      } else if (direction === 'ne' || direction === 'nw') {
+        newH = Math.max(minH, Math.min(maxH, startH - dy));
+      }
+
+      setModalSize({ width: Math.round(newW), height: Math.round(newH) });
+    };
+
+    const onPointerUp = () => {
+      setIsResizing(false);
+      document.body.style.userSelect = '';
+      window.removeEventListener('pointermove', onPointerMove);
+      window.removeEventListener('pointerup', onPointerUp);
+      window.removeEventListener('pointercancel', onPointerUp);
+    };
+
+    window.addEventListener('pointermove', onPointerMove);
+    window.addEventListener('pointerup', onPointerUp);
+    window.addEventListener('pointercancel', onPointerUp);
   };
 
   // Sync category if initialCategory changes or URL search changes
@@ -640,7 +710,7 @@ export default function RiceCategoryFinancialReport({
               <span className={`sync-status-dot ${isLiveSyncing ? 'syncing' : 'active'}`} />
               <Globe size={13} style={{ color: '#15803d' }} />
               <span className="sync-status-text">
-                {isLiveSyncing ? 'Fetching...' : 'Live'}
+                Live
               </span>
               {onSyncLiveSheet && (
                 <button
@@ -649,9 +719,9 @@ export default function RiceCategoryFinancialReport({
                   disabled={isLiveSyncing}
                   className="category-sync-now-btn"
                   title="Pull latest live figures directly from Google Sheets"
+                  aria-label="Sync live data"
                 >
                   <RefreshCw size={12} className={isLiveSyncing ? 'spin' : ''} />
-                  {isLiveSyncing ? 'Syncing...' : ''}
                 </button>
               )}
             </div>
@@ -1023,9 +1093,81 @@ export default function RiceCategoryFinancialReport({
             aria-labelledby="overview-title"
           >
             <div
-              className="executive-modal-card"
+              ref={modalCardRef}
+              className={`executive-modal-card ${isResizing ? 'is-resizing' : ''}`}
+              style={{
+                width: modalSize.width ? `${modalSize.width}px` : undefined,
+                maxWidth: modalSize.width ? 'min(96vw, 1600px)' : undefined,
+                height: modalSize.height ? `${modalSize.height}px` : undefined,
+                maxHeight: modalSize.height ? 'calc(100vh - 40px)' : undefined,
+                margin: modalSize.height ? '16px auto' : undefined,
+              }}
               onClick={(e) => e.stopPropagation()}
             >
+              {/* Corner and Edge Resize Handles (Website / Desktop version) */}
+              <div
+                className="modal-resize-handle handle-se"
+                onPointerDown={(e) => handleResizeStart(e, 'se')}
+                onDoubleClick={() => setModalSize({ width: null, height: null })}
+                title="Drag corner to resize overview (Double-click to reset)"
+                role="button"
+                tabIndex={-1}
+                aria-label="Resize overview bottom right"
+              >
+                <div className="modal-resize-grip" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                    <path d="M10 2L2 10M10 6L6 10M10 10L10 10.01" stroke="#94a3b8" strokeWidth="1.6" strokeLinecap="round" />
+                  </svg>
+                </div>
+              </div>
+              <div
+                className="modal-resize-handle handle-sw"
+                onPointerDown={(e) => handleResizeStart(e, 'sw')}
+                onDoubleClick={() => setModalSize({ width: null, height: null })}
+                title="Drag corner to resize overview (Double-click to reset)"
+                role="button"
+                tabIndex={-1}
+                aria-label="Resize overview bottom left"
+              />
+              <div
+                className="modal-resize-handle handle-ne"
+                onPointerDown={(e) => handleResizeStart(e, 'ne')}
+                onDoubleClick={() => setModalSize({ width: null, height: null })}
+                title="Drag corner to resize overview (Double-click to reset)"
+                role="button"
+                tabIndex={-1}
+                aria-label="Resize overview top right"
+              />
+              <div
+                className="modal-resize-handle handle-nw"
+                onPointerDown={(e) => handleResizeStart(e, 'nw')}
+                onDoubleClick={() => setModalSize({ width: null, height: null })}
+                title="Drag corner to resize overview (Double-click to reset)"
+                role="button"
+                tabIndex={-1}
+                aria-label="Resize overview top left"
+              />
+              <div
+                className="modal-resize-edge handle-e"
+                onPointerDown={(e) => handleResizeStart(e, 'e')}
+                title="Drag edge to resize width"
+                role="separator"
+                aria-orientation="vertical"
+              />
+              <div
+                className="modal-resize-edge handle-s"
+                onPointerDown={(e) => handleResizeStart(e, 's')}
+                title="Drag edge to resize height"
+                role="separator"
+                aria-orientation="horizontal"
+              />
+              <div
+                className="modal-resize-edge handle-w"
+                onPointerDown={(e) => handleResizeStart(e, 'w')}
+                title="Drag edge to resize width"
+                role="separator"
+                aria-orientation="vertical"
+              />
               {/* Header */}
               <div className="executive-modal-header">
                 <div className="executive-header-left">
@@ -1347,7 +1489,7 @@ export default function RiceCategoryFinancialReport({
                       handleCloseOverview();
                     }}
                     className="button button-outline"
-                    style={{ fontSize: 12.5, padding: '7px 14px' }}
+                    style={{ fontSize: 12.5, padding: '7px 16px', borderRadius: 10 }}
                   >
                     Explore Detailed Reports
                   </button>
@@ -1355,7 +1497,7 @@ export default function RiceCategoryFinancialReport({
                     type="button"
                     onClick={handleCloseOverview}
                     className="button button-primary"
-                    style={{ fontSize: 12.5, padding: '7px 18px', background: '#15803d', borderColor: '#166534', color: '#ffffff' }}
+                    style={{ fontSize: 12.5, padding: '7px 20px', background: '#15803d', borderColor: '#166534', color: '#ffffff', borderRadius: 10 }}
                   >
                     Close Overview
                   </button>
