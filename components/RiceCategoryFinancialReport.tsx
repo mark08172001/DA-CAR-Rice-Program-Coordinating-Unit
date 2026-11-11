@@ -1449,19 +1449,7 @@ export default function RiceCategoryFinancialReport({
                           <td className="table-num" style={{ textAlign: 'right', color: '#064e3b', fontWeight: 700 }}>
                             {formatMoney(mfoOverviewData.grandTotal.unobligated)}
                           </td>
-                          <td style={{ textAlign: 'center', padding: '14px 14px' }}>
-                            <button
-                              type="button"
-                              className="total-view-all-btn"
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                handleCategoryChange('ALL RICE (GRAND TOTAL)');
-                                setShowMfoOverview(false);
-                              }}
-                            >
-                              <span>View All</span>
-                            </button>
-                          </td>
+                          <td style={{ textAlign: 'center', padding: '12px 14px' }} />
                         </tr>
                       </tfoot>
                     </table>
@@ -1482,17 +1470,6 @@ export default function RiceCategoryFinancialReport({
                 </label>
 
                 <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      handleCategoryChange('ALL RICE (GRAND TOTAL)');
-                      handleCloseOverview();
-                    }}
-                    className="button button-outline"
-                    style={{ fontSize: 12.5, padding: '7px 16px', borderRadius: 10 }}
-                  >
-                    Explore Detailed Reports
-                  </button>
                   <button
                     type="button"
                     onClick={handleCloseOverview}
