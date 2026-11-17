@@ -1052,7 +1052,7 @@ function ObligationRateAllotmentGraph({
     return list;
   }, [categories, totalBannerRice, includeTotalBenchmark]);
 
-  const DBM_BENCHMARK = 85.0; // 85% DBM standard target
+  const DBM_BENCHMARK = 80.0; // 80% standard target
   const chartHeight = 240;
   const maxScale = 100;
 
@@ -1271,11 +1271,6 @@ function ObligationRateAllotmentGraph({
               </div>
             )}
           </div>
-
-          <div style={{ display: 'flex', alignItems: 'center', gap: 6, color: '#dc2626', fontSize: 11.5, fontWeight: 700 }}>
-            <span style={{ borderBottom: '2px dashed #dc2626', width: 20, height: 0 }} />
-            <span>85.0% DBM National Target</span>
-          </div>
         </div>
 
         {/* Scrollable Container on Mobile Viewports */}
@@ -1354,7 +1349,7 @@ function ObligationRateAllotmentGraph({
               );
             })}
 
-            {/* DBM 85% Benchmark Horizontal Line */}
+            {/* DBM 80% Benchmark Horizontal Line */}
             <div
               style={{
                 position: 'absolute',
@@ -1379,7 +1374,7 @@ function ObligationRateAllotmentGraph({
                   borderRadius: 4,
                 }}
               >
-                85% Target
+                80% Target
               </span>
             </div>
           </div>
@@ -1590,11 +1585,11 @@ function ObligationRateAllotmentGraph({
                   style={{
                     fontSize: 11,
                     fontWeight: 700,
-                    color: totalRate >= 85 ? '#065f46' : '#92400e',
-                    backgroundColor: totalRate >= 85 ? '#ecfdf5' : '#fffbeb',
+                    color: totalRate >= 80 ? '#065f46' : '#92400e',
+                    backgroundColor: totalRate >= 80 ? '#ecfdf5' : '#fffbeb',
                     padding: '1px 8px',
                     borderRadius: 6,
-                    border: totalRate >= 85 ? '1px solid #a7f3d0' : '1px solid #fde68a',
+                    border: totalRate >= 80 ? '1px solid #a7f3d0' : '1px solid #fde68a',
                   }}
                 >
                   {totalRate.toFixed(2)}% Total

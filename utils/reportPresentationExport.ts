@@ -1266,7 +1266,7 @@ export async function exportComprehensiveRiceReport(customData?: Partial<Compreh
 
   pres.author = 'DA-CAR Rice Program Coordinating Unit';
   pres.company = 'Department of Agriculture - Cordillera Administrative Region';
-  pres.title = 'Comprehensive Rice Program Monitoring Report 2026';
+  pres.title = 'Rice Program Monitoring Report 2026';
 
   const now = new Date();
   const dateStr = now.toLocaleDateString('en-US', {
@@ -1545,7 +1545,7 @@ export async function exportComprehensiveRiceReport(customData?: Partial<Compreh
     color: C.white,
   });
 
-  s1.addText('COMPREHENSIVE RICE PROGRAM REPORT', {
+  s1.addText('RICE PROGRAM REPORT', {
     x: 1.0,
     y: 2.45,
     w: 11.333,
@@ -1555,7 +1555,7 @@ export async function exportComprehensiveRiceReport(customData?: Partial<Compreh
     bold: true,
     color: C.white,
   });
-  s1.addText('EXECUTIVE MONITORING REPORT • CY 2026', {
+  s1.addText('MONITORING REPORT • CY 2026', {
     x: 1.0,
     y: 3.65,
     w: 11.333,
@@ -1585,7 +1585,7 @@ export async function exportComprehensiveRiceReport(customData?: Partial<Compreh
       { text: 'Appropriation Authority: ', options: { bold: true, color: C.emeraldAccent } },
       { text: 'General Appropriations Act (GAA Current & Continuing) • Registry of Allotments and Obligations (RAO)\n', options: { color: C.white } },
       { text: 'Report Generation Timestamp: ', options: { bold: true, color: C.emeraldAccent } },
-      { text: `${dateStr} at ${timeStr} • Official RPCU Executive Monitoring Document`, options: { color: C.white } },
+      { text: `${dateStr} at ${timeStr} • Official RPCU Monitoring Document`, options: { color: C.white } },
     ],
     {
       x: 1.3,
@@ -1597,7 +1597,7 @@ export async function exportComprehensiveRiceReport(customData?: Partial<Compreh
       lineSpacingMultiple: 1.3,
     }
   );
-  addExecutiveFooter(s1, 'Department of Agriculture CAR • Official Comprehensive Monitoring Presentation • CY 2026');
+  addExecutiveFooter(s1, 'Department of Agriculture CAR • Official Monitoring Presentation • CY 2026');
 
   // -------------------------------------------------------------
   // SLIDE 2: FOUR-PILLAR MASTER EXECUTIVE SCORECARD
@@ -2907,7 +2907,7 @@ export async function exportComprehensiveRiceReport(customData?: Partial<Compreh
   addExecutiveFooter(s9);
 
   // Trigger browser file download
-  const filename = `DA_CAR_Rice_Comprehensive_Report_${now.toISOString().slice(0, 10)}.pptx`;
+  const filename = `DA_CAR_Rice_Program_Report_${now.toISOString().slice(0, 10)}.pptx`;
   await pres.writeFile({ fileName: filename });
   return filename;
 }
