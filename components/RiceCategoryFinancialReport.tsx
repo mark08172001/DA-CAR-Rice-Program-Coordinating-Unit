@@ -70,6 +70,7 @@ export default function RiceCategoryFinancialReport({
 
   // Executive MFO Overview Modal: only opens once upon initially opening the website in the browser session
   const [showMfoOverview, setShowMfoOverview] = useState(false);
+  const [isClosingOverview, setIsClosingOverview] = useState(false);
   const [dontShowAgain, setDontShowAgain] = useState(false);
 
   useEffect(() => {
@@ -87,15 +88,36 @@ export default function RiceCategoryFinancialReport({
     }
   }, []);
 
-  const handleCloseOverview = () => {
-    setShowMfoOverview(false);
+  const handleCloseOverview = (onClosedOrEvent?: (() => void) | React.MouseEvent) => {
+    if (isClosingOverview) return;
+    setIsClosingOverview(true);
     try {
       sessionStorage.setItem('da_mfo_overview_shown', 'true');
       if (dontShowAgain) {
         localStorage.setItem('da_mfo_overview_auto_disabled', 'true');
       }
     } catch {}
+
+    const callback = typeof onClosedOrEvent === 'function' ? onClosedOrEvent : undefined;
+
+    setTimeout(() => {
+      setShowMfoOverview(false);
+      setIsClosingOverview(false);
+      if (callback) callback();
+    }, 220);
   };
+
+  // Close smoothly with Escape key
+  useEffect(() => {
+    if (!showMfoOverview) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        handleCloseOverview();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [showMfoOverview, isClosingOverview]);
 
   // Website version adjustable modal sizing via corner & edge dragging
   const [modalSize, setModalSize] = useState<{ width: number | null; height: number | null }>({
@@ -1086,15 +1108,15 @@ export default function RiceCategoryFinancialReport({
         {/* EXECUTIVE BUDGET FINANCIAL OVERVIEW MODAL (AUTOMATICALLY SHOWN UPON OPENING THE WEBSITE) */}
         {showMfoOverview && (
           <div
-            className="modal-backdrop mfo-overview-modal-backdrop"
-            onClick={handleCloseOverview}
+            className={`modal-backdrop mfo-overview-modal-backdrop ${isClosingOverview ? 'is-closing' : ''}`}
+            onClick={() => handleCloseOverview()}
             role="dialog"
             aria-modal="true"
             aria-labelledby="overview-title"
           >
             <div
               ref={modalCardRef}
-              className={`executive-modal-card ${isResizing ? 'is-resizing' : ''}`}
+              className={`executive-modal-card ${isResizing ? 'is-resizing' : ''} ${isClosingOverview ? 'is-closing' : ''}`}
               style={{
                 width: modalSize.width ? `${modalSize.width}px` : undefined,
                 maxWidth: modalSize.width ? 'min(96vw, 1600px)' : undefined,
@@ -1336,8 +1358,9 @@ export default function RiceCategoryFinancialReport({
                               key={m.id}
                               className="executive-row-item"
                               onClick={() => {
-                                handleCategoryChange(m.id as CategoryType);
-                                setShowMfoOverview(false);
+                                handleCloseOverview(() => {
+                                  handleCategoryChange(m.id as CategoryType);
+                                });
                               }}
                               title={`Click to open ${m.label} details`}
                             >
@@ -1387,8 +1410,9 @@ export default function RiceCategoryFinancialReport({
                                   className="row-action-open-btn"
                                   onClick={(e) => {
                                     e.stopPropagation();
-                                    handleCategoryChange(m.id as CategoryType);
-                                    setShowMfoOverview(false);
+                                    handleCloseOverview(() => {
+                                      handleCategoryChange(m.id as CategoryType);
+                                    });
                                   }}
                                 >
                                   <span>Open</span>
