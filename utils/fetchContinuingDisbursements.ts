@@ -30,6 +30,10 @@ export interface DisbursementItem {
   date?: string;
   status?: string;
   ppaCode?: string;
+  isPerson?: boolean;
+  isEncrypted?: boolean;
+  encryptedPayee?: string;
+  originalPayee?: string;
 }
 
 export interface FetchDisbursementResult {

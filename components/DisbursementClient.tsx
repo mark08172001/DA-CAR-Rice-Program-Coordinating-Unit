@@ -1,7 +1,13 @@
 'use client';
 
-import { useState, useMemo } from 'react';
-import { CreditCard, Filter, Search, ArrowUpDown, FileSpreadsheet } from 'lucide-react';
+import { useState, useMemo, useEffect, useCallback } from 'react';
+import {
+  CreditCard,
+  Filter,
+  Search,
+  ArrowUpDown,
+  FileSpreadsheet,
+} from 'lucide-react';
 import {
   DisbursementItem,
   FetchDisbursementResult,
@@ -9,6 +15,7 @@ import {
   UNPAID_PRIOR_YEARS_RICE_PAP_CODES,
   RICE_PROGRAM_PAP_CODES,
 } from '@/utils/fetchContinuingDisbursements';
+import { createClient } from '@/utils/supabase/client';
 
 export type DisbursementView = 'current' | 'continuing' | 'unpaid-prior-years';
 
@@ -16,18 +23,27 @@ interface DisbursementClientProps {
   initialContinuingData?: FetchDisbursementResult;
   initialCurrentData?: FetchDisbursementResult;
   initialUnpaidPriorYearsData?: FetchDisbursementResult;
+  initialIsAuthenticated?: boolean;
+  currentUserEmail?: string;
 }
 
 export default function DisbursementClient({
   initialContinuingData,
   initialCurrentData,
   initialUnpaidPriorYearsData,
+  initialIsAuthenticated = false,
+  currentUserEmail,
 }: DisbursementClientProps) {
   const [selectedView, setSelectedView] = useState<DisbursementView>('current');
   const [papFilter, setPapFilter] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [sortField, setSortField] = useState<'payee' | 'totalObligation' | 'grossAmount' | 'unpaidObligation' | 'rate'>('totalObligation');
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('desc');
+
+  // Authentication & Privacy Decryption state
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(Boolean(initialIsAuthenticated));
+  const [decryptedPayees, setDecryptedPayees] = useState<Record<string, string>>({});
+  const [isDecrypting, setIsDecrypting] = useState<boolean>(false);
 
   const activePapCodes = useMemo(() => {
     if (selectedView === 'unpaid-prior-years') {
@@ -78,6 +94,99 @@ export default function DisbursementClient({
   const records = activeData.records;
   const totals = activeData.totals;
 
+  const getDisplayPayee = useCallback(
+    (item: DisbursementItem): string => {
+      if (decryptedPayees[item.id]) {
+        return decryptedPayees[item.id];
+      }
+      return item.payee;
+    },
+    [decryptedPayees]
+  );
+
+  // Function to decrypt encrypted records once authenticated
+  const triggerDecryption = useCallback(async () => {
+    const encryptedMap: Record<string, string> = {};
+    records.forEach((r) => {
+      if (r.encryptedPayee && !decryptedPayees[r.id]) {
+        encryptedMap[r.id] = r.encryptedPayee;
+      }
+    });
+
+    if (Object.keys(encryptedMap).length === 0) return;
+
+    setIsDecrypting(true);
+    try {
+      const res = await fetch('/api/disbursements/decrypt', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ tokens: encryptedMap }),
+      });
+      if (res.ok) {
+        const data = await res.json();
+        if (data.success && data.decrypted) {
+          setDecryptedPayees((prev) => ({ ...prev, ...data.decrypted }));
+          setIsAuthenticated(true);
+        }
+      }
+    } catch (err) {
+      console.error('Error decrypting personnel names:', err);
+    } finally {
+      setIsDecrypting(false);
+    }
+  }, [records, decryptedPayees]);
+
+  // Auth verification and session change listener
+  useEffect(() => {
+    const supabase = createClient();
+
+    const verifySession = async () => {
+      try {
+        const {
+          data: { user },
+        } = await supabase.auth.getUser();
+        if (user) {
+          setIsAuthenticated(true);
+          return;
+        }
+
+        const match = document.cookie.match(/(?:^|;\s*)da_admin_session=([^;]+)/);
+        if (match) {
+          setIsAuthenticated(true);
+        }
+      } catch (err) {
+        console.error('Error verifying auth for disbursement privacy:', err);
+      }
+    };
+
+    verifySession();
+
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange(async (_event, session) => {
+      if (session?.user) {
+        setIsAuthenticated(true);
+      } else {
+        const match = document.cookie.match(/(?:^|;\s*)da_admin_session=([^;]+)/);
+        if (!match) {
+          setIsAuthenticated(false);
+          setDecryptedPayees({});
+        }
+      }
+    });
+
+    return () => {
+      subscription.unsubscribe();
+    };
+  }, []);
+
+  // Trigger decryption whenever authenticated and view changes or records mount
+  useEffect(() => {
+    if (isAuthenticated) {
+      triggerDecryption();
+    }
+  }, [isAuthenticated, selectedView, records, triggerDecryption]);
+
   const filteredRecords = useMemo(() => {
     let list = records;
     if (papFilter !== 'all') {
@@ -85,13 +194,15 @@ export default function DisbursementClient({
     }
     if (searchQuery.trim()) {
       const q = searchQuery.toLowerCase().trim();
-      list = list.filter(
-        (r) =>
-          r.payee.toLowerCase().includes(q) ||
+      list = list.filter((r) => {
+        const payeeText = getDisplayPayee(r).toLowerCase();
+        return (
+          payeeText.includes(q) ||
           (r.particulars && r.particulars.toLowerCase().includes(q)) ||
           (r.orsNumber && r.orsNumber.toLowerCase().includes(q)) ||
           (r.ppaCode && r.ppaCode.toLowerCase().includes(q))
-      );
+        );
+      });
     }
 
     return [...list].sort((a, b) => {
@@ -101,16 +212,18 @@ export default function DisbursementClient({
         return sortDirection === 'asc' ? rateA - rateB : rateB - rateA;
       }
 
-      let valA: string | number = a[sortField];
-      let valB: string | number = b[sortField];
-
-      if (typeof valA === 'string') {
-        const comp = valA.localeCompare(valB as string);
+      if (sortField === 'payee') {
+        const valA = getDisplayPayee(a);
+        const valB = getDisplayPayee(b);
+        const comp = valA.localeCompare(valB);
         return sortDirection === 'asc' ? comp : -comp;
       }
-      return sortDirection === 'asc' ? (valA as number) - (valB as number) : (valB as number) - (valA as number);
+
+      const valA = a[sortField];
+      const valB = b[sortField];
+      return sortDirection === 'asc' ? valA - valB : valB - valA;
     });
-  }, [records, papFilter, searchQuery, sortField, sortDirection]);
+  }, [records, papFilter, searchQuery, sortField, sortDirection, getDisplayPayee]);
 
   const displayTotals = useMemo(() => {
     if (papFilter === 'all' && !searchQuery.trim()) {
@@ -516,7 +629,7 @@ export default function DisbursementClient({
                     >
                       <td style={{ padding: '8px 10px', color: '#94a3b8', fontSize: 11, whiteSpace: 'nowrap' }}>{idx + 1}</td>
                       <td style={{ padding: '8px 10px', color: '#0f172a', fontWeight: 600, fontSize: 12 }}>
-                        <span>{item.payee}</span>
+                        <span>{getDisplayPayee(item)}</span>
                         {item.particulars && (
                           <div style={{ fontSize: 10.5, fontWeight: 400, color: '#64748b', marginTop: 1, maxWidth: 450, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }} title={item.particulars}>
                             {item.particulars}

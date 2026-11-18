@@ -17,6 +17,7 @@ import {
   fetchCurrentDisbursements,
   fetchUnpaidPriorYearsDisbursements,
 } from '@/utils/fetchContinuingDisbursements';
+import { protectDisbursementRecords } from '@/utils/disbursementPrivacy';
 
 export default async function RiceDisbursementPage({
   searchParams,
@@ -72,17 +73,34 @@ export default async function RiceDisbursementPage({
     );
   }
 
+  const isAuthenticated = Boolean(activeEmail && access && access.status !== 'suspended');
+
   const [continuingData, currentData, unpaidData] = await Promise.all([
     fetchContinuingDisbursements(forceRefresh),
     fetchCurrentDisbursements(forceRefresh),
     fetchUnpaidPriorYearsDisbursements(forceRefresh),
   ]);
 
+  const protectedContinuing = {
+    ...continuingData,
+    records: protectDisbursementRecords(continuingData.records, isAuthenticated),
+  };
+  const protectedCurrent = {
+    ...currentData,
+    records: protectDisbursementRecords(currentData.records, isAuthenticated),
+  };
+  const protectedUnpaid = {
+    ...unpaidData,
+    records: protectDisbursementRecords(unpaidData.records, isAuthenticated),
+  };
+
   return (
     <DisbursementClient
-      initialContinuingData={continuingData}
-      initialCurrentData={currentData}
-      initialUnpaidPriorYearsData={unpaidData}
+      initialContinuingData={protectedContinuing}
+      initialCurrentData={protectedCurrent}
+      initialUnpaidPriorYearsData={protectedUnpaid}
+      initialIsAuthenticated={isAuthenticated}
+      currentUserEmail={activeEmail}
     />
   );
 }
