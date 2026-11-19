@@ -1,5 +1,3 @@
-import PhysicalAccomplishmentClient from '@/components/PhysicalAccomplishmentClient';
-import { fetchPhysicalAccomplishmentData } from '@/utils/fetchPhysicalAccomplishmentSheet';
 import { cookies } from 'next/headers';
 import { createClient } from '@/utils/supabase/server';
 import { getAuthoritativeUserAccess } from '@/utils/adminStore';
@@ -8,7 +6,7 @@ import ModuleAccessGuard from '@/components/ModuleAccessGuard';
 export const metadata = {
   title: 'Physical | DA-CAR | Rice Program Coordinating Unit',
   description:
-    'Monthly and MFO physical target vs accomplishment monitoring for DA-CAR Regional Rice Program Coordinating Unit.',
+    'Physical monitoring and program operations for DA-CAR Regional Rice Program Coordinating Unit.',
 };
 
 export const dynamic = 'force-dynamic';
@@ -33,8 +31,6 @@ export default async function RicePhysicalPage() {
   }
 
   const access = await getAuthoritativeUserAccess(activeEmail, supabase);
-  const isSuperAdmin = access.isSuperAdmin;
-  const allowed = access.allowed_modules;
   const userRole = access.role;
   const userName = access.fullName;
 
@@ -55,12 +51,10 @@ export default async function RicePhysicalPage() {
     );
   }
 
-  const physicalData = await fetchPhysicalAccomplishmentData();
-
   return (
-    <section className="content-section" style={{ padding: '24px 0 60px' }}>
+    <section className="content-section" style={{ padding: '24px 0 60px', minHeight: '60vh' }}>
       <div className="page-container" style={{ width: 'min(1560px, calc(100% - 36px))' }}>
-        <PhysicalAccomplishmentClient initialData={physicalData} />
+        {/* Physical section */}
       </div>
     </section>
   );

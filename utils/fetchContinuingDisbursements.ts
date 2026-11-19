@@ -5,15 +5,7 @@ export const RICE_PROGRAM_PAP_CODES = [
   '310202100001000 INS RICE',
 ] as const;
 
-export const UNPAID_PRIOR_YEARS_RICE_PAP_CODES = [
-  '310101100001000 PSS RICE',
-  '310103100001000 ESETS RICE',
-  '310104100001000 RD RICE',
-  '310202100001000 INS RICE',
-  '310201100001000 PAEF RICE',
-  '200000100009000 STO FPMA-RICE',
-] as const;
-
+export const UNPAID_PRIOR_YEARS_RICE_PAP_CODES = RICE_PROGRAM_PAP_CODES;
 export const CONTINUING_RICE_PAP_CODES = RICE_PROGRAM_PAP_CODES;
 
 export interface DisbursementItem {
@@ -29,6 +21,7 @@ export interface DisbursementItem {
   orsNumber?: string;
   date?: string;
   status?: string;
+  endUser?: string;
   ppaCode?: string;
   isPerson?: boolean;
   isEncrypted?: boolean;
@@ -48,21 +41,25 @@ export interface FetchDisbursementResult {
   error?: string;
 }
 
-// Continuing Sheet: gid=380689862
-const CONTINUING_SHEET_URL =
-  'https://docs.google.com/spreadsheets/d/1r1nx9Rhnixo_cUTq8XVU2ltuHbBiwMfKznkOOF9_j-Y/export?format=csv&gid=380689862';
+export interface MasterDisbursementGroup {
+  current: FetchDisbursementResult;
+  continuing: FetchDisbursementResult;
+  unpaid: FetchDisbursementResult;
+}
 
-// Current Sheet: gid=2034607497
-const CURRENT_SHEET_URL =
-  'https://docs.google.com/spreadsheets/d/1r1nx9Rhnixo_cUTq8XVU2ltuHbBiwMfKznkOOF9_j-Y/export?format=csv&gid=2034607497';
+// Master Google Sheet source URL (Spreadsheet: 1vhslMFxejmwhCJOoi5sIRwP3x1c1HQccrV3d5LMxXOE)
+export const MASTER_DISBURSEMENT_SHEET_REF =
+  'https://docs.google.com/spreadsheets/d/1vhslMFxejmwhCJOoi5sIRwP3x1c1HQccrV3d5LMxXOE/edit?gid=0#gid=0';
 
-// Unpaid Prior Years Sheet: gid=481468908
-const UNPAID_PRIOR_YEARS_SHEET_URL =
-  'https://docs.google.com/spreadsheets/d/1r1nx9Rhnixo_cUTq8XVU2ltuHbBiwMfKznkOOF9_j-Y/export?format=csv&gid=481468908';
+// Direct CSV export link for the master Details Disbursement transaction tab (gid=0)
+export const MASTER_DISBURSEMENT_CSV_URL =
+  'https://docs.google.com/spreadsheets/d/1vhslMFxejmwhCJOoi5sIRwP3x1c1HQccrV3d5LMxXOE/export?format=csv&gid=0';
 
-function parseNumber(val: string): number {
-  if (!val) return 0;
-  const cleaned = val.replace(/["',\s₱]/g, '');
+function parseNumber(val: any): number {
+  if (val === undefined || val === null) return 0;
+  const str = String(val).trim();
+  if (str === '' || str === '-' || str === '—' || str.includes('#DIV') || str === 'NaN') return 0;
+  const cleaned = str.replace(/["',\s₱]/g, '');
   if (cleaned.startsWith('(') && cleaned.endsWith(')')) {
     const num = parseFloat(cleaned.slice(1, -1));
     return isNaN(num) ? 0 : -num;
@@ -103,56 +100,73 @@ function splitCSVRow(str: string): string[] {
   return res;
 }
 
-async function parseSheetCsv(sheetUrl: string, prefix: string): Promise<FetchDisbursementResult> {
+async function fetchAndParseMasterDisbursements(): Promise<MasterDisbursementGroup> {
+  const nowIso = new Date().toISOString();
   try {
-    const res = await fetch(sheetUrl, {
+    const res = await fetch(MASTER_DISBURSEMENT_CSV_URL, {
       cache: 'no-store',
       headers: {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) DA-CAR-Portal/2.0',
+        Accept: 'text/csv, text/plain, */*',
       },
     });
 
     if (!res.ok) {
-      throw new Error(`Failed to fetch Google Sheet: HTTP ${res.status}`);
+      throw new Error(`Failed to fetch Master Google Sheet: HTTP ${res.status}`);
     }
 
     const csvText = await res.text();
     const lines = csvText.split(/\r?\n/);
 
+    if (lines.length < 2) {
+      throw new Error('Google Sheet returned empty or invalid CSV');
+    }
+
     let headerIndex = -1;
-    for (let i = 0; i < Math.min(lines.length, 30); i++) {
-      const upper = lines[i].toUpperCase();
-      if (upper.includes('PAYEE') && (upper.includes('TOTAL OBLIGATION') || upper.includes('OBLIGATION'))) {
+    for (let i = 0; i < Math.min(lines.length, 10); i++) {
+      const u = lines[i].toUpperCase();
+      if (u.includes('PAYEE') && (u.includes('OBLIGATION') || u.includes('DISBURSEMENT'))) {
         headerIndex = i;
         break;
       }
     }
 
     if (headerIndex === -1) {
-      throw new Error('Header row with Payee and TOTAL OBLIGATION not found');
+      headerIndex = 0;
     }
 
     const headers = splitCSVRow(lines[headerIndex]);
-    const payeeIdx = headers.findIndex((h) => h.toUpperCase().includes('PAYEE'));
-    const totalObligIdx = headers.findIndex((h) => h.toUpperCase() === 'TOTAL OBLIGATION');
-    const grossIdx = headers.findIndex((h) => h.toUpperCase() === 'GROSS AMOUNT');
-    const unpaidIdx = headers.findLastIndex((h) => h.toUpperCase() === 'UNPAID OBLIGATION');
-    const particularsIdx = headers.findIndex((h) => h.toUpperCase().includes('PARTICULAR'));
-    const orsIdx = headers.findIndex((h) => h.toUpperCase().includes('ORS NUMBER'));
-    const statusIdx = headers.findIndex((h) => h.toUpperCase().includes('ACCOUNTING STATUS') || h.toUpperCase() === 'STATUS');
-    const ppaIdx = headers.findIndex((h) => {
-      const u = h.toUpperCase();
-      return u.includes('GAA/PPA') || u.includes('PPA');
-    });
-    const papIdx = headers.findIndex((h) => {
-      const u = h.toUpperCase();
-      return u.includes('PAP CODE') || u.includes('PAP');
-    });
+    const payeeIdx = headers.findIndex((h) => h.toUpperCase() === 'PAYEE');
+    const particIdx = headers.findIndex((h) => h.toUpperCase() === 'PARTICULAR');
+    const refIdx = headers.findIndex((h) => h.toUpperCase() === 'REF');
+    const papIdx = headers.findIndex((h) => h.toUpperCase() === 'PAP');
+    const papCodeIdx = headers.findIndex((h) => h.toUpperCase() === 'PAP CODE');
+    const obligIdx = headers.findIndex((h) => h.toUpperCase() === 'OBLIGATION');
+    const disbIdx = headers.findIndex((h) => h.toUpperCase() === 'DISBURSEMENT');
+    const unpaidIdx = headers.findIndex((h) => h.toUpperCase() === 'UNPAID');
+    const gamIdx = headers.findIndex((h) => h.toUpperCase() === 'GAM');
+    const statusIdx = headers.findIndex((h) => h.toUpperCase() === 'STATUS');
+    const endUserIdx = headers.findIndex((h) => h.toUpperCase() === 'END USER');
 
-    const records: DisbursementItem[] = [];
-    let sumTotalOblig = 0;
-    let sumGross = 0;
-    let sumUnpaid = 0;
+    if (payeeIdx === -1 || obligIdx === -1) {
+      throw new Error('Required columns (Payee, Obligation) not found in Master Sheet');
+    }
+
+    const currentRecords: DisbursementItem[] = [];
+    const continuingRecords: DisbursementItem[] = [];
+    const unpaidPriorRecords: DisbursementItem[] = [];
+
+    let currOblig = 0;
+    let currDisb = 0;
+    let currUnpaid = 0;
+
+    let contOblig = 0;
+    let contDisb = 0;
+    let contUnpaid = 0;
+
+    let unpOblig = 0;
+    let unpDisb = 0;
+    let unpUnpaid = 0;
 
     for (let i = headerIndex + 1; i < lines.length; i++) {
       const line = lines[i];
@@ -161,7 +175,7 @@ async function parseSheetCsv(sheetUrl: string, prefix: string): Promise<FetchDis
       const cols = splitCSVRow(line);
       const payee = cols[payeeIdx] || '';
 
-      // Skip empty, invalid or subtotal rows
+      // Skip blank rows or total headers
       if (
         !payee ||
         payee.toUpperCase().includes('TOTAL') ||
@@ -170,106 +184,140 @@ async function parseSheetCsv(sheetUrl: string, prefix: string): Promise<FetchDis
         continue;
       }
 
-      const ppaRaw = ppaIdx !== -1 ? (cols[ppaIdx] || '').trim() : '';
       const papRaw = papIdx !== -1 ? (cols[papIdx] || '').trim() : '';
-      const combinedPpa = `${ppaRaw} ${papRaw}`.toUpperCase();
+      const papCodeRaw = papCodeIdx !== -1 ? (cols[papCodeIdx] || '').trim() : '';
+      const combinedPpa = `${papRaw} ${papCodeRaw}`.toUpperCase();
 
-      const targetCodes =
-        prefix === 'disb-unpaid'
-          ? UNPAID_PRIOR_YEARS_RICE_PAP_CODES
-          : prefix === 'disb-cont'
-            ? CONTINUING_RICE_PAP_CODES
-            : RICE_PROGRAM_PAP_CODES;
-
+      // Official Rice PAP matching
       let matchedRiceCode: string | undefined = undefined;
-      for (const target of targetCodes) {
+      for (const target of RICE_PROGRAM_PAP_CODES) {
         const tUpper = target.toUpperCase();
-        if (
-          combinedPpa.includes(tUpper) ||
-          (ppaRaw && tUpper.includes(ppaRaw.toUpperCase()) && ppaRaw.length > 10) ||
-          (papRaw && tUpper.includes(papRaw.toUpperCase()) && papRaw.length > 10)
-        ) {
+        const codeOnly = target.split(' ')[0];
+        if (combinedPpa.includes(tUpper) || combinedPpa.includes(codeOnly)) {
           matchedRiceCode = target;
           break;
         }
       }
 
-      // Only retain records matching the official Rice PAP codes
       if (!matchedRiceCode) {
         continue;
       }
 
-      const totalObligRaw = totalObligIdx !== -1 ? cols[totalObligIdx] : '';
-      const grossRaw = grossIdx !== -1 ? cols[grossIdx] : '';
-      const unpaidRaw = unpaidIdx !== -1 ? cols[unpaidIdx] : '';
-      const particulars = particularsIdx !== -1 ? cols[particularsIdx] : '';
-      const orsNumber = orsIdx !== -1 ? cols[orsIdx] : '';
-      const status = statusIdx !== -1 ? cols[statusIdx] : '';
+      const ref = refIdx !== -1 ? (cols[refIdx] || '').toUpperCase() : '';
+      const obligNum = obligIdx !== -1 ? parseNumber(cols[obligIdx]) : 0;
+      const disbNum = disbIdx !== -1 ? parseNumber(cols[disbIdx]) : 0;
+      const unpaidNum = unpaidIdx !== -1 ? parseNumber(cols[unpaidIdx]) : 0;
+      const particulars = particIdx !== -1 ? cols[particIdx] : '';
+      const orsNumber = gamIdx !== -1 ? cols[gamIdx] : '';
+      const rawStatus = statusIdx !== -1 ? (cols[statusIdx] || '').trim() : '';
+      const endUser = endUserIdx !== -1 ? (cols[endUserIdx] || '').trim() : '';
+      const fallbackStatus = disbNum > 0 && unpaidNum === 0 ? 'PAID' : unpaidNum > 0 ? 'UNPAID' : '';
+      const status = rawStatus || fallbackStatus;
 
-      const totalObligNum = parseNumber(totalObligRaw);
-      const grossNum = parseNumber(grossRaw);
-      const unpaidNum = parseNumber(unpaidRaw);
-
-      sumTotalOblig += totalObligNum;
-      sumGross += grossNum;
-      sumUnpaid += unpaidNum;
-
-      records.push({
-        id: `${prefix}-${i}`,
+      const item: DisbursementItem = {
+        id: `disb-${i}`,
         payee,
-        totalObligation: totalObligNum,
-        totalObligationFormatted: formatMoney(totalObligNum),
-        grossAmount: grossNum,
-        grossAmountFormatted: formatMoney(grossNum),
+        totalObligation: obligNum,
+        totalObligationFormatted: formatMoney(obligNum),
+        grossAmount: disbNum,
+        grossAmountFormatted: formatMoney(disbNum),
         unpaidObligation: unpaidNum,
         unpaidObligationFormatted: formatMoney(unpaidNum),
         particulars,
         orsNumber,
-        status,
-        ppaCode: matchedRiceCode || ppaRaw || papRaw || undefined,
-      });
+        status: status || undefined,
+        endUser: endUser || undefined,
+        ppaCode: matchedRiceCode,
+      };
+
+      if (ref.includes('CURRENT')) {
+        currentRecords.push(item);
+        currOblig += obligNum;
+        currDisb += disbNum;
+        currUnpaid += unpaidNum;
+      } else if (ref.includes('CONT')) {
+        continuingRecords.push(item);
+        contOblig += obligNum;
+        contDisb += disbNum;
+        contUnpaid += unpaidNum;
+
+        // Transactions under Continuing with outstanding balance constitute Unpaid Prior Years
+        if (unpaidNum > 0) {
+          unpaidPriorRecords.push({ ...item, id: `disb-unpaid-${i}` });
+          unpOblig += obligNum;
+          unpDisb += disbNum;
+          unpUnpaid += unpaidNum;
+        }
+      } else {
+        currentRecords.push(item);
+        currOblig += obligNum;
+        currDisb += disbNum;
+        currUnpaid += unpaidNum;
+      }
     }
 
     return {
-      records,
-      totals: {
-        totalObligation: sumTotalOblig,
-        grossAmount: sumGross,
-        unpaidObligation: sumUnpaid,
-        count: records.length,
+      current: {
+        records: currentRecords,
+        totals: {
+          totalObligation: currOblig,
+          grossAmount: currDisb,
+          unpaidObligation: currUnpaid,
+          count: currentRecords.length,
+        },
+        fetchedAt: nowIso,
       },
-      fetchedAt: new Date().toISOString(),
+      continuing: {
+        records: continuingRecords,
+        totals: {
+          totalObligation: contOblig,
+          grossAmount: contDisb,
+          unpaidObligation: contUnpaid,
+          count: continuingRecords.length,
+        },
+        fetchedAt: nowIso,
+      },
+      unpaid: {
+        records: unpaidPriorRecords,
+        totals: {
+          totalObligation: unpOblig,
+          grossAmount: unpDisb,
+          unpaidObligation: unpUnpaid,
+          count: unpaidPriorRecords.length,
+        },
+        fetchedAt: nowIso,
+      },
     };
   } catch (err: any) {
-    console.error(`parseSheetCsv (${prefix}) error:`, err);
-    return {
+    console.error('fetchAndParseMasterDisbursements error:', err);
+    const emptyResult: FetchDisbursementResult = {
       records: [],
-      totals: {
-        totalObligation: 0,
-        grossAmount: 0,
-        unpaidObligation: 0,
-        count: 0,
-      },
-      fetchedAt: new Date().toISOString(),
-      error: err.message || 'Error parsing Google Sheet data',
+      totals: { totalObligation: 0, grossAmount: 0, unpaidObligation: 0, count: 0 },
+      fetchedAt: nowIso,
+      error: err.message || 'Error parsing master Google Sheet',
+    };
+    return {
+      current: emptyResult,
+      continuing: emptyResult,
+      unpaid: emptyResult,
     };
   }
 }
 
-// In-memory + disk cache for ultra-fast sub-millisecond retrieval with SWR revalidation
+// In-memory + disk cache for sub-millisecond retrieval with SWR revalidation
 const DISBURSEMENT_CACHE_TTL_MS = 60 * 1000; // 60 seconds TTL
 
-interface DisbursementCacheEntry {
-  data: FetchDisbursementResult;
+interface CachedMasterGroup {
+  data: MasterDisbursementGroup;
   timestamp: number;
 }
 
-function getDiskDisbCache(): Record<string, DisbursementCacheEntry> | null {
+function getDiskDisbCache(): CachedMasterGroup | null {
   if (typeof window !== 'undefined') return null;
   try {
     const fs = require('fs');
     const path = require('path');
-    const file = path.join(process.cwd(), 'data', 'disbursements_cache.json');
+    const file = path.join(process.cwd(), 'data', 'disbursements_master_cache.json');
     if (fs.existsSync(file)) {
       const raw = fs.readFileSync(file, 'utf8');
       return JSON.parse(raw);
@@ -280,49 +328,31 @@ function getDiskDisbCache(): Record<string, DisbursementCacheEntry> | null {
   return null;
 }
 
-function saveDiskDisbCache(cacheMap: Map<string, DisbursementCacheEntry>) {
+function saveDiskDisbCache(entry: CachedMasterGroup) {
   if (typeof window !== 'undefined') return;
   try {
     const fs = require('fs');
     const path = require('path');
-    const file = path.join(process.cwd(), 'data', 'disbursements_cache.json');
-    const obj: Record<string, DisbursementCacheEntry> = {};
-    cacheMap.forEach((val, key) => {
-      obj[key] = val;
-    });
-    fs.writeFileSync(file, JSON.stringify(obj), 'utf8');
+    const dir = path.join(process.cwd(), 'data');
+    if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+    const file = path.join(dir, 'disbursements_master_cache.json');
+    fs.writeFileSync(file, JSON.stringify(entry), 'utf8');
   } catch {
     // ignore
   }
 }
 
 const gDisb = globalThis as unknown as {
-  __daDisbCache?: Map<string, DisbursementCacheEntry>;
-  __daDisbInflight?: Map<string, Promise<FetchDisbursementResult>>;
+  __daMasterDisbCache?: CachedMasterGroup | null;
+  __daMasterDisbInflight?: Promise<MasterDisbursementGroup> | null;
 };
 
-if (!gDisb.__daDisbCache) {
-  gDisb.__daDisbCache = new Map();
-  const disk = getDiskDisbCache();
-  if (disk) {
-    Object.entries(disk).forEach(([k, v]) => {
-      gDisb.__daDisbCache!.set(k, v);
-    });
-  }
-}
-if (!gDisb.__daDisbInflight) {
-  gDisb.__daDisbInflight = new Map();
+if (gDisb.__daMasterDisbCache === undefined) {
+  gDisb.__daMasterDisbCache = getDiskDisbCache();
 }
 
-const memoryCache = gDisb.__daDisbCache;
-const inflightFetches = gDisb.__daDisbInflight;
-
-async function parseSheetCsvCached(
-  sheetUrl: string,
-  prefix: string,
-  forceRefresh = false
-): Promise<FetchDisbursementResult> {
-  const cached = memoryCache.get(sheetUrl);
+async function getMasterDisbursementsCached(forceRefresh = false): Promise<MasterDisbursementGroup> {
+  const cached = gDisb.__daMasterDisbCache;
   const now = Date.now();
 
   // 1. Fresh cache: return instantly (< 1ms)
@@ -332,60 +362,63 @@ async function parseSheetCsvCached(
 
   // 2. Stale cache: return immediately and revalidate in background
   if (!forceRefresh && cached) {
-    if (!inflightFetches.has(sheetUrl)) {
-      const bgPromise = parseSheetCsv(sheetUrl, prefix)
+    if (!gDisb.__daMasterDisbInflight) {
+      gDisb.__daMasterDisbInflight = fetchAndParseMasterDisbursements()
         .then((fresh) => {
-          if (!fresh.error && fresh.records.length > 0) {
-            memoryCache.set(sheetUrl, { data: fresh, timestamp: Date.now() });
-            saveDiskDisbCache(memoryCache);
+          if (!fresh.current.error && fresh.current.records.length > 0) {
+            const entry = { data: fresh, timestamp: Date.now() };
+            gDisb.__daMasterDisbCache = entry;
+            saveDiskDisbCache(entry);
           }
           return fresh;
         })
         .catch((err) => {
-          console.warn(`[Disbursement] Background refresh failed for ${prefix}:`, err);
+          console.warn('[Disbursement] Background refresh failed:', err);
           return cached.data;
         })
         .finally(() => {
-          inflightFetches.delete(sheetUrl);
+          gDisb.__daMasterDisbInflight = null;
         });
-      inflightFetches.set(sheetUrl, bgPromise);
     }
     return cached.data;
   }
 
   // 3. Cold start: coalesce concurrent inflight requests
-  if (inflightFetches.has(sheetUrl)) {
-    return inflightFetches.get(sheetUrl)!;
+  if (gDisb.__daMasterDisbInflight) {
+    return gDisb.__daMasterDisbInflight;
   }
 
-  const fetchPromise = parseSheetCsv(sheetUrl, prefix)
+  gDisb.__daMasterDisbInflight = fetchAndParseMasterDisbursements()
     .then((fresh) => {
-      if (!fresh.error && fresh.records.length > 0) {
-        memoryCache.set(sheetUrl, { data: fresh, timestamp: Date.now() });
-        saveDiskDisbCache(memoryCache);
+      if (!fresh.current.error && fresh.current.records.length > 0) {
+        const entry = { data: fresh, timestamp: Date.now() };
+        gDisb.__daMasterDisbCache = entry;
+        saveDiskDisbCache(entry);
       }
       return fresh;
     })
     .finally(() => {
-      inflightFetches.delete(sheetUrl);
+      gDisb.__daMasterDisbInflight = null;
     });
 
-  inflightFetches.set(sheetUrl, fetchPromise);
-  return fetchPromise;
+  return gDisb.__daMasterDisbInflight;
 }
 
 export async function fetchContinuingDisbursements(forceRefresh = false): Promise<FetchDisbursementResult> {
-  return parseSheetCsvCached(CONTINUING_SHEET_URL, 'disb-cont', forceRefresh);
+  const master = await getMasterDisbursementsCached(forceRefresh);
+  return master.continuing;
 }
 
 export async function fetchCurrentDisbursements(forceRefresh = false): Promise<FetchDisbursementResult> {
-  return parseSheetCsvCached(CURRENT_SHEET_URL, 'disb-curr', forceRefresh);
+  const master = await getMasterDisbursementsCached(forceRefresh);
+  return master.current;
 }
 
 export async function fetchUnpaidPriorYearsDisbursements(forceRefresh = false): Promise<FetchDisbursementResult> {
-  return parseSheetCsvCached(UNPAID_PRIOR_YEARS_SHEET_URL, 'disb-unpaid', forceRefresh);
+  const master = await getMasterDisbursementsCached(forceRefresh);
+  return master.unpaid;
 }
 
-// Backwards-compatible alias
+// Backwards-compatible aliases
 export type ContinuingDisbursementItem = DisbursementItem;
 export type FetchContinuingDisbursementResult = FetchDisbursementResult;

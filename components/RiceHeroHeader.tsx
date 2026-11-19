@@ -11,13 +11,17 @@ export default function RiceHeroHeader() {
     'Official monitoring of current rice program activities, physical targets, farmer services, and banner registers across the Cordilleras.';
 
   if (pathname.includes('/rice/physical/ds-2026-2027')) {
-    heading = 'DS 2026-2027 Distribution Status';
+    heading = 'Dry Season';
     description =
       'Official Dry Season (DS) 2026-2027 live monitoring of regional seed consignments, provincial allocations, drop-off deliveries, and farmer drop-offs across the Cordillera Administrative Region.';
-  } else if (pathname.startsWith('/rice/physical')) {
-    heading = 'Physical Targets & Accomplishments';
+  } else if (pathname.includes('/rice/physical/deliveries')) {
+    heading = 'Deliveries';
     description =
-      'FY 2026 Wet Season (WS) and Dry Season (DS) Operations Register — tracking regional seed allocations, inorganic fertilizers, provincial area coverage, and commodity procurement across the Cordilleras.';
+      'Official monitoring of agricultural deliveries, seed dispatches, and provincial distribution records across the Cordilleras.';
+  } else if (pathname.startsWith('/rice/physical')) {
+    heading = 'Physical';
+    description =
+      'Physical targets, program operations, and monitoring across the Cordilleras.';
   } else if (pathname.startsWith('/rice/programs')) {
     heading = 'Rice Programs Register';
     description =

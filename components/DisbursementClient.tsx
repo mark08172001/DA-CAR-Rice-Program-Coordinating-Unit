@@ -37,7 +37,7 @@ export default function DisbursementClient({
   const [selectedView, setSelectedView] = useState<DisbursementView>('current');
   const [papFilter, setPapFilter] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState('');
-  const [sortField, setSortField] = useState<'payee' | 'totalObligation' | 'grossAmount' | 'unpaidObligation' | 'rate'>('totalObligation');
+  const [sortField, setSortField] = useState<'payee' | 'status' | 'endUser' | 'totalObligation' | 'grossAmount' | 'unpaidObligation' | 'rate'>('totalObligation');
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('desc');
 
   // Authentication & Privacy Decryption state
@@ -200,7 +200,9 @@ export default function DisbursementClient({
           payeeText.includes(q) ||
           (r.particulars && r.particulars.toLowerCase().includes(q)) ||
           (r.orsNumber && r.orsNumber.toLowerCase().includes(q)) ||
-          (r.ppaCode && r.ppaCode.toLowerCase().includes(q))
+          (r.ppaCode && r.ppaCode.toLowerCase().includes(q)) ||
+          (r.status && r.status.toLowerCase().includes(q)) ||
+          (r.endUser && r.endUser.toLowerCase().includes(q))
         );
       });
     }
@@ -215,6 +217,20 @@ export default function DisbursementClient({
       if (sortField === 'payee') {
         const valA = getDisplayPayee(a);
         const valB = getDisplayPayee(b);
+        const comp = valA.localeCompare(valB);
+        return sortDirection === 'asc' ? comp : -comp;
+      }
+
+      if (sortField === 'status') {
+        const valA = a.status || '';
+        const valB = b.status || '';
+        const comp = valA.localeCompare(valB);
+        return sortDirection === 'asc' ? comp : -comp;
+      }
+
+      if (sortField === 'endUser') {
+        const valA = a.endUser || '';
+        const valB = b.endUser || '';
         const comp = valA.localeCompare(valB);
         return sortDirection === 'asc' ? comp : -comp;
       }
@@ -237,7 +253,7 @@ export default function DisbursementClient({
     };
   }, [papFilter, searchQuery, totals, filteredRecords]);
 
-  const toggleSort = (field: 'payee' | 'totalObligation' | 'grossAmount' | 'unpaidObligation' | 'rate') => {
+  const toggleSort = (field: 'payee' | 'status' | 'endUser' | 'totalObligation' | 'grossAmount' | 'unpaidObligation' | 'rate') => {
     if (sortField === field) {
       setSortDirection((prev) => (prev === 'asc' ? 'desc' : 'asc'));
     } else {
@@ -553,7 +569,7 @@ export default function DisbursementClient({
 
           {/* Data Table with Scroll & Sticky Header/Footer */}
           <div style={{ maxHeight: '650px', overflowY: 'auto', overflowX: 'auto', WebkitOverflowScrolling: 'touch', width: '100%', position: 'relative' }}>
-            <table style={{ width: '100%', minWidth: 700, borderCollapse: 'collapse', textAlign: 'left', fontSize: 12 }}>
+            <table style={{ width: '100%', minWidth: 900, borderCollapse: 'collapse', textAlign: 'left', fontSize: 12 }}>
               <thead style={{ position: 'sticky', top: 0, zIndex: 10 }}>
                 <tr style={{ background: '#f1f5f9', borderBottom: '2px solid #cbd5e1', boxShadow: '0 1px 2px rgba(0,0,0,0.05)' }}>
                   <th style={{ padding: '8px 10px', width: '38px', color: '#475569', fontWeight: 700, fontSize: 11, background: '#f1f5f9', whiteSpace: 'nowrap' }}>#</th>
@@ -564,6 +580,26 @@ export default function DisbursementClient({
                   >
                     <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
                       <span>Payee</span>
+                      <ArrowUpDown size={11} style={{ color: '#94a3b8' }} />
+                    </div>
+                  </th>
+                  <th
+                    onClick={() => toggleSort('endUser')}
+                    style={{ padding: '8px 10px', color: '#1e293b', fontWeight: 700, fontSize: 11, cursor: 'pointer', userSelect: 'none', background: '#f1f5f9', whiteSpace: 'nowrap' }}
+                    title="Sort by End User"
+                  >
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
+                      <span>End user</span>
+                      <ArrowUpDown size={11} style={{ color: '#94a3b8' }} />
+                    </div>
+                  </th>
+                  <th
+                    onClick={() => toggleSort('status')}
+                    style={{ padding: '8px 10px', color: '#1e293b', fontWeight: 700, fontSize: 11, cursor: 'pointer', userSelect: 'none', background: '#f1f5f9', whiteSpace: 'nowrap' }}
+                    title="Sort by Status"
+                  >
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
+                      <span>Status</span>
                       <ArrowUpDown size={11} style={{ color: '#94a3b8' }} />
                     </div>
                   </th>
@@ -612,7 +648,7 @@ export default function DisbursementClient({
               <tbody>
                 {filteredRecords.length === 0 ? (
                   <tr>
-                    <td colSpan={6} style={{ padding: '36px 20px', textAlign: 'center', color: '#64748b' }}>
+                    <td colSpan={8} style={{ padding: '36px 20px', textAlign: 'center', color: '#64748b' }}>
                       {records.length === 0
                         ? `No ${selectedView} disbursement records found for this category.`
                         : 'No matching payee records found for your search query.'}
@@ -634,6 +670,65 @@ export default function DisbursementClient({
                           <div style={{ fontSize: 10.5, fontWeight: 400, color: '#64748b', marginTop: 1, maxWidth: 450, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }} title={item.particulars}>
                             {item.particulars}
                           </div>
+                        )}
+                      </td>
+                      <td style={{ padding: '8px 10px', color: '#334155', fontSize: 11, whiteSpace: 'nowrap' }}>
+                        {item.endUser ? (
+                          <span
+                            style={{
+                              display: 'inline-block',
+                              padding: '2px 7px',
+                              borderRadius: 4,
+                              background: '#f1f5f9',
+                              border: '1px solid #e2e8f0',
+                              fontSize: 10.5,
+                              fontWeight: 600,
+                              color: '#334155',
+                            }}
+                          >
+                            {item.endUser}
+                          </span>
+                        ) : (
+                          <span style={{ color: '#94a3b8' }}>-</span>
+                        )}
+                      </td>
+                      <td style={{ padding: '8px 10px', fontSize: 11, whiteSpace: 'nowrap' }}>
+                        {item.status ? (
+                          <span
+                            style={{
+                              display: 'inline-block',
+                              padding: '2px 7px',
+                              borderRadius: 4,
+                              fontSize: 10.5,
+                              fontWeight: 600,
+                              background:
+                                item.status.toUpperCase() === 'PAID'
+                                  ? '#dcfce7'
+                                  : item.status.toUpperCase().includes('CANCEL')
+                                    ? '#fee2e2'
+                                    : item.status.toUpperCase().includes('ACCOUNTING')
+                                      ? '#eff6ff'
+                                      : '#fef3c7',
+                              color:
+                                item.status.toUpperCase() === 'PAID'
+                                  ? '#15803d'
+                                  : item.status.toUpperCase().includes('CANCEL')
+                                    ? '#b91c1c'
+                                    : item.status.toUpperCase().includes('ACCOUNTING')
+                                      ? '#1d4ed8'
+                                      : '#b45309',
+                              border: '1px solid rgba(0,0,0,0.06)',
+                              maxWidth: 220,
+                              overflow: 'hidden',
+                              textOverflow: 'ellipsis',
+                              verticalAlign: 'middle',
+                            }}
+                            title={item.status}
+                          >
+                            {item.status}
+                          </span>
+                        ) : (
+                          <span style={{ color: '#94a3b8' }}>-</span>
                         )}
                       </td>
                       <td style={{ padding: '8px 10px', textAlign: 'right', fontWeight: 600, color: '#0f172a', fontVariantNumeric: 'tabular-nums', fontSize: 12, whiteSpace: 'nowrap' }}>
@@ -673,7 +768,7 @@ export default function DisbursementClient({
               {filteredRecords.length > 0 && (
                 <tfoot style={{ position: 'sticky', bottom: 0, zIndex: 9 }}>
                   <tr style={{ background: '#f8fafc', borderTop: '2px solid #cbd5e1', boxShadow: '0 -1px 3px rgba(0,0,0,0.06)', fontWeight: 700 }}>
-                    <td colSpan={2} style={{ padding: '10px 10px', color: '#0f172a', background: '#f8fafc', fontSize: 11.5, whiteSpace: 'nowrap' }}>
+                    <td colSpan={4} style={{ padding: '10px 10px', color: '#0f172a', background: '#f8fafc', fontSize: 11.5, whiteSpace: 'nowrap' }}>
                       SUMMARY TOTAL ({filteredRecords.length} items)
                     </td>
                     <td style={{ padding: '10px 10px', textAlign: 'right', color: '#0f172a', fontVariantNumeric: 'tabular-nums', background: '#f8fafc', fontSize: 12, whiteSpace: 'nowrap' }}>

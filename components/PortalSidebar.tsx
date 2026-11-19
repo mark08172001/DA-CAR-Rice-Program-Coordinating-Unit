@@ -15,7 +15,6 @@ import {
   ShieldCheck,
   Building,
   ChevronRight,
-  ChevronDown,
   Layers,
   X,
   ExternalLink,
@@ -27,6 +26,7 @@ import {
   UserCheck,
   BarChart3,
   Truck,
+  Sun,
   CreditCard,
   FileBarChart,
   Loader2,
@@ -87,18 +87,6 @@ export default function PortalSidebar({
     } finally {
       setIsGeneratingReport(false);
     }
-  };
-
-  // Sub-items dropdown state (closed by default on website load/reload)
-  const [openSubMenus, setOpenSubMenus] = useState<Record<string, boolean>>({});
-
-  const toggleSubMenu = (itemHref: string, e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setOpenSubMenus((prev) => ({
-      ...prev,
-      [itemHref]: !prev[itemHref],
-    }));
   };
 
   const supabase = createClient();
@@ -233,8 +221,14 @@ export default function PortalSidebar({
       icon: BarChart3,
       subItems: [
         {
-          label: 'DS 2026-2027 Distribution Status',
+          label: 'Dry Season',
           href: '/rice/physical/ds-2026-2027-distribution-status',
+          icon: Sun,
+          isSubItem: true,
+        },
+        {
+          label: 'Deliveries',
+          href: '/rice/physical/deliveries',
           icon: Truck,
           isSubItem: true,
         },
@@ -268,6 +262,9 @@ export default function PortalSidebar({
     }
     if (href === '/rice') {
       return pathname === '/rice';
+    }
+    if (href === '/rice/physical') {
+      return pathname === '/rice/physical';
     }
     if (href.includes('#')) {
       const base = href.split('#')[0];
@@ -344,7 +341,6 @@ export default function PortalSidebar({
             const IconComponent = item.icon;
             const isActive = isItemActive(item.href);
             const hasSubItems = Boolean(item.subItems && item.subItems.length > 0);
-            const isSubOpen = Boolean(openSubMenus[item.href]);
             const isFirstAdminItem = item.requireAdmin && !visibleNavItems[idx - 1]?.requireAdmin;
 
             return (
@@ -380,10 +376,7 @@ export default function PortalSidebar({
                     onClick={onClose}
                     className={`module-link ${isActive ? 'active' : ''}`}
                     title={item.label}
-                    style={{
-                      flex: 1,
-                      paddingRight: hasSubItems && !effectiveCollapsed ? '34px' : undefined,
-                    }}
+                    style={{ flex: 1 }}
                   >
                     <span className="module-link-left">
                       <IconComponent size={effectiveCollapsed ? 18 : 16} className="module-link-icon" />
@@ -400,171 +393,150 @@ export default function PortalSidebar({
                       <span className="minimized-badge-dot" title={item.badge} />
                     )}
                   </Link>
-
-                  {hasSubItems && !effectiveCollapsed && (
-                    <button
-                      type="button"
-                      onClick={(e) => toggleSubMenu(item.href, e)}
-                      className={`sidebar-submenu-toggle ${isSubOpen ? 'is-open' : ''}`}
-                      aria-label={`Toggle ${item.label} sub-items`}
-                      title={isSubOpen ? 'Collapse sub-items' : 'Expand sub-items'}
-                    >
-                      <ChevronDown
-                        size={14}
-                        className="sidebar-chevron"
-                      />
-                    </button>
-                  )}
                 </div>
 
-                {/* Branched Menu Sub-Items Dropdown (React Bits Effect) */}
+                {/* Branched Menu Sub-Items (Automatically Displayed Sub-Category) */}
                 {hasSubItems && !effectiveCollapsed && (
                   <div
                     className="sidebar-branched-body"
                     style={{
-                      display: 'grid',
-                      gridTemplateRows: isSubOpen ? '1fr' : '0fr',
-                      transition: 'grid-template-rows 300ms cubic-bezier(0.23, 1, 0.32, 1)',
                       position: 'relative',
                     }}
                   >
-                    <div style={{ minHeight: 0, overflow: 'hidden' }}>
-                      <div
-                        className="sidebar-branched-tree"
+                    <div
+                      className="sidebar-branched-tree"
+                      style={{
+                        position: 'relative',
+                        height: 8 + item.subItems!.length * 38,
+                        padding: '4px 0',
+                        boxSizing: 'border-box',
+                      }}
+                    >
+                      <svg
+                        className="sidebar-branched-lines"
+                        width={40}
+                        height={8 + item.subItems!.length * 38}
+                        aria-hidden="true"
                         style={{
-                          position: 'relative',
-                          height: 8 + item.subItems!.length * 38,
-                          padding: '4px 0',
-                          boxSizing: 'border-box',
+                          position: 'absolute',
+                          top: 0,
+                          left: 0,
+                          overflow: 'visible',
+                          pointerEvents: 'none',
+                          opacity: 1,
                         }}
                       >
-                        <svg
-                          className="sidebar-branched-lines"
-                          width={40}
-                          height={8 + item.subItems!.length * 38}
-                          aria-hidden="true"
-                          style={{
-                            position: 'absolute',
-                            top: 0,
-                            left: 0,
-                            overflow: 'visible',
-                            pointerEvents: 'none',
-                            opacity: isSubOpen ? 1 : 0,
-                            transition: 'opacity 250ms ease 80ms',
-                          }}
-                        >
-                          {/* Trunk rail line */}
-                          <path
-                            d={`M 19 0 V ${4 + (item.subItems!.length - 1) * 38 + 19 - 8}`}
-                            fill="none"
-                            stroke="rgba(255, 255, 255, 0.22)"
-                            strokeWidth={1.75}
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                          {/* Branch rail curves for each child */}
-                          {item.subItems!.map((_, k) => {
-                            const y = 4 + k * 38 + 19;
-                            return (
-                              <path
-                                key={`branch-${k}`}
-                                d={`M 19 ${y - 8} A 8 8 0 0 0 27 ${y} H 34`}
-                                fill="none"
-                                stroke="rgba(255, 255, 255, 0.22)"
-                                strokeWidth={1.75}
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                              />
-                            );
-                          })}
-                          {/* Animated reach accent line in DA-CAR Gold */}
-                          {item.subItems!.map((sub, k) => {
-                            const isSubActive = pathname === sub.href;
-                            const y = 4 + k * 38 + 19;
-                            const pathLen = (y - 8) + (Math.PI * 8) / 2 + (34 - 19 - 8);
-                            return (
-                              <path
-                                key={`reach-${sub.label}`}
-                                d={`M 19 0 V ${y - 8} A 8 8 0 0 0 27 ${y} H 34`}
-                                fill="none"
-                                stroke="#fbbf24"
-                                strokeWidth={1.75}
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                style={{
-                                  strokeDasharray: pathLen,
-                                  strokeDashoffset: isSubActive ? 0 : pathLen,
-                                  transition: 'stroke-dashoffset 400ms cubic-bezier(0.23, 1, 0.32, 1)',
-                                }}
-                              />
-                            );
-                          })}
-                        </svg>
-
-                        {/* Child sub-item links */}
-                        {item.subItems!.map((sub) => {
-                          const isSubActive = pathname === sub.href;
-                          const SubIcon = sub.icon;
+                        {/* Trunk rail line */}
+                        <path
+                          d={`M 19 0 V ${4 + (item.subItems!.length - 1) * 38 + 19 - 8}`}
+                          fill="none"
+                          stroke="rgba(255, 255, 255, 0.22)"
+                          strokeWidth={1.75}
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                        {/* Branch rail curves for each child */}
+                        {item.subItems!.map((_, k) => {
+                          const y = 4 + k * 38 + 19;
                           return (
-                            <Link
-                              key={sub.label}
-                              href={sub.href}
-                              onClick={onClose}
-                              tabIndex={isSubOpen ? 0 : -1}
-                              className={`module-link ${isSubActive ? 'active' : ''} module-sublink`}
-                              title={sub.label}
-                              style={{
-                                height: 38,
-                                paddingLeft: '38px',
-                                display: 'flex',
-                                alignItems: 'center',
-                                position: 'relative',
-                                background: 'transparent',
-                                border: 'none',
-                                boxShadow: 'none',
-                              }}
-                            >
-                              <span className="module-link-left" style={{ alignItems: 'center', gap: 7 }}>
-                                {SubIcon && (
-                                  <SubIcon
-                                    size={14}
-                                    style={{
-                                      color: isSubActive ? '#fbbf24' : 'rgba(255, 255, 255, 0.7)',
-                                      flexShrink: 0,
-                                      transition: 'color 0.2s ease',
-                                    }}
-                                  />
-                                )}
-                                <span
-                                  className="module-link-title"
-                                  style={{
-                                    whiteSpace: 'normal',
-                                    lineHeight: '1.25',
-                                    fontSize: '12px',
-                                    fontWeight: isSubActive ? 600 : 500,
-                                    color: isSubActive ? '#ffffff' : 'rgba(255, 255, 255, 0.8)',
-                                  }}
-                                >
-                                  {sub.label === 'DS 2026-2027 Distribution Status' ? (
-                                    <>
-                                      <span style={{ display: 'block', fontWeight: 600 }}>DS 2026-2027</span>
-                                      <span style={{ display: 'block', fontSize: '11px', opacity: 0.88 }}>Distribution status</span>
-                                    </>
-                                  ) : (
-                                    sub.label
-                                  )}
-                                </span>
-                              </span>
-
-                              {sub.badge && (
-                                <span className={`module-badge badge-${sub.badgeType || 'muted'}`}>
-                                  {sub.badge}
-                                </span>
-                              )}
-                            </Link>
+                            <path
+                              key={`branch-${k}`}
+                              d={`M 19 ${y - 8} A 8 8 0 0 0 27 ${y} H 34`}
+                              fill="none"
+                              stroke="rgba(255, 255, 255, 0.22)"
+                              strokeWidth={1.75}
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
                           );
                         })}
-                      </div>
+                        {/* Animated reach accent line in DA-CAR Gold */}
+                        {item.subItems!.map((sub, k) => {
+                          const isSubActive = pathname === sub.href;
+                          const y = 4 + k * 38 + 19;
+                          const pathLen = (y - 8) + (Math.PI * 8) / 2 + (34 - 19 - 8);
+                          return (
+                            <path
+                              key={`reach-${sub.label}`}
+                              d={`M 19 0 V ${y - 8} A 8 8 0 0 0 27 ${y} H 34`}
+                              fill="none"
+                              stroke="#fbbf24"
+                              strokeWidth={1.75}
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              style={{
+                                strokeDasharray: pathLen,
+                                strokeDashoffset: isSubActive ? 0 : pathLen,
+                                transition: 'stroke-dashoffset 400ms cubic-bezier(0.23, 1, 0.32, 1)',
+                              }}
+                            />
+                          );
+                        })}
+                      </svg>
+
+                      {/* Child sub-item links */}
+                      {item.subItems!.map((sub) => {
+                        const isSubActive = pathname === sub.href;
+                        const SubIcon = sub.icon;
+                        return (
+                          <Link
+                            key={sub.label}
+                            href={sub.href}
+                            onClick={onClose}
+                            tabIndex={0}
+                            className={`module-link ${isSubActive ? 'active' : ''} module-sublink`}
+                            title={sub.label}
+                            style={{
+                              height: 38,
+                              paddingLeft: '38px',
+                              display: 'flex',
+                              alignItems: 'center',
+                              position: 'relative',
+                              background: 'transparent',
+                              border: 'none',
+                              boxShadow: 'none',
+                            }}
+                          >
+                            <span className="module-link-left" style={{ alignItems: 'center', gap: 7 }}>
+                              {SubIcon && (
+                                <SubIcon
+                                  size={14}
+                                  style={{
+                                    color: isSubActive ? '#fbbf24' : 'rgba(255, 255, 255, 0.7)',
+                                    flexShrink: 0,
+                                    transition: 'color 0.2s ease',
+                                  }}
+                                />
+                              )}
+                              <span
+                                className="module-link-title"
+                                style={{
+                                  whiteSpace: 'normal',
+                                  lineHeight: '1.25',
+                                  fontSize: '12px',
+                                  fontWeight: isSubActive ? 600 : 500,
+                                  color: isSubActive ? '#ffffff' : 'rgba(255, 255, 255, 0.8)',
+                                }}
+                              >
+                                {sub.label === 'DS 2026-2027 Distribution Status' ? (
+                                  <>
+                                    <span style={{ display: 'block', fontWeight: 600 }}>DS 2026-2027</span>
+                                    <span style={{ display: 'block', fontSize: '11px', opacity: 0.88 }}>Distribution status</span>
+                                  </>
+                                ) : (
+                                  sub.label
+                                )}
+                              </span>
+                            </span>
+
+                            {sub.badge && (
+                              <span className={`module-badge badge-${sub.badgeType || 'muted'}`}>
+                                {sub.badge}
+                              </span>
+                            )}
+                          </Link>
+                        );
+                      })}
                     </div>
                   </div>
                 )}

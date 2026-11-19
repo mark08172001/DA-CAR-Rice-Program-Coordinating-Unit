@@ -1,12 +1,12 @@
-import DSDistributionClient from '@/components/DSDistributionClient';
-import { fetchDSDistributionData } from '@/utils/fetchDSDistributionSheet';
 import { cookies } from 'next/headers';
 import { createClient } from '@/utils/supabase/server';
 import { getAuthoritativeUserAccess } from '@/utils/adminStore';
 import ModuleAccessGuard from '@/components/ModuleAccessGuard';
+import DrySeasonClient from '@/components/DrySeasonClient';
+import { fetchDrySeasonData } from '@/utils/fetchDrySeasonSheet';
 
 export const metadata = {
-  title: 'DS 2026-2027 Distribution Status | DA-CAR | Rice Program Coordinating Unit',
+  title: 'Dry Season | DA-CAR | Rice Program Coordinating Unit',
   description:
     'Dry Season (DS) 2026-2027 seed and input distribution status, consignment tracking, and provincial targets for DA-CAR Regional Rice Program Coordinating Unit.',
 };
@@ -33,8 +33,6 @@ export default async function DSDistributionPage() {
   }
 
   const access = await getAuthoritativeUserAccess(activeEmail, supabase);
-  const isSuperAdmin = access.isSuperAdmin;
-  const allowed = access.allowed_modules;
   const userRole = access.role;
   const userName = access.fullName;
 
@@ -55,12 +53,12 @@ export default async function DSDistributionPage() {
     );
   }
 
-  const dsData = await fetchDSDistributionData();
+  const dsData = await fetchDrySeasonData();
 
   return (
-    <section className="content-section" style={{ padding: '24px 0 60px' }}>
+    <section className="content-section" style={{ padding: '24px 0 60px', minHeight: '60vh' }}>
       <div className="page-container" style={{ width: 'min(1560px, calc(100% - 36px))' }}>
-        <DSDistributionClient initialData={dsData} />
+        <DrySeasonClient initialData={dsData} />
       </div>
     </section>
   );

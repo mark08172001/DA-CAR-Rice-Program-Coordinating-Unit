@@ -1,21 +1,25 @@
 import { NextResponse } from 'next/server';
-import { fetchDSDistributionData } from '@/utils/fetchDSDistributionSheet';
+import { fetchDrySeasonData } from '@/utils/fetchDrySeasonSheet';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
 export async function GET() {
   try {
-    const data = await fetchDSDistributionData();
-    return NextResponse.json(data, {
+    const data = await fetchDrySeasonData();
+    return NextResponse.json({ success: true, data }, {
       headers: {
         'Cache-Control': 'no-store, no-cache, must-revalidate',
       },
     });
-  } catch (error) {
+  } catch (error: any) {
     return NextResponse.json(
-      { error: 'Failed to fetch DS distribution data' },
+      { success: false, error: error.message || 'Failed to fetch Dry Season data' },
       { status: 500 }
     );
   }
+}
+
+export async function POST() {
+  return GET();
 }
