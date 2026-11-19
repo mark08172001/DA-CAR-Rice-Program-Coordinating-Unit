@@ -12,8 +12,7 @@ export default function RiceHeroHeader() {
 
   if (pathname.includes('/rice/physical/ds-2026-2027')) {
     heading = 'Dry Season';
-    description =
-      'Official Dry Season (DS) 2026-2027 live monitoring of regional seed consignments, provincial allocations, drop-off deliveries, and farmer drop-offs across the Cordillera Administrative Region.';
+    description = '';
   } else if (pathname.includes('/rice/physical/deliveries')) {
     heading = 'Deliveries';
     description =
@@ -48,13 +47,51 @@ export default function RiceHeroHeader() {
       'Official monitoring summaries, quarterly physical and financial accomplishments, and validated field inspection records.';
   }
 
+  const isCompact = !description;
+
   return (
-    <div className="minimal-hero-container">
-      <section className="minimal-page-hero-card" aria-label={heading}>
+    <div
+      className="minimal-hero-container"
+      style={isCompact ? { padding: '14px 0 0' } : undefined}
+    >
+      <section
+        className="minimal-page-hero-card"
+        aria-label={heading}
+        style={
+          isCompact
+            ? {
+                minHeight: 'unset',
+                borderRadius: 12,
+              }
+            : undefined
+        }
+      >
         <div className="minimal-page-hero-pattern" aria-hidden="true" />
-        <div className="minimal-page-hero-content">
-          <h1 className="minimal-page-hero-title">{heading}</h1>
-          <p className="minimal-page-hero-desc">{description}</p>
+        <div
+          className="minimal-page-hero-content"
+          style={
+            isCompact
+              ? {
+                  padding: '14px 24px',
+                  maxWidth: '100%',
+                }
+              : undefined
+          }
+        >
+          <h1
+            className="minimal-page-hero-title"
+            style={
+              isCompact
+                ? {
+                    margin: 0,
+                    fontSize: 'clamp(20px, 2.4vw, 24px)',
+                  }
+                : undefined
+            }
+          >
+            {heading}
+          </h1>
+          {description ? <p className="minimal-page-hero-desc">{description}</p> : null}
         </div>
       </section>
     </div>

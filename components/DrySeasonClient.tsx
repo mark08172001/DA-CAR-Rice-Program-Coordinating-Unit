@@ -27,9 +27,70 @@ interface Props {
   initialData: DrySeasonSheetData;
 }
 
+function TargetAccompBalanceCell({
+  target,
+  accomp,
+  isGrandTotal = false,
+}: {
+  target: number;
+  accomp: number;
+  isGrandTotal?: boolean;
+}) {
+  const balance = target - accomp;
+  const rate = target > 0 ? ((accomp / target) * 100).toFixed(1) : '0.0';
+  const balanceStr =
+    balance < 0 ? `-${Math.abs(balance).toLocaleString()}` : balance.toLocaleString();
+
+  return (
+    <div
+      style={{
+        display: 'inline-flex',
+        alignItems: 'flex-start',
+        justifyContent: 'flex-end',
+        gap: 5,
+        whiteSpace: 'nowrap',
+        lineHeight: 1.25,
+      }}
+    >
+      <span style={{ color: isGrandTotal ? '#0f172a' : '#475569' }}>{target.toLocaleString()}</span>
+      <span style={{ color: '#94a3b8' }}>/</span>
+      <div
+        style={{
+          display: 'inline-flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          lineHeight: 1.2,
+        }}
+      >
+        <strong style={{ color: '#0f172a' }}>{accomp.toLocaleString()}</strong>
+        <span
+          style={{
+            fontSize: 10.5,
+            color: accomp > 0 ? '#15803d' : '#64748b',
+            fontWeight: 600,
+            marginTop: 2,
+          }}
+        >
+          {rate}%
+        </span>
+      </div>
+      <span style={{ color: '#94a3b8' }}>/</span>
+      <span
+        style={{
+          fontWeight: isGrandTotal ? 700 : 600,
+          color: balance < 0 ? '#b91c1c' : '#0369a1',
+        }}
+      >
+        {balanceStr}
+      </span>
+      <span style={{ color: '#64748b' }}>ha</span>
+    </div>
+  );
+}
+
 export default function DrySeasonClient({ initialData }: Props) {
   const [data, setData] = useState<DrySeasonSheetData>(initialData);
-  const [activeTab, setActiveTab] = useState<'total' | 'hybrid-seeds' | 'fert-hybrid' | 'fert-inbred'>('total');
+  const [activeTab, setActiveTab] = useState<'total' | 'hybrid-seeds' | 'fert-hybrid' | 'fert-inbred' | 'biofert-asa'>('total');
   const [searchTerm, setSearchTerm] = useState('');
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [expandedProvinces, setExpandedProvinces] = useState<Record<string, boolean>>({});
@@ -141,7 +202,7 @@ export default function DrySeasonClient({ initialData }: Props) {
             {data.grandTotal.totalTarget.toLocaleString()} <span style={{ fontSize: 13, fontWeight: 500, color: '#64748b' }}>ha</span>
           </div>
           <span style={{ fontSize: 11.5, color: '#64748b', marginTop: 4, display: 'block' }}>
-            Combined across 6 CAR Provinces & 3 Interventions
+            Combined across 6 CAR Provinces & 4 Interventions
           </span>
         </article>
 
@@ -189,7 +250,7 @@ export default function DrySeasonClient({ initialData }: Props) {
             {data.grandTotal.rate.toFixed(2)}%
           </div>
           <span style={{ fontSize: 11.5, color: '#64748b', marginTop: 4, display: 'block' }}>
-            Seeds: {((data.grandTotal.accompSeeds / data.grandTotal.targetSeeds) * 100).toFixed(1)}% · Fert: {(((data.grandTotal.accompFertH + data.grandTotal.accompFertI) / (data.grandTotal.targetFertH + data.grandTotal.targetFertI)) * 100).toFixed(1)}%
+            Seeds: {((data.grandTotal.accompSeeds / data.grandTotal.targetSeeds) * 100).toFixed(1)}% · Fert: {(((data.grandTotal.accompFertH + data.grandTotal.accompFertI) / (data.grandTotal.targetFertH + data.grandTotal.targetFertI)) * 100).toFixed(1)}% · Biofert: {(data.grandTotal.targetBiofert > 0 ? ((data.grandTotal.accompBiofert / data.grandTotal.targetBiofert) * 100).toFixed(1) : 0)}%
           </span>
         </article>
       </div>
@@ -298,6 +359,28 @@ export default function DrySeasonClient({ initialData }: Props) {
             <Layers size={15} />
             <span>FERTILIZERS (INBRED)</span>
           </button>
+
+          <button
+            type="button"
+            onClick={() => setActiveTab('biofert-asa')}
+            style={{
+              border: 'none',
+              background: activeTab === 'biofert-asa' ? '#166534' : 'transparent',
+              color: activeTab === 'biofert-asa' ? '#ffffff' : '#475569',
+              fontWeight: activeTab === 'biofert-asa' ? 700 : 500,
+              fontSize: 12.5,
+              padding: '7px 14px',
+              borderRadius: 6,
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              gap: 6,
+              transition: 'all 0.15s ease',
+            }}
+          >
+            <Package size={15} />
+            <span>BIOFERT ASA</span>
+          </button>
         </div>
 
         {/* Right Search Input & Google Sheet Reference */}
@@ -349,27 +432,19 @@ export default function DrySeasonClient({ initialData }: Props) {
                   <th style={{ textAlign: 'left', padding: '10px 16px', fontWeight: 700, color: '#334155' }}>PROVINCE</th>
                   <th style={{ textAlign: 'right', padding: '10px 14px', fontWeight: 700, color: '#334155' }}>
                     HYBRID SEEDS<br />
-                    <span style={{ fontSize: 10.5, fontWeight: 500, color: '#64748b' }}>Target / Accomp</span>
+                    <span style={{ fontSize: 10.5, fontWeight: 500, color: '#64748b' }}>Target / Accomp / Balance</span>
                   </th>
                   <th style={{ textAlign: 'right', padding: '10px 14px', fontWeight: 700, color: '#334155' }}>
                     FERT (HYBRID)<br />
-                    <span style={{ fontSize: 10.5, fontWeight: 500, color: '#64748b' }}>Target / Accomp</span>
+                    <span style={{ fontSize: 10.5, fontWeight: 500, color: '#64748b' }}>Target / Accomp / Balance</span>
                   </th>
                   <th style={{ textAlign: 'right', padding: '10px 14px', fontWeight: 700, color: '#334155' }}>
                     FERT (INBRED)<br />
-                    <span style={{ fontSize: 10.5, fontWeight: 500, color: '#64748b' }}>Target / Accomp</span>
+                    <span style={{ fontSize: 10.5, fontWeight: 500, color: '#64748b' }}>Target / Accomp / Balance</span>
                   </th>
-                  <th style={{ textAlign: 'right', padding: '10px 14px', fontWeight: 700, color: '#166534', background: '#f0fdf4' }}>
-                    TARGET<br />
-                    <span style={{ fontSize: 10.5, fontWeight: 500, color: '#166534' }}>Area (Ha)</span>
-                  </th>
-                  <th style={{ textAlign: 'right', padding: '10px 14px', fontWeight: 700, color: '#15803d', background: '#f0fdf4' }}>
-                    ACCOMP<br />
-                    <span style={{ fontSize: 10.5, fontWeight: 500, color: '#15803d' }}>Area (Ha)</span>
-                  </th>
-                  <th style={{ textAlign: 'right', padding: '10px 14px', fontWeight: 700, color: '#0369a1', background: '#f0f9ff' }}>
-                    BALANCE<br />
-                    <span style={{ fontSize: 10.5, fontWeight: 500, color: '#0369a1' }}>Target − Accomp</span>
+                  <th style={{ textAlign: 'right', padding: '10px 14px', fontWeight: 700, color: '#334155' }}>
+                    BIOFERT ASA<br />
+                    <span style={{ fontSize: 10.5, fontWeight: 500, color: '#64748b' }}>Target / Accomp / Balance</span>
                   </th>
                   <th style={{ textAlign: 'center', padding: '10px 16px', fontWeight: 700, color: '#334155', width: 140 }}>
                     % ACCOMPLISHED
@@ -387,25 +462,16 @@ export default function DrySeasonClient({ initialData }: Props) {
                         </div>
                       </td>
                       <td style={{ padding: '12px 14px', textAlign: 'right', color: '#475569' }}>
-                        <div><strong>{row.accompSeeds.toLocaleString()}</strong> / {row.targetSeeds.toLocaleString()} ha</div>
-                        <div style={{ fontSize: 11, color: '#64748b' }}>{row.targetSeeds > 0 ? ((row.accompSeeds / row.targetSeeds) * 100).toFixed(1) : 0}%</div>
+                        <TargetAccompBalanceCell target={row.targetSeeds} accomp={row.accompSeeds} />
                       </td>
                       <td style={{ padding: '12px 14px', textAlign: 'right', color: '#475569' }}>
-                        <div><strong>{row.accompFertH.toLocaleString()}</strong> / {row.targetFertH.toLocaleString()} ha</div>
-                        <div style={{ fontSize: 11, color: '#64748b' }}>{row.targetFertH > 0 ? ((row.accompFertH / row.targetFertH) * 100).toFixed(1) : 0}%</div>
+                        <TargetAccompBalanceCell target={row.targetFertH} accomp={row.accompFertH} />
                       </td>
                       <td style={{ padding: '12px 14px', textAlign: 'right', color: '#475569' }}>
-                        <div><strong>{row.accompFertI.toLocaleString()}</strong> / {row.targetFertI.toLocaleString()} ha</div>
-                        <div style={{ fontSize: 11, color: '#64748b' }}>{row.targetFertI > 0 ? ((row.accompFertI / row.targetFertI) * 100).toFixed(1) : 0}%</div>
+                        <TargetAccompBalanceCell target={row.targetFertI} accomp={row.accompFertI} />
                       </td>
-                      <td style={{ padding: '12px 14px', textAlign: 'right', fontWeight: 700, color: '#166534', background: '#f8fafc' }}>
-                        {row.totalTarget.toLocaleString()} ha
-                      </td>
-                      <td style={{ padding: '12px 14px', textAlign: 'right', fontWeight: 700, color: '#15803d', background: '#f8fafc' }}>
-                        {row.totalAccomp.toLocaleString()} ha
-                      </td>
-                      <td style={{ padding: '12px 14px', textAlign: 'right', fontWeight: 700, color: row.totalBalance < 0 ? '#b91c1c' : '#0369a1', background: '#f0f9ff' }}>
-                        {row.totalBalance < 0 ? `-${Math.abs(row.totalBalance).toLocaleString()}` : row.totalBalance.toLocaleString()} ha
+                      <td style={{ padding: '12px 14px', textAlign: 'right', color: '#475569' }}>
+                        <TargetAccompBalanceCell target={row.targetBiofert} accomp={row.accompBiofert} />
                       </td>
                       <td style={{ padding: '12px 16px', textAlign: 'center' }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: 8, justifyContent: 'center' }}>
@@ -440,22 +506,32 @@ export default function DrySeasonClient({ initialData }: Props) {
                 <tr style={{ background: '#f8fafc', borderTop: '2px solid #cbd5e1', fontWeight: 800 }}>
                   <td style={{ padding: '14px 16px', color: '#0f172a' }}>REGIONAL GRAND TOTAL</td>
                   <td style={{ padding: '14px 14px', textAlign: 'right', color: '#0f172a' }}>
-                    {data.grandTotal.accompSeeds.toLocaleString()} / {data.grandTotal.targetSeeds.toLocaleString()} ha
+                    <TargetAccompBalanceCell
+                      target={data.grandTotal.targetSeeds}
+                      accomp={data.grandTotal.accompSeeds}
+                      isGrandTotal
+                    />
                   </td>
                   <td style={{ padding: '14px 14px', textAlign: 'right', color: '#0f172a' }}>
-                    {data.grandTotal.accompFertH.toLocaleString()} / {data.grandTotal.targetFertH.toLocaleString()} ha
+                    <TargetAccompBalanceCell
+                      target={data.grandTotal.targetFertH}
+                      accomp={data.grandTotal.accompFertH}
+                      isGrandTotal
+                    />
                   </td>
                   <td style={{ padding: '14px 14px', textAlign: 'right', color: '#0f172a' }}>
-                    {data.grandTotal.accompFertI.toLocaleString()} / {data.grandTotal.targetFertI.toLocaleString()} ha
+                    <TargetAccompBalanceCell
+                      target={data.grandTotal.targetFertI}
+                      accomp={data.grandTotal.accompFertI}
+                      isGrandTotal
+                    />
                   </td>
-                  <td style={{ padding: '14px 14px', textAlign: 'right', color: '#166534', background: '#ecfdf5', fontSize: 14 }}>
-                    {data.grandTotal.totalTarget.toLocaleString()} ha
-                  </td>
-                  <td style={{ padding: '14px 14px', textAlign: 'right', color: '#15803d', background: '#ecfdf5', fontSize: 14 }}>
-                    {data.grandTotal.totalAccomp.toLocaleString()} ha
-                  </td>
-                  <td style={{ padding: '14px 14px', textAlign: 'right', color: '#0369a1', background: '#f0f9ff', fontSize: 14 }}>
-                    {data.grandTotal.totalBalance.toLocaleString()} ha
+                  <td style={{ padding: '14px 14px', textAlign: 'right', color: '#0f172a' }}>
+                    <TargetAccompBalanceCell
+                      target={data.grandTotal.targetBiofert}
+                      accomp={data.grandTotal.accompBiofert}
+                      isGrandTotal
+                    />
                   </td>
                   <td style={{ padding: '14px 16px', textAlign: 'center', background: '#ecfdf5', color: '#166534', fontSize: 13 }}>
                     {data.grandTotal.rate.toFixed(2)}%
