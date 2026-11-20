@@ -30,6 +30,8 @@ interface Props {
 
 type CommodityTabKey = 'hybrid-seeds' | 'fert-hybrid' | 'fert-inbred' | 'biofert-asa';
 
+const CAR_PROVINCES = ['ABRA', 'APAYAO', 'BENGUET', 'IFUGAO', 'KALINGA', 'MT. PROVINCE'];
+
 function ProvinceTitleCell({
   province,
   rate,
@@ -416,6 +418,14 @@ export default function DrySeasonClient({ initialData }: Props) {
     if (drawerState.categoryTab.includes('fert')) return 'FERTILIZER INTERVENTION BREAKDOWN';
     return 'BIOFERT INTERVENTION BREAKDOWN';
   }, [drawerState.categoryTab]);
+
+  const drawerCategoryDisplayName = useMemo(() => {
+    if (drawerState.categoryTab === 'hybrid-seeds') return 'Hybrid Seeds';
+    if (drawerState.categoryTab === 'fert-hybrid') return 'Fertilizer (Hybrid)';
+    if (drawerState.categoryTab === 'fert-inbred') return 'Fertilizers (Inbred)';
+    if (drawerState.categoryTab === 'biofert-asa') return 'Biofert ASA';
+    return drawerCategory?.name || '';
+  }, [drawerState.categoryTab, drawerCategory]);
 
   const formatHa = (val: number) => {
     return val.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 2 }) + ' ha';
@@ -854,7 +864,16 @@ export default function DrySeasonClient({ initialData }: Props) {
                                 {isExpanded ? <ChevronDown size={14} /> : <ChevronRight size={14} />}
                               </span>
                             )}
-                            <span>{prov.province}</span>
+                            <span
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                openDrawer(prov.province, activeTab as CommodityTabKey);
+                              }}
+                              style={{ cursor: 'pointer' }}
+                              title={`View ${prov.province} details sidebar`}
+                            >
+                              {prov.province}
+                            </span>
                             {hasSub && (
                               <span style={{ fontSize: 10, background: '#e2e8f0', color: '#475569', padding: '1px 5px', borderRadius: 4 }}>
                                 {prov.interventions.length} items
@@ -972,7 +991,7 @@ export default function DrySeasonClient({ initialData }: Props) {
           <aside
             style={{
               position: 'relative',
-              width: 'min(440px, 92vw)',
+              width: 'min(490px, 94vw)',
               height: '100%',
               backgroundColor: '#ffffff',
               display: 'flex',
@@ -988,29 +1007,59 @@ export default function DrySeasonClient({ initialData }: Props) {
             {/* Drawer Header */}
             <div
               style={{
-                padding: '24px 28px 18px',
+                padding: '20px 24px 16px',
                 borderBottom: '1px solid #f1f5f9',
                 display: 'flex',
                 justifyContent: 'space-between',
                 alignItems: 'flex-start',
+                gap: 12,
               }}
             >
-              <div>
-                <span
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4, flexWrap: 'wrap' }}>
+                  <span
+                    style={{
+                      fontSize: 10.5,
+                      fontWeight: 700,
+                      letterSpacing: '0.6px',
+                      color: '#15803d',
+                      textTransform: 'uppercase',
+                    }}
+                  >
+                    {drawerKicker}
+                  </span>
+                  <select
+                    value={drawerState.province}
+                    onChange={(e) => setDrawerState((prev) => ({ ...prev, province: e.target.value }))}
+                    style={{
+                      fontSize: 11,
+                      fontWeight: 700,
+                      color: '#1e293b',
+                      background: '#f8fafc',
+                      border: '1px solid #cbd5e1',
+                      borderRadius: 4,
+                      padding: '2px 6px',
+                      cursor: 'pointer',
+                      outline: 'none',
+                    }}
+                    title="Change province view"
+                  >
+                    {CAR_PROVINCES.map((p) => (
+                      <option key={p} value={p}>{p}</option>
+                    ))}
+                  </select>
+                </div>
+                <h2
                   style={{
-                    fontSize: 11,
+                    fontSize: 18,
                     fontWeight: 700,
-                    letterSpacing: '0.6px',
-                    color: '#15803d',
-                    textTransform: 'uppercase',
-                    display: 'block',
-                    marginBottom: 4,
+                    color: '#0f172a',
+                    margin: 0,
+                    lineHeight: 1.25,
+                    wordBreak: 'break-word',
                   }}
                 >
-                  {drawerKicker}
-                </span>
-                <h2 style={{ fontSize: 20, fontWeight: 700, color: '#0f172a', margin: 0 }}>
-                  {drawerState.province} — {drawerCategory?.name}
+                  {drawerState.province} — {drawerCategoryDisplayName}
                 </h2>
               </div>
               <button
@@ -1023,6 +1072,7 @@ export default function DrySeasonClient({ initialData }: Props) {
                   borderRadius: '50%',
                   width: 32,
                   height: 32,
+                  flexShrink: 0,
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -1038,14 +1088,16 @@ export default function DrySeasonClient({ initialData }: Props) {
 
             {/* Quick Intervention Switcher Pills */}
             <div
+              className="ds-tab-pills-bar"
               style={{
                 display: 'flex',
                 alignItems: 'center',
-                gap: 8,
-                padding: '12px 28px',
+                gap: 6,
+                padding: '10px 24px',
                 background: '#f8fafc',
                 borderBottom: '1px solid #e2e8f0',
                 overflowX: 'auto',
+                scrollbarWidth: 'none',
               }}
             >
               {[
@@ -1069,9 +1121,9 @@ export default function DrySeasonClient({ initialData }: Props) {
                       background: isActive ? '#166534' : '#ffffff',
                       color: isActive ? '#ffffff' : '#334155',
                       fontWeight: isActive ? 700 : 600,
-                      fontSize: 12,
+                      fontSize: 11.5,
                       lineHeight: '1.2',
-                      padding: '7px 14px',
+                      padding: '5px 12px',
                       borderRadius: 999,
                       cursor: 'pointer',
                       boxShadow: isActive
@@ -1088,7 +1140,7 @@ export default function DrySeasonClient({ initialData }: Props) {
             </div>
 
             {/* Drawer Body Content */}
-            <div style={{ padding: '24px 28px', display: 'flex', flexDirection: 'column', gap: 14 }}>
+            <div style={{ padding: '20px 24px', display: 'flex', flexDirection: 'column', gap: 14 }}>
               {/* Card 1: ACCOMPLISHMENT RATE */}
               <div
                 style={{
@@ -1155,7 +1207,7 @@ export default function DrySeasonClient({ initialData }: Props) {
                     Operational Target Area
                   </div>
                   <div style={{ fontSize: 11.5, color: '#94a3b8', marginTop: 3 }}>
-                    {drawerTargetShare.toFixed(2)}% of regional {drawerCategory?.name} target
+                    {drawerTargetShare.toFixed(2)}% of regional {drawerCategoryDisplayName} target
                   </div>
                 </div>
                 <div style={{ fontSize: 18, fontWeight: 700, color: '#0f172a' }}>
@@ -1236,7 +1288,7 @@ export default function DrySeasonClient({ initialData }: Props) {
                     marginBottom: 10,
                   }}
                 >
-                  REGIONAL CONTRIBUTION ({(drawerCategory?.name || '').toUpperCase()})
+                  REGIONAL CONTRIBUTION ({drawerCategoryDisplayName.toUpperCase()})
                 </div>
                 <div
                   style={{
@@ -1363,6 +1415,9 @@ export default function DrySeasonClient({ initialData }: Props) {
           background-color: #f1f5f9 !important;
           transform: rotate(90deg) scale(1.06);
           color: #0f172a !important;
+        }
+        .ds-tab-pills-bar::-webkit-scrollbar {
+          display: none;
         }
         .ds-tab-pill-btn {
           display: inline-flex !important;
