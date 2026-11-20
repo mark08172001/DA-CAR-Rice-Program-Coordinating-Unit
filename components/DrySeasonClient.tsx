@@ -658,9 +658,6 @@ export default function DrySeasonClient({ initialData }: Props) {
               <h3 style={{ fontSize: 16, fontWeight: 700, color: '#0f172a', margin: 0 }}>
                 Total by Province — Target vs Accomplishment
               </h3>
-              <p style={{ fontSize: 12, color: '#64748b', margin: '4px 0 0' }}>
-                Cumulative operational targets and equivalent accomplishment area across Hybrid Seeds, Fertilizer (Hybrid), and Fertilizers (Inbred).
-              </p>
             </div>
             <span style={{ fontSize: 11, background: '#f1f5f9', color: '#475569', padding: '4px 8px', borderRadius: 4, fontWeight: 600 }}>
               6 Provinces
