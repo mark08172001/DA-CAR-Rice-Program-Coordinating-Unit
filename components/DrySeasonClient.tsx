@@ -1086,18 +1086,15 @@ export default function DrySeasonClient({ initialData }: Props) {
               </button>
             </div>
 
-            {/* Quick Intervention Switcher Pills */}
+            {/* Quick Intervention Switcher Pills (Segmented Grid Control) */}
             <div
-              className="ds-tab-pills-bar"
               style={{
-                display: 'flex',
-                alignItems: 'center',
+                display: 'grid',
+                gridTemplateColumns: 'repeat(4, minmax(0, 1fr))',
                 gap: 6,
-                padding: '10px 24px',
+                padding: '12px 24px',
                 background: '#f8fafc',
                 borderBottom: '1px solid #e2e8f0',
-                overflowX: 'auto',
-                scrollbarWidth: 'none',
               }}
             >
               {[
@@ -1117,20 +1114,22 @@ export default function DrySeasonClient({ initialData }: Props) {
                       display: 'inline-flex',
                       alignItems: 'center',
                       justifyContent: 'center',
+                      width: '100%',
+                      minHeight: 32,
+                      padding: '6px 4px',
                       border: isActive ? '1px solid #166534' : '1px solid #cbd5e1',
                       background: isActive ? '#166534' : '#ffffff',
                       color: isActive ? '#ffffff' : '#334155',
                       fontWeight: isActive ? 700 : 600,
                       fontSize: 11.5,
-                      lineHeight: '1.2',
-                      padding: '5px 12px',
+                      lineHeight: '1',
                       borderRadius: 999,
                       cursor: 'pointer',
                       boxShadow: isActive
                         ? '0 1px 3px rgba(0, 0, 0, 0.12)'
                         : '0 1px 2px rgba(0, 0, 0, 0.04)',
                       whiteSpace: 'nowrap',
-                      flexShrink: 0,
+                      boxSizing: 'border-box',
                     }}
                   >
                     <span style={{ display: 'inline-block', lineHeight: 1 }}>{tab.label}</span>
