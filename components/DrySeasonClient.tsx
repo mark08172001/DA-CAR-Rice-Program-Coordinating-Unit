@@ -21,69 +21,245 @@ import {
   CheckCircle2,
   AlertCircle,
   ExternalLink,
+  X,
 } from 'lucide-react';
 
 interface Props {
   initialData: DrySeasonSheetData;
 }
 
-function TargetAccompBalanceCell({
-  target,
-  accomp,
-  isGrandTotal = false,
+type CommodityTabKey = 'hybrid-seeds' | 'fert-hybrid' | 'fert-inbred' | 'biofert-asa';
+
+function ProvinceTitleCell({
+  province,
+  rate,
+  onClick,
 }: {
-  target: number;
+  province: string;
+  rate: number;
+  onClick: () => void;
+}) {
+  return (
+    <div
+      onClick={onClick}
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'flex-start',
+        gap: 5,
+        cursor: 'pointer',
+      }}
+    >
+      <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
+        <span style={{ fontSize: 13.5, fontWeight: 700, color: '#0f172a' }}>{province}</span>
+        <ChevronRight size={13} style={{ color: '#cbd5e1', strokeWidth: 2.5 }} />
+      </div>
+
+      {rate >= 50 ? (
+        <span
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: 5,
+            fontSize: 10.5,
+            fontWeight: 600,
+            color: '#059669',
+            background: '#ecfdf5',
+            border: '1px solid #a7f3d0',
+            padding: '2px 7px',
+            borderRadius: 999,
+          }}
+        >
+          <span style={{ width: 5, height: 5, borderRadius: '50%', background: '#059669' }} />
+          Top Performer
+        </span>
+      ) : rate > 0 ? (
+        <span
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: 5,
+            fontSize: 10.5,
+            fontWeight: 600,
+            color: '#2563eb',
+            background: '#eff6ff',
+            border: '1px solid #bfdbfe',
+            padding: '2px 7px',
+            borderRadius: 999,
+          }}
+        >
+          <span style={{ width: 5, height: 5, borderRadius: '50%', background: '#2563eb' }} />
+          Active
+        </span>
+      ) : (
+        <span
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: 5,
+            fontSize: 10.5,
+            fontWeight: 500,
+            color: '#94a3b8',
+            background: '#f8fafc',
+            border: '1px solid #e2e8f0',
+            padding: '2px 7px',
+            borderRadius: 999,
+          }}
+        >
+          <span style={{ width: 5, height: 5, borderRadius: '50%', background: '#cbd5e1' }} />
+          No Activity yet
+        </span>
+      )}
+    </div>
+  );
+}
+
+function CommodityCell({
+  accomp,
+  target,
+  onClick,
+}: {
   accomp: number;
-  isGrandTotal?: boolean;
+  target: number;
+  onClick?: () => void;
 }) {
   const balance = target - accomp;
-  const rate = target > 0 ? ((accomp / target) * 100).toFixed(1) : '0.0';
-  const balanceStr =
-    balance < 0 ? `-${Math.abs(balance).toLocaleString()}` : balance.toLocaleString();
+  const rate = target > 0 ? (accomp / target) * 100 : 0;
+  const isSurplus = balance < 0;
+  const hasAccomp = accomp > 0;
 
   return (
     <div
+      onClick={onClick}
       style={{
-        display: 'inline-flex',
-        alignItems: 'flex-start',
-        justifyContent: 'flex-end',
-        gap: 5,
-        whiteSpace: 'nowrap',
-        lineHeight: 1.25,
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 3,
+        padding: '2px 0',
+        cursor: onClick ? 'pointer' : 'default',
       }}
     >
-      <span style={{ color: isGrandTotal ? '#0f172a' : '#475569' }}>{target.toLocaleString()}</span>
-      <span style={{ color: '#94a3b8' }}>/</span>
-      <div
-        style={{
-          display: 'inline-flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          lineHeight: 1.2,
-        }}
-      >
-        <strong style={{ color: '#0f172a' }}>{accomp.toLocaleString()}</strong>
+      {/* Top: Accomp + Rate Badge */}
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
         <span
           style={{
-            fontSize: 10.5,
-            color: accomp > 0 ? '#15803d' : '#64748b',
-            fontWeight: 600,
-            marginTop: 2,
+            fontSize: hasAccomp ? 14 : 13,
+            fontWeight: hasAccomp ? 700 : 500,
+            color: hasAccomp ? '#0f172a' : '#cbd5e1',
           }}
         >
-          {rate}%
+          {accomp.toLocaleString()} ha
+        </span>
+        <span
+          style={{
+            fontSize: 11,
+            fontWeight: hasAccomp ? 700 : 500,
+            color: rate >= 50 ? '#059669' : rate > 0 ? '#2563eb' : '#cbd5e1',
+            background: rate >= 50 ? '#ecfdf5' : rate > 0 ? '#eff6ff' : 'transparent',
+            padding: rate > 0 ? '2px 7px' : '0',
+            borderRadius: 4,
+          }}
+        >
+          {rate.toFixed(1)}%
         </span>
       </div>
-      <span style={{ color: '#94a3b8' }}>/</span>
-      <span
-        style={{
-          fontWeight: isGrandTotal ? 700 : 600,
-          color: balance < 0 ? '#b91c1c' : '#0369a1',
-        }}
-      >
-        {balanceStr}
-      </span>
-      <span style={{ color: '#64748b' }}>ha</span>
+
+      {/* Middle: Progress Bar */}
+      <div style={{ width: '100%', height: 4, background: '#f1f5f9', borderRadius: 2, overflow: 'hidden', margin: '4px 0' }}>
+        <div
+          style={{
+            width: `${Math.min(100, rate)}%`,
+            height: '100%',
+            background: rate >= 50 ? '#059669' : rate > 0 ? '#2563eb' : 'transparent',
+            borderRadius: 2,
+          }}
+        />
+      </div>
+
+      {/* Bottom: Subtext or Surplus Badge */}
+      <div>
+        {isSurplus ? (
+          <span
+            style={{
+              background: '#ecfdf5',
+              border: '1px solid #a7f3d0',
+              color: '#059669',
+              fontSize: 10.5,
+              fontWeight: 600,
+              padding: '1px 6px',
+              borderRadius: 4,
+              display: 'inline-block',
+            }}
+          >
+            Surplus +{Math.abs(balance).toLocaleString()} ha
+          </span>
+        ) : (
+          <span
+            style={{
+              fontSize: 11,
+              color: hasAccomp ? '#64748b' : '#cbd5e1',
+            }}
+          >
+            of {target.toLocaleString()} • {balance.toLocaleString()} left
+          </span>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function OverallAccomplishedCell({
+  rate,
+  totalAccomp,
+  totalTarget,
+  isGrandTotal = false,
+}: {
+  rate: number;
+  totalAccomp: number;
+  totalTarget: number;
+  isGrandTotal?: boolean;
+}) {
+  const isHigh = rate >= 50;
+  const isZero = rate === 0;
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 3, padding: '2px 0' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
+        <span
+          style={{
+            fontSize: isGrandTotal ? 16 : 14.5,
+            fontWeight: 800,
+            color: isHigh || isGrandTotal ? '#059669' : isZero ? '#cbd5e1' : '#2563eb',
+          }}
+        >
+          {rate.toFixed(2)}%
+        </span>
+        <span
+          style={{
+            fontSize: 12,
+            fontWeight: isGrandTotal ? 800 : 600,
+            color: isHigh || isGrandTotal ? '#059669' : isZero ? '#cbd5e1' : '#64748b',
+          }}
+        >
+          {totalAccomp.toLocaleString()} ha
+        </span>
+      </div>
+
+      <div style={{ width: '100%', height: 4, background: '#f1f5f9', borderRadius: 2, overflow: 'hidden', margin: '4px 0' }}>
+        <div
+          style={{
+            width: `${Math.min(100, rate)}%`,
+            height: '100%',
+            background: isHigh || isGrandTotal ? '#059669' : '#2563eb',
+            borderRadius: 2,
+          }}
+        />
+      </div>
+
+      <div style={{ fontSize: 11, color: isGrandTotal ? '#15803d' : '#94a3b8' }}>
+        {isGrandTotal ? 'Total Target: ' : 'Target: '}
+        {totalTarget.toLocaleString()} ha
+      </div>
     </div>
   );
 }
@@ -94,6 +270,47 @@ export default function DrySeasonClient({ initialData }: Props) {
   const [searchTerm, setSearchTerm] = useState('');
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [expandedProvinces, setExpandedProvinces] = useState<Record<string, boolean>>({});
+  const [isDrawerClosing, setIsDrawerClosing] = useState(false);
+  const [drawerState, setDrawerState] = useState<{
+    isOpen: boolean;
+    province: string;
+    categoryTab: CommodityTabKey;
+  }>({
+    isOpen: false,
+    province: 'ABRA',
+    categoryTab: 'hybrid-seeds',
+  });
+
+  const openDrawer = (
+    province: string,
+    categoryTab: CommodityTabKey = 'hybrid-seeds'
+  ) => {
+    setIsDrawerClosing(false);
+    setDrawerState({
+      isOpen: true,
+      province,
+      categoryTab,
+    });
+  };
+
+  const closeDrawer = () => {
+    if (isDrawerClosing) return;
+    setIsDrawerClosing(true);
+    setTimeout(() => {
+      setDrawerState((prev) => ({ ...prev, isOpen: false }));
+      setIsDrawerClosing(false);
+    }, 220);
+  };
+
+  React.useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        closeDrawer();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   const toggleExpand = (key: string) => {
     setExpandedProvinces((prev) => ({ ...prev, [key]: !prev[key] }));
@@ -174,6 +391,31 @@ export default function DrySeasonClient({ initialData }: Props) {
       return matchProv || matchInterv;
     });
   }, [activeCategory, searchTerm]);
+
+  // Drawer data calculations
+  const drawerCategory = useMemo(() => {
+    return data.categories.find((c) => c.id === drawerState.categoryTab) || data.categories[0];
+  }, [data.categories, drawerState.categoryTab]);
+
+  const drawerProvinceData = useMemo(() => {
+    if (!drawerCategory) return undefined;
+    return drawerCategory.provinces.find((p) => p.province === drawerState.province);
+  }, [drawerCategory, drawerState.province]);
+
+  const drawerTarget = drawerProvinceData?.target || 0;
+  const drawerAccomp = drawerProvinceData?.accomp || 0;
+  const drawerBalance = drawerTarget - drawerAccomp;
+  const drawerRate = drawerTarget > 0 ? (drawerAccomp / drawerTarget) * 100 : 0;
+  const drawerRegTarget = drawerCategory?.target || 0;
+  const drawerRegAccomp = drawerCategory?.accomp || 0;
+  const drawerTargetShare = drawerRegTarget > 0 ? (drawerTarget / drawerRegTarget) * 100 : 0;
+  const drawerAccompShare = drawerRegAccomp > 0 ? (drawerAccomp / drawerRegAccomp) * 100 : 0;
+
+  const drawerKicker = useMemo(() => {
+    if (drawerState.categoryTab === 'hybrid-seeds') return 'SEEDS INTERVENTION BREAKDOWN';
+    if (drawerState.categoryTab.includes('fert')) return 'FERTILIZER INTERVENTION BREAKDOWN';
+    return 'BIOFERT INTERVENTION BREAKDOWN';
+  }, [drawerState.categoryTab]);
 
   const formatHa = (val: number) => {
     return val.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 2 }) + ' ha';
@@ -429,112 +671,129 @@ export default function DrySeasonClient({ initialData }: Props) {
             <table className="ds-table" style={{ width: '100%', borderCollapse: 'collapse', fontSize: 13 }}>
               <thead>
                 <tr style={{ background: '#f8fafc', borderBottom: '1px solid #e2e8f0' }}>
-                  <th style={{ textAlign: 'left', padding: '10px 16px', fontWeight: 700, color: '#334155' }}>PROVINCE</th>
-                  <th style={{ textAlign: 'right', padding: '10px 14px', fontWeight: 700, color: '#334155' }}>
+                  <th style={{ textAlign: 'left', padding: '14px 18px', fontWeight: 700, color: '#475569', fontSize: 11.5, letterSpacing: '0.04em', width: '15%' }}>
+                    PROVINCE
+                  </th>
+                  <th style={{ textAlign: 'left', padding: '14px 18px', fontWeight: 700, color: '#0f172a', width: '17%' }}>
                     HYBRID SEEDS<br />
-                    <span style={{ fontSize: 10.5, fontWeight: 500, color: '#64748b' }}>Target / Accomp / Balance</span>
+                    <span style={{ fontSize: 10, fontWeight: 500, color: '#94a3b8' }}>Accomp • % • Target & Balance</span>
                   </th>
-                  <th style={{ textAlign: 'right', padding: '10px 14px', fontWeight: 700, color: '#334155' }}>
+                  <th style={{ textAlign: 'left', padding: '14px 18px', fontWeight: 700, color: '#0f172a', width: '17%' }}>
                     FERT (HYBRID)<br />
-                    <span style={{ fontSize: 10.5, fontWeight: 500, color: '#64748b' }}>Target / Accomp / Balance</span>
+                    <span style={{ fontSize: 10, fontWeight: 500, color: '#94a3b8' }}>Accomp • % • Target & Balance</span>
                   </th>
-                  <th style={{ textAlign: 'right', padding: '10px 14px', fontWeight: 700, color: '#334155' }}>
+                  <th style={{ textAlign: 'left', padding: '14px 18px', fontWeight: 700, color: '#0f172a', width: '17%' }}>
                     FERT (INBRED)<br />
-                    <span style={{ fontSize: 10.5, fontWeight: 500, color: '#64748b' }}>Target / Accomp / Balance</span>
+                    <span style={{ fontSize: 10, fontWeight: 500, color: '#94a3b8' }}>Accomp • % • Target & Balance</span>
                   </th>
-                  <th style={{ textAlign: 'right', padding: '10px 14px', fontWeight: 700, color: '#334155' }}>
+                  <th style={{ textAlign: 'left', padding: '14px 18px', fontWeight: 700, color: '#0f172a', width: '17%' }}>
                     BIOFERT ASA<br />
-                    <span style={{ fontSize: 10.5, fontWeight: 500, color: '#64748b' }}>Target / Accomp / Balance</span>
+                    <span style={{ fontSize: 10, fontWeight: 500, color: '#94a3b8' }}>Accomp • % • Target & Balance</span>
                   </th>
-                  <th style={{ textAlign: 'center', padding: '10px 16px', fontWeight: 700, color: '#334155', width: 140 }}>
-                    % ACCOMPLISHED
+                  <th style={{ textAlign: 'left', padding: '14px 18px', fontWeight: 700, color: '#0f172a', width: '17%' }}>
+                    % ACCOMPLISHED<br />
+                    <span style={{ fontSize: 10, fontWeight: 500, color: '#94a3b8' }}>Weighted Overall</span>
                   </th>
                 </tr>
               </thead>
               <tbody>
                 {filteredProvinceTotals.map((row) => {
                   return (
-                    <tr key={row.province} style={{ borderBottom: '1px solid #f1f5f9' }}>
-                      <td style={{ padding: '12px 16px', fontWeight: 700, color: '#0f172a' }}>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-                          <span style={{ width: 8, height: 8, borderRadius: '50%', background: row.rate > 0 ? '#16a34a' : '#94a3b8' }} />
-                          {row.province}
-                        </div>
+                    <tr
+                      key={row.province}
+                      style={{
+                        borderBottom: '1px solid #f1f5f9',
+                        transition: 'background-color 0.15s ease',
+                      }}
+                      className="hover:bg-slate-50"
+                    >
+                      <td style={{ padding: '14px 18px', verticalAlign: 'middle' }}>
+                        <ProvinceTitleCell
+                          province={row.province}
+                          rate={row.rate}
+                          onClick={() => openDrawer(row.province, 'hybrid-seeds')}
+                        />
                       </td>
-                      <td style={{ padding: '12px 14px', textAlign: 'right', color: '#475569' }}>
-                        <TargetAccompBalanceCell target={row.targetSeeds} accomp={row.accompSeeds} />
+                      <td style={{ padding: '14px 18px', verticalAlign: 'middle' }}>
+                        <CommodityCell
+                          target={row.targetSeeds}
+                          accomp={row.accompSeeds}
+                          onClick={() => openDrawer(row.province, 'hybrid-seeds')}
+                        />
                       </td>
-                      <td style={{ padding: '12px 14px', textAlign: 'right', color: '#475569' }}>
-                        <TargetAccompBalanceCell target={row.targetFertH} accomp={row.accompFertH} />
+                      <td style={{ padding: '14px 18px', verticalAlign: 'middle' }}>
+                        <CommodityCell
+                          target={row.targetFertH}
+                          accomp={row.accompFertH}
+                          onClick={() => openDrawer(row.province, 'fert-hybrid')}
+                        />
                       </td>
-                      <td style={{ padding: '12px 14px', textAlign: 'right', color: '#475569' }}>
-                        <TargetAccompBalanceCell target={row.targetFertI} accomp={row.accompFertI} />
+                      <td style={{ padding: '14px 18px', verticalAlign: 'middle' }}>
+                        <CommodityCell
+                          target={row.targetFertI}
+                          accomp={row.accompFertI}
+                          onClick={() => openDrawer(row.province, 'fert-inbred')}
+                        />
                       </td>
-                      <td style={{ padding: '12px 14px', textAlign: 'right', color: '#475569' }}>
-                        <TargetAccompBalanceCell target={row.targetBiofert} accomp={row.accompBiofert} />
+                      <td style={{ padding: '14px 18px', verticalAlign: 'middle' }}>
+                        <CommodityCell
+                          target={row.targetBiofert}
+                          accomp={row.accompBiofert}
+                          onClick={() => openDrawer(row.province, 'biofert-asa')}
+                        />
                       </td>
-                      <td style={{ padding: '12px 16px', textAlign: 'center' }}>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: 8, justifyContent: 'center' }}>
-                          <div style={{ flex: 1, height: 7, background: '#e2e8f0', borderRadius: 4, overflow: 'hidden', maxWidth: 60 }}>
-                            <div
-                              style={{
-                                width: `${Math.min(100, row.rate)}%`,
-                                height: '100%',
-                                background: row.rate >= 50 ? '#16a34a' : row.rate > 0 ? '#3b82f6' : '#cbd5e1',
-                                borderRadius: 4,
-                              }}
-                            />
-                          </div>
-                          <span
-                            style={{
-                              fontSize: 11.5,
-                              fontWeight: 700,
-                              color: row.rate >= 50 ? '#15803d' : row.rate > 0 ? '#1d4ed8' : '#64748b',
-                              minWidth: 46,
-                              textAlign: 'right',
-                            }}
-                          >
-                            {row.rate.toFixed(2)}%
-                          </span>
-                        </div>
+                      <td style={{ padding: '14px 18px', verticalAlign: 'middle' }}>
+                        <OverallAccomplishedCell
+                          rate={row.rate}
+                          totalAccomp={row.totalAccomp}
+                          totalTarget={row.totalTarget}
+                        />
                       </td>
                     </tr>
                   );
                 })}
               </tbody>
               <tfoot>
-                <tr style={{ background: '#f8fafc', borderTop: '2px solid #cbd5e1', fontWeight: 800 }}>
-                  <td style={{ padding: '14px 16px', color: '#0f172a' }}>REGIONAL GRAND TOTAL</td>
-                  <td style={{ padding: '14px 14px', textAlign: 'right', color: '#0f172a' }}>
-                    <TargetAccompBalanceCell
+                <tr style={{ background: '#f8fafc', borderTop: '2px solid #cbd5e1' }}>
+                  <td style={{ padding: '16px 18px', verticalAlign: 'middle' }}>
+                    <div style={{ fontSize: 13, fontWeight: 800, color: '#0f172a' }}>
+                      REGIONAL GRAND TOTAL
+                    </div>
+                    <div style={{ fontSize: 11, color: '#64748b', marginTop: 2 }}>
+                      All 6 CAR Provinces
+                    </div>
+                  </td>
+                  <td style={{ padding: '16px 18px', verticalAlign: 'middle' }}>
+                    <CommodityCell
                       target={data.grandTotal.targetSeeds}
                       accomp={data.grandTotal.accompSeeds}
-                      isGrandTotal
                     />
                   </td>
-                  <td style={{ padding: '14px 14px', textAlign: 'right', color: '#0f172a' }}>
-                    <TargetAccompBalanceCell
+                  <td style={{ padding: '16px 18px', verticalAlign: 'middle' }}>
+                    <CommodityCell
                       target={data.grandTotal.targetFertH}
                       accomp={data.grandTotal.accompFertH}
-                      isGrandTotal
                     />
                   </td>
-                  <td style={{ padding: '14px 14px', textAlign: 'right', color: '#0f172a' }}>
-                    <TargetAccompBalanceCell
+                  <td style={{ padding: '16px 18px', verticalAlign: 'middle' }}>
+                    <CommodityCell
                       target={data.grandTotal.targetFertI}
                       accomp={data.grandTotal.accompFertI}
-                      isGrandTotal
                     />
                   </td>
-                  <td style={{ padding: '14px 14px', textAlign: 'right', color: '#0f172a' }}>
-                    <TargetAccompBalanceCell
+                  <td style={{ padding: '16px 18px', verticalAlign: 'middle' }}>
+                    <CommodityCell
                       target={data.grandTotal.targetBiofert}
                       accomp={data.grandTotal.accompBiofert}
-                      isGrandTotal
                     />
                   </td>
-                  <td style={{ padding: '14px 16px', textAlign: 'center', background: '#ecfdf5', color: '#166534', fontSize: 13 }}>
-                    {data.grandTotal.rate.toFixed(2)}%
+                  <td style={{ padding: '16px 18px', verticalAlign: 'middle', background: '#f0fdf4' }}>
+                    <OverallAccomplishedCell
+                      rate={data.grandTotal.rate}
+                      totalAccomp={data.grandTotal.totalAccomp}
+                      totalTarget={data.grandTotal.totalTarget}
+                      isGrandTotal
+                    />
                   </td>
                 </tr>
               </tfoot>
@@ -686,6 +945,427 @@ export default function DrySeasonClient({ initialData }: Props) {
           </div>
         </div>
       )}
+
+      {/* 4. PROVINCE INTERVENTION SIDEBAR DRAWER (IMAGE 2 DESIGN WITH SMOOTH ANIMATION) */}
+      {(drawerState.isOpen || isDrawerClosing) && (
+        <div
+          style={{
+            position: 'fixed',
+            inset: 0,
+            zIndex: 9999,
+            display: 'flex',
+            justifyContent: 'flex-end',
+          }}
+        >
+          {/* Backdrop with Fade Animation */}
+          <div
+            onClick={closeDrawer}
+            style={{
+              position: 'absolute',
+              inset: 0,
+              backgroundColor: 'rgba(15, 23, 42, 0.45)',
+              backdropFilter: 'blur(3px)',
+              animation: isDrawerClosing
+                ? 'dsBackdropFadeOut 0.22s cubic-bezier(0.4, 0, 1, 1) forwards'
+                : 'dsBackdropFadeIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+            }}
+          />
+
+          {/* Drawer Pane with Slide & Shadow Animation */}
+          <aside
+            style={{
+              position: 'relative',
+              width: 'min(440px, 92vw)',
+              height: '100%',
+              backgroundColor: '#ffffff',
+              display: 'flex',
+              flexDirection: 'column',
+              zIndex: 10000,
+              overflowY: 'auto',
+              animation: isDrawerClosing
+                ? 'dsDrawerSlideOut 0.22s cubic-bezier(0.4, 0, 0.2, 1) forwards'
+                : 'dsDrawerSlideIn 0.32s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+              willChange: 'transform',
+            }}
+          >
+            {/* Drawer Header */}
+            <div
+              style={{
+                padding: '24px 28px 18px',
+                borderBottom: '1px solid #f1f5f9',
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'flex-start',
+              }}
+            >
+              <div>
+                <span
+                  style={{
+                    fontSize: 11,
+                    fontWeight: 700,
+                    letterSpacing: '0.6px',
+                    color: '#15803d',
+                    textTransform: 'uppercase',
+                    display: 'block',
+                    marginBottom: 4,
+                  }}
+                >
+                  {drawerKicker}
+                </span>
+                <h2 style={{ fontSize: 20, fontWeight: 700, color: '#0f172a', margin: 0 }}>
+                  {drawerState.province} — {drawerCategory?.name}
+                </h2>
+              </div>
+              <button
+                type="button"
+                onClick={closeDrawer}
+                className="ds-drawer-close-btn"
+                style={{
+                  background: '#f8fafc',
+                  border: '1px solid #e2e8f0',
+                  borderRadius: '50%',
+                  width: 32,
+                  height: 32,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  cursor: 'pointer',
+                  color: '#64748b',
+                  transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
+                }}
+                aria-label="Close details sidebar"
+              >
+                <X size={16} />
+              </button>
+            </div>
+
+            {/* Quick Intervention Switcher Pills */}
+            <div
+              style={{
+                display: 'flex',
+                gap: 6,
+                padding: '12px 28px',
+                background: '#f8fafc',
+                borderBottom: '1px solid #f1f5f9',
+                overflowX: 'auto',
+              }}
+            >
+              {[
+                { id: 'hybrid-seeds', label: 'Hybrid Seeds' },
+                { id: 'fert-hybrid', label: 'Fert (Hybrid)' },
+                { id: 'fert-inbred', label: 'Fert (Inbred)' },
+                { id: 'biofert-asa', label: 'Biofert ASA' },
+              ].map((tab) => (
+                <button
+                  key={tab.id}
+                  type="button"
+                  className="ds-tab-pill-btn"
+                  onClick={() => setDrawerState((prev) => ({ ...prev, categoryTab: tab.id as CommodityTabKey }))}
+                  style={{
+                    border: 'none',
+                    background: drawerState.categoryTab === tab.id ? '#166534' : '#ffffff',
+                    color: drawerState.categoryTab === tab.id ? '#ffffff' : '#475569',
+                    fontWeight: 600,
+                    fontSize: 11.5,
+                    padding: '5px 12px',
+                    borderRadius: 6,
+                    cursor: 'pointer',
+                    boxShadow:
+                      drawerState.categoryTab === tab.id
+                        ? '0 1px 3px rgba(0,0,0,0.12)'
+                        : '0 1px 2px rgba(0,0,0,0.04)',
+                    whiteSpace: 'nowrap',
+                  }}
+                >
+                  {tab.label}
+                </button>
+              ))}
+            </div>
+
+            {/* Drawer Body Content */}
+            <div style={{ padding: '24px 28px', display: 'flex', flexDirection: 'column', gap: 14 }}>
+              {/* Card 1: ACCOMPLISHMENT RATE */}
+              <div
+                style={{
+                  background: '#ffffff',
+                  border: '1px solid #e2e8f0',
+                  borderRadius: 12,
+                  padding: '18px 20px',
+                  animation: 'dsCardFadeUp 0.32s cubic-bezier(0.16, 1, 0.3, 1) 0.05s both',
+                }}
+              >
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
+                  <span
+                    style={{
+                      fontSize: 11,
+                      fontWeight: 700,
+                      color: '#64748b',
+                      letterSpacing: '0.5px',
+                      textTransform: 'uppercase',
+                    }}
+                  >
+                    ACCOMPLISHMENT RATE
+                  </span>
+                  <span
+                    style={{
+                      fontSize: 13,
+                      fontWeight: 700,
+                      color: drawerRate >= 50 ? '#059669' : drawerRate > 0 ? '#2563eb' : '#64748b',
+                      background: drawerRate >= 50 ? '#ecfdf5' : drawerRate > 0 ? '#eff6ff' : '#f1f5f9',
+                      padding: '4px 10px',
+                      borderRadius: 6,
+                    }}
+                  >
+                    {drawerRate.toFixed(1)}%
+                  </span>
+                </div>
+                <div style={{ width: '100%', height: 8, background: '#f1f5f9', borderRadius: 4, overflow: 'hidden' }}>
+                  <div
+                    style={{
+                      width: `${Math.min(100, drawerRate)}%`,
+                      height: '100%',
+                      background: drawerRate >= 50 ? '#059669' : drawerRate > 0 ? '#2563eb' : '#cbd5e1',
+                      borderRadius: 4,
+                      transition: 'width 0.4s ease',
+                    }}
+                  />
+                </div>
+              </div>
+
+              {/* Card 2: Operational Target Area */}
+              <div
+                style={{
+                  background: '#ffffff',
+                  border: '1px solid #e2e8f0',
+                  borderRadius: 12,
+                  padding: '16px 20px',
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  animation: 'dsCardFadeUp 0.32s cubic-bezier(0.16, 1, 0.3, 1) 0.10s both',
+                }}
+              >
+                <div>
+                  <div style={{ fontSize: 13.5, fontWeight: 600, color: '#334155' }}>
+                    Operational Target Area
+                  </div>
+                  <div style={{ fontSize: 11.5, color: '#94a3b8', marginTop: 3 }}>
+                    {drawerTargetShare.toFixed(2)}% of regional {drawerCategory?.name} target
+                  </div>
+                </div>
+                <div style={{ fontSize: 18, fontWeight: 700, color: '#0f172a' }}>
+                  {drawerTarget.toLocaleString()} ha
+                </div>
+              </div>
+
+              {/* Card 3: Accomplished Area */}
+              <div
+                style={{
+                  background: '#ffffff',
+                  border: '1px solid #e2e8f0',
+                  borderRadius: 12,
+                  padding: '16px 20px',
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  animation: 'dsCardFadeUp 0.32s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both',
+                }}
+              >
+                <div>
+                  <div style={{ fontSize: 13.5, fontWeight: 600, color: '#334155' }}>
+                    Accomplished Area
+                  </div>
+                  <div style={{ fontSize: 11.5, color: '#94a3b8', marginTop: 3 }}>
+                    Cumulative equivalent area served
+                  </div>
+                </div>
+                <div style={{ fontSize: 18, fontWeight: 700, color: '#2563eb' }}>
+                  {drawerAccomp.toLocaleString()} ha
+                </div>
+              </div>
+
+              {/* Card 4: Remaining Unserved Balance */}
+              <div
+                style={{
+                  background: '#ffffff',
+                  border: '1px solid #e2e8f0',
+                  borderRadius: 12,
+                  padding: '16px 20px',
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  animation: 'dsCardFadeUp 0.32s cubic-bezier(0.16, 1, 0.3, 1) 0.20s both',
+                }}
+              >
+                <div>
+                  <div style={{ fontSize: 13.5, fontWeight: 600, color: '#334155' }}>
+                    {drawerBalance < 0 ? 'Surplus Accomplishment' : 'Remaining Unserved Balance'}
+                  </div>
+                  <div style={{ fontSize: 11.5, color: '#94a3b8', marginTop: 3 }}>
+                    {drawerBalance < 0 ? 'Accomplished area exceeded target' : 'Target minus accomplished area'}
+                  </div>
+                </div>
+                <div
+                  style={{
+                    fontSize: 18,
+                    fontWeight: 700,
+                    color: drawerBalance < 0 ? '#059669' : '#0f172a',
+                  }}
+                >
+                  {drawerBalance < 0
+                    ? `+${Math.abs(drawerBalance).toLocaleString()}`
+                    : drawerBalance.toLocaleString()}{' '}
+                  ha
+                </div>
+              </div>
+
+              {/* Section: Regional Contribution */}
+              <div style={{ marginTop: 6, animation: 'dsCardFadeUp 0.32s cubic-bezier(0.16, 1, 0.3, 1) 0.25s both' }}>
+                <div
+                  style={{
+                    fontSize: 11,
+                    fontWeight: 700,
+                    color: '#64748b',
+                    letterSpacing: '0.6px',
+                    textTransform: 'uppercase',
+                    marginBottom: 10,
+                  }}
+                >
+                  REGIONAL CONTRIBUTION ({(drawerCategory?.name || '').toUpperCase()})
+                </div>
+                <div
+                  style={{
+                    background: '#ffffff',
+                    border: '1px solid #e2e8f0',
+                    borderRadius: 12,
+                    padding: '16px 20px',
+                  }}
+                >
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
+                    <span style={{ fontSize: 13, color: '#475569' }}>
+                      Share of CAR Accomplishment ({drawerRegAccomp.toLocaleString()} ha)
+                    </span>
+                    <span style={{ fontSize: 14, fontWeight: 700, color: '#0f172a' }}>
+                      {drawerAccompShare.toFixed(2)}%
+                    </span>
+                  </div>
+                  <div style={{ width: '100%', height: 6, background: '#f1f5f9', borderRadius: 3, overflow: 'hidden' }}>
+                    <div
+                      style={{
+                        width: `${Math.min(100, drawerAccompShare)}%`,
+                        height: '100%',
+                        background: '#1e293b',
+                        borderRadius: 3,
+                        transition: 'width 0.4s ease',
+                      }}
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Section: Varieties / Input details if present */}
+              {drawerProvinceData?.interventions && drawerProvinceData.interventions.length > 0 && (
+                <div style={{ marginTop: 10, animation: 'dsCardFadeUp 0.32s cubic-bezier(0.16, 1, 0.3, 1) 0.30s both' }}>
+                  <div
+                    style={{
+                      fontSize: 11,
+                      fontWeight: 700,
+                      color: '#64748b',
+                      letterSpacing: '0.6px',
+                      textTransform: 'uppercase',
+                      marginBottom: 10,
+                    }}
+                  >
+                    INPUT VARIETIES & DELIVERIES
+                  </div>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                    {drawerProvinceData.interventions.map((item, idx) => (
+                      <div
+                        key={`${item.name}-${idx}`}
+                        style={{
+                          background: '#f8fafc',
+                          border: '1px solid #e2e8f0',
+                          borderRadius: 8,
+                          padding: '10px 14px',
+                          fontSize: 12,
+                        }}
+                      >
+                        <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 600, color: '#0f172a', marginBottom: 4 }}>
+                          <span>{item.name}</span>
+                          <span style={{ color: '#166534' }}>
+                            {item.distributedArea
+                              ? `${item.distributedArea.toLocaleString()} ha`
+                              : item.distributedQty
+                              ? `${item.distributedQty.toLocaleString()} ${item.unit}`
+                              : '-'}
+                          </span>
+                        </div>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', color: '#64748b', fontSize: 11 }}>
+                          <span>Target: {item.deliveredTarget ? `${item.deliveredTarget.toLocaleString()} ${item.unit}` : '-'}</span>
+                          <span>Delivered: {item.deliveredActual ? `${item.deliveredActual.toLocaleString()} ${item.unit}` : '-'}</span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          </aside>
+        </div>
+      )}
+
+      {/* Embedded Animation Keyframes for Smooth Drawer Transitions */}
+      <style>{`
+        @keyframes dsBackdropFadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+        @keyframes dsBackdropFadeOut {
+          from { opacity: 1; }
+          to { opacity: 0; }
+        }
+        @keyframes dsDrawerSlideIn {
+          0% {
+            transform: translateX(100%);
+            box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+          }
+          100% {
+            transform: translateX(0);
+            box-shadow: -12px 0 40px rgba(15, 23, 42, 0.18);
+          }
+        }
+        @keyframes dsDrawerSlideOut {
+          0% {
+            transform: translateX(0);
+            box-shadow: -12px 0 40px rgba(15, 23, 42, 0.18);
+          }
+          100% {
+            transform: translateX(100%);
+            box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+          }
+        }
+        @keyframes dsCardFadeUp {
+          0% {
+            opacity: 0;
+            transform: translateY(10px);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        .ds-drawer-close-btn:hover {
+          background-color: #f1f5f9 !important;
+          transform: rotate(90deg) scale(1.06);
+          color: #0f172a !important;
+        }
+        .ds-tab-pill-btn {
+          transition: all 0.16s ease;
+        }
+        .ds-tab-pill-btn:hover {
+          transform: translateY(-1px);
+        }
+      `}</style>
     </div>
   );
 }
