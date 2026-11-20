@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description:
     'Department of Agriculture – Cordillera Administrative Region | Rice Program Coordinating Unit. Supporting farmers, food security, and sustainable agriculture in the Cordilleras.',
   icons: {
-    icon: '/da-seal.svg',
+    icon: '/da-logo.png',
   },
 };
 

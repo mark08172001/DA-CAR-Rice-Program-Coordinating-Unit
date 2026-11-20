@@ -165,7 +165,13 @@ export default function SignupPage() {
         <div className="auth-header">
           <Link href="/" className="auth-brand" title="Back to Portal Home">
             <span className="auth-seal">
-              <img src="/da-seal.svg" alt="Department of Agriculture Seal" width={64} height={64} />
+              <img
+                src="/da-logo.png"
+                alt="Department of Agriculture Seal"
+                width={72}
+                height={72}
+                style={{ objectFit: 'contain', borderRadius: '50%' }}
+              />
             </span>
           </Link>
           <span className="auth-republic">Republic of the Philippines</span>
