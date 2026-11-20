@@ -1043,10 +1043,11 @@ export default function DrySeasonClient({ initialData }: Props) {
             <div
               style={{
                 display: 'flex',
-                gap: 6,
+                alignItems: 'center',
+                gap: 8,
                 padding: '12px 28px',
                 background: '#f8fafc',
-                borderBottom: '1px solid #f1f5f9',
+                borderBottom: '1px solid #e2e8f0',
                 overflowX: 'auto',
               }}
             >
@@ -1055,31 +1056,38 @@ export default function DrySeasonClient({ initialData }: Props) {
                 { id: 'fert-hybrid', label: 'Fert (Hybrid)' },
                 { id: 'fert-inbred', label: 'Fert (Inbred)' },
                 { id: 'biofert-asa', label: 'Biofert ASA' },
-              ].map((tab) => (
-                <button
-                  key={tab.id}
-                  type="button"
-                  className="ds-tab-pill-btn"
-                  onClick={() => setDrawerState((prev) => ({ ...prev, categoryTab: tab.id as CommodityTabKey }))}
-                  style={{
-                    border: 'none',
-                    background: drawerState.categoryTab === tab.id ? '#166534' : '#ffffff',
-                    color: drawerState.categoryTab === tab.id ? '#ffffff' : '#475569',
-                    fontWeight: 600,
-                    fontSize: 11.5,
-                    padding: '5px 12px',
-                    borderRadius: 6,
-                    cursor: 'pointer',
-                    boxShadow:
-                      drawerState.categoryTab === tab.id
-                        ? '0 1px 3px rgba(0,0,0,0.12)'
-                        : '0 1px 2px rgba(0,0,0,0.04)',
-                    whiteSpace: 'nowrap',
-                  }}
-                >
-                  {tab.label}
-                </button>
-              ))}
+              ].map((tab) => {
+                const isActive = drawerState.categoryTab === tab.id;
+                return (
+                  <button
+                    key={tab.id}
+                    type="button"
+                    className="ds-tab-pill-btn"
+                    onClick={() => setDrawerState((prev) => ({ ...prev, categoryTab: tab.id as CommodityTabKey }))}
+                    style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      border: isActive ? '1px solid #166534' : '1px solid #cbd5e1',
+                      background: isActive ? '#166534' : '#ffffff',
+                      color: isActive ? '#ffffff' : '#334155',
+                      fontWeight: isActive ? 700 : 600,
+                      fontSize: 12,
+                      lineHeight: '1.2',
+                      padding: '7px 14px',
+                      borderRadius: 999,
+                      cursor: 'pointer',
+                      boxShadow: isActive
+                        ? '0 1px 3px rgba(0, 0, 0, 0.12)'
+                        : '0 1px 2px rgba(0, 0, 0, 0.04)',
+                      whiteSpace: 'nowrap',
+                      flexShrink: 0,
+                    }}
+                  >
+                    <span style={{ display: 'inline-block', lineHeight: 1 }}>{tab.label}</span>
+                  </button>
+                );
+              })}
             </div>
 
             {/* Drawer Body Content */}
@@ -1360,6 +1368,10 @@ export default function DrySeasonClient({ initialData }: Props) {
           color: #0f172a !important;
         }
         .ds-tab-pill-btn {
+          display: inline-flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+          line-height: 1 !important;
           transition: all 0.16s ease;
         }
         .ds-tab-pill-btn:hover {
