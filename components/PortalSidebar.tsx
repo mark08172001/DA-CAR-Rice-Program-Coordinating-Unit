@@ -414,7 +414,7 @@ export default function PortalSidebar({
                     >
                       <svg
                         className="sidebar-branched-lines"
-                        width={40}
+                        width={60}
                         height={8 + item.subItems!.length * 38}
                         aria-hidden="true"
                         style={{
@@ -426,9 +426,9 @@ export default function PortalSidebar({
                           opacity: 1,
                         }}
                       >
-                        {/* Trunk rail line */}
+                        {/* Trunk rail line aligned directly under the Physical module icon (X = 32px) */}
                         <path
-                          d={`M 19 0 V ${4 + (item.subItems!.length - 1) * 38 + 19 - 8}`}
+                          d={`M 32 0 V ${4 + (item.subItems!.length - 1) * 38 + 19 - 8}`}
                           fill="none"
                           stroke="rgba(255, 255, 255, 0.22)"
                           strokeWidth={1.75}
@@ -441,7 +441,7 @@ export default function PortalSidebar({
                           return (
                             <path
                               key={`branch-${k}`}
-                              d={`M 19 ${y - 8} A 8 8 0 0 0 27 ${y} H 34`}
+                              d={`M 32 ${y - 8} A 8 8 0 0 0 40 ${y} H 48`}
                               fill="none"
                               stroke="rgba(255, 255, 255, 0.22)"
                               strokeWidth={1.75}
@@ -454,11 +454,11 @@ export default function PortalSidebar({
                         {item.subItems!.map((sub, k) => {
                           const isSubActive = pathname === sub.href;
                           const y = 4 + k * 38 + 19;
-                          const pathLen = (y - 8) + (Math.PI * 8) / 2 + (34 - 19 - 8);
+                          const pathLen = (y - 8) + (Math.PI * 8) / 2 + (48 - 32 - 8);
                           return (
                             <path
                               key={`reach-${sub.label}`}
-                              d={`M 19 0 V ${y - 8} A 8 8 0 0 0 27 ${y} H 34`}
+                              d={`M 32 0 V ${y - 8} A 8 8 0 0 0 40 ${y} H 48`}
                               fill="none"
                               stroke="#fbbf24"
                               strokeWidth={1.75}
@@ -488,7 +488,7 @@ export default function PortalSidebar({
                             title={sub.label}
                             style={{
                               height: 38,
-                              paddingLeft: '38px',
+                              paddingLeft: '52px',
                               display: 'flex',
                               alignItems: 'center',
                               position: 'relative',
