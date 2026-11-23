@@ -2,9 +2,10 @@ import { cookies } from 'next/headers';
 import { createClient } from '@/utils/supabase/server';
 import { getAuthoritativeUserAccess } from '@/utils/adminStore';
 import ModuleAccessGuard from '@/components/ModuleAccessGuard';
+import PhysicalDashboardClient from '@/components/PhysicalDashboardClient';
 
 export const metadata = {
-  title: 'Physical | DA-CAR | Rice Program Coordinating Unit',
+  title: 'Physical Dashboard | DA-CAR | Rice Program Coordinating Unit',
   description:
     'Physical monitoring and program operations for DA-CAR Regional Rice Program Coordinating Unit.',
 };
@@ -54,7 +55,7 @@ export default async function RicePhysicalPage() {
   return (
     <section className="content-section" style={{ padding: '24px 0 60px', minHeight: '60vh' }}>
       <div className="page-container" style={{ width: 'min(1560px, calc(100% - 36px))' }}>
-        {/* Physical section */}
+        <PhysicalDashboardClient />
       </div>
     </section>
   );

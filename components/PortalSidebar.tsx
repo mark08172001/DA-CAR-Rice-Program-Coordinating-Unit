@@ -216,7 +216,7 @@ export default function PortalSidebar({
     { label: 'Obligation', href: '/rice/balances', icon: Coins },
     { label: 'Disbursement', href: '/rice/disbursement', icon: CreditCard },
     {
-      label: 'Physical',
+      label: 'Physical Dashboard',
       href: '/rice/physical',
       icon: BarChart3,
       subItems: [

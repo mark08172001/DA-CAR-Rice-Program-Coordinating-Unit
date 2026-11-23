@@ -18,7 +18,7 @@ export default function RiceHeroHeader() {
     description =
       'Official monitoring of agricultural deliveries, seed dispatches, and provincial distribution records across the Cordilleras.';
   } else if (pathname.startsWith('/rice/physical')) {
-    heading = 'Physical';
+    heading = 'Physical Dashboard';
     description =
       'Physical targets, program operations, and monitoring across the Cordilleras.';
   } else if (pathname.startsWith('/rice/programs')) {

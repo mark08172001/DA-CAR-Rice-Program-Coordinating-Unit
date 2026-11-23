@@ -6,6 +6,7 @@ import {
   CategoryData,
   ProvinceTotalRow,
   ProvinceInterventionData,
+  SubInterventionItem,
 } from '@/utils/fetchDrySeasonSheet';
 import {
   Wheat,
@@ -73,7 +74,7 @@ function ProvinceTitleCell({
           }}
         >
           <span style={{ width: 5, height: 5, borderRadius: '50%', background: '#059669' }} />
-          Top Performer
+          On Track
         </span>
       ) : rate > 0 ? (
         <span
@@ -119,10 +120,14 @@ function ProvinceTitleCell({
 function CommodityCell({
   accomp,
   target,
+  isSelected = false,
+  itemsCount = 0,
   onClick,
 }: {
   accomp: number;
   target: number;
+  isSelected?: boolean;
+  itemsCount?: number;
   onClick?: () => void;
 }) {
   const balance = target - accomp;
@@ -137,9 +142,16 @@ function CommodityCell({
         display: 'flex',
         flexDirection: 'column',
         gap: 3,
-        padding: '2px 0',
+        padding: isSelected ? '8px 10px' : '4px 6px',
+        borderRadius: 8,
         cursor: onClick ? 'pointer' : 'default',
+        background: isSelected ? '#ecfdf5' : 'transparent',
+        border: isSelected ? '1.5px solid #10b981' : '1.5px solid transparent',
+        boxShadow: isSelected ? '0 2px 8px rgba(16, 185, 129, 0.15)' : 'none',
+        transition: 'all 0.15s ease',
       }}
+      className={!isSelected ? 'hover:bg-slate-100/70' : ''}
+      title={onClick ? `Click to view breakdown (${itemsCount} items recorded)` : undefined}
     >
       {/* Top: Accomp + Rate Badge */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
@@ -178,8 +190,8 @@ function CommodityCell({
         />
       </div>
 
-      {/* Bottom: Subtext or Surplus Badge */}
-      <div>
+      {/* Bottom: Subtext or Surplus Badge & items count pill */}
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 4 }}>
         {isSurplus ? (
           <span
             style={{
@@ -205,7 +217,288 @@ function CommodityCell({
             of {target.toLocaleString()} • {balance.toLocaleString()} left
           </span>
         )}
+
+        {itemsCount > 0 && (
+          <span
+            style={{
+              fontSize: 10,
+              fontWeight: 600,
+              color: isSelected ? '#047857' : '#64748b',
+              background: isSelected ? '#d1fae5' : '#f1f5f9',
+              padding: '1px 5px',
+              borderRadius: 4,
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 2,
+            }}
+          >
+            {itemsCount} {itemsCount === 1 ? 'item' : 'items'} {isSelected ? '▲' : '▼'}
+          </span>
+        )}
       </div>
+    </div>
+  );
+}
+
+function InlineInterventionBreakdown({
+  province,
+  categoryKey,
+  interventions,
+  onClose,
+  onOpenDrawer,
+  onSwitchCategory,
+}: {
+  province: string;
+  categoryKey: CommodityTabKey;
+  interventions: SubInterventionItem[];
+  onClose: () => void;
+  onOpenDrawer: () => void;
+  onSwitchCategory: (key: CommodityTabKey) => void;
+}) {
+  const categoryMeta: Record<CommodityTabKey, { name: string; subtitle: string }> = {
+    'hybrid-seeds': {
+      name: 'Hybrid Seeds',
+      subtitle: 'Varieties (e.g. PHB 85, Bigante Plus, M20, SL-19, HYVAR)',
+    },
+    'fert-hybrid': {
+      name: 'Fertilizer (Hybrid)',
+      subtitle: 'Inputs (Urea Granular, Complete 14-14-14, Liquid Urea / Humi N, T14 Powder)',
+    },
+    'fert-inbred': {
+      name: 'Fertilizers (Inbred)',
+      subtitle: 'Inputs (Urea Granular, Complete, Liquid Urea, T14 Powder)',
+    },
+    'biofert-asa': {
+      name: 'Biofert ASA',
+      subtitle: 'Biofertilizers (Unigrow, Consort, Yama/Bio N, EMAS, Xplorer Glory)',
+    },
+  };
+
+  const meta = categoryMeta[categoryKey];
+
+  return (
+    <div
+      style={{
+        background: '#ffffff',
+        border: '1px solid #cbd5e1',
+        borderRadius: 10,
+        boxShadow: '0 4px 14px rgba(15, 23, 42, 0.08)',
+        overflow: 'hidden',
+      }}
+    >
+      {/* Top Header of Inline Breakdown */}
+      <div
+        style={{
+          padding: '12px 18px',
+          background: '#f8fafc',
+          borderBottom: '1px solid #e2e8f0',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          flexWrap: 'wrap',
+          gap: 10,
+        }}
+      >
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+          <span
+            style={{
+              padding: '3px 8px',
+              borderRadius: 6,
+              background: '#ecfdf5',
+              border: '1px solid #a7f3d0',
+              color: '#047857',
+              fontSize: 11,
+              fontWeight: 700,
+              textTransform: 'uppercase',
+              letterSpacing: '0.04em',
+            }}
+          >
+            {province}
+          </span>
+          <div>
+            <div style={{ fontSize: 14, fontWeight: 700, color: '#0f172a' }}>
+              {meta.name} — Itemized Breakdown
+            </div>
+            <div style={{ fontSize: 11, color: '#64748b' }}>
+              {meta.subtitle}
+            </div>
+          </div>
+        </div>
+
+        {/* Action Controls & Category Switcher */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexWrap: 'wrap' }}>
+          {[
+            { id: 'hybrid-seeds' as CommodityTabKey, label: 'Seeds' },
+            { id: 'fert-hybrid' as CommodityTabKey, label: 'Fert (Hybrid)' },
+            { id: 'fert-inbred' as CommodityTabKey, label: 'Fert (Inbred)' },
+            { id: 'biofert-asa' as CommodityTabKey, label: 'Biofert ASA' },
+          ].map((c) => {
+            const isCatActive = categoryKey === c.id;
+            return (
+              <button
+                key={c.id}
+                type="button"
+                onClick={() => onSwitchCategory(c.id)}
+                style={{
+                  padding: '4px 10px',
+                  borderRadius: 999,
+                  fontSize: 11,
+                  fontWeight: isCatActive ? 700 : 500,
+                  color: isCatActive ? '#ffffff' : '#475569',
+                  background: isCatActive ? '#166534' : '#ffffff',
+                  border: isCatActive ? '1px solid #166534' : '1px solid #cbd5e1',
+                  cursor: 'pointer',
+                  transition: 'all 0.15s ease',
+                }}
+              >
+                {c.label}
+              </button>
+            );
+          })}
+
+          <button
+            type="button"
+            onClick={onOpenDrawer}
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 4,
+              padding: '4px 10px',
+              borderRadius: 6,
+              fontSize: 11,
+              fontWeight: 600,
+              color: '#2563eb',
+              background: '#eff6ff',
+              border: '1px solid #bfdbfe',
+              cursor: 'pointer',
+              marginLeft: 4,
+            }}
+            title="Open comprehensive inspection sidebar drawer"
+          >
+            <ExternalLink size={12} />
+            Side Drawer
+          </button>
+
+          <button
+            type="button"
+            onClick={onClose}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: 26,
+              height: 26,
+              borderRadius: '50%',
+              background: '#ffffff',
+              border: '1px solid #cbd5e1',
+              color: '#64748b',
+              cursor: 'pointer',
+            }}
+            aria-label="Close inline breakdown"
+          >
+            <X size={14} />
+          </button>
+        </div>
+      </div>
+
+      {/* Sub-table of Varieties or Inputs */}
+      {interventions.length === 0 ? (
+        <div style={{ padding: '24px 20px', textAlign: 'center', color: '#94a3b8', fontSize: 13 }}>
+          No individual variety or item entries logged for {province} under {meta.name}.
+        </div>
+      ) : (
+        <div style={{ overflowX: 'auto' }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 12.5 }}>
+            <thead>
+              <tr style={{ background: '#f1f5f9', borderBottom: '1px solid #e2e8f0' }}>
+                <th style={{ textAlign: 'left', padding: '9px 16px', fontWeight: 700, color: '#334155' }}>
+                  VARIETY / INPUT ITEM
+                </th>
+                <th style={{ textAlign: 'center', padding: '9px 12px', fontWeight: 600, color: '#475569' }}>
+                  UNIT
+                </th>
+                <th style={{ textAlign: 'right', padding: '9px 14px', fontWeight: 700, color: '#0369a1' }}>
+                  TARGET ALLOCATION
+                </th>
+                <th style={{ textAlign: 'right', padding: '9px 14px', fontWeight: 700, color: '#475569' }}>
+                  DELIVERED TO DROP-OFF
+                </th>
+                <th style={{ textAlign: 'right', padding: '9px 14px', fontWeight: 700, color: '#16a34a' }}>
+                  DISTRIBUTED AREA (Ha) / QTY
+                </th>
+                <th style={{ textAlign: 'center', padding: '9px 14px', fontWeight: 700, color: '#334155', width: 140 }}>
+                  DELIVERY STATUS
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {interventions.map((item, idx) => {
+                const deliveryRate =
+                  item.deliveredTarget > 0 ? (item.deliveredActual / item.deliveredTarget) * 100 : 0;
+                return (
+                  <tr
+                    key={`${item.name}-${idx}`}
+                    style={{
+                      borderBottom: '1px solid #f1f5f9',
+                      background: idx % 2 === 0 ? '#ffffff' : '#fafafa',
+                    }}
+                  >
+                    <td style={{ padding: '10px 16px', fontWeight: 600, color: '#0f172a' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                        <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#10b981' }} />
+                        {item.name}
+                      </div>
+                    </td>
+                    <td style={{ textAlign: 'center', padding: '10px 12px', color: '#64748b' }}>
+                      {item.unit || 'Bags'}
+                    </td>
+                    <td style={{ textAlign: 'right', padding: '10px 14px', color: '#0369a1', fontWeight: 600 }}>
+                      {item.deliveredTarget ? `${item.deliveredTarget.toLocaleString()} ${item.unit || ''}` : '-'}
+                    </td>
+                    <td style={{ textAlign: 'right', padding: '10px 14px', color: '#334155', fontWeight: 600 }}>
+                      {item.deliveredActual ? `${item.deliveredActual.toLocaleString()} ${item.unit || ''}` : '-'}
+                    </td>
+                    <td style={{ textAlign: 'right', padding: '10px 14px', color: '#16a34a', fontWeight: 700 }}>
+                      {item.distributedArea
+                        ? `${item.distributedArea.toLocaleString()} ha`
+                        : item.distributedQty
+                        ? `${item.distributedQty.toLocaleString()} ${item.unit || ''}`
+                        : '-'}
+                    </td>
+                    <td style={{ textAlign: 'center', padding: '10px 14px' }}>
+                      {item.deliveredTarget > 0 ? (
+                        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3 }}>
+                          <span
+                            style={{
+                              fontSize: 10.5,
+                              fontWeight: 700,
+                              color: deliveryRate >= 100 ? '#059669' : deliveryRate > 0 ? '#2563eb' : '#94a3b8',
+                            }}
+                          >
+                            {deliveryRate.toFixed(1)}% Delivered
+                          </span>
+                          <div style={{ width: 80, height: 4, background: '#e2e8f0', borderRadius: 2, overflow: 'hidden' }}>
+                            <div
+                              style={{
+                                width: `${Math.min(100, deliveryRate)}%`,
+                                height: '100%',
+                                background: deliveryRate >= 100 ? '#059669' : '#2563eb',
+                                borderRadius: 2,
+                              }}
+                            />
+                          </div>
+                        </div>
+                      ) : (
+                        <span style={{ fontSize: 11, color: '#94a3b8' }}>-</span>
+                      )}
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      )}
     </div>
   );
 }
@@ -272,6 +565,27 @@ export default function DrySeasonClient({ initialData }: Props) {
   const [searchTerm, setSearchTerm] = useState('');
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [expandedProvinces, setExpandedProvinces] = useState<Record<string, boolean>>({});
+  const [expandedCell, setExpandedCell] = useState<{
+    province: string;
+    category: CommodityTabKey;
+  } | null>(null);
+
+  const toggleCellExpand = (province: string, category: CommodityTabKey) => {
+    if (expandedCell?.province === province && expandedCell?.category === category) {
+      setExpandedCell(null);
+    } else {
+      setExpandedCell({ province, category });
+    }
+  };
+
+  const getInterventionsFor = (provinceName: string, categoryId: string): SubInterventionItem[] => {
+    const cat = data.categories.find((c) => c.id === categoryId);
+    if (!cat) return [];
+    const prov = cat.provinces.find(
+      (p) => p.province.toUpperCase() === provinceName.toUpperCase()
+    );
+    return prov?.interventions || [];
+  };
   const [isDrawerClosing, setIsDrawerClosing] = useState(false);
   const [drawerState, setDrawerState] = useState<{
     isOpen: boolean;
@@ -681,20 +995,60 @@ export default function DrySeasonClient({ initialData }: Props) {
                   <th style={{ textAlign: 'left', padding: '14px 18px', fontWeight: 700, color: '#475569', fontSize: 11.5, letterSpacing: '0.04em', width: '15%' }}>
                     PROVINCE
                   </th>
-                  <th style={{ textAlign: 'left', padding: '14px 18px', fontWeight: 700, color: '#0f172a', width: '17%' }}>
-                    HYBRID SEEDS<br />
+                  <th
+                    onClick={() => setActiveTab('hybrid-seeds')}
+                    style={{ textAlign: 'left', padding: '14px 18px', fontWeight: 700, color: '#0f172a', width: '17%', cursor: 'pointer' }}
+                    className="hover:bg-slate-100/80 transition-colors"
+                    title="Click to switch to Hybrid Seeds view"
+                  >
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                      <span>HYBRID SEEDS</span>
+                      <span style={{ fontSize: 9.5, fontWeight: 700, color: '#166534', background: '#ecfdf5', padding: '1px 5px', borderRadius: 4 }}>
+                        Varieties ↗
+                      </span>
+                    </div>
                     <span style={{ fontSize: 10, fontWeight: 500, color: '#94a3b8' }}>Accomp • % • Target & Balance</span>
                   </th>
-                  <th style={{ textAlign: 'left', padding: '14px 18px', fontWeight: 700, color: '#0f172a', width: '17%' }}>
-                    FERT (HYBRID)<br />
+                  <th
+                    onClick={() => setActiveTab('fert-hybrid')}
+                    style={{ textAlign: 'left', padding: '14px 18px', fontWeight: 700, color: '#0f172a', width: '17%', cursor: 'pointer' }}
+                    className="hover:bg-slate-100/80 transition-colors"
+                    title="Click to switch to Fertilizer (Hybrid) view"
+                  >
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                      <span>FERT (HYBRID)</span>
+                      <span style={{ fontSize: 9.5, fontWeight: 700, color: '#166534', background: '#ecfdf5', padding: '1px 5px', borderRadius: 4 }}>
+                        Inputs ↗
+                      </span>
+                    </div>
                     <span style={{ fontSize: 10, fontWeight: 500, color: '#94a3b8' }}>Accomp • % • Target & Balance</span>
                   </th>
-                  <th style={{ textAlign: 'left', padding: '14px 18px', fontWeight: 700, color: '#0f172a', width: '17%' }}>
-                    FERT (INBRED)<br />
+                  <th
+                    onClick={() => setActiveTab('fert-inbred')}
+                    style={{ textAlign: 'left', padding: '14px 18px', fontWeight: 700, color: '#0f172a', width: '17%', cursor: 'pointer' }}
+                    className="hover:bg-slate-100/80 transition-colors"
+                    title="Click to switch to Fertilizer (Inbred) view"
+                  >
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                      <span>FERT (INBRED)</span>
+                      <span style={{ fontSize: 9.5, fontWeight: 700, color: '#166534', background: '#ecfdf5', padding: '1px 5px', borderRadius: 4 }}>
+                        Inputs ↗
+                      </span>
+                    </div>
                     <span style={{ fontSize: 10, fontWeight: 500, color: '#94a3b8' }}>Accomp • % • Target & Balance</span>
                   </th>
-                  <th style={{ textAlign: 'left', padding: '14px 18px', fontWeight: 700, color: '#0f172a', width: '17%' }}>
-                    BIOFERT ASA<br />
+                  <th
+                    onClick={() => setActiveTab('biofert-asa')}
+                    style={{ textAlign: 'left', padding: '14px 18px', fontWeight: 700, color: '#0f172a', width: '17%', cursor: 'pointer' }}
+                    className="hover:bg-slate-100/80 transition-colors"
+                    title="Click to switch to Biofert ASA view"
+                  >
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                      <span>BIOFERT ASA</span>
+                      <span style={{ fontSize: 9.5, fontWeight: 700, color: '#166534', background: '#ecfdf5', padding: '1px 5px', borderRadius: 4 }}>
+                        Biofert ↗
+                      </span>
+                    </div>
                     <span style={{ fontSize: 10, fontWeight: 500, color: '#94a3b8' }}>Accomp • % • Target & Balance</span>
                   </th>
                   <th style={{ textAlign: 'left', padding: '14px 18px', fontWeight: 700, color: '#0f172a', width: '17%' }}>
@@ -705,58 +1059,95 @@ export default function DrySeasonClient({ initialData }: Props) {
               </thead>
               <tbody>
                 {filteredProvinceTotals.map((row) => {
+                  const isSeedsSelected = expandedCell?.province === row.province && expandedCell?.category === 'hybrid-seeds';
+                  const isFertHSelected = expandedCell?.province === row.province && expandedCell?.category === 'fert-hybrid';
+                  const isFertISelected = expandedCell?.province === row.province && expandedCell?.category === 'fert-inbred';
+                  const isBiofertSelected = expandedCell?.province === row.province && expandedCell?.category === 'biofert-asa';
+
+                  const seedsCount = getInterventionsFor(row.province, 'hybrid-seeds').length;
+                  const fertHCount = getInterventionsFor(row.province, 'fert-hybrid').length;
+                  const fertICount = getInterventionsFor(row.province, 'fert-inbred').length;
+                  const biofertCount = getInterventionsFor(row.province, 'biofert-asa').length;
+
+                  const isRowExpanded = expandedCell?.province === row.province;
+
                   return (
-                    <tr
-                      key={row.province}
-                      style={{
-                        borderBottom: '1px solid #f1f5f9',
-                        transition: 'background-color 0.15s ease',
-                      }}
-                      className="hover:bg-slate-50"
-                    >
-                      <td style={{ padding: '14px 18px', verticalAlign: 'middle' }}>
-                        <ProvinceTitleCell
-                          province={row.province}
-                          rate={row.rate}
-                          onClick={() => openDrawer(row.province, 'hybrid-seeds')}
-                        />
-                      </td>
-                      <td style={{ padding: '14px 18px', verticalAlign: 'middle' }}>
-                        <CommodityCell
-                          target={row.targetSeeds}
-                          accomp={row.accompSeeds}
-                          onClick={() => openDrawer(row.province, 'hybrid-seeds')}
-                        />
-                      </td>
-                      <td style={{ padding: '14px 18px', verticalAlign: 'middle' }}>
-                        <CommodityCell
-                          target={row.targetFertH}
-                          accomp={row.accompFertH}
-                          onClick={() => openDrawer(row.province, 'fert-hybrid')}
-                        />
-                      </td>
-                      <td style={{ padding: '14px 18px', verticalAlign: 'middle' }}>
-                        <CommodityCell
-                          target={row.targetFertI}
-                          accomp={row.accompFertI}
-                          onClick={() => openDrawer(row.province, 'fert-inbred')}
-                        />
-                      </td>
-                      <td style={{ padding: '14px 18px', verticalAlign: 'middle' }}>
-                        <CommodityCell
-                          target={row.targetBiofert}
-                          accomp={row.accompBiofert}
-                          onClick={() => openDrawer(row.province, 'biofert-asa')}
-                        />
-                      </td>
-                      <td style={{ padding: '14px 18px', verticalAlign: 'middle' }}>
-                        <OverallAccomplishedCell
-                          rate={row.rate}
-                          totalAccomp={row.totalAccomp}
-                          totalTarget={row.totalTarget}
-                        />
-                      </td>
-                    </tr>
+                    <React.Fragment key={row.province}>
+                      <tr
+                        style={{
+                          borderBottom: isRowExpanded ? 'none' : '1px solid #f1f5f9',
+                          transition: 'background-color 0.15s ease',
+                          background: isRowExpanded ? '#f0fdf4' : '#ffffff',
+                        }}
+                        className="hover:bg-slate-50"
+                      >
+                        <td style={{ padding: '14px 18px', verticalAlign: 'middle' }}>
+                          <ProvinceTitleCell
+                            province={row.province}
+                            rate={row.rate}
+                            onClick={() => openDrawer(row.province, 'hybrid-seeds')}
+                          />
+                        </td>
+                        <td style={{ padding: '10px 14px', verticalAlign: 'middle' }}>
+                          <CommodityCell
+                            target={row.targetSeeds}
+                            accomp={row.accompSeeds}
+                            isSelected={isSeedsSelected}
+                            itemsCount={seedsCount}
+                            onClick={() => toggleCellExpand(row.province, 'hybrid-seeds')}
+                          />
+                        </td>
+                        <td style={{ padding: '10px 14px', verticalAlign: 'middle' }}>
+                          <CommodityCell
+                            target={row.targetFertH}
+                            accomp={row.accompFertH}
+                            isSelected={isFertHSelected}
+                            itemsCount={fertHCount}
+                            onClick={() => toggleCellExpand(row.province, 'fert-hybrid')}
+                          />
+                        </td>
+                        <td style={{ padding: '10px 14px', verticalAlign: 'middle' }}>
+                          <CommodityCell
+                            target={row.targetFertI}
+                            accomp={row.accompFertI}
+                            isSelected={isFertISelected}
+                            itemsCount={fertICount}
+                            onClick={() => toggleCellExpand(row.province, 'fert-inbred')}
+                          />
+                        </td>
+                        <td style={{ padding: '10px 14px', verticalAlign: 'middle' }}>
+                          <CommodityCell
+                            target={row.targetBiofert}
+                            accomp={row.accompBiofert}
+                            isSelected={isBiofertSelected}
+                            itemsCount={biofertCount}
+                            onClick={() => toggleCellExpand(row.province, 'biofert-asa')}
+                          />
+                        </td>
+                        <td style={{ padding: '14px 18px', verticalAlign: 'middle' }}>
+                          <OverallAccomplishedCell
+                            rate={row.rate}
+                            totalAccomp={row.totalAccomp}
+                            totalTarget={row.totalTarget}
+                          />
+                        </td>
+                      </tr>
+
+                      {isRowExpanded && (
+                        <tr style={{ background: '#f8fafc', borderBottom: '2px solid #cbd5e1' }}>
+                          <td colSpan={6} style={{ padding: '12px 18px 20px' }}>
+                            <InlineInterventionBreakdown
+                              province={row.province}
+                              categoryKey={expandedCell.category}
+                              interventions={getInterventionsFor(row.province, expandedCell.category)}
+                              onClose={() => setExpandedCell(null)}
+                              onOpenDrawer={() => openDrawer(row.province, expandedCell.category)}
+                              onSwitchCategory={(cat) => setExpandedCell({ province: row.province, category: cat })}
+                            />
+                          </td>
+                        </tr>
+                      )}
+                    </React.Fragment>
                   );
                 })}
               </tbody>
