@@ -221,7 +221,7 @@ export default function PortalSidebar({
       icon: BarChart3,
       subItems: [
         {
-          label: 'Dry Season',
+          label: 'DS 2026-2027 Distribution Status',
           href: '/rice/physical/ds-2026-2027-distribution-status',
           icon: Sun,
           isSubItem: true,

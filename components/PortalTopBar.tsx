@@ -85,10 +85,10 @@ export default function PortalTopBar({
   } else if (pathname.startsWith('/rice/programs')) {
     currentPageTitle = 'Programs';
   } else if (pathname.startsWith('/rice/physical/ds-2026-2027-distribution-status')) {
-    parentTitle = 'Physical';
+    parentTitle = 'Physical Dashboard';
     currentPageTitle = 'DS 2026-2027 Distribution Status';
   } else if (pathname.startsWith('/rice/physical')) {
-    currentPageTitle = 'Physical';
+    currentPageTitle = 'Physical Dashboard';
   } else if (pathname.startsWith('/rice')) {
     currentPageTitle = 'Operations Dashboard';
   } else if (pathname === '/login') {

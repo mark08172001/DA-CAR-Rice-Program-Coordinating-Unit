@@ -9241,22 +9241,16 @@ select.form-control {
   position: relative;
   border-radius: 20px;
   overflow: hidden;
-  background: #092319;
+  background: #073b2e;
   min-height: 220px;
   display: flex;
   align-items: center;
-  box-shadow: 0 10px 30px rgba(9, 35, 25, 0.14);
+  box-shadow: 0 10px 30px rgba(7, 59, 46, 0.14);
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .minimal-page-hero-pattern {
-  position: absolute;
-  inset: 0;
-  background: 
-    radial-gradient(circle at 85% 20%, rgba(245, 158, 11, 0.12) 0%, transparent 45%),
-    radial-gradient(circle at 15% 90%, rgba(5, 150, 105, 0.22) 0%, transparent 55%),
-    linear-gradient(135deg, #092319 0%, #0d3627 60%, #082117 100%);
-  pointer-events: none;
+  display: none;
 }
 
 .minimal-page-hero-content {

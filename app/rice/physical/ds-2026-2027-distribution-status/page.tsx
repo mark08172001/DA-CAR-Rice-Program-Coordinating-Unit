@@ -6,7 +6,7 @@ import DrySeasonClient from '@/components/DrySeasonClient';
 import { fetchDrySeasonData } from '@/utils/fetchDrySeasonSheet';
 
 export const metadata = {
-  title: 'Dry Season | DA-CAR | Rice Program Coordinating Unit',
+  title: 'Dry Season - DS 2026-2027 Distribution Status | DA-CAR | Rice Program Coordinating Unit',
   description:
     'Dry Season (DS) 2026-2027 seed and input distribution status, consignment tracking, and provincial targets for DA-CAR Regional Rice Program Coordinating Unit.',
 };
