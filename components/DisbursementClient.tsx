@@ -252,14 +252,67 @@ export default function DisbursementClient({
     }
   }, [isAuthenticated, selectedView, records, triggerDecryption]);
 
+  // Dynamic cross-filtering: Status counts depend on selected PAP Code
+  const recordsForStatus = useMemo(() => {
+    if (papFilter === 'all') return records;
+    return records.filter((r) => r.ppaCode === papFilter);
+  }, [records, papFilter]);
+
   const statusCounts = useMemo(() => {
-    const counts: Record<string, number> = { all: records.length };
-    for (const r of records) {
+    const counts: Record<string, number> = { all: recordsForStatus.length };
+    for (const r of recordsForStatus) {
       const cat = getStatusCategory(r.status);
       counts[cat] = (counts[cat] || 0) + 1;
     }
     return counts;
-  }, [records]);
+  }, [recordsForStatus]);
+
+  // Dynamic cross-filtering: PAP Code counts depend on selected Status
+  const recordsForPap = useMemo(() => {
+    if (statusFilter === 'all') return records;
+    return records.filter((r) => getStatusCategory(r.status) === statusFilter);
+  }, [records, statusFilter]);
+
+  const papCounts = useMemo(() => {
+    const counts: Record<string, number> = { all: recordsForPap.length };
+    for (const r of recordsForPap) {
+      if (r.ppaCode) {
+        counts[r.ppaCode] = (counts[r.ppaCode] || 0) + 1;
+      }
+    }
+    return counts;
+  }, [recordsForPap]);
+
+  const handleViewChange = (newView: DisbursementView) => {
+    setSelectedView(newView);
+    setPapFilter('all');
+    setStatusFilter('all');
+    setSearchQuery('');
+  };
+
+  const handlePapChange = (newPap: string) => {
+    setPapFilter(newPap);
+    if (newPap !== 'all' && statusFilter !== 'all') {
+      const match = records.some(
+        (r) => r.ppaCode === newPap && getStatusCategory(r.status) === statusFilter
+      );
+      if (!match) {
+        setStatusFilter('all');
+      }
+    }
+  };
+
+  const handleStatusChange = (newStatus: DisbursementStatusCategory | 'all') => {
+    setStatusFilter(newStatus);
+    if (newStatus !== 'all' && papFilter !== 'all') {
+      const match = records.some(
+        (r) => r.ppaCode === papFilter && getStatusCategory(r.status) === newStatus
+      );
+      if (!match) {
+        setPapFilter('all');
+      }
+    }
+  };
 
   const filteredRecords = useMemo(() => {
     let list = records;
@@ -407,12 +460,7 @@ export default function DisbursementClient({
             <select
               id="disbursement-category"
               value={selectedView}
-              onChange={(e) => {
-                setSelectedView(e.target.value as DisbursementView);
-                setPapFilter('all');
-                setStatusFilter('all');
-                setSearchQuery('');
-              }}
+              onChange={(e) => handleViewChange(e.target.value as DisbursementView)}
               style={{
                 fontSize: 13,
                 fontWeight: 600,
@@ -426,9 +474,9 @@ export default function DisbursementClient({
                 minWidth: 180,
               }}
             >
-              <option value="current">Current</option>
-              <option value="continuing">Continuing</option>
-              <option value="unpaid-prior-years">Unpaid Prior Years</option>
+              <option value="current">Current ({initialCurrentData?.records?.length || 0})</option>
+              <option value="continuing">Continuing ({initialContinuingData?.records?.length || 0})</option>
+              <option value="unpaid-prior-years">Unpaid Prior Years ({initialUnpaidPriorYearsData?.records?.length || 0})</option>
             </select>
           </div>
 
@@ -440,7 +488,7 @@ export default function DisbursementClient({
             <select
               id="disbursement-pap-filter"
               value={papFilter}
-              onChange={(e) => setPapFilter(e.target.value)}
+              onChange={(e) => handlePapChange(e.target.value)}
               style={{
                 fontSize: 13,
                 fontWeight: 600,
@@ -454,9 +502,9 @@ export default function DisbursementClient({
                 minWidth: 220,
               }}
             >
-              <option value="all">All ({records.length})</option>
+              <option value="all">All ({papCounts.all || 0})</option>
               {activePapCodes.map((code) => {
-                const count = records.filter((r) => r.ppaCode === code).length;
+                const count = papCounts[code] || 0;
                 const nameOnly = code.replace(/^\d+\s*/, '');
                 return (
                   <option key={code} value={code}>
@@ -476,7 +524,7 @@ export default function DisbursementClient({
             <select
               id="disbursement-status-filter"
               value={statusFilter}
-              onChange={(e) => setStatusFilter(e.target.value as DisbursementStatusCategory | 'all')}
+              onChange={(e) => handleStatusChange(e.target.value as DisbursementStatusCategory | 'all')}
               style={{
                 fontSize: 13,
                 fontWeight: 600,
@@ -815,7 +863,7 @@ export default function DisbursementClient({
                           <span
                             onClick={() => {
                               const cat = getStatusCategory(item.status);
-                              setStatusFilter((prev) => (prev === cat ? 'all' : cat));
+                              handleStatusChange(statusFilter === cat ? 'all' : cat);
                             }}
                             style={{
                               display: 'inline-block',
