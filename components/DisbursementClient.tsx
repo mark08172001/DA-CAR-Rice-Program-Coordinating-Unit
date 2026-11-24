@@ -7,6 +7,7 @@ import {
   Search,
   ArrowUpDown,
   FileSpreadsheet,
+  ListFilter,
 } from 'lucide-react';
 import {
   DisbursementItem,
@@ -18,6 +19,69 @@ import {
 import { createClient } from '@/utils/supabase/client';
 
 export type DisbursementView = 'current' | 'continuing' | 'unpaid-prior-years';
+
+export type DisbursementStatusCategory =
+  | 'all'
+  | 'accounting'
+  | 'dv-prep'
+  | 'conduct'
+  | 'delivery'
+  | 'paid'
+  | 'unpaid'
+  | 'rts'
+  | 'others';
+
+export interface StatusGroupConfig {
+  id: DisbursementStatusCategory;
+  label: string;
+}
+
+export const STATUS_GROUPS: StatusGroupConfig[] = [
+  { id: 'all', label: 'All Statuses' },
+  { id: 'accounting', label: 'Submitted to Accounting' },
+  { id: 'dv-prep', label: 'Preparing Attachment for DV' },
+  { id: 'conduct', label: 'For Conduct' },
+  { id: 'delivery', label: 'For Delivery / Ongoing' },
+  { id: 'paid', label: 'Paid' },
+  { id: 'unpaid', label: 'Unpaid' },
+  { id: 'rts', label: 'RTS / For Compliance' },
+  { id: 'others', label: 'Others / Unspecified' },
+];
+
+export function getStatusCategory(status?: string): DisbursementStatusCategory {
+  if (!status || !status.trim() || status.trim().toUpperCase() === 'UNSPECIFIED') {
+    return 'others';
+  }
+  const s = status.trim().toUpperCase();
+  if (s.includes('RTS') || s.includes('COMPLIANCE')) {
+    return 'rts';
+  }
+  if (s.includes('ACCOUNTING')) {
+    return 'accounting';
+  }
+  if (
+    s.includes('ATTACHMENT') ||
+    s.includes('ATTACH') ||
+    s.includes('DV') ||
+    s.includes('PREPARATION') ||
+    s.includes('DOCUMENTS')
+  ) {
+    return 'dv-prep';
+  }
+  if (s.includes('CONDUCT')) {
+    return 'conduct';
+  }
+  if (s.includes('DELIVER') || s.includes('ON-GOING') || s.includes('ONGOING')) {
+    return 'delivery';
+  }
+  if (s === 'PAID') {
+    return 'paid';
+  }
+  if (s === 'UNPAID') {
+    return 'unpaid';
+  }
+  return 'others';
+}
 
 interface DisbursementClientProps {
   initialContinuingData?: FetchDisbursementResult;
@@ -36,6 +100,7 @@ export default function DisbursementClient({
 }: DisbursementClientProps) {
   const [selectedView, setSelectedView] = useState<DisbursementView>('current');
   const [papFilter, setPapFilter] = useState<string>('all');
+  const [statusFilter, setStatusFilter] = useState<DisbursementStatusCategory | 'all'>('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [sortField, setSortField] = useState<'payee' | 'status' | 'endUser' | 'totalObligation' | 'grossAmount' | 'unpaidObligation' | 'rate'>('totalObligation');
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('desc');
@@ -187,10 +252,22 @@ export default function DisbursementClient({
     }
   }, [isAuthenticated, selectedView, records, triggerDecryption]);
 
+  const statusCounts = useMemo(() => {
+    const counts: Record<string, number> = { all: records.length };
+    for (const r of records) {
+      const cat = getStatusCategory(r.status);
+      counts[cat] = (counts[cat] || 0) + 1;
+    }
+    return counts;
+  }, [records]);
+
   const filteredRecords = useMemo(() => {
     let list = records;
     if (papFilter !== 'all') {
       list = list.filter((r) => r.ppaCode === papFilter);
+    }
+    if (statusFilter !== 'all') {
+      list = list.filter((r) => getStatusCategory(r.status) === statusFilter);
     }
     if (searchQuery.trim()) {
       const q = searchQuery.toLowerCase().trim();
@@ -239,10 +316,10 @@ export default function DisbursementClient({
       const valB = b[sortField];
       return sortDirection === 'asc' ? valA - valB : valB - valA;
     });
-  }, [records, papFilter, searchQuery, sortField, sortDirection, getDisplayPayee]);
+  }, [records, papFilter, statusFilter, searchQuery, sortField, sortDirection, getDisplayPayee]);
 
   const displayTotals = useMemo(() => {
-    if (papFilter === 'all' && !searchQuery.trim()) {
+    if (papFilter === 'all' && statusFilter === 'all' && !searchQuery.trim()) {
       return totals;
     }
     return {
@@ -251,7 +328,7 @@ export default function DisbursementClient({
       unpaidObligation: filteredRecords.reduce((sum, r) => sum + r.unpaidObligation, 0),
       count: filteredRecords.length,
     };
-  }, [papFilter, searchQuery, totals, filteredRecords]);
+  }, [papFilter, statusFilter, searchQuery, totals, filteredRecords]);
 
   const toggleSort = (field: 'payee' | 'status' | 'endUser' | 'totalObligation' | 'grossAmount' | 'unpaidObligation' | 'rate') => {
     if (sortField === field) {
@@ -333,6 +410,7 @@ export default function DisbursementClient({
               onChange={(e) => {
                 setSelectedView(e.target.value as DisbursementView);
                 setPapFilter('all');
+                setStatusFilter('all');
                 setSearchQuery('');
               }}
               style={{
@@ -388,6 +466,40 @@ export default function DisbursementClient({
               })}
             </select>
           </div>
+
+          {/* Status Filter */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, background: '#f8fafc', padding: '6px 12px', borderRadius: 8, border: '1px solid #e2e8f0' }}>
+            <label htmlFor="disbursement-status-filter" style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 13, fontWeight: 600, color: '#334155', cursor: 'pointer' }}>
+              <ListFilter size={14} style={{ color: '#166534' }} />
+              <span>Status:</span>
+            </label>
+            <select
+              id="disbursement-status-filter"
+              value={statusFilter}
+              onChange={(e) => setStatusFilter(e.target.value as DisbursementStatusCategory | 'all')}
+              style={{
+                fontSize: 13,
+                fontWeight: 600,
+                padding: '6px 12px',
+                borderRadius: 6,
+                border: '1px solid #cbd5e1',
+                background: '#ffffff',
+                color: '#0f172a',
+                cursor: 'pointer',
+                outline: 'none',
+                minWidth: 200,
+              }}
+            >
+              {STATUS_GROUPS.map((group) => {
+                const count = statusCounts[group.id] || 0;
+                return (
+                  <option key={group.id} value={group.id}>
+                    {group.label} ({count})
+                  </option>
+                );
+              })}
+            </select>
+          </div>
         </div>
       </div>
 
@@ -420,9 +532,15 @@ export default function DisbursementClient({
               {formatCurrency(displayTotals.totalObligation)}
             </div>
             <div style={{ fontSize: 11, color: '#64748b', marginTop: 4 }}>
-              {filteredRecords.length === records.length
-                ? `${records.length} Payee records captured`
-                : `${filteredRecords.length} of ${records.length} Payees filtered`}
+              {statusFilter !== 'all' ? (
+                <span style={{ color: '#166534', fontWeight: 600 }}>
+                  Filtered: {STATUS_GROUPS.find((g) => g.id === statusFilter)?.label} ({filteredRecords.length} records)
+                </span>
+              ) : filteredRecords.length === records.length ? (
+                `${records.length} Payee records captured`
+              ) : (
+                `${filteredRecords.length} of ${records.length} Payees filtered`
+              )}
             </div>
           </div>
 
@@ -695,12 +813,17 @@ export default function DisbursementClient({
                       <td style={{ padding: '8px 10px', fontSize: 11, whiteSpace: 'nowrap' }}>
                         {item.status ? (
                           <span
+                            onClick={() => {
+                              const cat = getStatusCategory(item.status);
+                              setStatusFilter((prev) => (prev === cat ? 'all' : cat));
+                            }}
                             style={{
                               display: 'inline-block',
                               padding: '2px 7px',
                               borderRadius: 4,
                               fontSize: 10.5,
                               fontWeight: 600,
+                              cursor: 'pointer',
                               background:
                                 item.status.toUpperCase() === 'PAID'
                                   ? '#dcfce7'
@@ -717,13 +840,16 @@ export default function DisbursementClient({
                                     : item.status.toUpperCase().includes('ACCOUNTING')
                                       ? '#1d4ed8'
                                       : '#b45309',
-                              border: '1px solid rgba(0,0,0,0.06)',
+                              border:
+                                statusFilter === getStatusCategory(item.status)
+                                  ? '1.5px solid currentColor'
+                                  : '1px solid rgba(0,0,0,0.06)',
                               maxWidth: 220,
                               overflow: 'hidden',
                               textOverflow: 'ellipsis',
                               verticalAlign: 'middle',
                             }}
-                            title={item.status}
+                            title={`${item.status} (Click to filter)`}
                           >
                             {item.status}
                           </span>

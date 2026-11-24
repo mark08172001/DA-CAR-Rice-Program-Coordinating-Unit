@@ -592,32 +592,6 @@ export default function PortalSidebar({
             );
           })}
         </nav>
-
-        {/* Informational Restricted Notice for outsiders */}
-        {!user && !effectiveCollapsed && (
-          <div className="sidebar-restricted-box">
-            <div className="sidebar-restricted-badge">
-              <Lock size={12} />
-              <span>Authorized Access</span>
-            </div>
-            <p className="sidebar-restricted-desc">
-              Rice Programs, Beneficiary Registry, and Voucher Claims are restricted to authorized DA personnel.
-            </p>
-            <Link href="/login" onClick={onClose} className="sidebar-restricted-btn">
-              <LogIn size={13} />
-              <span>Sign In to Unlock</span>
-            </Link>
-          </div>
-        )}
-
-        {/* Minimized icon for outsiders indicating locked items */}
-        {!user && effectiveCollapsed && (
-          <div className="minimized-lock-item" title="Programs & Beneficiary Registry Restricted to Authorized DA Personnel">
-            <Link href="/login" onClick={onClose} className="minimized-lock-link" title="Sign In to unlock">
-              <Lock size={16} />
-            </Link>
-          </div>
-        )}
       </div>
 
       {/* Sidebar Footer User / Auth Module */}
