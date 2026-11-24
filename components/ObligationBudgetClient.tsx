@@ -148,7 +148,7 @@ function PillarBudgetCard({
       badgeText: '#005a2b',
       ringBase: '#005a2b',
       ringFill: '#f9b217',
-      badgeLabel: 'Allotment Ceiling vs Committed Obligations',
+      badgeLabel: 'Allotment vs Obligation',
     },
     ALLOTMENT: {
       primaryColor: '#136c38',
@@ -181,7 +181,7 @@ function PillarBudgetCard({
       badgeText: '#1e40af',
       ringBase: '#e3edfc',
       ringFill: '#2563eb',
-      badgeLabel: 'Remaining Uncommitted Balance',
+      badgeLabel: 'Remaining Balance',
     },
   }[pillar];
 
@@ -1111,7 +1111,7 @@ function ObligationRateAllotmentGraph({
             </span>
 
             <span style={{ fontSize: 11.5, color: '#64748b' }}>
-              Registry of Allotments & Obligations (SAAODB Q61:S66)
+              Registry of Allotments & Obligations
             </span>
           </div>
 
@@ -1128,7 +1128,7 @@ function ObligationRateAllotmentGraph({
           </h2>
 
           <p style={{ fontSize: 13, color: '#64748b', margin: 0, lineHeight: 1.5 }}>
-            Comparative fund utilization performance from SAAODB Q61:S66 across Current, Continuing Appropriations, and Total Obligations.
+            Comparative fund utilization performance across Current, Continuing Appropriations, and Total Obligations.
           </p>
         </div>
 
@@ -1882,7 +1882,7 @@ export default function ObligationBudgetClient({
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
             <span style={{ fontSize: 11, fontWeight: 800, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.4px' }}>
-              Pillar Filter:
+              Filter:
             </span>
 
             <div style={{ position: 'relative', display: 'inline-flex', alignItems: 'center' }}>

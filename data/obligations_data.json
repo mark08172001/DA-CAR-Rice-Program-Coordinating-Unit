@@ -1,6 +1,6 @@
 [
   {
-    "id": "49e8cec6-9937-41ee-b596-e7cac43d8231",
+    "id": "09e20ef3-8d2e-406c-b90a-07743982bede",
     "sheet_name": "Main Registry",
     "row_order": 1,
     "fund": "1101101",
@@ -18,11 +18,11 @@
     "unallocated_allotment": 0,
     "disbursement": 99250,
     "unpaid": 750,
-    "created_at": "2026-11-24T01:38:03.225Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.412Z",
+    "updated_at": "2026-11-24T07:10:54.441Z"
   },
   {
-    "id": "74c25a37-8e67-4598-9e10-2b4608722817",
+    "id": "2df11075-595a-492c-b597-8da6fcc84a29",
     "sheet_name": "Main Registry",
     "row_order": 2,
     "fund": "1101101",
@@ -40,11 +40,11 @@
     "unallocated_allotment": 0,
     "disbursement": 100000,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.227Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.415Z",
+    "updated_at": "2026-11-24T07:10:54.441Z"
   },
   {
-    "id": "0b7d02a8-d305-4c4a-8f3b-05260c7dc7a6",
+    "id": "97cbb9f9-401a-49d0-a069-5ab39759d0ed",
     "sheet_name": "Main Registry",
     "row_order": 3,
     "fund": "1101101",
@@ -62,11 +62,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.229Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.417Z",
+    "updated_at": "2026-11-24T07:10:54.441Z"
   },
   {
-    "id": "944fa236-45ef-4d07-8b01-b485a09aa522",
+    "id": "2153d300-2f90-43e8-b8c2-64fbc192eb09",
     "sheet_name": "Main Registry",
     "row_order": 4,
     "fund": "1101101",
@@ -84,11 +84,11 @@
     "unallocated_allotment": 0,
     "disbursement": 199250,
     "unpaid": 750,
-    "created_at": "2026-11-24T01:38:03.231Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.419Z",
+    "updated_at": "2026-11-24T07:10:54.441Z"
   },
   {
-    "id": "b9fef1a3-9352-4ef8-a9ca-38ba68b19116",
+    "id": "f23b4e92-f2cd-4213-93e6-ca6811bf1334",
     "sheet_name": "Main Registry",
     "row_order": 5,
     "fund": "1101101",
@@ -106,11 +106,11 @@
     "unallocated_allotment": 0,
     "disbursement": 100000,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.233Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.421Z",
+    "updated_at": "2026-11-24T07:10:54.441Z"
   },
   {
-    "id": "738c3c6e-9945-4a95-9881-814e04accba7",
+    "id": "ec01a380-a99c-450f-8142-a95c092862b5",
     "sheet_name": "Main Registry",
     "row_order": 6,
     "fund": "1101101",
@@ -128,11 +128,11 @@
     "unallocated_allotment": 0,
     "disbursement": 138729.6,
     "unpaid": 11270.4,
-    "created_at": "2026-11-24T01:38:03.235Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.423Z",
+    "updated_at": "2026-11-24T07:10:54.441Z"
   },
   {
-    "id": "eb5214d6-68b0-402b-bbf0-a7b041351cb9",
+    "id": "6018ae19-8cfc-4067-ab49-4b80bacacb7b",
     "sheet_name": "Main Registry",
     "row_order": 7,
     "fund": "1101101",
@@ -150,11 +150,11 @@
     "unallocated_allotment": 0,
     "disbursement": 100000,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.237Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.425Z",
+    "updated_at": "2026-11-24T07:10:54.441Z"
   },
   {
-    "id": "4072f7b2-6426-40cd-be85-8d33f768c64f",
+    "id": "12535eff-0786-46d2-b8b6-f822bdf1813c",
     "sheet_name": "Main Registry",
     "row_order": 8,
     "fund": "1101101",
@@ -172,11 +172,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.239Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.427Z",
+    "updated_at": "2026-11-24T07:10:54.441Z"
   },
   {
-    "id": "ad2ef3b0-618f-44e1-88fa-7cec3e2167c0",
+    "id": "d6d07251-1b78-4349-a841-0af2f23fbc5d",
     "sheet_name": "Main Registry",
     "row_order": 9,
     "fund": "1101101",
@@ -194,11 +194,11 @@
     "unallocated_allotment": 0,
     "disbursement": 338729.6,
     "unpaid": 11270.4,
-    "created_at": "2026-11-24T01:38:03.244Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.429Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "6eee3f34-41be-4468-afdf-ba9145415350",
+    "id": "42821859-190d-4750-9a4a-b57970631f5f",
     "sheet_name": "Main Registry",
     "row_order": 10,
     "fund": "1101101",
@@ -216,11 +216,11 @@
     "unallocated_allotment": 2910.5,
     "disbursement": 97089.5,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.246Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.431Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "57f15246-e815-4858-b386-f4b0e4a4c7a6",
+    "id": "24b194b2-2434-4395-ab6a-bf16b705efda",
     "sheet_name": "Main Registry",
     "row_order": 11,
     "fund": "1101101",
@@ -238,11 +238,11 @@
     "unallocated_allotment": 69231.62,
     "disbursement": 174734.94,
     "unpaid": 56033.44,
-    "created_at": "2026-11-24T01:38:03.248Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.433Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "d6503e38-5e86-445d-abdc-eb874dafc501",
+    "id": "958efc39-ece5-49bd-a6de-9abc59ce1302",
     "sheet_name": "Main Registry",
     "row_order": 12,
     "fund": "1101101",
@@ -260,11 +260,11 @@
     "unallocated_allotment": 0,
     "disbursement": 100000,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.251Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.435Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "096b1978-d74b-4670-9727-4335b8c42b27",
+    "id": "d3e34ecb-a9e4-4333-835c-dbb4688f0904",
     "sheet_name": "Main Registry",
     "row_order": 13,
     "fund": "1101101",
@@ -282,11 +282,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.253Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.437Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "ae527a56-2d49-4086-8803-e896e7d26b38",
+    "id": "479d89a8-1677-4ded-b068-3a067b08f74d",
     "sheet_name": "Main Registry",
     "row_order": 14,
     "fund": "1101101",
@@ -304,11 +304,11 @@
     "unallocated_allotment": 72142.12,
     "disbursement": 371824.44,
     "unpaid": 56033.44,
-    "created_at": "2026-11-24T01:38:03.255Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.440Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "d1ffdd54-0a51-4b46-a6dc-972f42fb91d9",
+    "id": "d572fad7-977f-47d1-adb0-07eded4e4847",
     "sheet_name": "Main Registry",
     "row_order": 15,
     "fund": "1101101",
@@ -326,11 +326,11 @@
     "unallocated_allotment": 0,
     "disbursement": 100000,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.257Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.442Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "f9ad243a-7898-4628-91ae-d6e57ea94ad4",
+    "id": "08c1e288-f2a6-4223-a1a0-62ee012c3378",
     "sheet_name": "Main Registry",
     "row_order": 16,
     "fund": "1101101",
@@ -348,11 +348,11 @@
     "unallocated_allotment": 0,
     "disbursement": 150000,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.259Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.444Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "64072297-6cc8-4da6-95cc-7f3988836a1f",
+    "id": "3b1d6238-ad4c-4a08-84ec-7d5f17ba71b7",
     "sheet_name": "Main Registry",
     "row_order": 17,
     "fund": "1101101",
@@ -370,11 +370,11 @@
     "unallocated_allotment": 0,
     "disbursement": 100000,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.261Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.446Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "9ec17e38-4e69-438e-9482-a9b5be2bb401",
+    "id": "a6067cfa-c04e-4f9c-9508-a50b7c9e5983",
     "sheet_name": "Main Registry",
     "row_order": 18,
     "fund": "1101101",
@@ -392,11 +392,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.263Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.448Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "058f91c8-9119-4199-bfdc-d0e8c8f6b75e",
+    "id": "fb4293f1-19fc-4398-9772-ded7a0bdcf78",
     "sheet_name": "Main Registry",
     "row_order": 19,
     "fund": "1101101",
@@ -414,11 +414,11 @@
     "unallocated_allotment": 0,
     "disbursement": 350000,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.265Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.450Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "52a63627-e9fd-4457-80fc-b5ed3bdc0a8b",
+    "id": "1b513558-b7bf-48b4-9fae-b5211a4595cd",
     "sheet_name": "Main Registry",
     "row_order": 20,
     "fund": "1101101",
@@ -436,11 +436,11 @@
     "unallocated_allotment": 0,
     "disbursement": 100000,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.267Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.452Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "0d70f208-d11b-4589-b326-19dbac091634",
+    "id": "5f2c5c8c-efe2-484e-8a64-9185e9cca132",
     "sheet_name": "Main Registry",
     "row_order": 21,
     "fund": "1101101",
@@ -458,11 +458,11 @@
     "unallocated_allotment": 0,
     "disbursement": 148615.92,
     "unpaid": 1384.08,
-    "created_at": "2026-11-24T01:38:03.269Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.454Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "56919d9a-f76d-408c-89aa-74d27421e499",
+    "id": "2f4989ce-be3a-48aa-8efa-cde295f065ba",
     "sheet_name": "Main Registry",
     "row_order": 22,
     "fund": "1101101",
@@ -480,11 +480,11 @@
     "unallocated_allotment": 0,
     "disbursement": 100000,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.271Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.456Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "ab152ae0-26aa-4559-9480-0383b0dd1740",
+    "id": "528294f1-07e2-4e2e-afdf-3a2dec48e5d9",
     "sheet_name": "Main Registry",
     "row_order": 23,
     "fund": "1101101",
@@ -502,11 +502,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.273Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.458Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "2165e01c-94e5-4a59-98e7-332801132edd",
+    "id": "9b3098bf-7a91-444c-94f8-6cbefb546ce3",
     "sheet_name": "Main Registry",
     "row_order": 24,
     "fund": "1101101",
@@ -524,11 +524,11 @@
     "unallocated_allotment": 0,
     "disbursement": 348615.92,
     "unpaid": 1384.08,
-    "created_at": "2026-11-24T01:38:03.275Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.460Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "a3634775-3ad9-4b13-9dce-79f28316cd21",
+    "id": "f1a215de-0484-4b34-b61a-be316545cfd2",
     "sheet_name": "Main Registry",
     "row_order": 25,
     "fund": "1101101",
@@ -546,11 +546,11 @@
     "unallocated_allotment": 0,
     "disbursement": 100000,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.277Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.462Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "4782575e-bf3d-487e-a771-8dd8e0c8b5ff",
+    "id": "82e014a3-7733-42b0-aa07-28c14fedc828",
     "sheet_name": "Main Registry",
     "row_order": 26,
     "fund": "1101101",
@@ -568,11 +568,11 @@
     "unallocated_allotment": 0,
     "disbursement": 100000,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.279Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.464Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "38a4d70b-7f3e-45ca-ae7e-933a04f53fca",
+    "id": "502171a1-45af-4ec3-81b9-e38a939507a3",
     "sheet_name": "Main Registry",
     "row_order": 27,
     "fund": "1101101",
@@ -590,11 +590,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.281Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.467Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "3ada5016-0e56-4e40-969f-deb2249d29fc",
+    "id": "82d904be-e06f-415b-9d3c-9351f1751705",
     "sheet_name": "Main Registry",
     "row_order": 28,
     "fund": "1101101",
@@ -612,11 +612,11 @@
     "unallocated_allotment": 0,
     "disbursement": 200000,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.283Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.469Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "c2e8d42e-a1b9-4e18-9e45-5f22aa073a02",
+    "id": "4c4ebe58-4856-4b77-913d-32e23758711a",
     "sheet_name": "Main Registry",
     "row_order": 29,
     "fund": "1101101",
@@ -634,11 +634,11 @@
     "unallocated_allotment": 620,
     "disbursement": 79380,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.285Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.471Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "6fab5a1d-1cb4-4dd6-9c93-182310e8cc9e",
+    "id": "90b27485-bb66-4cb6-8cb4-ede432994d8e",
     "sheet_name": "Main Registry",
     "row_order": 30,
     "fund": "1101101",
@@ -656,11 +656,11 @@
     "unallocated_allotment": -136500,
     "disbursement": 136500,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.287Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.473Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "6764d682-768e-4121-951b-a9d278300682",
+    "id": "c726bdd1-31b6-4c2d-87d3-f1360179290e",
     "sheet_name": "Main Registry",
     "row_order": 31,
     "fund": "1101101",
@@ -678,11 +678,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.289Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.475Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "0ae0632e-e73d-4e18-ab58-c212236312ab",
+    "id": "fa19a5a0-18f0-46b9-9b55-626b61851d53",
     "sheet_name": "Main Registry",
     "row_order": 32,
     "fund": "1101101",
@@ -700,11 +700,11 @@
     "unallocated_allotment": 100000,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.291Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.477Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "a6bf7784-6e63-401b-ae22-a8654e7c1f9e",
+    "id": "297fc2e7-3a6e-42af-bc14-76eadf7d276f",
     "sheet_name": "Main Registry",
     "row_order": 33,
     "fund": "1101101",
@@ -722,11 +722,11 @@
     "unallocated_allotment": 0,
     "disbursement": 1300,
     "unpaid": 198700,
-    "created_at": "2026-11-24T01:38:03.293Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.479Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "f5f23eb6-e246-4e25-8ad9-bc1b9e57f6ab",
+    "id": "ce4439a7-3dc3-4eb9-8065-8d11a1cbecb1",
     "sheet_name": "Main Registry",
     "row_order": 34,
     "fund": "1101101",
@@ -744,11 +744,11 @@
     "unallocated_allotment": 679,
     "disbursement": 0,
     "unpaid": 156270,
-    "created_at": "2026-11-24T01:38:03.295Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.481Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "48d2fa54-e3c3-4232-948f-2a3839fff5b7",
+    "id": "e2709109-b293-4e51-b64e-83140b5ee7da",
     "sheet_name": "Main Registry",
     "row_order": 35,
     "fund": "1101101",
@@ -766,35 +766,13 @@
     "unallocated_allotment": 152800,
     "disbursement": 47200,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.298Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.483Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "d7f7d8ff-6a24-46aa-bab2-c55f371dafc8",
+    "id": "a1bfbea6-cab0-4e07-89b0-714208fbdbfe",
     "sheet_name": "Main Registry",
     "row_order": 36,
-    "fund": "1101101",
-    "pap": "200000100009000 STO FPMA-RICE",
-    "source": "GAA",
-    "class": "MOOE",
-    "rc": "05-001-03-00014-12-01 RRP-ORRP",
-    "obj_code": "50211030-02",
-    "description": "Consultancy Services",
-    "appropriations": 0,
-    "adjusted_allotment": 0,
-    "total_obligation": 854984,
-    "unobligated_allotment": -854984,
-    "earmark": 0,
-    "unallocated_allotment": -854984,
-    "disbursement": 0,
-    "unpaid": 854984,
-    "created_at": "2026-11-24T01:38:03.300Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
-  },
-  {
-    "id": "c005bd54-f157-4d7a-8fde-d287661af2f8",
-    "sheet_name": "Main Registry",
-    "row_order": 37,
     "fund": "1101101",
     "pap": "200000100009000 STO FPMA-RICE",
     "source": "GAA",
@@ -810,13 +788,13 @@
     "unallocated_allotment": 123671.99,
     "disbursement": 2124563.21,
     "unpaid": 9764.8,
-    "created_at": "2026-11-24T01:38:03.302Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.485Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "cadb12e6-9d39-4ccb-8b47-a64b52d602b9",
+    "id": "b557056e-2668-4f28-b91a-8782156904ac",
     "sheet_name": "Main Registry",
-    "row_order": 38,
+    "row_order": 37,
     "fund": "1101101",
     "pap": "200000100009000 STO FPMA-RICE",
     "source": "GAA",
@@ -832,13 +810,13 @@
     "unallocated_allotment": 70527,
     "disbursement": 101161.5,
     "unpaid": 28311.5,
-    "created_at": "2026-11-24T01:38:03.304Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.487Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "d3bc62d1-0c3e-4795-a9b4-27ceac21587c",
+    "id": "d7159044-1684-4668-8c8a-cc84dd027494",
     "sheet_name": "Main Registry",
-    "row_order": 39,
+    "row_order": 38,
     "fund": "1101101",
     "pap": "200000100009000 STO FPMA-RICE",
     "source": "GAA",
@@ -854,13 +832,13 @@
     "unallocated_allotment": 10093.3,
     "disbursement": 76511.7,
     "unpaid": 13395,
-    "created_at": "2026-11-24T01:38:03.306Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.489Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "1f2a15ef-58de-4855-b01f-74a058263353",
+    "id": "5389a757-5793-4092-bd6b-58de287a9fb9",
     "sheet_name": "Main Registry",
-    "row_order": 40,
+    "row_order": 39,
     "fund": "1101101",
     "pap": "200000100009000 STO FPMA-RICE",
     "source": "GAA",
@@ -876,13 +854,13 @@
     "unallocated_allotment": 0,
     "disbursement": 43000,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.308Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.491Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "2410a578-e4b9-4283-840c-2be59457a228",
+    "id": "b3f9b21b-d78d-4636-96b5-05fa946b489c",
     "sheet_name": "Main Registry",
-    "row_order": 41,
+    "row_order": 40,
     "fund": "1101101",
     "pap": "200000100009000 STO FPMA-RICE",
     "source": "GAA",
@@ -898,13 +876,13 @@
     "unallocated_allotment": 118051,
     "disbursement": 0,
     "unpaid": 40000,
-    "created_at": "2026-11-24T01:38:03.310Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.493Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "8c9dc612-2187-49b8-8823-865b7e884e92",
+    "id": "e78f4fc9-99c4-4194-bb5d-0178aacce1ec",
     "sheet_name": "Main Registry",
-    "row_order": 42,
+    "row_order": 41,
     "fund": "1101101",
     "pap": "200000100009000 STO FPMA-RICE",
     "source": "GAA",
@@ -920,13 +898,13 @@
     "unallocated_allotment": 100000,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.312Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.495Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "b67d7f0e-64ad-4d65-a0b3-f99df00b2768",
+    "id": "145324f3-e72c-46b0-b1b7-e83900907389",
     "sheet_name": "Main Registry",
-    "row_order": 43,
+    "row_order": 42,
     "fund": "1101101",
     "pap": "200000100009000 STO FPMA-RICE",
     "source": "GAA",
@@ -942,13 +920,13 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.314Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.498Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "f6c9fd19-c0cb-4ee1-b67b-6ff509a0144e",
+    "id": "5ee336b8-eaa2-4685-882f-5cb0652f55c3",
     "sheet_name": "Main Registry",
-    "row_order": 44,
+    "row_order": 43,
     "fund": "1101101",
     "pap": "200000100009000 STO FPMA-RICE",
     "source": "",
@@ -958,19 +936,19 @@
     "description": "",
     "appropriations": 3596000,
     "adjusted_allotment": 3596000,
-    "total_obligation": 3911041.71,
-    "unobligated_allotment": -315041.71,
+    "total_obligation": 3056057.71,
+    "unobligated_allotment": 539942.29,
     "earmark": 0,
-    "unallocated_allotment": -315041.71,
+    "unallocated_allotment": 539942.29,
     "disbursement": 2609616.41,
-    "unpaid": 1301425.3,
-    "created_at": "2026-11-24T01:38:03.316Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "unpaid": 446441.3,
+    "created_at": "2026-11-24T07:10:54.500Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "f6181e60-ea84-4535-b9a9-3aefe5ac05a0",
+    "id": "55205a66-02a5-4313-99ce-c1e949b64c48",
     "sheet_name": "Main Registry",
-    "row_order": 45,
+    "row_order": 44,
     "fund": "1101101",
     "pap": "200000100009000 STO FPMA-RICE",
     "source": "GAA",
@@ -986,13 +964,13 @@
     "unallocated_allotment": 0,
     "disbursement": 97000,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.318Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.502Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "a92923e5-4a13-4882-8fec-df1a093fbf76",
+    "id": "d8a8eefb-db40-41e7-a7b0-e2c9fd6e739c",
     "sheet_name": "Main Registry",
-    "row_order": 46,
+    "row_order": 45,
     "fund": "1101101",
     "pap": "200000100009000 STO FPMA-RICE",
     "source": "GAA",
@@ -1008,13 +986,13 @@
     "unallocated_allotment": 8865.51,
     "disbursement": 250000,
     "unpaid": -8865.51,
-    "created_at": "2026-11-24T01:38:03.320Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.504Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "8ec1c415-5fe5-4f33-883d-99c35fee0c0c",
+    "id": "065e4744-2bb2-4d56-81d2-15edff2e9c21",
     "sheet_name": "Main Registry",
-    "row_order": 47,
+    "row_order": 46,
     "fund": "1101101",
     "pap": "200000100009000 STO FPMA-RICE",
     "source": "GAA",
@@ -1030,13 +1008,13 @@
     "unallocated_allotment": 0,
     "disbursement": 30000,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.322Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.506Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "b425e038-8160-40ba-a5e2-8d6d3d20560f",
+    "id": "ada812d9-f366-4c6f-8313-274d2f6b3161",
     "sheet_name": "Main Registry",
-    "row_order": 48,
+    "row_order": 47,
     "fund": "1101101",
     "pap": "200000100009000 STO FPMA-RICE",
     "source": "GAA",
@@ -1052,13 +1030,13 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.324Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.508Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "8b9bb395-bcbc-454d-b4bc-963d85b60946",
+    "id": "24c6d5b8-a473-41f1-983f-574e2b04b586",
     "sheet_name": "Main Registry",
-    "row_order": 49,
+    "row_order": 48,
     "fund": "1101101",
     "pap": "200000100009000 STO FPMA-RICE",
     "source": "",
@@ -1074,13 +1052,13 @@
     "unallocated_allotment": 8865.51,
     "disbursement": 377000,
     "unpaid": -8865.51,
-    "created_at": "2026-11-24T01:38:03.326Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.510Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "7da00e32-f53c-44a7-8223-d119b2c0c32a",
+    "id": "734bd514-f97b-4b5f-b7a5-dc058e1309ae",
     "sheet_name": "Main Registry",
-    "row_order": 50,
+    "row_order": 49,
     "fund": "1101101",
     "pap": "200000100009000 STO FPMA-RICE",
     "source": "GAA",
@@ -1096,13 +1074,13 @@
     "unallocated_allotment": 0,
     "disbursement": 23000,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.328Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.512Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "34e85040-553b-4745-8ca2-d56e5449b5b8",
+    "id": "526f289d-4f9c-41af-916b-f26352fcc15d",
     "sheet_name": "Main Registry",
-    "row_order": 51,
+    "row_order": 50,
     "fund": "1101101",
     "pap": "200000100009000 STO FPMA-RICE",
     "source": "GAA",
@@ -1118,13 +1096,13 @@
     "unallocated_allotment": 0,
     "disbursement": 28230.35,
     "unpaid": 21769.65,
-    "created_at": "2026-11-24T01:38:03.330Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.514Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "f699e30b-0280-4892-8db2-86257b920217",
+    "id": "e951cf88-1ab7-43b9-9bca-9bc2d0567c1a",
     "sheet_name": "Main Registry",
-    "row_order": 52,
+    "row_order": 51,
     "fund": "1101101",
     "pap": "200000100009000 STO FPMA-RICE",
     "source": "GAA",
@@ -1140,13 +1118,13 @@
     "unallocated_allotment": 0,
     "disbursement": 44750,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.332Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.516Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "f014bcd5-7e6b-45a7-ba3d-90cf3f5e9112",
+    "id": "9b44b9b5-c9d3-48eb-bae2-966d6746b59a",
     "sheet_name": "Main Registry",
-    "row_order": 53,
+    "row_order": 52,
     "fund": "1101101",
     "pap": "200000100009000 STO FPMA-RICE",
     "source": "GAA",
@@ -1162,13 +1140,13 @@
     "unallocated_allotment": 0,
     "disbursement": 5250,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.334Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.518Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "f020006f-a537-4ec1-9cea-b7078a4269e1",
+    "id": "5d255ef8-8df5-4c8d-a9b9-93ea9d9d0104",
     "sheet_name": "Main Registry",
-    "row_order": 54,
+    "row_order": 53,
     "fund": "1101101",
     "pap": "200000100009000 STO FPMA-RICE",
     "source": "",
@@ -1184,13 +1162,13 @@
     "unallocated_allotment": 0,
     "disbursement": 101230.35,
     "unpaid": 21769.65,
-    "created_at": "2026-11-24T01:38:03.336Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.520Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "03b826d8-0da8-42b7-a1e2-62e3c65c56be",
+    "id": "6af0e94c-fa4b-4a48-b321-19eac4f4e088",
     "sheet_name": "Main Registry",
-    "row_order": 55,
+    "row_order": 54,
     "fund": "1101101",
     "pap": "200000100009000 STO FPMA-RICE",
     "source": "GAA",
@@ -1206,11 +1184,33 @@
     "unallocated_allotment": 300000,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.338Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.523Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "3644ef29-7a74-47cc-97bd-3f81d2fc1b94",
+    "id": "08ef4bfd-5e76-4ff6-9b92-f8c26a883225",
+    "sheet_name": "Main Registry",
+    "row_order": 55,
+    "fund": "1101101",
+    "pap": "200000100009000 STO FPMA-RICE",
+    "source": "GAA",
+    "class": "MOOE",
+    "rc": "05-001-03-00014-12-04 RRP-ORTD-RR",
+    "obj_code": "50211030-02",
+    "description": "Consultancy Services",
+    "appropriations": 0,
+    "adjusted_allotment": 0,
+    "total_obligation": 217984,
+    "unobligated_allotment": -217984,
+    "earmark": 0,
+    "unallocated_allotment": -217984,
+    "disbursement": 0,
+    "unpaid": 217984,
+    "created_at": "2026-11-24T07:10:54.525Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
+  },
+  {
+    "id": "cfbafa8e-b965-4e42-aee2-d8be9bfa9723",
     "sheet_name": "Main Registry",
     "row_order": 56,
     "fund": "1101101",
@@ -1222,17 +1222,17 @@
     "description": "",
     "appropriations": 300000,
     "adjusted_allotment": 300000,
-    "total_obligation": 0,
-    "unobligated_allotment": 300000,
+    "total_obligation": 217984,
+    "unobligated_allotment": 82016,
     "earmark": 0,
-    "unallocated_allotment": 300000,
+    "unallocated_allotment": 82016,
     "disbursement": 0,
-    "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.340Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "unpaid": 217984,
+    "created_at": "2026-11-24T07:10:54.527Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "3343ccd5-43c2-42be-ad39-bb3e5039c393",
+    "id": "1488d1aa-14df-475e-b7e0-5e767443f016",
     "sheet_name": "Main Registry",
     "row_order": 57,
     "fund": "1101101",
@@ -1250,11 +1250,11 @@
     "unallocated_allotment": -415839.17,
     "disbursement": 3004123.35,
     "unpaid": -854123.35,
-    "created_at": "2026-11-24T01:38:03.342Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.529Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "d8f92b1d-a9fb-49a7-ab48-3133fa42c7c9",
+    "id": "74ec6e70-27fe-4c13-8fcc-2847a7bf6e87",
     "sheet_name": "Main Registry",
     "row_order": 58,
     "fund": "1101101",
@@ -1272,11 +1272,11 @@
     "unallocated_allotment": 67474.92,
     "disbursement": 1731500.93,
     "unpaid": 115024.15,
-    "created_at": "2026-11-24T01:38:03.344Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.531Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "5fa9809b-7e89-402f-89a8-751bbe9bf0ab",
+    "id": "ecb93504-6a35-47e0-b331-17dfed55327d",
     "sheet_name": "Main Registry",
     "row_order": 59,
     "fund": "1101101",
@@ -1288,17 +1288,17 @@
     "description": "RM - Motor Vehicle",
     "appropriations": 1000000,
     "adjusted_allotment": 1000000,
-    "total_obligation": 997161.31,
-    "unobligated_allotment": 2838.69,
+    "total_obligation": 1000000,
+    "unobligated_allotment": 0,
     "earmark": 58000,
-    "unallocated_allotment": -55161.31,
+    "unallocated_allotment": -58000,
     "disbursement": 952863.05,
-    "unpaid": 44298.26,
-    "created_at": "2026-11-24T01:38:03.346Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "unpaid": 47136.95,
+    "created_at": "2026-11-24T07:10:54.533Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "1cc95591-0fa6-438e-9fe6-57b74a623dd6",
+    "id": "b0206b9d-4c48-42d3-a5f6-0fc360d74257",
     "sheet_name": "Main Registry",
     "row_order": 60,
     "fund": "1101101",
@@ -1316,11 +1316,11 @@
     "unallocated_allotment": 0,
     "disbursement": 94300,
     "unpaid": 5700,
-    "created_at": "2026-11-24T01:38:03.348Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.535Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "8dd1f788-b346-4969-a262-1098aceeedc4",
+    "id": "2b2611ec-f746-46e3-9577-ee488c73568d",
     "sheet_name": "Main Registry",
     "row_order": 61,
     "fund": "1101101",
@@ -1338,11 +1338,11 @@
     "unallocated_allotment": 100000,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.350Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.537Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "2c66d7dd-513f-41d3-bd78-ce8f038d25db",
+    "id": "5253e1b0-7137-427c-911b-def65dff960e",
     "sheet_name": "Main Registry",
     "row_order": 62,
     "fund": "1101101",
@@ -1354,17 +1354,17 @@
     "description": "",
     "appropriations": 5264000,
     "adjusted_allotment": 5264000,
-    "total_obligation": 5093686.39,
-    "unobligated_allotment": 170313.61,
+    "total_obligation": 5096525.08,
+    "unobligated_allotment": 167474.92,
     "earmark": 473839.17,
-    "unallocated_allotment": -303525.56,
+    "unallocated_allotment": -306364.25,
     "disbursement": 5782787.33,
-    "unpaid": -689100.94,
-    "created_at": "2026-11-24T01:38:03.353Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "unpaid": -686262.25,
+    "created_at": "2026-11-24T07:10:54.539Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "3b4e64e8-b85f-4b37-a972-112281154a56",
+    "id": "51feb5b3-cd2e-4263-b267-f20029a91965",
     "sheet_name": "Main Registry",
     "row_order": 63,
     "fund": "1101101",
@@ -1382,11 +1382,11 @@
     "unallocated_allotment": 0,
     "disbursement": 150000,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.355Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.541Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "f166fa9f-f1d1-4bd1-8d57-4b2edab76968",
+    "id": "33dd4087-e5af-4a4a-8608-0b2521ac5873",
     "sheet_name": "Main Registry",
     "row_order": 64,
     "fund": "1101101",
@@ -1404,11 +1404,11 @@
     "unallocated_allotment": 33682.38,
     "disbursement": 1026804.28,
     "unpaid": 19513.34,
-    "created_at": "2026-11-24T01:38:03.357Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.543Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "55897c8d-b83b-4fb0-a8be-06620e383628",
+    "id": "7da8ba2a-9648-4a77-ae62-5ae0ce33319e",
     "sheet_name": "Main Registry",
     "row_order": 65,
     "fund": "1101101",
@@ -1426,11 +1426,11 @@
     "unallocated_allotment": 50000,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.359Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.545Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "7da7f551-ba72-45e7-8869-a008020efdea",
+    "id": "c500671d-1fef-49ad-880a-f76c4fbfc3bf",
     "sheet_name": "Main Registry",
     "row_order": 66,
     "fund": "1101101",
@@ -1448,11 +1448,11 @@
     "unallocated_allotment": 36178.09,
     "disbursement": 63821.91,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.361Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.547Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "18330bd7-8d6a-46ea-854c-fa12f3500ca0",
+    "id": "60ed612b-f844-4a49-b145-098a8aff5d61",
     "sheet_name": "Main Registry",
     "row_order": 67,
     "fund": "1101101",
@@ -1470,11 +1470,11 @@
     "unallocated_allotment": 150000,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.363Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.549Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "abd448d1-eee0-4d95-b43a-4d02c50c6219",
+    "id": "015d2ef8-f8cd-47e4-845a-3126b0627d32",
     "sheet_name": "Main Registry",
     "row_order": 68,
     "fund": "1101101",
@@ -1492,11 +1492,11 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.365Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.551Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "dfa1721c-55ba-4e9a-a535-e1873dbdf44d",
+    "id": "e1bbe578-d043-4f20-a001-6dc1f3123364",
     "sheet_name": "Main Registry",
     "row_order": 69,
     "fund": "1101101",
@@ -1514,11 +1514,11 @@
     "unallocated_allotment": 269860.47,
     "disbursement": 1240626.19,
     "unpaid": 19513.34,
-    "created_at": "2026-11-24T01:38:03.367Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.553Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "0d723c31-f9ae-4bf9-bd26-f42e3b63e62a",
+    "id": "c89afc99-7893-4a79-8e16-8d6c7072c059",
     "sheet_name": "Main Registry",
     "row_order": 70,
     "fund": "1101101",
@@ -1536,11 +1536,11 @@
     "unallocated_allotment": 56334.27,
     "disbursement": 93665.73,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.369Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.556Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "2362fba2-7f33-4569-8c50-5acf3ab19efc",
+    "id": "cbf8d33d-8bee-4844-a6c5-07d8e8a2be14",
     "sheet_name": "Main Registry",
     "row_order": 71,
     "fund": "1101101",
@@ -1558,11 +1558,11 @@
     "unallocated_allotment": 56334.27,
     "disbursement": 93665.73,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.371Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.558Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "1ccb47a8-bb8a-407a-8342-8f96213d00d1",
+    "id": "3e3b0d8e-61b4-4796-bf82-598f3d756ba9",
     "sheet_name": "Main Registry",
     "row_order": 72,
     "fund": "1101101",
@@ -1580,11 +1580,11 @@
     "unallocated_allotment": 65198,
     "disbursement": 499453.6,
     "unpaid": 53348.4,
-    "created_at": "2026-11-24T01:38:03.373Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.560Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "4f1fd3f7-5cf7-43bb-91ae-a2f464a60e61",
+    "id": "101506de-13e1-4eb7-9541-31498d81e933",
     "sheet_name": "Main Registry",
     "row_order": 73,
     "fund": "1101101",
@@ -1602,11 +1602,11 @@
     "unallocated_allotment": 65198,
     "disbursement": 499453.6,
     "unpaid": 53348.4,
-    "created_at": "2026-11-24T01:38:03.375Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.562Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "76769b29-49ff-49e7-8276-1d877f67bf6f",
+    "id": "eab65c33-db0c-48b9-8c7e-a6e6090848a3",
     "sheet_name": "Main Registry",
     "row_order": 74,
     "fund": "1101101",
@@ -1624,11 +1624,11 @@
     "unallocated_allotment": 0,
     "disbursement": 13773.42,
     "unpaid": 86226.58,
-    "created_at": "2026-11-24T01:38:03.377Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.564Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "c76f5c9c-2c44-44cd-abc3-3e2bc6359d0f",
+    "id": "558b18cc-c860-4a11-94ba-567bc5a45f9b",
     "sheet_name": "Main Registry",
     "row_order": 75,
     "fund": "1101101",
@@ -1646,11 +1646,11 @@
     "unallocated_allotment": 0,
     "disbursement": 13773.42,
     "unpaid": 86226.58,
-    "created_at": "2026-11-24T01:38:03.379Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.566Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "fb7b9708-5129-49f9-a47a-a5e39f837da9",
+    "id": "a948344e-8417-4eb1-93fb-68c0ffbd4f6e",
     "sheet_name": "Main Registry",
     "row_order": 76,
     "fund": "1101101",
@@ -1668,11 +1668,11 @@
     "unallocated_allotment": 14766.61,
     "disbursement": 101337.49,
     "unpaid": -16104.1,
-    "created_at": "2026-11-24T01:38:03.381Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.568Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "4a4c3305-9bde-4cdc-9c24-346aaf3d5d1c",
+    "id": "659d73a5-271e-41f6-a561-d211ca966560",
     "sheet_name": "Main Registry",
     "row_order": 77,
     "fund": "1101101",
@@ -1690,11 +1690,11 @@
     "unallocated_allotment": 14766.61,
     "disbursement": 101337.49,
     "unpaid": -16104.1,
-    "created_at": "2026-11-24T01:38:03.383Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.570Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "04d42f25-4c24-401a-a3b2-c7bc89e178ee",
+    "id": "09270adf-4273-446c-b20d-a93963623bbd",
     "sheet_name": "Main Registry",
     "row_order": 78,
     "fund": "1101101",
@@ -1712,11 +1712,11 @@
     "unallocated_allotment": 0,
     "disbursement": 173630.36,
     "unpaid": 6369.64,
-    "created_at": "2026-11-24T01:38:03.385Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.572Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "6d954ce2-a0b3-4334-b2c7-760e5cf8c3c9",
+    "id": "65f6b6d5-be4d-41aa-8298-caf148874468",
     "sheet_name": "Main Registry",
     "row_order": 79,
     "fund": "1101101",
@@ -1734,11 +1734,11 @@
     "unallocated_allotment": 0,
     "disbursement": 173630.36,
     "unpaid": 6369.64,
-    "created_at": "2026-11-24T01:38:03.387Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.574Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "d098d53f-ff27-4ba1-a819-483d5e078c18",
+    "id": "b4191adb-4195-47f8-ab82-13672608480c",
     "sheet_name": "Main Registry",
     "row_order": 80,
     "fund": "1101101",
@@ -1756,11 +1756,11 @@
     "unallocated_allotment": 3511.26,
     "disbursement": 2366409.85,
     "unpaid": 130078.89,
-    "created_at": "2026-11-24T01:38:03.389Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.576Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "932f631d-7340-48af-ad51-b54fea825f19",
+    "id": "9718de36-403b-414b-80de-03f1ce6c2bb7",
     "sheet_name": "Main Registry",
     "row_order": 81,
     "fund": "1101101",
@@ -1778,11 +1778,11 @@
     "unallocated_allotment": 3511.26,
     "disbursement": 2366409.85,
     "unpaid": 130078.89,
-    "created_at": "2026-11-24T01:38:03.391Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.578Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "90d57b67-86f8-44be-ba66-014d32efb6e8",
+    "id": "f0a69716-79e7-4cb1-bcb1-8e31d779bfac",
     "sheet_name": "Main Registry",
     "row_order": 82,
     "fund": "1101101",
@@ -1800,13 +1800,35 @@
     "unallocated_allotment": 637000,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.393Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.580Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "a2877aba-79af-456c-b6b8-293f49b74120",
+    "id": "3d9179de-82a7-49f2-aa2f-75b7ea034c26",
     "sheet_name": "Main Registry",
     "row_order": 83,
+    "fund": "1101101",
+    "pap": "200000100009000 STO FPMA-RICE",
+    "source": "GAA",
+    "class": "MOOE",
+    "rc": "05-001-03-00014-37 GAD",
+    "obj_code": "50211030-02",
+    "description": "Consultancy Services",
+    "appropriations": 0,
+    "adjusted_allotment": 0,
+    "total_obligation": 637000,
+    "unobligated_allotment": -637000,
+    "earmark": 0,
+    "unallocated_allotment": -637000,
+    "disbursement": 0,
+    "unpaid": 637000,
+    "created_at": "2026-11-24T07:10:54.583Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
+  },
+  {
+    "id": "07678673-0f90-4e86-b34d-0990849491ab",
+    "sheet_name": "Main Registry",
+    "row_order": 84,
     "fund": "1101101",
     "pap": "200000100009000 STO FPMA-RICE",
     "source": "",
@@ -1816,19 +1838,19 @@
     "description": "",
     "appropriations": 637000,
     "adjusted_allotment": 637000,
-    "total_obligation": 0,
-    "unobligated_allotment": 637000,
+    "total_obligation": 637000,
+    "unobligated_allotment": 0,
     "earmark": 0,
-    "unallocated_allotment": 637000,
+    "unallocated_allotment": 0,
     "disbursement": 0,
-    "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.395Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "unpaid": 637000,
+    "created_at": "2026-11-24T07:10:54.585Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "9c0acc8a-e1f8-4e18-9ae0-3d5d96ca4797",
+    "id": "574f0908-4bb5-4727-ad53-3bbac0db4eea",
     "sheet_name": "Main Registry",
-    "row_order": 84,
+    "row_order": 85,
     "fund": "1101101",
     "pap": "200000100009000 STO FPMA-RICE",
     "source": "",
@@ -1838,19 +1860,19 @@
     "description": "",
     "appropriations": 17425000,
     "adjusted_allotment": 17425000,
-    "total_obligation": 16142049.86,
-    "unobligated_allotment": 1282950.14,
+    "total_obligation": 16144888.55,
+    "unobligated_allotment": 1280111.45,
     "earmark": 473839.17,
-    "unallocated_allotment": 809110.97,
+    "unallocated_allotment": 806272.28,
     "disbursement": 15167950.69,
-    "unpaid": 974099.17,
-    "created_at": "2026-11-24T01:38:03.398Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "unpaid": 976937.86,
+    "created_at": "2026-11-24T07:10:54.587Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "31aa518a-1da7-425d-96c8-761791d8b7b3",
+    "id": "6d302de9-27ac-4c88-89e9-f4cbd01757af",
     "sheet_name": "Main Registry",
-    "row_order": 85,
+    "row_order": 86,
     "fund": "1101101",
     "pap": "200000100009000 STO FPMA-RICE",
     "source": "GAA Total",
@@ -1860,19 +1882,19 @@
     "description": "",
     "appropriations": 17425000,
     "adjusted_allotment": 17425000,
-    "total_obligation": 16142049.86,
-    "unobligated_allotment": 1282950.14,
+    "total_obligation": 16144888.55,
+    "unobligated_allotment": 1280111.45,
     "earmark": 473839.17,
-    "unallocated_allotment": 809110.97,
+    "unallocated_allotment": 806272.28,
     "disbursement": 15167950.69,
-    "unpaid": 974099.17,
-    "created_at": "2026-11-24T01:38:03.400Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "unpaid": 976937.86,
+    "created_at": "2026-11-24T07:10:54.589Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "bcec5a6c-b52a-4494-88e6-886da4e7a5a3",
+    "id": "d1571a33-e6bb-40cf-9ae2-09110acdd30d",
     "sheet_name": "Main Registry",
-    "row_order": 86,
+    "row_order": 87,
     "fund": "1101101",
     "pap": "200000100009000 STO FPMA-RICE Total",
     "source": "",
@@ -1882,19 +1904,19 @@
     "description": "",
     "appropriations": 17425000,
     "adjusted_allotment": 17425000,
-    "total_obligation": 16142049.86,
-    "unobligated_allotment": 1282950.14,
+    "total_obligation": 16144888.55,
+    "unobligated_allotment": 1280111.45,
     "earmark": 473839.17,
-    "unallocated_allotment": 809110.97,
+    "unallocated_allotment": 806272.28,
     "disbursement": 15167950.69,
-    "unpaid": 974099.17,
-    "created_at": "2026-11-24T01:38:03.402Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "unpaid": 976937.86,
+    "created_at": "2026-11-24T07:10:54.591Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "35ac274a-a8fe-4b79-a7ea-83fe47ad5e62",
+    "id": "f084f9be-d20d-4d85-8331-a7a5860726c2",
     "sheet_name": "Main Registry",
-    "row_order": 87,
+    "row_order": 88,
     "fund": "1101101",
     "pap": "310101100001000 PSS RICE",
     "source": "GAA",
@@ -1910,13 +1932,13 @@
     "unallocated_allotment": 1007654.5,
     "disbursement": 247048348.73,
     "unpaid": 253108806.77,
-    "created_at": "2026-11-24T01:38:03.404Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.593Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "9831ca51-e7f6-4bae-9293-bb2348e4e32b",
+    "id": "d91e879a-dff9-4cca-a551-37ec43d6aa89",
     "sheet_name": "Main Registry",
-    "row_order": 88,
+    "row_order": 89,
     "fund": "1101101",
     "pap": "310101100001000 PSS RICE",
     "source": "GAA",
@@ -1932,13 +1954,13 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.406Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.595Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "2aec7d3e-51e9-4313-af53-bd1e8d59b645",
+    "id": "94c2136d-9aa4-4f91-ad26-d5899e297a19",
     "sheet_name": "Main Registry",
-    "row_order": 89,
+    "row_order": 90,
     "fund": "1101101",
     "pap": "310101100001000 PSS RICE",
     "source": "GAA",
@@ -1954,13 +1976,13 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.408Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.597Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "30c09bab-2ffe-4f42-9bfe-0af124cc63cc",
+    "id": "7a9932a9-d28c-4250-bd78-121d862a42e6",
     "sheet_name": "Main Registry",
-    "row_order": 90,
+    "row_order": 91,
     "fund": "1101101",
     "pap": "310101100001000 PSS RICE",
     "source": "",
@@ -1976,13 +1998,13 @@
     "unallocated_allotment": 1007654.5,
     "disbursement": 247048348.73,
     "unpaid": 253108806.77,
-    "created_at": "2026-11-24T01:38:03.410Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.599Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "f445199e-7a7e-40f2-a462-cf96672f2637",
+    "id": "94d26be7-5670-4cf8-bad9-4844947eb5f5",
     "sheet_name": "Main Registry",
-    "row_order": 91,
+    "row_order": 92,
     "fund": "1101101",
     "pap": "310101100001000 PSS RICE",
     "source": "",
@@ -1998,13 +2020,13 @@
     "unallocated_allotment": 1007654.5,
     "disbursement": 247048348.73,
     "unpaid": 253108806.77,
-    "created_at": "2026-11-24T01:38:03.412Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.602Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "a00dabb4-98b5-4166-95ed-6796634cf8dd",
+    "id": "79db7e12-6bbf-4cba-b695-42a717139fec",
     "sheet_name": "Main Registry",
-    "row_order": 92,
+    "row_order": 93,
     "fund": "1101101",
     "pap": "310101100001000 PSS RICE",
     "source": "GAA",
@@ -2020,13 +2042,13 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.414Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.604Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "cc6e86a7-5c16-4be3-ab96-5ce234855d45",
+    "id": "1ac07cde-b311-4cb9-b5cf-b9ac2d47d38f",
     "sheet_name": "Main Registry",
-    "row_order": 93,
+    "row_order": 94,
     "fund": "1101101",
     "pap": "310101100001000 PSS RICE",
     "source": "GAA",
@@ -2042,13 +2064,13 @@
     "unallocated_allotment": 54000,
     "disbursement": 0,
     "unpaid": 6946000,
-    "created_at": "2026-11-24T01:38:03.416Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.606Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "6d60591f-713d-4e2a-9397-5d276271d49b",
+    "id": "7f7f1ccc-32d9-4bb2-b559-35e7284b49ce",
     "sheet_name": "Main Registry",
-    "row_order": 94,
+    "row_order": 95,
     "fund": "1101101",
     "pap": "310101100001000 PSS RICE",
     "source": "",
@@ -2064,13 +2086,13 @@
     "unallocated_allotment": 54000,
     "disbursement": 0,
     "unpaid": 6946000,
-    "created_at": "2026-11-24T01:38:03.418Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.608Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "c309d340-cc86-4fd9-97aa-28708160f68c",
+    "id": "48ea595f-9675-438d-8004-d9d161a7f25d",
     "sheet_name": "Main Registry",
-    "row_order": 95,
+    "row_order": 96,
     "fund": "1101101",
     "pap": "310101100001000 PSS RICE",
     "source": "",
@@ -2086,13 +2108,13 @@
     "unallocated_allotment": 54000,
     "disbursement": 0,
     "unpaid": 6946000,
-    "created_at": "2026-11-24T01:38:03.420Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.610Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "9fc67654-4c5d-4da5-819c-ff5d6d44e34a",
+    "id": "c6b5e2b7-f1c2-4a8a-8d5c-761fc7ad9de5",
     "sheet_name": "Main Registry",
-    "row_order": 96,
+    "row_order": 97,
     "fund": "1101101",
     "pap": "310101100001000 PSS RICE",
     "source": "GAA Total",
@@ -2108,13 +2130,13 @@
     "unallocated_allotment": 1061654.5,
     "disbursement": 247048348.73,
     "unpaid": 260054806.77,
-    "created_at": "2026-11-24T01:38:03.422Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.612Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "273a539b-3fac-486a-b191-e40e370213a4",
+    "id": "205f3d7a-a200-470d-8c33-6ad2780261d6",
     "sheet_name": "Main Registry",
-    "row_order": 97,
+    "row_order": 98,
     "fund": "1101101",
     "pap": "310101100001000 PSS RICE Total",
     "source": "",
@@ -2130,13 +2152,13 @@
     "unallocated_allotment": 1061654.5,
     "disbursement": 247048348.73,
     "unpaid": 260054806.77,
-    "created_at": "2026-11-24T01:38:03.424Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.614Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "1b3c63a7-04df-4202-a1ce-1321348694f7",
+    "id": "5a8b96a6-ba4e-4b1a-a860-0c69d21aaca7",
     "sheet_name": "Main Registry",
-    "row_order": 98,
+    "row_order": 99,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -2152,13 +2174,13 @@
     "unallocated_allotment": 0,
     "disbursement": 25880,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.426Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.616Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "db4dd615-c2e5-4109-9ac3-217befdcefd2",
+    "id": "5ef97ed9-8b80-4fdc-927c-2c735ed1e932",
     "sheet_name": "Main Registry",
-    "row_order": 99,
+    "row_order": 100,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -2174,13 +2196,13 @@
     "unallocated_allotment": 0,
     "disbursement": 11120,
     "unpaid": 16000,
-    "created_at": "2026-11-24T01:38:03.428Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.618Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "e542e7c4-c918-47bd-9401-71d10d6f81b0",
+    "id": "24bb0628-888f-4c87-9614-85fd25f45b4d",
     "sheet_name": "Main Registry",
-    "row_order": 100,
+    "row_order": 101,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "",
@@ -2196,13 +2218,13 @@
     "unallocated_allotment": 0,
     "disbursement": 37000,
     "unpaid": 16000,
-    "created_at": "2026-11-24T01:38:03.430Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.621Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "6e77486f-0914-4716-8f7d-4741dd4f063f",
+    "id": "103862da-1d0b-48ef-b582-db05cd401cd9",
     "sheet_name": "Main Registry",
-    "row_order": 101,
+    "row_order": 102,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -2218,13 +2240,13 @@
     "unallocated_allotment": 1542.04,
     "disbursement": 161000,
     "unpaid": -1542.04,
-    "created_at": "2026-11-24T01:38:03.432Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.623Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "63b6cf08-29f6-4189-b3cb-e7f6731d45ec",
+    "id": "245602e2-6bb0-45cd-af1f-e3e9b8638569",
     "sheet_name": "Main Registry",
-    "row_order": 102,
+    "row_order": 103,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "",
@@ -2240,13 +2262,13 @@
     "unallocated_allotment": 1542.04,
     "disbursement": 161000,
     "unpaid": -1542.04,
-    "created_at": "2026-11-24T01:38:03.434Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.625Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "bea4d9af-d6ec-48e7-b9c5-466355091f57",
+    "id": "80640e51-495d-4ac3-ae70-209e7153c399",
     "sheet_name": "Main Registry",
-    "row_order": 103,
+    "row_order": 104,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -2262,13 +2284,13 @@
     "unallocated_allotment": 29944.81,
     "disbursement": 68855.19,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.436Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.627Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "05de07aa-faf0-4c30-bc4a-19590727da2e",
+    "id": "5d1cbe14-820d-4f68-b66f-7df2727066b8",
     "sheet_name": "Main Registry",
-    "row_order": 104,
+    "row_order": 105,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -2284,13 +2306,13 @@
     "unallocated_allotment": 0,
     "disbursement": 150000,
     "unpaid": 348200,
-    "created_at": "2026-11-24T01:38:03.439Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.629Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "f962c628-593e-406e-a840-c769536895a2",
+    "id": "c6545f72-0aea-4569-a48c-ab853b2b2fc7",
     "sheet_name": "Main Registry",
-    "row_order": 105,
+    "row_order": 106,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "",
@@ -2306,13 +2328,13 @@
     "unallocated_allotment": 29944.81,
     "disbursement": 218855.19,
     "unpaid": 348200,
-    "created_at": "2026-11-24T01:38:03.441Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.631Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "93edab43-a2be-427e-88b5-90a05bbd5583",
+    "id": "aac9eb97-4540-4360-b7bd-670dd3b18d8f",
     "sheet_name": "Main Registry",
-    "row_order": 106,
+    "row_order": 107,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -2328,13 +2350,13 @@
     "unallocated_allotment": 0,
     "disbursement": 161708,
     "unpaid": -3848,
-    "created_at": "2026-11-24T01:38:03.443Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.633Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "7b708583-d31e-410d-934d-c830863f5d3a",
+    "id": "82600699-db2f-465f-98fa-b31572340f9d",
     "sheet_name": "Main Registry",
-    "row_order": 107,
+    "row_order": 108,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -2350,13 +2372,13 @@
     "unallocated_allotment": 0,
     "disbursement": 160654.91,
     "unpaid": 345.09,
-    "created_at": "2026-11-24T01:38:03.445Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.635Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "b4ce570a-0aed-405a-becd-4b7dbba9d571",
+    "id": "051845b1-d777-4447-9d87-c7d66859b689",
     "sheet_name": "Main Registry",
-    "row_order": 108,
+    "row_order": 109,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -2372,13 +2394,13 @@
     "unallocated_allotment": 0,
     "disbursement": 206200,
     "unpaid": 302940,
-    "created_at": "2026-11-24T01:38:03.447Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.637Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "77698860-7040-40ff-95cf-30f728b80e78",
+    "id": "7fd56954-ca08-47bc-b301-16e6906c07a6",
     "sheet_name": "Main Registry",
-    "row_order": 109,
+    "row_order": 110,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "",
@@ -2394,13 +2416,13 @@
     "unallocated_allotment": 0,
     "disbursement": 528562.91,
     "unpaid": 299437.09,
-    "created_at": "2026-11-24T01:38:03.449Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.639Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "8b5f40a6-3bc4-460e-8099-199737a0a6ef",
+    "id": "2074f464-253a-4b87-872a-fb3fc217e30f",
     "sheet_name": "Main Registry",
-    "row_order": 110,
+    "row_order": 111,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -2416,13 +2438,13 @@
     "unallocated_allotment": 0,
     "disbursement": 1920,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.451Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.641Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "a876bd58-d6c5-4ddb-a75d-571df6c08a62",
+    "id": "687ba8ad-e252-40e4-93a4-a6932dff3d85",
     "sheet_name": "Main Registry",
-    "row_order": 111,
+    "row_order": 112,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -2438,13 +2460,13 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 98080,
-    "created_at": "2026-11-24T01:38:03.453Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.643Z",
+    "updated_at": "2026-11-24T07:10:54.442Z"
   },
   {
-    "id": "2b5a2e0c-d223-41df-b1c3-9a65220b5d7d",
+    "id": "8e28812e-ff17-48d6-bd3c-69239fc59d79",
     "sheet_name": "Main Registry",
-    "row_order": 112,
+    "row_order": 113,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "",
@@ -2460,13 +2482,13 @@
     "unallocated_allotment": 0,
     "disbursement": 1920,
     "unpaid": 98080,
-    "created_at": "2026-11-24T01:38:03.455Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.646Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "7942fcdd-002e-4482-8b24-c33e749909c6",
+    "id": "c3034ea8-2fc9-42c5-9bc1-e0705f276765",
     "sheet_name": "Main Registry",
-    "row_order": 113,
+    "row_order": 114,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -2482,13 +2504,13 @@
     "unallocated_allotment": 403554.61,
     "disbursement": 3094842.39,
     "unpaid": 48322,
-    "created_at": "2026-11-24T01:38:03.457Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.648Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "ece7bc08-df72-4cc0-a386-e7935b0534eb",
+    "id": "e9b2b5ce-fb68-41b1-a52e-1eee4c22e2ef",
     "sheet_name": "Main Registry",
-    "row_order": 114,
+    "row_order": 115,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -2504,13 +2526,13 @@
     "unallocated_allotment": 2586837.38,
     "disbursement": 5826504.1,
     "unpaid": 18338678.9,
-    "created_at": "2026-11-24T01:38:03.459Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.650Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "ee6ee19c-f9f5-48b7-89e1-7f2ee6c17fc5",
+    "id": "17c92c13-35f2-4707-a4cf-019cd3c73e1d",
     "sheet_name": "Main Registry",
-    "row_order": 115,
+    "row_order": 116,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -2526,13 +2548,13 @@
     "unallocated_allotment": 82600,
     "disbursement": 0,
     "unpaid": 206700,
-    "created_at": "2026-11-24T01:38:03.461Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.652Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "92580435-bd63-4478-86a5-7848b4291743",
+    "id": "ccbaeea8-56ce-44e7-9f86-1d7f2a38a73f",
     "sheet_name": "Main Registry",
-    "row_order": 116,
+    "row_order": 117,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -2548,13 +2570,13 @@
     "unallocated_allotment": 158076.25,
     "disbursement": 541981,
     "unpaid": 279942.75,
-    "created_at": "2026-11-24T01:38:03.463Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.654Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "6aba8870-9362-4b27-8c98-af93259e9b04",
+    "id": "51a764fb-5a97-4c5a-a1a7-aefec038eeb6",
     "sheet_name": "Main Registry",
-    "row_order": 117,
+    "row_order": 118,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -2570,13 +2592,13 @@
     "unallocated_allotment": 1369006.2,
     "disbursement": 2982290,
     "unpaid": 5608703.8,
-    "created_at": "2026-11-24T01:38:03.465Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.656Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "e585384e-b25a-4afd-93fa-a074d73ee155",
+    "id": "539f474a-51ff-4c99-b61d-b26b2c7ef946",
     "sheet_name": "Main Registry",
-    "row_order": 118,
+    "row_order": 119,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -2592,13 +2614,13 @@
     "unallocated_allotment": 3174.7,
     "disbursement": 48219,
     "unpaid": 97739,
-    "created_at": "2026-11-24T01:38:03.467Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.658Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "fd6740a4-dd0a-40bd-8d6c-d68caf26fc1a",
+    "id": "499b6e57-45ee-4996-97e2-bbe5c17cfcc4",
     "sheet_name": "Main Registry",
-    "row_order": 119,
+    "row_order": 120,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -2614,13 +2636,13 @@
     "unallocated_allotment": 760000,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.469Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.660Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "c485ac53-6a11-41cd-a525-c0a09d930d00",
+    "id": "888d9ac9-7492-4f19-be91-b9264358ba98",
     "sheet_name": "Main Registry",
-    "row_order": 120,
+    "row_order": 121,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -2636,13 +2658,13 @@
     "unallocated_allotment": 0,
     "disbursement": 29850,
     "unpaid": 566421,
-    "created_at": "2026-11-24T01:38:03.471Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.662Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "453ee2cb-2441-47b6-9dac-c9528c03f263",
+    "id": "e8279b04-12aa-474f-9cab-79fcfbff99fd",
     "sheet_name": "Main Registry",
-    "row_order": 121,
+    "row_order": 122,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -2658,13 +2680,13 @@
     "unallocated_allotment": 54203,
     "disbursement": 175812,
     "unpaid": 369240,
-    "created_at": "2026-11-24T01:38:03.473Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.664Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "261b9b43-471c-4b34-9b2d-553376c5e526",
+    "id": "4be4d8af-1d3d-444f-a5db-1d9c5e4c2369",
     "sheet_name": "Main Registry",
-    "row_order": 122,
+    "row_order": 123,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -2680,13 +2702,13 @@
     "unallocated_allotment": 297853,
     "disbursement": 38147,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.475Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.666Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "42beab9f-886f-4667-9e23-8cd0ba122d12",
+    "id": "e961185f-a07c-4d2f-98bd-6305018be558",
     "sheet_name": "Main Registry",
-    "row_order": 123,
+    "row_order": 124,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -2702,13 +2724,13 @@
     "unallocated_allotment": 472069.3,
     "disbursement": 7611454.86,
     "unpaid": 3882767.96,
-    "created_at": "2026-11-24T01:38:03.477Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.668Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "824b575a-3626-4b38-9df5-a6213d11dfb9",
+    "id": "4c575a4e-93f4-4a3f-95a9-fdf33a6a9a5b",
     "sheet_name": "Main Registry",
-    "row_order": 124,
+    "row_order": 125,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -2724,13 +2746,13 @@
     "unallocated_allotment": 23291,
     "disbursement": 105709,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.479Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.670Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "99e3be5e-1607-43a4-86d9-2bb765f42640",
+    "id": "8a3b99cf-58c4-4fef-aaee-f49ebfce76aa",
     "sheet_name": "Main Registry",
-    "row_order": 125,
+    "row_order": 126,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -2746,13 +2768,13 @@
     "unallocated_allotment": 0,
     "disbursement": 677780,
     "unpaid": 913010,
-    "created_at": "2026-11-24T01:38:03.481Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.672Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "d63d092d-42f8-4607-bc98-7ceab857983c",
+    "id": "a8b60ccd-a90b-4776-90ec-5dff9dec010b",
     "sheet_name": "Main Registry",
-    "row_order": 126,
+    "row_order": 127,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -2768,13 +2790,13 @@
     "unallocated_allotment": 87848.18,
     "disbursement": 12151.82,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.483Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.674Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "8512d66f-b499-46ee-857b-5098d9a9886e",
+    "id": "aef62851-02d7-454c-921d-097f0ed7803f",
     "sheet_name": "Main Registry",
-    "row_order": 127,
+    "row_order": 128,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -2790,13 +2812,13 @@
     "unallocated_allotment": 0,
     "disbursement": 4195,
     "unpaid": 217758,
-    "created_at": "2026-11-24T01:38:03.485Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.676Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "179ea4ce-ba2f-4fc5-80c7-ff2a44d1cd9a",
+    "id": "1c060c43-3940-429f-96b9-2455b328c2f5",
     "sheet_name": "Main Registry",
-    "row_order": 128,
+    "row_order": 129,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "",
@@ -2812,13 +2834,13 @@
     "unallocated_allotment": 6298513.62,
     "disbursement": 21148936.17,
     "unpaid": 30529283.41,
-    "created_at": "2026-11-24T01:38:03.488Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.679Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "8568e38c-0fe3-45e8-aa4b-1209a02b536c",
+    "id": "4ed86d31-318a-4da9-968a-06453b8b2db4",
     "sheet_name": "Main Registry",
-    "row_order": 129,
+    "row_order": 130,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -2834,13 +2856,13 @@
     "unallocated_allotment": 0,
     "disbursement": 100000,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.490Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.681Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "82862e8a-ef7d-4afe-a791-4fb8534f1ca8",
+    "id": "5c2f1b30-e3b1-4b24-8e19-d25e6242a3b8",
     "sheet_name": "Main Registry",
-    "row_order": 130,
+    "row_order": 131,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -2856,13 +2878,13 @@
     "unallocated_allotment": 13897,
     "disbursement": 57123,
     "unpaid": 28980,
-    "created_at": "2026-11-24T01:38:03.492Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.683Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "dc567963-2b32-4940-95a2-4c5b04b3d1fd",
+    "id": "0c259c3a-5024-45f1-ac6a-564519502be6",
     "sheet_name": "Main Registry",
-    "row_order": 131,
+    "row_order": 132,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -2878,13 +2900,13 @@
     "unallocated_allotment": 65200.8,
     "disbursement": 46799.2,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.494Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.685Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "76c11925-1bd7-4451-a1c1-a2a362bd3e65",
+    "id": "ff8aa638-d928-40af-b26e-cc9a88497403",
     "sheet_name": "Main Registry",
-    "row_order": 132,
+    "row_order": 133,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "",
@@ -2900,13 +2922,13 @@
     "unallocated_allotment": 79097.8,
     "disbursement": 203922.2,
     "unpaid": 28980,
-    "created_at": "2026-11-24T01:38:03.496Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.687Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "b8b32e58-c24c-4e0c-87f9-0dde97dae028",
+    "id": "7f2fafab-6549-4101-95dc-142c6d84bf70",
     "sheet_name": "Main Registry",
-    "row_order": 133,
+    "row_order": 134,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -2922,13 +2944,13 @@
     "unallocated_allotment": 7566,
     "disbursement": 11280,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.498Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.689Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "a15a9b5e-b355-47b2-9ffa-a583696f6363",
+    "id": "a982fab8-bb61-4b54-b3f3-8475ffe4c384",
     "sheet_name": "Main Registry",
-    "row_order": 134,
+    "row_order": 135,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -2944,13 +2966,13 @@
     "unallocated_allotment": 3979,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.500Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.691Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "7b0ec430-ee9b-43da-9016-550a4ff41bb5",
+    "id": "24a899ee-c08c-46f9-b7c1-c7131c1f02b4",
     "sheet_name": "Main Registry",
-    "row_order": 135,
+    "row_order": 136,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -2966,13 +2988,13 @@
     "unallocated_allotment": 0,
     "disbursement": 181154,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.502Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.693Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "344cac84-ee2d-47df-84b6-f1ff70857dfe",
+    "id": "5cb14904-4da2-4c84-9745-07897939cb53",
     "sheet_name": "Main Registry",
-    "row_order": 136,
+    "row_order": 137,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -2988,13 +3010,13 @@
     "unallocated_allotment": 0,
     "disbursement": 27940,
     "unpaid": 260740,
-    "created_at": "2026-11-24T01:38:03.504Z",
-    "updated_at": "2026-11-24T01:38:03.248Z"
+    "created_at": "2026-11-24T07:10:54.695Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "68f8b272-495a-44f7-8568-8b5c0fccb45b",
+    "id": "b2384de9-ff16-427c-8314-03679de5ece8",
     "sheet_name": "Main Registry",
-    "row_order": 137,
+    "row_order": 138,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "",
@@ -3010,13 +3032,13 @@
     "unallocated_allotment": 11545,
     "disbursement": 220374,
     "unpaid": 260740,
-    "created_at": "2026-11-24T01:38:03.506Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.697Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "bc1ad1b0-6bc6-407d-b44b-98d2b118a298",
+    "id": "9ca24555-3952-4ef7-951b-551e75b31055",
     "sheet_name": "Main Registry",
-    "row_order": 138,
+    "row_order": 139,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -3032,13 +3054,13 @@
     "unallocated_allotment": 0,
     "disbursement": 90680,
     "unpaid": 37220,
-    "created_at": "2026-11-24T01:38:03.508Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.699Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "5773b1b1-9633-4bf7-a5d2-dc5d40dfe497",
+    "id": "7c36af5a-b005-4785-a86d-bb63a5d55377",
     "sheet_name": "Main Registry",
-    "row_order": 139,
+    "row_order": 140,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -3054,13 +3076,13 @@
     "unallocated_allotment": 0,
     "disbursement": 100000,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.510Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.701Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "1b556532-f26b-4045-9b21-cda408a694b5",
+    "id": "bf21f804-0798-43fb-971c-bb0bad9b7675",
     "sheet_name": "Main Registry",
-    "row_order": 140,
+    "row_order": 141,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -3076,13 +3098,13 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 1000000,
-    "created_at": "2026-11-24T01:38:03.512Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.703Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "e81ee930-123a-45ff-8e54-094557575635",
+    "id": "1808ba6c-a55b-4a04-b108-284b98b3a8e4",
     "sheet_name": "Main Registry",
-    "row_order": 141,
+    "row_order": 142,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -3098,13 +3120,13 @@
     "unallocated_allotment": -169260.95,
     "disbursement": 465072.22,
     "unpaid": 234927.78,
-    "created_at": "2026-11-24T01:38:03.514Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.705Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "6c552bc1-8fda-4ba2-96a1-d5f1ff49a29b",
+    "id": "23abe0cb-77eb-4a74-bc8f-569a23465a9a",
     "sheet_name": "Main Registry",
-    "row_order": 142,
+    "row_order": 143,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -3120,13 +3142,13 @@
     "unallocated_allotment": 40695,
     "disbursement": 456765,
     "unpaid": 16735,
-    "created_at": "2026-11-24T01:38:03.516Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.707Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "5a85c750-4805-451f-b73b-df2a4438f8e9",
+    "id": "6431a627-fa14-420e-a520-9683f44615be",
     "sheet_name": "Main Registry",
-    "row_order": 143,
+    "row_order": 144,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "",
@@ -3142,13 +3164,13 @@
     "unallocated_allotment": -128565.95,
     "disbursement": 1112517.22,
     "unpaid": 1288882.78,
-    "created_at": "2026-11-24T01:38:03.518Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.709Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "6a22a0ed-6c53-4840-b1c0-81a4d1f6ff38",
+    "id": "38d1ea4a-ece1-401e-acb7-1262534d0567",
     "sheet_name": "Main Registry",
-    "row_order": 144,
+    "row_order": 145,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -3164,13 +3186,13 @@
     "unallocated_allotment": 0,
     "disbursement": 250000,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.520Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.711Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "4955da98-4bfe-4aa0-b76e-779a5a7bde50",
+    "id": "663fd25f-4554-4d9b-aeec-f8ad7135e172",
     "sheet_name": "Main Registry",
-    "row_order": 145,
+    "row_order": 146,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -3186,13 +3208,13 @@
     "unallocated_allotment": 197400,
     "disbursement": 949200,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.522Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.714Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "90f09dd7-14db-486e-9e9e-732298e39c35",
+    "id": "4c0170e3-d4b1-4aa0-9450-008cc0dde43d",
     "sheet_name": "Main Registry",
-    "row_order": 146,
+    "row_order": 147,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -3208,13 +3230,13 @@
     "unallocated_allotment": 163715,
     "disbursement": 199105,
     "unpaid": 37180,
-    "created_at": "2026-11-24T01:38:03.525Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.716Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "c30980bb-9536-46b5-83d5-df2070c30c23",
+    "id": "a279dff6-6582-4cf6-92ff-d19048f6f014",
     "sheet_name": "Main Registry",
-    "row_order": 147,
+    "row_order": 148,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -3230,13 +3252,13 @@
     "unallocated_allotment": 0,
     "disbursement": 354000,
     "unpaid": 424800,
-    "created_at": "2026-11-24T01:38:03.527Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.718Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "8c55d094-8489-43a2-b758-cb2751fada36",
+    "id": "b09d2724-4eae-4b13-9def-d564f8ef0bff",
     "sheet_name": "Main Registry",
-    "row_order": 148,
+    "row_order": 149,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -3252,13 +3274,13 @@
     "unallocated_allotment": 0,
     "disbursement": 2600,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.529Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.720Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "52f7b048-198e-46bd-8d7a-5d9c35a7b84c",
+    "id": "0afb7183-9b7b-4999-88fe-c895297521ca",
     "sheet_name": "Main Registry",
-    "row_order": 149,
+    "row_order": 150,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "",
@@ -3274,13 +3296,13 @@
     "unallocated_allotment": 361115,
     "disbursement": 1754905,
     "unpaid": 461980,
-    "created_at": "2026-11-24T01:38:03.531Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.722Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "c7d46170-75d2-4fd1-b169-49bbad5aa8fd",
+    "id": "dbd7c0e7-a1ae-453f-96d6-cc91a0186a57",
     "sheet_name": "Main Registry",
-    "row_order": 150,
+    "row_order": 151,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -3296,13 +3318,13 @@
     "unallocated_allotment": 0,
     "disbursement": 136003.33,
     "unpaid": 222996.67,
-    "created_at": "2026-11-24T01:38:03.533Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.724Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "04302d2e-4187-4f1b-b171-db3125e4e33e",
+    "id": "3875d605-5730-4ce0-9763-16475bbd954c",
     "sheet_name": "Main Registry",
-    "row_order": 151,
+    "row_order": 152,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "",
@@ -3318,13 +3340,13 @@
     "unallocated_allotment": 0,
     "disbursement": 136003.33,
     "unpaid": 222996.67,
-    "created_at": "2026-11-24T01:38:03.535Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.726Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "cb0fc188-ed57-4778-8c5d-de4dc928b6df",
+    "id": "320e8df2-7626-4bf7-86cd-21b9b3b13eab",
     "sheet_name": "Main Registry",
-    "row_order": 152,
+    "row_order": 153,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -3340,13 +3362,13 @@
     "unallocated_allotment": 22351.86,
     "disbursement": 380648.14,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.537Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.728Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "4ff947c1-5209-43b3-a46b-2f7797f31aab",
+    "id": "67641722-bedb-4599-b7fb-ce6a07773c6f",
     "sheet_name": "Main Registry",
-    "row_order": 153,
+    "row_order": 154,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "",
@@ -3362,13 +3384,13 @@
     "unallocated_allotment": 22351.86,
     "disbursement": 380648.14,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.539Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.730Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "67380b26-2c77-4e55-81e9-231bd90ff3f8",
+    "id": "fa984496-7134-407f-b2bc-3151132f2564",
     "sheet_name": "Main Registry",
-    "row_order": 154,
+    "row_order": 155,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -3384,13 +3406,13 @@
     "unallocated_allotment": 145500,
     "disbursement": 185190,
     "unpaid": 2703496,
-    "created_at": "2026-11-24T01:38:03.541Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.732Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "3cf7290f-a797-4175-9ca0-1c96ed8b7826",
+    "id": "bc659555-e6ea-4a23-b641-ee6bc4e9c38b",
     "sheet_name": "Main Registry",
-    "row_order": 155,
+    "row_order": 156,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -3406,13 +3428,13 @@
     "unallocated_allotment": 0,
     "disbursement": 54000,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.543Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.734Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "ccd03b50-8ecc-4c07-aaaa-d82bb03b95ea",
+    "id": "44a5974d-9b8e-47ad-bbc6-ae8cb47d06b1",
     "sheet_name": "Main Registry",
-    "row_order": 156,
+    "row_order": 157,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "",
@@ -3428,13 +3450,13 @@
     "unallocated_allotment": 145500,
     "disbursement": 239190,
     "unpaid": 2703496,
-    "created_at": "2026-11-24T01:38:03.545Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.736Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "bc97d296-a2d1-42a8-ae56-3458e59fd087",
+    "id": "4ae1791b-844c-4491-8e21-aa5fec12028c",
     "sheet_name": "Main Registry",
-    "row_order": 157,
+    "row_order": 158,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -3444,19 +3466,19 @@
     "description": "Travel - Local",
     "appropriations": 200000,
     "adjusted_allotment": 1027370,
-    "total_obligation": 461333.2,
-    "unobligated_allotment": 566036.8,
+    "total_obligation": 496653.2,
+    "unobligated_allotment": 530716.8,
     "earmark": 0,
-    "unallocated_allotment": 566036.8,
+    "unallocated_allotment": 530716.8,
     "disbursement": 431323.2,
-    "unpaid": 30010,
-    "created_at": "2026-11-24T01:38:03.547Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "unpaid": 65330,
+    "created_at": "2026-11-24T07:10:54.738Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "38253f97-8ba7-4c14-8b7e-716531e18b81",
+    "id": "3ad01b28-bcea-4f7b-9047-5409ad5da7fc",
     "sheet_name": "Main Registry",
-    "row_order": 158,
+    "row_order": 159,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -3472,13 +3494,13 @@
     "unallocated_allotment": 494000,
     "disbursement": 130000,
     "unpaid": 6000,
-    "created_at": "2026-11-24T01:38:03.550Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.740Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "af3ced01-0240-4643-a7d0-1a04720fa820",
+    "id": "b1a3484c-746e-4d17-bc30-dd30f9ba260c",
     "sheet_name": "Main Registry",
-    "row_order": 159,
+    "row_order": 160,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -3494,13 +3516,13 @@
     "unallocated_allotment": 3475,
     "disbursement": 76525,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.552Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.742Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "6d18592a-8708-4008-a3b9-21fbd5c5a5c2",
+    "id": "adb0ea3b-ea4d-4945-ab72-6ce5c9abd2b0",
     "sheet_name": "Main Registry",
-    "row_order": 160,
+    "row_order": 161,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -3516,13 +3538,13 @@
     "unallocated_allotment": 0,
     "disbursement": 50000,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.554Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.745Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "146c875a-1c15-4ae9-ab41-8966f8fc471e",
+    "id": "65fbb095-4a13-4205-8ae4-834c6da14993",
     "sheet_name": "Main Registry",
-    "row_order": 161,
+    "row_order": 162,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -3538,13 +3560,13 @@
     "unallocated_allotment": 11847.78,
     "disbursement": 648554.71,
     "unpaid": -17402.49,
-    "created_at": "2026-11-24T01:38:03.556Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.747Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "e7c2af78-6af5-48ed-b6b8-9930008e46f0",
+    "id": "3eb03aeb-c25f-43b6-9528-f918a215a79b",
     "sheet_name": "Main Registry",
-    "row_order": 162,
+    "row_order": 163,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -3560,13 +3582,13 @@
     "unallocated_allotment": 32136.5,
     "disbursement": 21064,
     "unpaid": 46799.5,
-    "created_at": "2026-11-24T01:38:03.558Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.749Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "9a0f7a94-b891-44b9-a402-b1fbfb3f32b9",
+    "id": "777ca106-f303-425f-866d-818dc42b1793",
     "sheet_name": "Main Registry",
-    "row_order": 163,
+    "row_order": 164,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -3582,13 +3604,13 @@
     "unallocated_allotment": 41800,
     "disbursement": 0,
     "unpaid": 158200,
-    "created_at": "2026-11-24T01:38:03.560Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.751Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "7b97b869-7897-4d64-9174-9c148ccd8e02",
+    "id": "f28c1a14-f9d4-4241-a8f8-93d445cc33f3",
     "sheet_name": "Main Registry",
-    "row_order": 164,
+    "row_order": 165,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -3604,13 +3626,13 @@
     "unallocated_allotment": 0,
     "disbursement": 467809.82,
     "unpaid": 32190.18,
-    "created_at": "2026-11-24T01:38:03.562Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.753Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "afc221a1-f6fb-41ed-b724-84d16a782459",
+    "id": "accf6cab-9c38-4a44-b7fd-8b6202966787",
     "sheet_name": "Main Registry",
-    "row_order": 165,
+    "row_order": 166,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -3626,13 +3648,13 @@
     "unallocated_allotment": 18010,
     "disbursement": 1073860,
     "unpaid": 760760,
-    "created_at": "2026-11-24T01:38:03.564Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.755Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "2282046e-d154-42f6-8774-5f5d14e42d9a",
+    "id": "843c43e7-4cf5-4583-9dde-a27a483db9b7",
     "sheet_name": "Main Registry",
-    "row_order": 166,
+    "row_order": 167,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -3648,13 +3670,13 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.566Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.757Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "4a178782-e6f5-410e-8190-b28f4b750a6c",
+    "id": "a11d0aab-8824-4804-9b16-99dd38016c2d",
     "sheet_name": "Main Registry",
-    "row_order": 167,
+    "row_order": 168,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "",
@@ -3664,19 +3686,19 @@
     "description": "",
     "appropriations": 5083000,
     "adjusted_allotment": 5083000,
-    "total_obligation": 3915693.92,
-    "unobligated_allotment": 1167306.08,
+    "total_obligation": 3951013.92,
+    "unobligated_allotment": 1131986.08,
     "earmark": 0,
-    "unallocated_allotment": 1167306.08,
+    "unallocated_allotment": 1131986.08,
     "disbursement": 2899136.73,
-    "unpaid": 1016557.19,
-    "created_at": "2026-11-24T01:38:03.568Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "unpaid": 1051877.19,
+    "created_at": "2026-11-24T07:10:54.759Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "7b94d47f-9e25-43c3-a4e9-889fb6f4e9f1",
+    "id": "f445e390-944b-4641-8a6b-35d3dc2b7086",
     "sheet_name": "Main Registry",
-    "row_order": 168,
+    "row_order": 169,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -3686,19 +3708,19 @@
     "description": "Travel - Local",
     "appropriations": 200000,
     "adjusted_allotment": 900000,
-    "total_obligation": 884183.1,
-    "unobligated_allotment": 15816.9,
+    "total_obligation": 900000,
+    "unobligated_allotment": 0,
     "earmark": 0,
-    "unallocated_allotment": 15816.9,
+    "unallocated_allotment": 0,
     "disbursement": 860906.1,
-    "unpaid": 23277,
-    "created_at": "2026-11-24T01:38:03.570Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "unpaid": 39093.9,
+    "created_at": "2026-11-24T07:10:54.761Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "768005fb-8efc-4255-8ff8-55096d1dbc22",
+    "id": "82aefcdf-46fb-487a-878a-7fb57921b1d2",
     "sheet_name": "Main Registry",
-    "row_order": 169,
+    "row_order": 170,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -3714,13 +3736,13 @@
     "unallocated_allotment": 287250.12,
     "disbursement": 646919,
     "unpaid": 263105,
-    "created_at": "2026-11-24T01:38:03.572Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.763Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "ec3dbfcd-32f2-4618-b913-29622c489135",
+    "id": "59f4e712-be94-44f1-b864-9bd62d907473",
     "sheet_name": "Main Registry",
-    "row_order": 170,
+    "row_order": 171,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -3736,13 +3758,13 @@
     "unallocated_allotment": 0,
     "disbursement": 764348.72,
     "unpaid": 81651.28,
-    "created_at": "2026-11-24T01:38:03.574Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.765Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "48fb0229-6c4c-4acc-a8d6-cc3116428d62",
+    "id": "801550d9-e079-464c-a284-3fee44baf36f",
     "sheet_name": "Main Registry",
-    "row_order": 171,
+    "row_order": 172,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -3758,13 +3780,13 @@
     "unallocated_allotment": 100100,
     "disbursement": 310900,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.576Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.767Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "fe235f53-2920-4242-ab09-ddbe897dcc30",
+    "id": "058c090c-1655-4ef3-bf7e-b7e19d1977fa",
     "sheet_name": "Main Registry",
-    "row_order": 172,
+    "row_order": 173,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -3780,13 +3802,13 @@
     "unallocated_allotment": 162725.88,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.578Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.769Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "cd64898f-415b-479d-9b91-2aa37ed5ee8b",
+    "id": "880ef2ac-d84d-488f-b03d-631cf84ef8a8",
     "sheet_name": "Main Registry",
-    "row_order": 173,
+    "row_order": 174,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "",
@@ -3796,19 +3818,19 @@
     "description": "",
     "appropriations": 3517000,
     "adjusted_allotment": 3517000,
-    "total_obligation": 2951107.1,
-    "unobligated_allotment": 565892.9,
+    "total_obligation": 2966924,
+    "unobligated_allotment": 550076,
     "earmark": 0,
-    "unallocated_allotment": 565892.9,
+    "unallocated_allotment": 550076,
     "disbursement": 2583073.82,
-    "unpaid": 368033.28,
-    "created_at": "2026-11-24T01:38:03.580Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "unpaid": 383850.18,
+    "created_at": "2026-11-24T07:10:54.771Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "d584e251-a55f-4b15-bbcb-208da96b31a9",
+    "id": "3a31c2d7-672c-4abd-a7eb-10db8a566af1",
     "sheet_name": "Main Registry",
-    "row_order": 174,
+    "row_order": 175,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -3818,19 +3840,19 @@
     "description": "Travel - Local",
     "appropriations": 0,
     "adjusted_allotment": 500000,
-    "total_obligation": 73220,
-    "unobligated_allotment": 426780,
+    "total_obligation": 91053.1,
+    "unobligated_allotment": 408946.9,
     "earmark": 0,
-    "unallocated_allotment": 426780,
+    "unallocated_allotment": 408946.9,
     "disbursement": 52220,
-    "unpaid": 21000,
-    "created_at": "2026-11-24T01:38:03.582Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "unpaid": 38833.1,
+    "created_at": "2026-11-24T07:10:54.773Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "74dcad79-a591-45b3-bf85-b847f0452751",
+    "id": "435121bd-4ef4-42c1-80cc-8795a8409fb5",
     "sheet_name": "Main Registry",
-    "row_order": 175,
+    "row_order": 176,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -3846,13 +3868,13 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.584Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.775Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "f81caacc-504f-4ca4-929b-d1bdf740f156",
+    "id": "56a45143-f46a-48a4-838e-540299123502",
     "sheet_name": "Main Registry",
-    "row_order": 176,
+    "row_order": 177,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "",
@@ -3862,19 +3884,19 @@
     "description": "",
     "appropriations": 500000,
     "adjusted_allotment": 500000,
-    "total_obligation": 73220,
-    "unobligated_allotment": 426780,
+    "total_obligation": 91053.1,
+    "unobligated_allotment": 408946.9,
     "earmark": 0,
-    "unallocated_allotment": 426780,
+    "unallocated_allotment": 408946.9,
     "disbursement": 52220,
-    "unpaid": 21000,
-    "created_at": "2026-11-24T01:38:03.587Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "unpaid": 38833.1,
+    "created_at": "2026-11-24T07:10:54.777Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "0f004da7-6f09-40d7-95bf-5c0f49b2f028",
+    "id": "32a058a2-a0f0-4db6-8960-365c2e626624",
     "sheet_name": "Main Registry",
-    "row_order": 177,
+    "row_order": 178,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -3890,13 +3912,13 @@
     "unallocated_allotment": 100000,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.589Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.780Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "75df9050-dd88-440c-a8ba-cf2a1c75ef54",
+    "id": "9f8026d3-614f-41c0-9c5d-c008273f2055",
     "sheet_name": "Main Registry",
-    "row_order": 178,
+    "row_order": 179,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "",
@@ -3912,13 +3934,13 @@
     "unallocated_allotment": 100000,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.591Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.782Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "5bb93cf0-ea08-4a6b-92e8-49b271fcb9d3",
+    "id": "1fe6c2e5-be35-4b29-8581-076caea5241d",
     "sheet_name": "Main Registry",
-    "row_order": 179,
+    "row_order": 180,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "",
@@ -3928,19 +3950,19 @@
     "description": "",
     "appropriations": 99685000,
     "adjusted_allotment": 96432159,
-    "total_obligation": 69340389.09,
-    "unobligated_allotment": 27091769.91,
+    "total_obligation": 69409359.09,
+    "unobligated_allotment": 27022799.91,
     "earmark": 18010746.75,
-    "unallocated_allotment": 9081023.16,
+    "unallocated_allotment": 9012053.16,
     "disbursement": 31678264.71,
-    "unpaid": 37662124.38,
-    "created_at": "2026-11-24T01:38:03.593Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "unpaid": 37731094.38,
+    "created_at": "2026-11-24T07:10:54.784Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "c38e89b6-3a8c-4aa9-bbc2-8fdb2522e465",
+    "id": "d6021a6d-2c86-4afc-8aa2-613e4a3dbd04",
     "sheet_name": "Main Registry",
-    "row_order": 180,
+    "row_order": 181,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA Total",
@@ -3950,19 +3972,19 @@
     "description": "",
     "appropriations": 99685000,
     "adjusted_allotment": 96432159,
-    "total_obligation": 69340389.09,
-    "unobligated_allotment": 27091769.91,
+    "total_obligation": 69409359.09,
+    "unobligated_allotment": 27022799.91,
     "earmark": 18010746.75,
-    "unallocated_allotment": 9081023.16,
+    "unallocated_allotment": 9012053.16,
     "disbursement": 31678264.71,
-    "unpaid": 37662124.38,
-    "created_at": "2026-11-24T01:38:03.595Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "unpaid": 37731094.38,
+    "created_at": "2026-11-24T07:10:54.786Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "0b139e10-9538-44d0-b8b3-4343e6f923a5",
+    "id": "d25287f6-01a5-4c42-9255-e0e3e2a131bb",
     "sheet_name": "Main Registry",
-    "row_order": 181,
+    "row_order": 182,
     "fund": "1101101",
     "pap": "310103100001000 ESETS RICE Total",
     "source": "",
@@ -3972,19 +3994,19 @@
     "description": "",
     "appropriations": 99685000,
     "adjusted_allotment": 96432159,
-    "total_obligation": 69340389.09,
-    "unobligated_allotment": 27091769.91,
+    "total_obligation": 69409359.09,
+    "unobligated_allotment": 27022799.91,
     "earmark": 18010746.75,
-    "unallocated_allotment": 9081023.16,
+    "unallocated_allotment": 9012053.16,
     "disbursement": 31678264.71,
-    "unpaid": 37662124.38,
-    "created_at": "2026-11-24T01:38:03.597Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "unpaid": 37731094.38,
+    "created_at": "2026-11-24T07:10:54.788Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "45cee7a8-7e1f-4b68-b61f-33974330b3f0",
+    "id": "d1705280-22ab-4bab-8d20-f62b4c792d58",
     "sheet_name": "Main Registry",
-    "row_order": 182,
+    "row_order": 183,
     "fund": "1101101",
     "pap": "310104100001000 RD RICE",
     "source": "GAA",
@@ -4000,13 +4022,13 @@
     "unallocated_allotment": -176445,
     "disbursement": 1216747.5,
     "unpaid": 160385,
-    "created_at": "2026-11-24T01:38:03.599Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.790Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "d4cd8c07-be39-4ace-8301-aca01b8f5587",
+    "id": "1a949df3-27aa-45ed-9208-82e32a3b8ffb",
     "sheet_name": "Main Registry",
-    "row_order": 183,
+    "row_order": 184,
     "fund": "1101101",
     "pap": "310104100001000 RD RICE",
     "source": "GAA",
@@ -4022,13 +4044,13 @@
     "unallocated_allotment": 37985,
     "disbursement": 229130,
     "unpaid": 32885,
-    "created_at": "2026-11-24T01:38:03.601Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.792Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "077fbc28-c68f-4c9c-b4a9-c9d185353215",
+    "id": "a8c5ee2b-4f16-4162-bc99-946adda69149",
     "sheet_name": "Main Registry",
-    "row_order": 184,
+    "row_order": 185,
     "fund": "1101101",
     "pap": "310104100001000 RD RICE",
     "source": "GAA",
@@ -4044,13 +4066,13 @@
     "unallocated_allotment": 27442,
     "disbursement": 124339,
     "unpaid": 167829,
-    "created_at": "2026-11-24T01:38:03.603Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.794Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "9f85c551-76ff-49cf-82f4-5c8fcab336c7",
+    "id": "85f82e83-afc1-4760-aea3-a023141288c4",
     "sheet_name": "Main Registry",
-    "row_order": 185,
+    "row_order": 186,
     "fund": "1101101",
     "pap": "310104100001000 RD RICE",
     "source": "GAA",
@@ -4066,13 +4088,13 @@
     "unallocated_allotment": 537010,
     "disbursement": 0,
     "unpaid": 635800,
-    "created_at": "2026-11-24T01:38:03.605Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.796Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "7558e09f-6f9a-41c6-a585-341a54ebe53d",
+    "id": "b96cf33c-c8bb-45af-af53-c13bcceed267",
     "sheet_name": "Main Registry",
-    "row_order": 186,
+    "row_order": 187,
     "fund": "1101101",
     "pap": "310104100001000 RD RICE",
     "source": "GAA",
@@ -4088,13 +4110,13 @@
     "unallocated_allotment": 3,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.607Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.798Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "04d5442e-daa2-4022-8e63-52b08af30873",
+    "id": "934e970e-741f-49ae-942b-5b689c00b63e",
     "sheet_name": "Main Registry",
-    "row_order": 187,
+    "row_order": 188,
     "fund": "1101101",
     "pap": "310104100001000 RD RICE",
     "source": "GAA",
@@ -4110,13 +4132,13 @@
     "unallocated_allotment": 30288.5,
     "disbursement": 122771.5,
     "unpaid": 291940,
-    "created_at": "2026-11-24T01:38:03.609Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.800Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "ed3e9b63-9601-4d1e-9003-7a4131b148fe",
+    "id": "fcc6dd72-6d6f-47aa-9396-2dd02b39a911",
     "sheet_name": "Main Registry",
-    "row_order": 188,
+    "row_order": 189,
     "fund": "1101101",
     "pap": "310104100001000 RD RICE",
     "source": "GAA",
@@ -4132,13 +4154,13 @@
     "unallocated_allotment": 35100,
     "disbursement": 5900,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.611Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.802Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "e8cc1c67-deb2-47aa-a7a4-96cb2ddaec81",
+    "id": "f5869890-bc7b-43dc-b699-6d3a2db99943",
     "sheet_name": "Main Registry",
-    "row_order": 189,
+    "row_order": 190,
     "fund": "1101101",
     "pap": "310104100001000 RD RICE",
     "source": "GAA",
@@ -4154,13 +4176,13 @@
     "unallocated_allotment": 260362.76,
     "disbursement": 3735886.43,
     "unpaid": 667750.81,
-    "created_at": "2026-11-24T01:38:03.613Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.804Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "50c2f72a-1709-4461-aaf6-6ed3f7fa7461",
+    "id": "661dddeb-acbc-41ea-b240-04d8a61ffb1f",
     "sheet_name": "Main Registry",
-    "row_order": 190,
+    "row_order": 191,
     "fund": "1101101",
     "pap": "310104100001000 RD RICE",
     "source": "GAA",
@@ -4176,13 +4198,13 @@
     "unallocated_allotment": -81712,
     "disbursement": 0,
     "unpaid": 81712,
-    "created_at": "2026-11-24T01:38:03.616Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.806Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "3846ce58-53d9-4111-88a7-9457bf9ff02d",
+    "id": "6e782902-8324-48b4-b261-e6d1260fb350",
     "sheet_name": "Main Registry",
-    "row_order": 191,
+    "row_order": 192,
     "fund": "1101101",
     "pap": "310104100001000 RD RICE",
     "source": "GAA",
@@ -4198,13 +4220,13 @@
     "unallocated_allotment": 54235,
     "disbursement": 474625,
     "unpaid": 465822.5,
-    "created_at": "2026-11-24T01:38:03.618Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.808Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "41abb4c1-cdbf-4f43-a921-e31f560f3654",
+    "id": "4dbd6525-8b22-424e-b68c-f9ee46dd300b",
     "sheet_name": "Main Registry",
-    "row_order": 192,
+    "row_order": 193,
     "fund": "1101101",
     "pap": "310104100001000 RD RICE",
     "source": "GAA",
@@ -4220,13 +4242,13 @@
     "unallocated_allotment": 146080,
     "disbursement": 96230,
     "unpaid": 232900,
-    "created_at": "2026-11-24T01:38:03.620Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.811Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "8ec9bf8f-b250-498d-9b6e-ea7a32308c8d",
+    "id": "1c87433b-39fb-48ae-aeed-cafab0f8fa50",
     "sheet_name": "Main Registry",
-    "row_order": 193,
+    "row_order": 194,
     "fund": "1101101",
     "pap": "310104100001000 RD RICE",
     "source": "GAA",
@@ -4242,13 +4264,13 @@
     "unallocated_allotment": 120175,
     "disbursement": 478030,
     "unpaid": 1104235,
-    "created_at": "2026-11-24T01:38:03.622Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.813Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "1562e682-70f5-427e-8d3d-5934c3fd93c5",
+    "id": "ffcb8da5-7d46-4185-8206-bd3484b2bb4e",
     "sheet_name": "Main Registry",
-    "row_order": 194,
+    "row_order": 195,
     "fund": "1101101",
     "pap": "310104100001000 RD RICE",
     "source": "GAA",
@@ -4264,13 +4286,13 @@
     "unallocated_allotment": 230000,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.624Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.815Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "6d2947d8-72da-42ca-8e4f-73e76d84b3ba",
+    "id": "8258e760-59ad-47b5-9c3b-045a8bb2c122",
     "sheet_name": "Main Registry",
-    "row_order": 195,
+    "row_order": 196,
     "fund": "1101101",
     "pap": "310104100001000 RD RICE",
     "source": "GAA",
@@ -4286,13 +4308,13 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.626Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.817Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "cbc6347e-1ecd-4462-b725-d20ff0d333f3",
+    "id": "da7d8834-0ab0-43a9-ad08-e10d816ef7da",
     "sheet_name": "Main Registry",
-    "row_order": 196,
+    "row_order": 197,
     "fund": "1101101",
     "pap": "310104100001000 RD RICE",
     "source": "",
@@ -4308,13 +4330,13 @@
     "unallocated_allotment": 1220524.26,
     "disbursement": 6483659.43,
     "unpaid": 3841259.31,
-    "created_at": "2026-11-24T01:38:03.628Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.819Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "760743b0-ae16-4338-aee0-e821b374c022",
+    "id": "e0d47f6f-8ecb-4b2e-89d1-ce87ad99195c",
     "sheet_name": "Main Registry",
-    "row_order": 197,
+    "row_order": 198,
     "fund": "1101101",
     "pap": "310104100001000 RD RICE",
     "source": "",
@@ -4330,13 +4352,13 @@
     "unallocated_allotment": 1220524.26,
     "disbursement": 6483659.43,
     "unpaid": 3841259.31,
-    "created_at": "2026-11-24T01:38:03.630Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.821Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "ea2af7d2-95c5-4bd6-8f5a-f8ed97edb397",
+    "id": "d2d7b459-3361-4ceb-a4ad-7f16e87092b9",
     "sheet_name": "Main Registry",
-    "row_order": 198,
+    "row_order": 199,
     "fund": "1101101",
     "pap": "310104100001000 RD RICE",
     "source": "GAA",
@@ -4352,13 +4374,13 @@
     "unallocated_allotment": 68000,
     "disbursement": 0,
     "unpaid": 438950,
-    "created_at": "2026-11-24T01:38:03.632Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.823Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "e46fc443-6724-47de-a291-0ffaed066fb0",
+    "id": "bfda4f2f-273b-4bb3-b712-9f097d24c96f",
     "sheet_name": "Main Registry",
-    "row_order": 199,
+    "row_order": 200,
     "fund": "1101101",
     "pap": "310104100001000 RD RICE",
     "source": "GAA",
@@ -4374,13 +4396,13 @@
     "unallocated_allotment": 0,
     "disbursement": 450000,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.634Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.825Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "8ae42360-adc2-46cb-999c-1cc36400e08d",
+    "id": "4be38f19-801b-43da-99dd-9297d21f1c0e",
     "sheet_name": "Main Registry",
-    "row_order": 200,
+    "row_order": 201,
     "fund": "1101101",
     "pap": "310104100001000 RD RICE",
     "source": "",
@@ -4396,13 +4418,13 @@
     "unallocated_allotment": 68000,
     "disbursement": 450000,
     "unpaid": 438950,
-    "created_at": "2026-11-24T01:38:03.636Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.827Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "7755b59a-2ad2-4986-bf92-1f370d0faefa",
+    "id": "4867b766-3d8e-444d-b389-6f256b0383a3",
     "sheet_name": "Main Registry",
-    "row_order": 201,
+    "row_order": 202,
     "fund": "1101101",
     "pap": "310104100001000 RD RICE",
     "source": "",
@@ -4418,13 +4440,13 @@
     "unallocated_allotment": 68000,
     "disbursement": 450000,
     "unpaid": 438950,
-    "created_at": "2026-11-24T01:38:03.638Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.829Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "491f6b4d-d26d-4b5d-940b-c56c9fd767e0",
+    "id": "a1db7836-554f-4baa-b3a6-0499825237e3",
     "sheet_name": "Main Registry",
-    "row_order": 202,
+    "row_order": 203,
     "fund": "1101101",
     "pap": "310104100001000 RD RICE",
     "source": "GAA Total",
@@ -4440,13 +4462,13 @@
     "unallocated_allotment": 1288524.26,
     "disbursement": 6933659.43,
     "unpaid": 4280209.31,
-    "created_at": "2026-11-24T01:38:03.640Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.831Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "d22f5bf9-2021-48da-9fe3-4c9fa33f444f",
+    "id": "e2a8acd7-1f72-4930-82c1-d0da5dfe1a40",
     "sheet_name": "Main Registry",
-    "row_order": 203,
+    "row_order": 204,
     "fund": "1101101",
     "pap": "310104100001000 RD RICE Total",
     "source": "",
@@ -4462,13 +4484,13 @@
     "unallocated_allotment": 1288524.26,
     "disbursement": 6933659.43,
     "unpaid": 4280209.31,
-    "created_at": "2026-11-24T01:38:03.643Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.833Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "2b4c2fa5-a2b9-4ef7-8159-84110724a458",
+    "id": "c7e59737-db6e-4120-a8f0-86d189b69bce",
     "sheet_name": "Main Registry",
-    "row_order": 204,
+    "row_order": 205,
     "fund": "1101101",
     "pap": "310202100001000 INS RICE",
     "source": "GAA",
@@ -4484,13 +4506,13 @@
     "unallocated_allotment": 530580.13,
     "disbursement": 7900200,
     "unpaid": 7663421.63,
-    "created_at": "2026-11-24T01:38:03.645Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.835Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "6b1b73d2-7eaf-4be3-a17c-3aa027867685",
+    "id": "62fe313e-2aed-480e-b068-68235012fb26",
     "sheet_name": "Main Registry",
-    "row_order": 205,
+    "row_order": 206,
     "fund": "1101101",
     "pap": "310202100001000 INS RICE",
     "source": "",
@@ -4506,13 +4528,13 @@
     "unallocated_allotment": 530580.13,
     "disbursement": 7900200,
     "unpaid": 7663421.63,
-    "created_at": "2026-11-24T01:38:03.647Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.838Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "57af4c36-261a-4437-9c55-20ef17f4b833",
+    "id": "656fd991-9c4a-470f-b687-85ffced91ffb",
     "sheet_name": "Main Registry",
-    "row_order": 206,
+    "row_order": 207,
     "fund": "1101101",
     "pap": "310202100001000 INS RICE",
     "source": "",
@@ -4528,13 +4550,13 @@
     "unallocated_allotment": 530580.13,
     "disbursement": 7900200,
     "unpaid": 7663421.63,
-    "created_at": "2026-11-24T01:38:03.649Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.840Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "6bf2d3db-d1c6-456b-8eb1-de61e62e918d",
+    "id": "3253fe4e-9ad6-42d1-9438-bf53bf7eca88",
     "sheet_name": "Main Registry",
-    "row_order": 207,
+    "row_order": 208,
     "fund": "1101101",
     "pap": "310202100001000 INS RICE",
     "source": "GAA Total",
@@ -4550,13 +4572,13 @@
     "unallocated_allotment": 530580.13,
     "disbursement": 7900200,
     "unpaid": 7663421.63,
-    "created_at": "2026-11-24T01:38:03.651Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.842Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "ba084a6f-70c2-4f59-88c9-92bb6ec33693",
+    "id": "6b92ee3d-5fe9-4229-b39a-0861c890ca5a",
     "sheet_name": "Main Registry",
-    "row_order": 208,
+    "row_order": 209,
     "fund": "1101101",
     "pap": "310202100001000 INS RICE Total",
     "source": "",
@@ -4572,13 +4594,13 @@
     "unallocated_allotment": 530580.13,
     "disbursement": 7900200,
     "unpaid": 7663421.63,
-    "created_at": "2026-11-24T01:38:03.653Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.844Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "fa640bd2-2847-4823-bc7b-5a0fcfd53b38",
+    "id": "be32cac5-95fb-4e7c-9420-824fa5afd644",
     "sheet_name": "Main Registry",
-    "row_order": 209,
+    "row_order": 210,
     "fund": "1102101",
     "pap": "200000100009000 STO FPMA-RICE",
     "source": "GAA",
@@ -4594,13 +4616,13 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.655Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.846Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "71725ab2-9687-437c-b28a-ba6d44437f6c",
+    "id": "f1e97d1e-6adf-44c5-bd64-8924e861f749",
     "sheet_name": "Main Registry",
-    "row_order": 210,
+    "row_order": 211,
     "fund": "1102101",
     "pap": "200000100009000 STO FPMA-RICE",
     "source": "GAA",
@@ -4616,13 +4638,13 @@
     "unallocated_allotment": 0,
     "disbursement": 294349.49,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.657Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.848Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "ba9853ea-7631-43ed-80ef-b2573895f4ae",
+    "id": "b6396ff7-9471-473d-a4de-cfbea2132f90",
     "sheet_name": "Main Registry",
-    "row_order": 211,
+    "row_order": 212,
     "fund": "1102101",
     "pap": "200000100009000 STO FPMA-RICE",
     "source": "",
@@ -4638,13 +4660,13 @@
     "unallocated_allotment": 0,
     "disbursement": 294349.49,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.659Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.850Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "eb789481-5fac-4e47-b867-f6053fa60a92",
+    "id": "826b2f55-7f43-4304-8413-ff5620d3d00e",
     "sheet_name": "Main Registry",
-    "row_order": 212,
+    "row_order": 213,
     "fund": "1102101",
     "pap": "200000100009000 STO FPMA-RICE",
     "source": "GAA",
@@ -4660,13 +4682,13 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.661Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.852Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "d858f92b-3291-4500-a730-217a58dcab05",
+    "id": "50428092-5aad-4379-9040-699eca256f7a",
     "sheet_name": "Main Registry",
-    "row_order": 213,
+    "row_order": 214,
     "fund": "1102101",
     "pap": "200000100009000 STO FPMA-RICE",
     "source": "GAA",
@@ -4682,13 +4704,13 @@
     "unallocated_allotment": 0,
     "disbursement": 124640.61,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.663Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.854Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "8df51434-4438-4be5-af8e-b0458bd67eab",
+    "id": "427f483d-6813-4bba-8c8b-27cfdb3b595c",
     "sheet_name": "Main Registry",
-    "row_order": 214,
+    "row_order": 215,
     "fund": "1102101",
     "pap": "200000100009000 STO FPMA-RICE",
     "source": "GAA",
@@ -4704,13 +4726,13 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.665Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.856Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "a9e682eb-6ccc-4c8e-8f7b-e40cbf833eeb",
+    "id": "c3f1ce7e-1300-47e3-9ab5-f0309aebbc30",
     "sheet_name": "Main Registry",
-    "row_order": 215,
+    "row_order": 216,
     "fund": "1102101",
     "pap": "200000100009000 STO FPMA-RICE",
     "source": "",
@@ -4726,13 +4748,13 @@
     "unallocated_allotment": 0,
     "disbursement": 124640.61,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.668Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.858Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "46bca917-ab4e-4da5-9fb4-b87591463d20",
+    "id": "32cc028c-9206-4d62-9a65-a8593b0c61d1",
     "sheet_name": "Main Registry",
-    "row_order": 216,
+    "row_order": 217,
     "fund": "1102101",
     "pap": "200000100009000 STO FPMA-RICE",
     "source": "",
@@ -4748,13 +4770,13 @@
     "unallocated_allotment": 0,
     "disbursement": 418990.1,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.670Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.860Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "16f423e8-5864-4646-8003-091d15acb696",
+    "id": "b1ec9db3-e986-43be-bbad-9eb3fe977471",
     "sheet_name": "Main Registry",
-    "row_order": 217,
+    "row_order": 218,
     "fund": "1102101",
     "pap": "200000100009000 STO FPMA-RICE",
     "source": "GAA Total",
@@ -4770,13 +4792,13 @@
     "unallocated_allotment": 0,
     "disbursement": 418990.1,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.672Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.863Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "9cc66c01-a8c3-43d6-abec-5d247fc483a3",
+    "id": "a26e3fda-8806-43f2-8780-388d37890066",
     "sheet_name": "Main Registry",
-    "row_order": 218,
+    "row_order": 219,
     "fund": "1102101",
     "pap": "200000100009000 STO FPMA-RICE Total",
     "source": "",
@@ -4792,13 +4814,13 @@
     "unallocated_allotment": 0,
     "disbursement": 418990.1,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.674Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.869Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "c5d5f4dd-4a8c-4dfb-8dce-e3ee8263c4db",
+    "id": "b368f774-cd71-41a6-80f8-edd97a26fba1",
     "sheet_name": "Main Registry",
-    "row_order": 219,
+    "row_order": 220,
     "fund": "1102101",
     "pap": "310101100001000 PSS RICE",
     "source": "ASA No. 2026-000285",
@@ -4814,13 +4836,13 @@
     "unallocated_allotment": 22.8,
     "disbursement": 0,
     "unpaid": 41924852.2,
-    "created_at": "2026-11-24T01:38:03.676Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.871Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "d08a90c9-8fc6-44ef-a9c8-f015ae1ee1a4",
+    "id": "499e45c0-56d8-454c-8a86-f616cd4f821b",
     "sheet_name": "Main Registry",
-    "row_order": 220,
+    "row_order": 221,
     "fund": "1102101",
     "pap": "310101100001000 PSS RICE",
     "source": "",
@@ -4836,13 +4858,13 @@
     "unallocated_allotment": 22.8,
     "disbursement": 0,
     "unpaid": 41924852.2,
-    "created_at": "2026-11-24T01:38:03.678Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.873Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "9985ff9a-90cd-4f5b-9ca9-9be6382ef51b",
+    "id": "19f730e5-d598-4443-b2a7-b9474e532df1",
     "sheet_name": "Main Registry",
-    "row_order": 221,
+    "row_order": 222,
     "fund": "1102101",
     "pap": "310101100001000 PSS RICE",
     "source": "",
@@ -4858,13 +4880,13 @@
     "unallocated_allotment": 22.8,
     "disbursement": 0,
     "unpaid": 41924852.2,
-    "created_at": "2026-11-24T01:38:03.680Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.875Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "66abcb67-e2a9-4f74-b126-5f6dde99f262",
+    "id": "8c7eb29d-5b44-4f92-98bb-ede4d4d0250c",
     "sheet_name": "Main Registry",
-    "row_order": 222,
+    "row_order": 223,
     "fund": "1102101",
     "pap": "310101100001000 PSS RICE",
     "source": "ASA No. 2026-000285 Total",
@@ -4880,13 +4902,13 @@
     "unallocated_allotment": 22.8,
     "disbursement": 0,
     "unpaid": 41924852.2,
-    "created_at": "2026-11-24T01:38:03.682Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.877Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "d584b0ec-8e4a-4d8c-8445-67b160a54465",
+    "id": "975da253-f3f5-4e9b-9d74-5fb05ec3bb2e",
     "sheet_name": "Main Registry",
-    "row_order": 223,
+    "row_order": 224,
     "fund": "1102101",
     "pap": "310101100001000 PSS RICE",
     "source": "GAA",
@@ -4902,13 +4924,13 @@
     "unallocated_allotment": 0,
     "disbursement": 8586836,
     "unpaid": 95664,
-    "created_at": "2026-11-24T01:38:03.684Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.879Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "b705e952-b8ba-4fff-afec-ce175dd4f4d7",
+    "id": "63c55f0d-da82-4d05-b428-3207fcda185f",
     "sheet_name": "Main Registry",
-    "row_order": 224,
+    "row_order": 225,
     "fund": "1102101",
     "pap": "310101100001000 PSS RICE",
     "source": "GAA",
@@ -4924,13 +4946,13 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 102,
-    "created_at": "2026-11-24T01:38:03.686Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.881Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "da051379-c90c-4d36-ab2b-e8a24afafe9d",
+    "id": "9daae215-96f6-436a-a35f-48c8aa872a32",
     "sheet_name": "Main Registry",
-    "row_order": 225,
+    "row_order": 226,
     "fund": "1102101",
     "pap": "310101100001000 PSS RICE",
     "source": "",
@@ -4946,13 +4968,13 @@
     "unallocated_allotment": 0,
     "disbursement": 8586836,
     "unpaid": 95766,
-    "created_at": "2026-11-24T01:38:03.688Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.884Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "3c5ef3a2-2bc8-4278-8e2f-f9375559d62a",
+    "id": "7a34e862-fbb3-4226-9426-b846fb1e4fd6",
     "sheet_name": "Main Registry",
-    "row_order": 226,
+    "row_order": 227,
     "fund": "1102101",
     "pap": "310101100001000 PSS RICE",
     "source": "",
@@ -4968,13 +4990,13 @@
     "unallocated_allotment": 0,
     "disbursement": 8586836,
     "unpaid": 95766,
-    "created_at": "2026-11-24T01:38:03.691Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.886Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "35c0461a-0b6a-447b-ad7b-41515551f0c3",
+    "id": "04f01741-6667-4e97-98b6-d31a5547162f",
     "sheet_name": "Main Registry",
-    "row_order": 227,
+    "row_order": 228,
     "fund": "1102101",
     "pap": "310101100001000 PSS RICE",
     "source": "GAA",
@@ -4990,13 +5012,13 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.693Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.888Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "e805bd47-ee50-47d1-81c9-2fdb0d0f72d9",
+    "id": "d8bd93af-fcab-4777-bb9c-de538711723e",
     "sheet_name": "Main Registry",
-    "row_order": 228,
+    "row_order": 229,
     "fund": "1102101",
     "pap": "310101100001000 PSS RICE",
     "source": "",
@@ -5012,13 +5034,13 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.695Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.890Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "daa95471-fb5d-4206-bebe-1ef827910a31",
+    "id": "1e6aa3d9-d695-4554-9da2-a014669a9f09",
     "sheet_name": "Main Registry",
-    "row_order": 229,
+    "row_order": 230,
     "fund": "1102101",
     "pap": "310101100001000 PSS RICE",
     "source": "",
@@ -5034,13 +5056,13 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.697Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.892Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "70f4d224-fa8f-462d-a19c-b598dce8fec9",
+    "id": "b7945aa8-ae99-45b3-a650-2ee623f51a47",
     "sheet_name": "Main Registry",
-    "row_order": 230,
+    "row_order": 231,
     "fund": "1102101",
     "pap": "310101100001000 PSS RICE",
     "source": "GAA Total",
@@ -5056,13 +5078,13 @@
     "unallocated_allotment": 0,
     "disbursement": 8586836,
     "unpaid": 95766,
-    "created_at": "2026-11-24T01:38:03.699Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.894Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "d1c02fdc-f3fd-4636-81a4-e9eaa250311e",
+    "id": "0b20481f-6b5c-4a81-a9e2-656dce5a0531",
     "sheet_name": "Main Registry",
-    "row_order": 231,
+    "row_order": 232,
     "fund": "1102101",
     "pap": "310101100001000 PSS RICE Total",
     "source": "",
@@ -5078,13 +5100,13 @@
     "unallocated_allotment": 22.8,
     "disbursement": 8586836,
     "unpaid": 42020618.2,
-    "created_at": "2026-11-24T01:38:03.701Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.896Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "cf557665-acd7-46b8-861d-b4b2584ec39d",
+    "id": "ea210f34-86f1-417d-a92b-261a568e648d",
     "sheet_name": "Main Registry",
-    "row_order": 232,
+    "row_order": 233,
     "fund": "1102101",
     "pap": "310101100006000 OTHER PSS-RICE",
     "source": "GAA",
@@ -5100,13 +5122,13 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.703Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.898Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "80a0c320-d3cb-48a2-8ff0-da8ebd31c92c",
+    "id": "ca028ac1-498d-453e-904f-f894f6f166e7",
     "sheet_name": "Main Registry",
-    "row_order": 233,
+    "row_order": 234,
     "fund": "1102101",
     "pap": "310101100006000 OTHER PSS-RICE",
     "source": "GAA",
@@ -5122,13 +5144,13 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 414532.54,
-    "created_at": "2026-11-24T01:38:03.705Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.900Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "7a3d2e17-cf70-469e-888f-e505c6859725",
+    "id": "98745a96-5249-4ff0-9b28-e185f5a621a9",
     "sheet_name": "Main Registry",
-    "row_order": 234,
+    "row_order": 235,
     "fund": "1102101",
     "pap": "310101100006000 OTHER PSS-RICE",
     "source": "GAA",
@@ -5144,13 +5166,13 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.707Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.902Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "92a93719-5b29-496f-8397-51d9ecfcf605",
+    "id": "df35779c-2747-4f1c-b665-809e5e23f7a8",
     "sheet_name": "Main Registry",
-    "row_order": 235,
+    "row_order": 236,
     "fund": "1102101",
     "pap": "310101100006000 OTHER PSS-RICE",
     "source": "GAA",
@@ -5166,13 +5188,13 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.709Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.904Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "3d0abfef-9915-463b-a05e-7b7b2e81f6d8",
+    "id": "9ff916c4-a33d-4391-9ace-d30ebfa40d28",
     "sheet_name": "Main Registry",
-    "row_order": 236,
+    "row_order": 237,
     "fund": "1102101",
     "pap": "310101100006000 OTHER PSS-RICE",
     "source": "GAA",
@@ -5188,13 +5210,13 @@
     "unallocated_allotment": 0,
     "disbursement": 132793,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.711Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.906Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "966a416f-9d54-42fe-befe-85bd060f2623",
+    "id": "6abd1d3a-f385-4d34-bc43-25f3322ac789",
     "sheet_name": "Main Registry",
-    "row_order": 237,
+    "row_order": 238,
     "fund": "1102101",
     "pap": "310101100006000 OTHER PSS-RICE",
     "source": "",
@@ -5210,13 +5232,13 @@
     "unallocated_allotment": 0,
     "disbursement": 132793,
     "unpaid": 414532.54,
-    "created_at": "2026-11-24T01:38:03.713Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.909Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "57053193-ae99-4a74-8f66-fe8562750e1d",
+    "id": "69ea8d60-4722-410b-8506-67fd1e23cc34",
     "sheet_name": "Main Registry",
-    "row_order": 238,
+    "row_order": 239,
     "fund": "1102101",
     "pap": "310101100006000 OTHER PSS-RICE",
     "source": "",
@@ -5232,13 +5254,13 @@
     "unallocated_allotment": 0,
     "disbursement": 132793,
     "unpaid": 414532.54,
-    "created_at": "2026-11-24T01:38:03.716Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.911Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "b7ee78e2-b704-4b3b-98c6-38fe40ede2ce",
+    "id": "fe906941-c92e-4901-8643-4b5da2ad22b9",
     "sheet_name": "Main Registry",
-    "row_order": 239,
+    "row_order": 240,
     "fund": "1102101",
     "pap": "310101100006000 OTHER PSS-RICE",
     "source": "GAA Total",
@@ -5254,13 +5276,13 @@
     "unallocated_allotment": 0,
     "disbursement": 132793,
     "unpaid": 414532.54,
-    "created_at": "2026-11-24T01:38:03.718Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.913Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "af00e0df-ec5c-47a9-97bf-323ed3420097",
+    "id": "ba0a6e1f-dd68-45b1-b248-e5711686d20b",
     "sheet_name": "Main Registry",
-    "row_order": 240,
+    "row_order": 241,
     "fund": "1102101",
     "pap": "310101100006000 OTHER PSS-RICE Total",
     "source": "",
@@ -5276,13 +5298,13 @@
     "unallocated_allotment": 0,
     "disbursement": 132793,
     "unpaid": 414532.54,
-    "created_at": "2026-11-24T01:38:03.720Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.915Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "0b7b6ab8-d7cb-4432-9186-61a2ac30186d",
+    "id": "fc4bbb52-13ed-4cb2-a2cf-e691ef1c36e2",
     "sheet_name": "Main Registry",
-    "row_order": 241,
+    "row_order": 242,
     "fund": "1102101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -5298,13 +5320,13 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.722Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.917Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "a24c2021-6a7b-4c74-83d1-ac31f8df9f53",
+    "id": "dc4609cd-c805-4a59-af35-f6cf71a62a78",
     "sheet_name": "Main Registry",
-    "row_order": 242,
+    "row_order": 243,
     "fund": "1102101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -5320,13 +5342,13 @@
     "unallocated_allotment": 0,
     "disbursement": 113306.9,
     "unpaid": 135210,
-    "created_at": "2026-11-24T01:38:03.724Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.919Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "aa83a9a4-9bfa-4e1d-a737-2d54118afb65",
+    "id": "64996ff5-eafd-46ee-a1ef-d53c24b81580",
     "sheet_name": "Main Registry",
-    "row_order": 243,
+    "row_order": 244,
     "fund": "1102101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -5342,13 +5364,13 @@
     "unallocated_allotment": 0,
     "disbursement": 383850,
     "unpaid": -97739,
-    "created_at": "2026-11-24T01:38:03.726Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.921Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "51033434-f926-40f0-bfb4-1dcd2ff41ef1",
+    "id": "45be6ef8-7587-442c-b87a-4a6ea098cce3",
     "sheet_name": "Main Registry",
-    "row_order": 244,
+    "row_order": 245,
     "fund": "1102101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -5364,13 +5386,13 @@
     "unallocated_allotment": 26495,
     "disbursement": 0,
     "unpaid": 138000,
-    "created_at": "2026-11-24T01:38:03.728Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.923Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "1a369a09-b86f-4f07-8454-031a1d41f4c7",
+    "id": "5dad5cef-5e28-4885-b5d1-90494c9249e4",
     "sheet_name": "Main Registry",
-    "row_order": 245,
+    "row_order": 246,
     "fund": "1102101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -5386,13 +5408,13 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.730Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.925Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "625d2ee8-033b-40d0-87ba-a06478776c11",
+    "id": "43f066f1-72f7-43f4-922f-74ddbe031ffb",
     "sheet_name": "Main Registry",
-    "row_order": 246,
+    "row_order": 247,
     "fund": "1102101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -5408,13 +5430,13 @@
     "unallocated_allotment": 3651.72,
     "disbursement": 2530629.53,
     "unpaid": 336525.55,
-    "created_at": "2026-11-24T01:38:03.732Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.928Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "b18619fe-f723-471f-9236-a54ee9cb1de0",
+    "id": "2d0b8122-484d-4b5e-8411-75a5e5d95c8d",
     "sheet_name": "Main Registry",
-    "row_order": 247,
+    "row_order": 248,
     "fund": "1102101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -5430,13 +5452,13 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 61050.66,
-    "created_at": "2026-11-24T01:38:03.734Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.930Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "5ede0b94-a9ea-4341-a91b-d0ea6ff30f7a",
+    "id": "f86e1578-a57f-4bdf-90b5-a5f91cab8a50",
     "sheet_name": "Main Registry",
-    "row_order": 248,
+    "row_order": 249,
     "fund": "1102101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -5452,13 +5474,13 @@
     "unallocated_allotment": 0,
     "disbursement": 50000,
     "unpaid": 240000,
-    "created_at": "2026-11-24T01:38:03.736Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.932Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "529e22b7-9920-4a0a-9aa0-403e2409fb35",
+    "id": "fd4c7c34-5cef-49a2-8ae4-103ef0c25261",
     "sheet_name": "Main Registry",
-    "row_order": 249,
+    "row_order": 250,
     "fund": "1102101",
     "pap": "310103100001000 ESETS RICE",
     "source": "",
@@ -5474,13 +5496,13 @@
     "unallocated_allotment": 30146.72,
     "disbursement": 3077786.43,
     "unpaid": 813047.21,
-    "created_at": "2026-11-24T01:38:03.738Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.934Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "aee82ccd-a240-43cb-b06f-ffecf162d9a5",
+    "id": "5bbd91db-c270-4348-acd9-68f68f9ad3db",
     "sheet_name": "Main Registry",
-    "row_order": 250,
+    "row_order": 251,
     "fund": "1102101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -5496,13 +5518,13 @@
     "unallocated_allotment": 0,
     "disbursement": 79958.6,
     "unpaid": -38463.6,
-    "created_at": "2026-11-24T01:38:03.740Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.936Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "f9fee2f3-31ba-47ad-a1f3-93fb839ad1f6",
+    "id": "373559b1-01c2-46f7-abf4-210bd7fa14f3",
     "sheet_name": "Main Registry",
-    "row_order": 251,
+    "row_order": 252,
     "fund": "1102101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -5518,13 +5540,13 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.742Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.938Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "d142d024-8875-4c9a-8dd2-6f4e9b8905ee",
+    "id": "a572d0cb-accc-49e0-9142-b4310728513a",
     "sheet_name": "Main Registry",
-    "row_order": 252,
+    "row_order": 253,
     "fund": "1102101",
     "pap": "310103100001000 ESETS RICE",
     "source": "",
@@ -5540,13 +5562,13 @@
     "unallocated_allotment": 0,
     "disbursement": 79958.6,
     "unpaid": -38463.6,
-    "created_at": "2026-11-24T01:38:03.745Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.940Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "a492564b-529e-442a-97b6-e7e4d05f08d1",
+    "id": "46c33b32-aa1e-43d5-b817-5c6c3fc608b7",
     "sheet_name": "Main Registry",
-    "row_order": 253,
+    "row_order": 254,
     "fund": "1102101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -5562,13 +5584,13 @@
     "unallocated_allotment": 0,
     "disbursement": 0.06,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.747Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.942Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "59504921-cc08-4cb7-ac4f-c2f7cdc5065f",
+    "id": "99ff65cc-3f46-402c-9912-d217aaff6846",
     "sheet_name": "Main Registry",
-    "row_order": 254,
+    "row_order": 255,
     "fund": "1102101",
     "pap": "310103100001000 ESETS RICE",
     "source": "",
@@ -5584,13 +5606,13 @@
     "unallocated_allotment": 0,
     "disbursement": 0.06,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.749Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.944Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "615be866-01d9-4f28-bafb-28aeeb95e2c2",
+    "id": "1f4c0d52-33ae-4654-9189-e1690d410856",
     "sheet_name": "Main Registry",
-    "row_order": 255,
+    "row_order": 256,
     "fund": "1102101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -5606,13 +5628,13 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.751Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.946Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "f5581a0c-c6c1-4b88-827a-18de9822e5b6",
+    "id": "83c2bde1-38a8-4f7c-b7ad-4abc8e563088",
     "sheet_name": "Main Registry",
-    "row_order": 256,
+    "row_order": 257,
     "fund": "1102101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -5628,13 +5650,13 @@
     "unallocated_allotment": 0,
     "disbursement": 53122.14,
     "unpaid": 7762,
-    "created_at": "2026-11-24T01:38:03.753Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.948Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "0c53a641-2e80-43a4-bda3-6449b83aea56",
+    "id": "29ce5b0b-313e-4c0f-af89-6bd0078336a9",
     "sheet_name": "Main Registry",
-    "row_order": 257,
+    "row_order": 258,
     "fund": "1102101",
     "pap": "310103100001000 ESETS RICE",
     "source": "",
@@ -5650,13 +5672,13 @@
     "unallocated_allotment": 0,
     "disbursement": 53122.14,
     "unpaid": 7762,
-    "created_at": "2026-11-24T01:38:03.755Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.950Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "6281cc5a-42c2-4dae-8e20-16770c19bb69",
+    "id": "fde1b1df-2eaa-48eb-b235-712f7b8cc1ed",
     "sheet_name": "Main Registry",
-    "row_order": 258,
+    "row_order": 259,
     "fund": "1102101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -5672,13 +5694,13 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.757Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.952Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "24796ecf-35b7-4199-b0fd-fadb2d753b6f",
+    "id": "2b717691-5d8c-4808-a1e4-bba18408b6a4",
     "sheet_name": "Main Registry",
-    "row_order": 259,
+    "row_order": 260,
     "fund": "1102101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -5694,13 +5716,13 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 57463,
-    "created_at": "2026-11-24T01:38:03.759Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.954Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "58e18eac-8eda-4615-a6d6-2147a9692d71",
+    "id": "fff6d9f6-018e-4f05-ae7b-58d9e40f9a76",
     "sheet_name": "Main Registry",
-    "row_order": 260,
+    "row_order": 261,
     "fund": "1102101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -5716,13 +5738,13 @@
     "unallocated_allotment": 0,
     "disbursement": 27771.58,
     "unpaid": 3651.72,
-    "created_at": "2026-11-24T01:38:03.761Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.956Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "19e31cdb-544d-48b3-9638-6033a165386f",
+    "id": "32884aa4-4d56-4319-8736-f27a03823542",
     "sheet_name": "Main Registry",
-    "row_order": 261,
+    "row_order": 262,
     "fund": "1102101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -5738,13 +5760,13 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 20844.44,
-    "created_at": "2026-11-24T01:38:03.763Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.958Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "b7365961-2416-4b90-a4e1-07c0a4e0ab44",
+    "id": "b88dff47-e730-430d-aba1-a8290f493a08",
     "sheet_name": "Main Registry",
-    "row_order": 262,
+    "row_order": 263,
     "fund": "1102101",
     "pap": "310103100001000 ESETS RICE",
     "source": "",
@@ -5760,13 +5782,13 @@
     "unallocated_allotment": 0,
     "disbursement": 27771.58,
     "unpaid": 81959.16,
-    "created_at": "2026-11-24T01:38:03.765Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.960Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "fca938da-460b-4bf7-ba35-c44e78724303",
+    "id": "bc94a988-c9b7-410c-a2a9-120154b48378",
     "sheet_name": "Main Registry",
-    "row_order": 263,
+    "row_order": 264,
     "fund": "1102101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -5782,13 +5804,13 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 500000,
-    "created_at": "2026-11-24T01:38:03.767Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.962Z",
+    "updated_at": "2026-11-24T07:10:54.443Z"
   },
   {
-    "id": "373841a0-1c03-4f1d-a4fa-1f49518bda4c",
+    "id": "2fae5650-ef7a-409b-b938-a514496e2c3a",
     "sheet_name": "Main Registry",
-    "row_order": 264,
+    "row_order": 265,
     "fund": "1102101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -5804,13 +5826,13 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.769Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.964Z",
+    "updated_at": "2026-11-24T07:10:54.444Z"
   },
   {
-    "id": "e6648138-0b01-4bdc-b544-b00cebffc240",
+    "id": "11bc8683-594f-46da-bbb1-c9455b06a192",
     "sheet_name": "Main Registry",
-    "row_order": 265,
+    "row_order": 266,
     "fund": "1102101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -5826,13 +5848,13 @@
     "unallocated_allotment": 0,
     "disbursement": 76313.45,
     "unpaid": -7358.4,
-    "created_at": "2026-11-24T01:38:03.771Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.966Z",
+    "updated_at": "2026-11-24T07:10:54.444Z"
   },
   {
-    "id": "b2db33fb-32c3-4f33-b5e5-a2540afdd0e7",
+    "id": "46b5db2a-f5f5-4c5b-a00c-36599579f42d",
     "sheet_name": "Main Registry",
-    "row_order": 266,
+    "row_order": 267,
     "fund": "1102101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -5848,13 +5870,13 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.773Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.968Z",
+    "updated_at": "2026-11-24T07:10:54.444Z"
   },
   {
-    "id": "16405191-2570-4929-9fb6-cc812ecb9d60",
+    "id": "5c055152-84bc-469e-8266-f16ef1fa417d",
     "sheet_name": "Main Registry",
-    "row_order": 267,
+    "row_order": 268,
     "fund": "1102101",
     "pap": "310103100001000 ESETS RICE",
     "source": "",
@@ -5870,13 +5892,13 @@
     "unallocated_allotment": 0,
     "disbursement": 76313.45,
     "unpaid": 492641.6,
-    "created_at": "2026-11-24T01:38:03.775Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.971Z",
+    "updated_at": "2026-11-24T07:10:54.444Z"
   },
   {
-    "id": "1819dd02-dd97-4eec-af29-64a67ba68d70",
+    "id": "31db53a5-b3b6-46a9-ab7a-b09b8b976d86",
     "sheet_name": "Main Registry",
-    "row_order": 268,
+    "row_order": 269,
     "fund": "1102101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -5892,13 +5914,13 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.777Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.973Z",
+    "updated_at": "2026-11-24T07:10:54.444Z"
   },
   {
-    "id": "90d80b01-f13c-4ce4-89d5-359236a72c51",
+    "id": "90c2021d-83c5-4454-88f2-d883bfff1870",
     "sheet_name": "Main Registry",
-    "row_order": 269,
+    "row_order": 270,
     "fund": "1102101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -5914,13 +5936,13 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 77721,
-    "created_at": "2026-11-24T01:38:03.780Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.975Z",
+    "updated_at": "2026-11-24T07:10:54.444Z"
   },
   {
-    "id": "ad411c96-698d-4577-92cc-2a33a4b4143c",
+    "id": "df14b38b-7bd6-4512-8edb-581c4a27ef98",
     "sheet_name": "Main Registry",
-    "row_order": 270,
+    "row_order": 271,
     "fund": "1102101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -5936,13 +5958,13 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.782Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.977Z",
+    "updated_at": "2026-11-24T07:10:54.444Z"
   },
   {
-    "id": "b371e6a6-7099-4d7a-bebd-8d02bdc9ce3a",
+    "id": "c1fcd416-c8a9-4b84-8972-df1677a6ce9c",
     "sheet_name": "Main Registry",
-    "row_order": 271,
+    "row_order": 272,
     "fund": "1102101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -5958,13 +5980,13 @@
     "unallocated_allotment": 0,
     "disbursement": 156000.6,
     "unpaid": -30223.56,
-    "created_at": "2026-11-24T01:38:03.784Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.979Z",
+    "updated_at": "2026-11-24T07:10:54.444Z"
   },
   {
-    "id": "1abe6a68-d6b9-4866-a791-4a46bc86fb08",
+    "id": "3d0118d7-0a6f-4f3c-b003-8c70c8e55ccd",
     "sheet_name": "Main Registry",
-    "row_order": 272,
+    "row_order": 273,
     "fund": "1102101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -5980,13 +6002,13 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 4216,
-    "created_at": "2026-11-24T01:38:03.786Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.981Z",
+    "updated_at": "2026-11-24T07:10:54.444Z"
   },
   {
-    "id": "a9373c45-91ae-4136-ad1a-9f923811f301",
+    "id": "5ee91a34-6170-4753-9c49-1ca023b7b8d6",
     "sheet_name": "Main Registry",
-    "row_order": 273,
+    "row_order": 274,
     "fund": "1102101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -6002,13 +6024,13 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.788Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.983Z",
+    "updated_at": "2026-11-24T07:10:54.444Z"
   },
   {
-    "id": "b7c5dc09-2b4f-4faa-a54c-e1709c66d059",
+    "id": "6f14e997-760f-496e-a747-6f09ea6c0fed",
     "sheet_name": "Main Registry",
-    "row_order": 274,
+    "row_order": 275,
     "fund": "1102101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -6024,13 +6046,13 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.790Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.985Z",
+    "updated_at": "2026-11-24T07:10:54.444Z"
   },
   {
-    "id": "c6e15534-804a-44ab-9eae-88cd1a48863f",
+    "id": "d8c4a316-dcaf-4e8a-9aa0-128de73c335b",
     "sheet_name": "Main Registry",
-    "row_order": 275,
+    "row_order": 276,
     "fund": "1102101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -6046,13 +6068,13 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.792Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.987Z",
+    "updated_at": "2026-11-24T07:10:54.444Z"
   },
   {
-    "id": "82ced6fc-abc5-4fc7-8953-35b7b9f4ea77",
+    "id": "a3bbf5dd-2ab1-4502-9868-ae989cfd97d5",
     "sheet_name": "Main Registry",
-    "row_order": 276,
+    "row_order": 277,
     "fund": "1102101",
     "pap": "310103100001000 ESETS RICE",
     "source": "",
@@ -6068,13 +6090,13 @@
     "unallocated_allotment": 0,
     "disbursement": 156000.6,
     "unpaid": 51713.44,
-    "created_at": "2026-11-24T01:38:03.794Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.989Z",
+    "updated_at": "2026-11-24T07:10:54.444Z"
   },
   {
-    "id": "67c1f688-cb18-4e14-accc-6e646c83f453",
+    "id": "08945ced-3303-4c8b-b54f-23ec21717f45",
     "sheet_name": "Main Registry",
-    "row_order": 277,
+    "row_order": 278,
     "fund": "1102101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -6090,13 +6112,13 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 84200,
-    "created_at": "2026-11-24T01:38:03.796Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.991Z",
+    "updated_at": "2026-11-24T07:10:54.444Z"
   },
   {
-    "id": "3575aa8c-bed7-4fcd-a9ff-7a6838309f97",
+    "id": "041e7aba-daf4-4bcc-93b9-46c51079d12e",
     "sheet_name": "Main Registry",
-    "row_order": 278,
+    "row_order": 279,
     "fund": "1102101",
     "pap": "310103100001000 ESETS RICE",
     "source": "",
@@ -6112,13 +6134,13 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 84200,
-    "created_at": "2026-11-24T01:38:03.798Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.993Z",
+    "updated_at": "2026-11-24T07:10:54.444Z"
   },
   {
-    "id": "ff41801a-9f5c-48e6-a252-8e3e4a28e776",
+    "id": "15095505-a745-4186-841c-5b956baa11a8",
     "sheet_name": "Main Registry",
-    "row_order": 279,
+    "row_order": 280,
     "fund": "1102101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -6134,13 +6156,13 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.800Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.995Z",
+    "updated_at": "2026-11-24T07:10:54.444Z"
   },
   {
-    "id": "a32310c5-f9eb-4542-bf51-6d1b68397ba6",
+    "id": "fb80d30f-6507-4b81-b680-4d649fe098db",
     "sheet_name": "Main Registry",
-    "row_order": 280,
+    "row_order": 281,
     "fund": "1102101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -6156,13 +6178,13 @@
     "unallocated_allotment": 0,
     "disbursement": 88592.87,
     "unpaid": -29232.48,
-    "created_at": "2026-11-24T01:38:03.802Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.997Z",
+    "updated_at": "2026-11-24T07:10:54.444Z"
   },
   {
-    "id": "d953d4fc-f7bd-49b2-b80b-1d8c8e345779",
+    "id": "6c9675c1-3978-45f3-884a-c77644d426e4",
     "sheet_name": "Main Registry",
-    "row_order": 281,
+    "row_order": 282,
     "fund": "1102101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -6178,13 +6200,13 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.804Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:54.999Z",
+    "updated_at": "2026-11-24T07:10:54.444Z"
   },
   {
-    "id": "360d5ee5-1537-42cf-b5b0-46af8d10dbc1",
+    "id": "dce2a785-8af9-412c-b10f-aa3b26484073",
     "sheet_name": "Main Registry",
-    "row_order": 282,
+    "row_order": 283,
     "fund": "1102101",
     "pap": "310103100001000 ESETS RICE",
     "source": "",
@@ -6200,13 +6222,13 @@
     "unallocated_allotment": 0,
     "disbursement": 88592.87,
     "unpaid": -29232.48,
-    "created_at": "2026-11-24T01:38:03.806Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:55.002Z",
+    "updated_at": "2026-11-24T07:10:54.444Z"
   },
   {
-    "id": "67e3117e-bfbf-41d5-9663-5dd83ce4886e",
+    "id": "e0ae25b6-60b9-40d7-9e03-7326d1fa719c",
     "sheet_name": "Main Registry",
-    "row_order": 283,
+    "row_order": 284,
     "fund": "1102101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -6222,13 +6244,13 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.808Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:55.004Z",
+    "updated_at": "2026-11-24T07:10:54.444Z"
   },
   {
-    "id": "2b446608-228d-4935-9dab-cab546e4f28d",
+    "id": "4566dd0c-935a-40f3-b733-878f697ae320",
     "sheet_name": "Main Registry",
-    "row_order": 284,
+    "row_order": 285,
     "fund": "1102101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -6244,13 +6266,13 @@
     "unallocated_allotment": 0,
     "disbursement": 154467.85,
     "unpaid": -16539.28,
-    "created_at": "2026-11-24T01:38:03.810Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:55.006Z",
+    "updated_at": "2026-11-24T07:10:54.444Z"
   },
   {
-    "id": "41b81339-c7d8-45fb-93a9-1e6645478bfc",
+    "id": "cf10d5e5-c73a-4174-af6c-2b0e1d036c5e",
     "sheet_name": "Main Registry",
-    "row_order": 285,
+    "row_order": 286,
     "fund": "1102101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA",
@@ -6266,13 +6288,13 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.812Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:55.008Z",
+    "updated_at": "2026-11-24T07:10:54.444Z"
   },
   {
-    "id": "fe9d51f3-df4b-4d05-8424-cbeb21e21ba4",
+    "id": "a270c4c3-943c-44e7-a84e-a1bf3d268fd9",
     "sheet_name": "Main Registry",
-    "row_order": 286,
+    "row_order": 287,
     "fund": "1102101",
     "pap": "310103100001000 ESETS RICE",
     "source": "",
@@ -6288,13 +6310,13 @@
     "unallocated_allotment": 0,
     "disbursement": 154467.85,
     "unpaid": -16539.28,
-    "created_at": "2026-11-24T01:38:03.814Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:55.010Z",
+    "updated_at": "2026-11-24T07:10:54.444Z"
   },
   {
-    "id": "d8035ce6-87ee-4c5f-a350-8054ab51941b",
+    "id": "e05edecc-6884-42e2-92a4-7c0e8fc78626",
     "sheet_name": "Main Registry",
-    "row_order": 287,
+    "row_order": 288,
     "fund": "1102101",
     "pap": "310103100001000 ESETS RICE",
     "source": "",
@@ -6310,13 +6332,13 @@
     "unallocated_allotment": 30146.72,
     "disbursement": 3714013.58,
     "unpaid": 1447088.05,
-    "created_at": "2026-11-24T01:38:03.816Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:55.012Z",
+    "updated_at": "2026-11-24T07:10:54.444Z"
   },
   {
-    "id": "e4705a9e-b6e5-4fe7-9464-394070b39bf2",
+    "id": "d5511ac5-adbd-443c-80e4-30cd01acae75",
     "sheet_name": "Main Registry",
-    "row_order": 288,
+    "row_order": 289,
     "fund": "1102101",
     "pap": "310103100001000 ESETS RICE",
     "source": "GAA Total",
@@ -6332,13 +6354,13 @@
     "unallocated_allotment": 30146.72,
     "disbursement": 3714013.58,
     "unpaid": 1447088.05,
-    "created_at": "2026-11-24T01:38:03.818Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:55.014Z",
+    "updated_at": "2026-11-24T07:10:54.444Z"
   },
   {
-    "id": "e844ce3c-8910-4fc9-a5f3-716bf5083889",
+    "id": "b455723a-31bd-4084-a97e-1433382ae6a3",
     "sheet_name": "Main Registry",
-    "row_order": 289,
+    "row_order": 290,
     "fund": "1102101",
     "pap": "310103100001000 ESETS RICE Total",
     "source": "",
@@ -6354,13 +6376,13 @@
     "unallocated_allotment": 30146.72,
     "disbursement": 3714013.58,
     "unpaid": 1447088.05,
-    "created_at": "2026-11-24T01:38:03.821Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:55.016Z",
+    "updated_at": "2026-11-24T07:10:54.444Z"
   },
   {
-    "id": "e612c357-8397-411f-8248-375c6bec6e82",
+    "id": "d2fe6c3b-a347-44ef-b14e-b4a131c106e1",
     "sheet_name": "Main Registry",
-    "row_order": 290,
+    "row_order": 291,
     "fund": "1102101",
     "pap": "310104100001000 RD RICE",
     "source": "GAA",
@@ -6376,13 +6398,13 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.823Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:55.018Z",
+    "updated_at": "2026-11-24T07:10:54.444Z"
   },
   {
-    "id": "c97ebf65-9cfd-41b1-b1c1-cb7e425a8c12",
+    "id": "81ea00af-4fe3-4334-aa2b-1c60fa2be886",
     "sheet_name": "Main Registry",
-    "row_order": 291,
+    "row_order": 292,
     "fund": "1102101",
     "pap": "310104100001000 RD RICE",
     "source": "GAA",
@@ -6398,13 +6420,13 @@
     "unallocated_allotment": 78212,
     "disbursement": 0,
     "unpaid": 272160,
-    "created_at": "2026-11-24T01:38:03.825Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:55.020Z",
+    "updated_at": "2026-11-24T07:10:54.444Z"
   },
   {
-    "id": "e7cfd146-1ea5-4bfa-bae3-d53936a717de",
+    "id": "a17dcafe-7eb8-48f3-980a-fc541c7545e0",
     "sheet_name": "Main Registry",
-    "row_order": 292,
+    "row_order": 293,
     "fund": "1102101",
     "pap": "310104100001000 RD RICE",
     "source": "GAA",
@@ -6420,13 +6442,13 @@
     "unallocated_allotment": 0,
     "disbursement": 10000,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.827Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:55.022Z",
+    "updated_at": "2026-11-24T07:10:54.444Z"
   },
   {
-    "id": "a4a95edc-eb5c-4bed-98bc-1833ff06adc1",
+    "id": "fb37728c-8497-453d-9383-e2b07b35f878",
     "sheet_name": "Main Registry",
-    "row_order": 293,
+    "row_order": 294,
     "fund": "1102101",
     "pap": "310104100001000 RD RICE",
     "source": "GAA",
@@ -6442,13 +6464,13 @@
     "unallocated_allotment": 2200,
     "disbursement": 0,
     "unpaid": 78800,
-    "created_at": "2026-11-24T01:38:03.829Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:55.024Z",
+    "updated_at": "2026-11-24T07:10:54.444Z"
   },
   {
-    "id": "0650c4a4-82d8-4e7a-9066-f2b6fefb205a",
+    "id": "eccdbfb1-9e0b-4ff9-82a3-5f8410543018",
     "sheet_name": "Main Registry",
-    "row_order": 294,
+    "row_order": 295,
     "fund": "1102101",
     "pap": "310104100001000 RD RICE",
     "source": "GAA",
@@ -6464,13 +6486,13 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.831Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:55.026Z",
+    "updated_at": "2026-11-24T07:10:54.444Z"
   },
   {
-    "id": "770d950a-0b1b-43f1-82b0-bd84b9d2fb18",
+    "id": "74932e99-74a7-4918-b484-551ab5e01155",
     "sheet_name": "Main Registry",
-    "row_order": 295,
+    "row_order": 296,
     "fund": "1102101",
     "pap": "310104100001000 RD RICE",
     "source": "GAA",
@@ -6486,13 +6508,13 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.833Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:55.028Z",
+    "updated_at": "2026-11-24T07:10:54.444Z"
   },
   {
-    "id": "6952be06-60db-4669-86da-b3e4e99d77aa",
+    "id": "775d541b-d184-4110-a1c1-ef4e3f6d03f3",
     "sheet_name": "Main Registry",
-    "row_order": 296,
+    "row_order": 297,
     "fund": "1102101",
     "pap": "310104100001000 RD RICE",
     "source": "GAA",
@@ -6508,13 +6530,13 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 429360.18,
-    "created_at": "2026-11-24T01:38:03.835Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:55.030Z",
+    "updated_at": "2026-11-24T07:10:54.444Z"
   },
   {
-    "id": "f7967b07-ed3f-4e23-892d-3b53702d6a83",
+    "id": "402055b1-3f6d-4c70-aa4f-504ae6dd9f71",
     "sheet_name": "Main Registry",
-    "row_order": 297,
+    "row_order": 298,
     "fund": "1102101",
     "pap": "310104100001000 RD RICE",
     "source": "GAA",
@@ -6530,13 +6552,13 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.837Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:55.033Z",
+    "updated_at": "2026-11-24T07:10:54.444Z"
   },
   {
-    "id": "68de6faf-6982-4c52-98d1-98e610cabc01",
+    "id": "099601fe-aeb0-46dc-a44c-5b08666f5975",
     "sheet_name": "Main Registry",
-    "row_order": 298,
+    "row_order": 299,
     "fund": "1102101",
     "pap": "310104100001000 RD RICE",
     "source": "GAA",
@@ -6552,13 +6574,13 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.839Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:55.035Z",
+    "updated_at": "2026-11-24T07:10:54.444Z"
   },
   {
-    "id": "e7c8b8c1-077f-4a68-9575-f0864f066bfc",
+    "id": "c3ee7300-c3c5-48c2-8011-6275d45dde01",
     "sheet_name": "Main Registry",
-    "row_order": 299,
+    "row_order": 300,
     "fund": "1102101",
     "pap": "310104100001000 RD RICE",
     "source": "GAA",
@@ -6574,13 +6596,13 @@
     "unallocated_allotment": -10260,
     "disbursement": 0,
     "unpaid": 10260,
-    "created_at": "2026-11-24T01:38:03.841Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:55.037Z",
+    "updated_at": "2026-11-24T07:10:54.444Z"
   },
   {
-    "id": "809101a6-90f0-4520-9f2f-0a68f89f08c6",
+    "id": "93e6654d-5a47-4ad2-943a-442a08aa94c5",
     "sheet_name": "Main Registry",
-    "row_order": 300,
+    "row_order": 301,
     "fund": "1102101",
     "pap": "310104100001000 RD RICE",
     "source": "GAA",
@@ -6596,13 +6618,13 @@
     "unallocated_allotment": 0,
     "disbursement": 0,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.843Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:55.039Z",
+    "updated_at": "2026-11-24T07:10:54.444Z"
   },
   {
-    "id": "eea85bf3-c10c-46cd-a669-81de3effbaad",
+    "id": "64585c39-9f88-4798-b2ee-c68e2507683e",
     "sheet_name": "Main Registry",
-    "row_order": 301,
+    "row_order": 302,
     "fund": "1102101",
     "pap": "310104100001000 RD RICE",
     "source": "",
@@ -6618,13 +6640,13 @@
     "unallocated_allotment": 70152,
     "disbursement": 10000,
     "unpaid": 790580.18,
-    "created_at": "2026-11-24T01:38:03.845Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:55.041Z",
+    "updated_at": "2026-11-24T07:10:54.444Z"
   },
   {
-    "id": "c9c24186-7504-4129-9ff1-df5d7aa3d75c",
+    "id": "2be64a36-4784-4783-b685-30f9c8c59f39",
     "sheet_name": "Main Registry",
-    "row_order": 302,
+    "row_order": 303,
     "fund": "1102101",
     "pap": "310104100001000 RD RICE",
     "source": "",
@@ -6640,13 +6662,13 @@
     "unallocated_allotment": 70152,
     "disbursement": 10000,
     "unpaid": 790580.18,
-    "created_at": "2026-11-24T01:38:03.847Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:55.043Z",
+    "updated_at": "2026-11-24T07:10:54.444Z"
   },
   {
-    "id": "96583b30-3dc1-4501-b175-1b7d65f859fc",
+    "id": "50a4b18a-1d64-433b-aae6-16c25fc7abfd",
     "sheet_name": "Main Registry",
-    "row_order": 303,
+    "row_order": 304,
     "fund": "1102101",
     "pap": "310104100001000 RD RICE",
     "source": "GAA Total",
@@ -6662,13 +6684,13 @@
     "unallocated_allotment": 70152,
     "disbursement": 10000,
     "unpaid": 790580.18,
-    "created_at": "2026-11-24T01:38:03.849Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:55.045Z",
+    "updated_at": "2026-11-24T07:10:54.444Z"
   },
   {
-    "id": "e665b28d-229a-4b30-ace5-1d4976dffce0",
+    "id": "da67bbb6-3368-4385-8379-afe379341398",
     "sheet_name": "Main Registry",
-    "row_order": 304,
+    "row_order": 305,
     "fund": "1102101",
     "pap": "310104100001000 RD RICE Total",
     "source": "",
@@ -6684,13 +6706,13 @@
     "unallocated_allotment": 70152,
     "disbursement": 10000,
     "unpaid": 790580.18,
-    "created_at": "2026-11-24T01:38:03.851Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:55.047Z",
+    "updated_at": "2026-11-24T07:10:54.444Z"
   },
   {
-    "id": "5a86becc-d211-4016-9001-8559b46f0283",
+    "id": "68009198-95df-4fac-8462-d7838136ed05",
     "sheet_name": "Main Registry",
-    "row_order": 305,
+    "row_order": 306,
     "fund": "1102101",
     "pap": "310202100001000 INS RICE",
     "source": "GAA",
@@ -6706,13 +6728,13 @@
     "unallocated_allotment": 0,
     "disbursement": 373320,
     "unpaid": 3038018.85,
-    "created_at": "2026-11-24T01:38:03.853Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:55.049Z",
+    "updated_at": "2026-11-24T07:10:54.444Z"
   },
   {
-    "id": "cda32dcb-4300-499b-b5d5-ebe8baa28173",
+    "id": "4bbb9b1c-ef38-4233-80d9-6727d7a2bc05",
     "sheet_name": "Main Registry",
-    "row_order": 306,
+    "row_order": 307,
     "fund": "1102101",
     "pap": "310202100001000 INS RICE",
     "source": "",
@@ -6728,13 +6750,13 @@
     "unallocated_allotment": 0,
     "disbursement": 373320,
     "unpaid": 3038018.85,
-    "created_at": "2026-11-24T01:38:03.857Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:55.051Z",
+    "updated_at": "2026-11-24T07:10:54.444Z"
   },
   {
-    "id": "e49a5179-82d7-4ec1-88e1-bd3877136927",
+    "id": "f7981040-e223-4c7f-b555-92e33fd0dfc6",
     "sheet_name": "Main Registry",
-    "row_order": 307,
+    "row_order": 308,
     "fund": "1102101",
     "pap": "310202100001000 INS RICE",
     "source": "",
@@ -6750,13 +6772,13 @@
     "unallocated_allotment": 0,
     "disbursement": 373320,
     "unpaid": 3038018.85,
-    "created_at": "2026-11-24T01:38:03.859Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:55.054Z",
+    "updated_at": "2026-11-24T07:10:54.444Z"
   },
   {
-    "id": "3b8e6652-b9b9-4fbc-b31a-1fc4a04597ac",
+    "id": "b7f6d78a-6d39-4638-99e3-8275f8cd34f0",
     "sheet_name": "Main Registry",
-    "row_order": 308,
+    "row_order": 309,
     "fund": "1102101",
     "pap": "310202100001000 INS RICE",
     "source": "GAA Total",
@@ -6772,13 +6794,13 @@
     "unallocated_allotment": 0,
     "disbursement": 373320,
     "unpaid": 3038018.85,
-    "created_at": "2026-11-24T01:38:03.861Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:55.056Z",
+    "updated_at": "2026-11-24T07:10:54.444Z"
   },
   {
-    "id": "6b1de63e-a30b-49bd-acf6-20dcd87358c2",
+    "id": "35e029e4-6af1-4b46-bef1-69c1d892eb57",
     "sheet_name": "Main Registry",
-    "row_order": 309,
+    "row_order": 310,
     "fund": "1102101",
     "pap": "310202100001000 INS RICE Total",
     "source": "",
@@ -6794,13 +6816,13 @@
     "unallocated_allotment": 0,
     "disbursement": 373320,
     "unpaid": 3038018.85,
-    "created_at": "2026-11-24T01:38:03.863Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:55.058Z",
+    "updated_at": "2026-11-24T07:10:54.444Z"
   },
   {
-    "id": "961e037e-f977-4e71-bf04-4ba4c8a48a92",
+    "id": "f1d3399b-5def-4993-b968-d578fa3acce6",
     "sheet_name": "Main Registry",
-    "row_order": 310,
+    "row_order": 311,
     "fund": "01105422C",
     "pap": "310101100001000 PSS RICE",
     "source": "SARO-BMB-E-25-0013181",
@@ -6816,13 +6838,13 @@
     "unallocated_allotment": 63.75,
     "disbursement": 1003600,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.865Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:55.060Z",
+    "updated_at": "2026-11-24T07:10:54.444Z"
   },
   {
-    "id": "23513ea1-19ef-4e77-91b2-22dc0e261880",
+    "id": "062f2736-0b73-4c0c-ab1d-34d7f49d7c0a",
     "sheet_name": "Main Registry",
-    "row_order": 311,
+    "row_order": 312,
     "fund": "01105422C",
     "pap": "310101100001000 PSS RICE",
     "source": "",
@@ -6838,13 +6860,13 @@
     "unallocated_allotment": 63.75,
     "disbursement": 1003600,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.867Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:55.062Z",
+    "updated_at": "2026-11-24T07:10:54.444Z"
   },
   {
-    "id": "59aae787-5114-433f-b4c7-4a8062e234bc",
+    "id": "1c6f6439-0471-437e-aae0-5435251621fd",
     "sheet_name": "Main Registry",
-    "row_order": 312,
+    "row_order": 313,
     "fund": "01105422C",
     "pap": "310101100001000 PSS RICE",
     "source": "",
@@ -6860,13 +6882,13 @@
     "unallocated_allotment": 63.75,
     "disbursement": 1003600,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.869Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:55.064Z",
+    "updated_at": "2026-11-24T07:10:54.444Z"
   },
   {
-    "id": "acad2449-80d7-443b-9538-3ddb8e38a569",
+    "id": "987299e3-2b57-44b6-b312-9cab74d44310",
     "sheet_name": "Main Registry",
-    "row_order": 313,
+    "row_order": 314,
     "fund": "01105422C",
     "pap": "310101100001000 PSS RICE",
     "source": "SARO-BMB-E-25-0013181 Total",
@@ -6882,13 +6904,13 @@
     "unallocated_allotment": 63.75,
     "disbursement": 1003600,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.871Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:55.066Z",
+    "updated_at": "2026-11-24T07:10:54.444Z"
   },
   {
-    "id": "68ed81f4-42c9-4ad0-8e6a-73312c0f14de",
+    "id": "b919c7e7-2163-4765-8952-c602ceacfd52",
     "sheet_name": "Main Registry",
-    "row_order": 314,
+    "row_order": 315,
     "fund": "01105422C",
     "pap": "310101100001000 PSS RICE Total",
     "source": "",
@@ -6904,13 +6926,13 @@
     "unallocated_allotment": 63.75,
     "disbursement": 1003600,
     "unpaid": 0,
-    "created_at": "2026-11-24T01:38:03.874Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "created_at": "2026-11-24T07:10:55.068Z",
+    "updated_at": "2026-11-24T07:10:54.444Z"
   },
   {
-    "id": "e74e52a8-1f2c-4025-8953-2456154e1766",
+    "id": "056463b1-1d88-4ed5-851a-37f28ac13181",
     "sheet_name": "Main Registry",
-    "row_order": 315,
+    "row_order": 316,
     "fund": "Grand Total",
     "pap": "RICE PROGRAM TOTAL",
     "source": "GAA / Continuing",
@@ -6920,13 +6942,13 @@
     "description": "Grand Total: Rice Banner Program (FPMA, PSS, ESETS, RD, INS)",
     "appropriations": 666126000,
     "adjusted_allotment": 731739898.77,
-    "total_obligation": 681313475.32,
-    "unobligated_allotment": 50426423.44999999,
+    "total_obligation": 681385284.01,
+    "unobligated_allotment": 50354614.75999999,
     "earmark": 37555145.160000004,
-    "unallocated_allotment": 12871278.290000003,
+    "unallocated_allotment": 12799469.600000001,
     "disbursement": 322967976.24,
-    "unpaid": 358345499.08000004,
-    "created_at": "2026-11-24T01:38:03.248Z",
-    "updated_at": "2026-11-24T01:38:03.249Z"
+    "unpaid": 358417307.7700001,
+    "created_at": "2026-11-24T07:10:54.441Z",
+    "updated_at": "2026-11-24T07:10:54.444Z"
   }
 ]
