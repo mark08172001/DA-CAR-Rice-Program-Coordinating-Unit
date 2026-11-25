@@ -33,13 +33,6 @@ export default function Footer() {
               <Link href="/login">Staff Portal Sign In</Link>
             </nav>
           </div>
-          <div>
-            <h3>Information</h3>
-            <nav className="footer-links" aria-label="Policies">
-              <Link href="/privacy-policy">Privacy Policy</Link>
-              <Link href="/terms-of-use">Terms of Use</Link>
-            </nav>
-          </div>
         </div>
         <div className="footer-bottom">
           <span>Copyright © 2026 DA-CAR | Rice Program Coordinating Unit</span>
