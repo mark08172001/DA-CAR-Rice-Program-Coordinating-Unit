@@ -89,6 +89,22 @@ interface DisbursementClientProps {
   initialUnpaidPriorYearsData?: FetchDisbursementResult;
   initialIsAuthenticated?: boolean;
   currentUserEmail?: string;
+  allotmentData?: {
+    categories: Array<{
+      id: string;
+      name: string;
+      allocation: number;
+      continuingAlloc?: number;
+      totalAlloc?: number;
+    }>;
+    totalBannerRice: {
+      id: string;
+      name: string;
+      allocation: number;
+      continuingAlloc?: number;
+      totalAlloc?: number;
+    };
+  };
 }
 
 export default function DisbursementClient({
@@ -97,6 +113,7 @@ export default function DisbursementClient({
   initialUnpaidPriorYearsData,
   initialIsAuthenticated = false,
   currentUserEmail,
+  allotmentData,
 }: DisbursementClientProps) {
   const [selectedView, setSelectedView] = useState<DisbursementView>('current');
   const [papFilter, setPapFilter] = useState<string>('all');
@@ -397,6 +414,45 @@ export default function DisbursementClient({
     return `₱${val.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
   };
 
+  const formatCompactCurrency = (val: number) => {
+    if (!val || val === 0) return '₱0.00';
+    if (val >= 1_000_000_000) return `₱${(val / 1_000_000_000).toFixed(2)}B`;
+    if (val >= 1_000_000) return `₱${(val / 1_000_000).toFixed(2)}M`;
+    if (val >= 1_000) return `₱${(val / 1_000).toFixed(2)}K`;
+    return `₱${val.toFixed(2)}`;
+  };
+
+  const activeAllotment = useMemo(() => {
+    if (!allotmentData) return 0;
+    const { categories = [], totalBannerRice } = allotmentData;
+
+    if (papFilter !== 'all') {
+      const pUpper = papFilter.toUpperCase();
+      const matched = categories.find(
+        (c) =>
+          pUpper.includes(c.id.toUpperCase()) ||
+          pUpper.includes(c.name.toUpperCase()) ||
+          (c.id === 'pss' && pUpper.includes('PSS')) ||
+          (c.id === 'esets' && pUpper.includes('ESETS')) ||
+          (c.id === 'rd' && pUpper.includes('RD')) ||
+          (c.id === 'ins' && pUpper.includes('INS'))
+      );
+      if (matched) {
+        if (selectedView === 'continuing') return matched.continuingAlloc || 0;
+        if (selectedView === 'unpaid-prior-years') return matched.totalAlloc || 0;
+        return matched.allocation || 0;
+      }
+    }
+
+    if (totalBannerRice) {
+      if (selectedView === 'continuing') return totalBannerRice.continuingAlloc || 0;
+      if (selectedView === 'unpaid-prior-years') return totalBannerRice.totalAlloc || 0;
+      return totalBannerRice.allocation || 0;
+    }
+
+    return 0;
+  }, [allotmentData, papFilter, selectedView]);
+
   const viewTitle =
     selectedView === 'current'
       ? 'Current Disbursements'
@@ -647,16 +703,58 @@ export default function DisbursementClient({
               borderTop: '3px solid #059669',
             }}
           >
-            <div style={{ fontSize: 12, fontWeight: 600, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
-              Disbursement Rate (%)
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}>
+              <div style={{ fontSize: 12, fontWeight: 600, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                Disbursement Rate (%)
+              </div>
+              {activeAllotment > 0 && (
+                <span
+                  style={{
+                    fontSize: 10.5,
+                    fontWeight: 600,
+                    color: '#0369a1',
+                    background: '#f0f9ff',
+                    border: '1px solid #bae6fd',
+                    padding: '1px 6px',
+                    borderRadius: 4,
+                  }}
+                  title={`Total Allotment: ${formatCurrency(activeAllotment)}`}
+                >
+                  Allot: {formatCompactCurrency(activeAllotment)}
+                </span>
+              )}
             </div>
-            <div style={{ fontSize: 22, fontWeight: 700, color: '#059669', marginTop: 4 }}>
-              {displayTotals.totalObligation > 0
-                ? `${((displayTotals.grossAmount / displayTotals.totalObligation) * 100).toFixed(2)}%`
-                : '0.00%'}
-            </div>
-            <div style={{ fontSize: 11, color: '#64748b', marginTop: 4 }}>
-              Paid vs. Total Obligation
+
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: '1fr 1fr',
+                gap: 12,
+                marginTop: 8,
+                alignItems: 'baseline',
+              }}
+            >
+              <div>
+                <div style={{ fontSize: 22, fontWeight: 700, color: '#059669' }}>
+                  {displayTotals.totalObligation > 0
+                    ? `${((displayTotals.grossAmount / displayTotals.totalObligation) * 100).toFixed(2)}%`
+                    : '0.00%'}
+                </div>
+                <div style={{ fontSize: 11, color: '#64748b', marginTop: 3 }}>
+                  Paid vs. Total Obligation
+                </div>
+              </div>
+
+              <div style={{ borderLeft: '1px solid #e2e8f0', paddingLeft: 12 }}>
+                <div style={{ fontSize: 22, fontWeight: 700, color: '#0284c7' }}>
+                  {activeAllotment > 0
+                    ? `${((displayTotals.grossAmount / activeAllotment) * 100).toFixed(2)}%`
+                    : '0.00%'}
+                </div>
+                <div style={{ fontSize: 11, color: '#64748b', marginTop: 3 }}>
+                  Paid vs. Allotment
+                </div>
+              </div>
             </div>
           </div>
         </div>

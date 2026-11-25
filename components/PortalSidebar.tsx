@@ -213,7 +213,25 @@ export default function PortalSidebar({
   // Navigation Links (Clean Flat Structure)
   const navItems: NavItem[] = [
     { label: 'Financial Reports', href: '/rice/reports', icon: FileText },
-    { label: 'Obligation', href: '/rice/balances', icon: Coins },
+    {
+      label: 'Obligation',
+      href: '/rice/balances',
+      icon: Coins,
+      subItems: [
+        {
+          label: 'Obligation Dashboard',
+          href: '/rice/balances',
+          icon: BarChart3,
+          isSubItem: true,
+        },
+        {
+          label: 'Allotment vs Obligation',
+          href: '/rice/balances/registry',
+          icon: Coins,
+          isSubItem: true,
+        },
+      ],
+    },
     { label: 'Disbursement', href: '/rice/disbursement', icon: CreditCard },
     {
       label: 'Physical Dashboard',
@@ -262,6 +280,9 @@ export default function PortalSidebar({
     }
     if (href === '/rice') {
       return pathname === '/rice';
+    }
+    if (href === '/rice/balances') {
+      return pathname.startsWith('/rice/balances');
     }
     if (href === '/rice/physical') {
       return pathname === '/rice/physical';

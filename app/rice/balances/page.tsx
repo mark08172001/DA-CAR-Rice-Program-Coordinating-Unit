@@ -1,14 +1,14 @@
-import ObligationBudgetClient from '@/components/ObligationBudgetClient';
-import { fetchRiceObligationsFromGoogleSheet } from '@/utils/fetchRiceObligationsSheet';
+import ObligationDashboardClient from '@/components/ObligationDashboardClient';
+import { fetchObligationListSheet } from '@/utils/fetchObligationListSheet';
 import { cookies } from 'next/headers';
 import { createClient } from '@/utils/supabase/server';
 import { getAuthoritativeUserAccess } from '@/utils/adminStore';
 import ModuleAccessGuard from '@/components/ModuleAccessGuard';
 
 export const metadata = {
-  title: 'Obligation | DA-CAR | Rice Program Coordinating Unit',
+  title: 'Obligation Dashboard | DA-CAR | Rice Program Coordinating Unit',
   description:
-    'Obligation Budget and Utilization Rate monitoring for the DA-CAR Regional Rice Coordinating Unit.',
+    '2026 List for Obligation Dashboard and line item register for the DA-CAR Regional Rice Program Coordinating Unit.',
 };
 
 export const dynamic = 'force-dynamic';
@@ -48,8 +48,6 @@ export default async function RiceBalancesPage({
   }
 
   const access = await getAuthoritativeUserAccess(activeEmail, supabase);
-  const isSuperAdmin = access.isSuperAdmin;
-  const allowed = access.allowed_modules;
   const userRole = access.role;
   const userName = access.fullName;
 
@@ -64,26 +62,17 @@ export default async function RiceBalancesPage({
           id: 'mod-finance',
           number: 'Module 02',
           title: 'Financial Management',
-          desc: 'Official financial category reports, obligation budget, and fund monitoring.',
+          desc: 'Government obligation budget, financial category reports, and fund monitoring.',
         }}
       />
     );
   }
 
-  const canEditBudget = isSuperAdmin || access.permissions.can_edit_budget !== false;
-
-  const result = await fetchRiceObligationsFromGoogleSheet(forceRefresh);
+  const result = await fetchObligationListSheet(forceRefresh);
 
   return (
-    <section className="content-section" style={{ padding: '24px 0 60px' }}>
-      <div className="page-container" style={{ width: 'min(1480px, calc(100% - 36px))' }}>
-        <ObligationBudgetClient
-          obligationCategories={result.categories}
-          totalBannerRice={result.totalBannerRice}
-          canEditBudget={canEditBudget}
-        />
-      </div>
+    <section className="content-section" style={{ padding: '16px 0 60px' }}>
+      <ObligationDashboardClient initialData={result} />
     </section>
   );
 }
-

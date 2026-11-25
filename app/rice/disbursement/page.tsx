@@ -17,6 +17,7 @@ import {
   fetchCurrentDisbursements,
   fetchUnpaidPriorYearsDisbursements,
 } from '@/utils/fetchContinuingDisbursements';
+import { fetchRiceObligationsFromGoogleSheet } from '@/utils/fetchRiceObligationsSheet';
 import { protectDisbursementRecords } from '@/utils/disbursementPrivacy';
 
 export default async function RiceDisbursementPage({
@@ -75,10 +76,11 @@ export default async function RiceDisbursementPage({
 
   const isAuthenticated = Boolean(activeEmail && access && access.status !== 'suspended');
 
-  const [continuingData, currentData, unpaidData] = await Promise.all([
+  const [continuingData, currentData, unpaidData, obligationsData] = await Promise.all([
     fetchContinuingDisbursements(forceRefresh),
     fetchCurrentDisbursements(forceRefresh),
     fetchUnpaidPriorYearsDisbursements(forceRefresh),
+    fetchRiceObligationsFromGoogleSheet(forceRefresh),
   ]);
 
   const protectedContinuing = {
@@ -101,6 +103,10 @@ export default async function RiceDisbursementPage({
       initialUnpaidPriorYearsData={protectedUnpaid}
       initialIsAuthenticated={isAuthenticated}
       currentUserEmail={activeEmail}
+      allotmentData={{
+        categories: obligationsData.categories,
+        totalBannerRice: obligationsData.totalBannerRice,
+      }}
     />
   );
 }
