@@ -416,7 +416,7 @@ export default function ObligationDashboardClient({ initialData }: Props) {
           marginBottom: 24,
         }}
       >
-        {/* Left Card: Budget Allocation by PAP */}
+        {/* Left Card: Budget Allocation */}
         <div
           style={{
             background: '#ffffff',
@@ -432,7 +432,7 @@ export default function ObligationDashboardClient({ initialData }: Props) {
           <div>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 18 }}>
               <div style={{ fontSize: 15, fontWeight: 800, color: '#0f172a' }}>
-                Budget Allocation by PAP
+                Budget Allocation
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: 16, fontSize: 11.5, fontWeight: 600 }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
