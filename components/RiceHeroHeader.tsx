@@ -35,16 +35,13 @@ export default function RiceHeroHeader() {
       'Certified RSBSA farmer beneficiary transactions, subsidy redemptions, and regional distribution totals for hybrid palay seeds and fertilizers.';
   } else if (pathname === '/rice/balances') {
     heading = 'Dashboard';
-    description =
-      'Registry of Allotments and Obligations (RAO) tracking, utilization rates, category disbursements, and provincial fund allocations.';
+    description = '';
   } else if (pathname.startsWith('/rice/balances/registry')) {
     heading = 'Allotment vs Obligation';
-    description =
-      'Registry of Allotments and Obligations (RAO) tracking, utilization rates, category disbursements, and provincial fund allocations.';
+    description = '';
   } else if (pathname.startsWith('/rice/balances')) {
     heading = 'Dashboard';
-    description =
-      'Registry of Allotments and Obligations (RAO) tracking, utilization rates, category disbursements, and provincial fund allocations.';
+    description = '';
   } else if (pathname.startsWith('/rice/disbursement')) {
     heading = 'Disbursement Records';
     description =
