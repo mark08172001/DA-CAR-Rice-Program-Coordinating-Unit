@@ -13,10 +13,12 @@ export default function RiceHeroHeader() {
   if (pathname.includes('/rice/physical/ds-2026-2027')) {
     heading = 'Dry Season - DS 2026-2027 Distribution Status';
     description = '';
+  } else if (pathname.includes('/rice/physical/summary-of-supplies')) {
+    heading = 'Summary of Supplies';
+    description = '';
   } else if (pathname.includes('/rice/physical/deliveries')) {
-    heading = 'Deliveries';
-    description =
-      'Official monitoring of agricultural deliveries, seed dispatches, and provincial distribution records across the Cordilleras.';
+    heading = 'Delivery Sites';
+    description = '';
   } else if (pathname.startsWith('/rice/physical')) {
     heading = 'Physical Dashboard';
     description =

@@ -213,6 +213,7 @@ export default function PortalSidebar({
   // Navigation Links (Clean Flat Structure)
   const navItems: NavItem[] = [
     { label: 'Financial Reports', href: '/rice/reports', icon: FileText },
+    { label: 'Disbursement', href: '/rice/disbursement', icon: CreditCard },
     {
       label: 'Obligation',
       href: '/rice/balances',
@@ -232,7 +233,6 @@ export default function PortalSidebar({
         },
       ],
     },
-    { label: 'Disbursement', href: '/rice/disbursement', icon: CreditCard },
     {
       label: 'Physical Dashboard',
       href: '/rice/physical',
@@ -245,9 +245,15 @@ export default function PortalSidebar({
           isSubItem: true,
         },
         {
-          label: 'Deliveries',
+          label: 'Delivery Sites',
           href: '/rice/physical/deliveries',
           icon: Truck,
+          isSubItem: true,
+        },
+        {
+          label: 'Summary of Supplies',
+          href: '/rice/physical/summary-of-supplies',
+          icon: Package,
           isSubItem: true,
         },
       ],
