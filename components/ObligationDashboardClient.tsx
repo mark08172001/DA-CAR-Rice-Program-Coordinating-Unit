@@ -15,7 +15,6 @@ import {
   TrendingUp,
   PieChart,
   ExternalLink,
-  RefreshCw,
 } from 'lucide-react';
 import {
   ObligationListItem,
@@ -176,16 +175,41 @@ export default function ObligationDashboardClient({
   saaodbTotalBannerRice,
 }: Props) {
   const [data, setData] = useState<ObligationListResult>(initialData);
-  const [isRefreshing, setIsRefreshing] = useState(false);
 
   useEffect(() => {
     setData(initialData);
   }, [initialData]);
 
-  const handleRefresh = () => {
-    setIsRefreshing(true);
-    window.location.href = '/rice/balances/dashboard?refresh=true';
-  };
+  // Automatically fetch updates in the background (every 20s and on window focus)
+  useEffect(() => {
+    let isMounted = true;
+
+    const fetchLatest = async () => {
+      try {
+        const res = await fetch('/api/obligations/obligation-list');
+        if (!res.ok) return;
+        const fresh = await res.json();
+        if (fresh && Array.isArray(fresh.items) && isMounted) {
+          setData(fresh);
+        }
+      } catch {
+        // Silently ignore background polling errors
+      }
+    };
+
+    const interval = setInterval(fetchLatest, 20000);
+    const handleFocus = () => {
+      fetchLatest();
+    };
+
+    window.addEventListener('focus', handleFocus);
+
+    return () => {
+      isMounted = false;
+      clearInterval(interval);
+      window.removeEventListener('focus', handleFocus);
+    };
+  }, []);
 
   const [papFilter, setPapFilter] = useState<string>('All');
   const [searchQuery, setSearchQuery] = useState<string>('');
@@ -702,36 +726,6 @@ export default function ObligationDashboardClient({
                 <option value="INS">INS ({papCounts.INS || 0})</option>
               </select>
             </div>
-
-            {/* Sync from Sheet Button */}
-            <button
-              type="button"
-              onClick={handleRefresh}
-              disabled={isRefreshing}
-              title="Fetch fresh updated data directly from Google Sheets"
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: 6,
-                padding: '6px 12px',
-                fontSize: 12,
-                fontWeight: 600,
-                color: isRefreshing ? '#64748b' : '#166534',
-                backgroundColor: isRefreshing ? '#f1f5f9' : '#f0fdf4',
-                border: '1px solid #bbf7d0',
-                borderRadius: 6,
-                cursor: isRefreshing ? 'wait' : 'pointer',
-                transition: 'all 0.15s ease',
-              }}
-            >
-              <RefreshCw
-                size={13}
-                style={{
-                  animation: isRefreshing ? 'spin 1s linear infinite' : 'none',
-                }}
-              />
-              <span>{isRefreshing ? 'Syncing...' : 'Sync Sheet'}</span>
-            </button>
           </div>
         </div>
 
