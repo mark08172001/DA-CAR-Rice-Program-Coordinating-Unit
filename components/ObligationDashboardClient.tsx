@@ -15,6 +15,7 @@ import {
   TrendingUp,
   PieChart,
   ExternalLink,
+  RefreshCw,
 } from 'lucide-react';
 import {
   ObligationListItem,
@@ -174,7 +175,18 @@ export default function ObligationDashboardClient({
   saaodbCategories,
   saaodbTotalBannerRice,
 }: Props) {
-  const [data] = useState<ObligationListResult>(initialData);
+  const [data, setData] = useState<ObligationListResult>(initialData);
+  const [isRefreshing, setIsRefreshing] = useState(false);
+
+  useEffect(() => {
+    setData(initialData);
+  }, [initialData]);
+
+  const handleRefresh = () => {
+    setIsRefreshing(true);
+    window.location.href = '/rice/balances/dashboard?refresh=true';
+  };
+
   const [papFilter, setPapFilter] = useState<string>('All');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [sortField, setSortField] = useState<'pap' | 'currentAmt' | 'continuingAmt' | 'rowTotal'>('rowTotal');
@@ -353,7 +365,7 @@ export default function ObligationDashboardClient({
       { code: 'INS', name: 'INS RICE' },
     ];
 
-    const grandBannerAllotment = data.totalAllocation > 0 ? data.totalAllocation : 29349030.38;
+    const grandBannerAllotment = data.totalAllocation;
 
     const list: PapObligationDatum[] = papsConfig.map((cfg) => {
       const rowsForPap = filteredRows.filter((r) => (r.pap || '').toUpperCase().trim() === cfg.code);
@@ -361,8 +373,10 @@ export default function ObligationDashboardClient({
       const continuing = rowsForPap.reduce((sum, r) => sum + r.continuingAmt, 0);
       const total = rowsForPap.reduce((sum, r) => sum + r.rowTotal, 0);
 
-      const currentRate = total > 0 ? (current / total) * 100 : 0;
-      const continuingRate = total > 0 ? (continuing / total) * 100 : 0;
+      // Option 1: Current baseline is 100% (or 0 if no current allocation).
+      // Continuing is evaluated as a percentage of Current (when Continuing == Current, it is 100.0%).
+      const currentRate = current > 0 ? 100.0 : 0.0;
+      const continuingRate = current > 0 ? (continuing / current) * 100 : (continuing > 0 ? 100.0 : 0.0);
       const sharePercent = grandBannerAllotment > 0 ? (total / grandBannerAllotment) * 100 : 0;
 
       return {
@@ -378,12 +392,13 @@ export default function ObligationDashboardClient({
       };
     });
 
-    const bannerCurrent = data.currentFunds > 0 ? data.currentFunds : 23139535.38;
-    const bannerContinuing = data.continuingFunds > 0 ? data.continuingFunds : 6209495.0;
+    const bannerCurrent = data.currentFunds;
+    const bannerContinuing = data.continuingFunds;
     const bannerTotal = grandBannerAllotment;
 
-    const totalRateCurrent = bannerTotal > 0 ? (bannerCurrent / bannerTotal) * 100 : 78.8;
-    const totalRateContinuing = bannerTotal > 0 ? (bannerContinuing / bannerTotal) * 100 : 21.2;
+    // TOTAL benchmark under Option 1: Current 100%, Continuing evaluated as % of Current
+    const totalRateCurrent = bannerCurrent > 0 ? 100.0 : 0.0;
+    const totalRateContinuing = bannerCurrent > 0 ? (bannerContinuing / bannerCurrent) * 100 : 0.0;
 
     list.push({
       code: 'TOTAL',
@@ -391,7 +406,7 @@ export default function ObligationDashboardClient({
       currentRate: totalRateCurrent,
       continuingRate: totalRateContinuing,
       sharePercent: 100.0,
-      currentAmount: bannerCurrent,
+      currentAmount: data.totalAllocation,
       continuingAmount: bannerContinuing,
       totalAllotment: bannerTotal,
       allotFormatted: formatCompact(bannerTotal),
@@ -687,6 +702,36 @@ export default function ObligationDashboardClient({
                 <option value="INS">INS ({papCounts.INS || 0})</option>
               </select>
             </div>
+
+            {/* Sync from Sheet Button */}
+            <button
+              type="button"
+              onClick={handleRefresh}
+              disabled={isRefreshing}
+              title="Fetch fresh updated data directly from Google Sheets"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 6,
+                padding: '6px 12px',
+                fontSize: 12,
+                fontWeight: 600,
+                color: isRefreshing ? '#64748b' : '#166534',
+                backgroundColor: isRefreshing ? '#f1f5f9' : '#f0fdf4',
+                border: '1px solid #bbf7d0',
+                borderRadius: 6,
+                cursor: isRefreshing ? 'wait' : 'pointer',
+                transition: 'all 0.15s ease',
+              }}
+            >
+              <RefreshCw
+                size={13}
+                style={{
+                  animation: isRefreshing ? 'spin 1s linear infinite' : 'none',
+                }}
+              />
+              <span>{isRefreshing ? 'Syncing...' : 'Sync Sheet'}</span>
+            </button>
           </div>
         </div>
 
@@ -723,20 +768,12 @@ export default function ObligationDashboardClient({
                     Amount <ArrowUpDown size={12} />
                   </span>
                 </th>
-                <th
-                  onClick={() => toggleSort('rowTotal')}
-                  style={{ padding: '10px 14px', fontWeight: 700, textAlign: 'right', cursor: 'pointer', width: 130 }}
-                >
-                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4, justifyContent: 'flex-end' }}>
-                    Total <ArrowUpDown size={12} />
-                  </span>
-                </th>
               </tr>
             </thead>
             <tbody>
               {filteredRows.length === 0 ? (
                 <tr>
-                  <td colSpan={8} style={{ padding: '36px 20px', textAlign: 'center', color: '#64748b' }}>
+                  <td colSpan={7} style={{ padding: '36px 20px', textAlign: 'center', color: '#64748b' }}>
                     No procurement line items matching criteria.
                   </td>
                 </tr>
@@ -812,9 +849,6 @@ export default function ObligationDashboardClient({
                       <td style={{ padding: '10px 14px', textAlign: 'right', fontWeight: row.continuingAmt > 0 ? 600 : 400, color: row.continuingAmt > 0 ? '#ca8a04' : '#94a3b8' }}>
                         {formatCurrency(row.continuingAmt)}
                       </td>
-                      <td style={{ padding: '10px 14px', textAlign: 'right', fontWeight: 700, color: '#0f172a' }}>
-                        {formatCurrency(row.rowTotal)}
-                      </td>
                     </tr>
                   );
                 })
@@ -832,9 +866,6 @@ export default function ObligationDashboardClient({
                 <td colSpan={2} style={{ padding: '12px 14px' }} />
                 <td style={{ padding: '12px 14px', textAlign: 'right', color: '#ca8a04' }}>
                   {formatCurrency(activeTotals.continuing)}
-                </td>
-                <td style={{ padding: '12px 14px', textAlign: 'right', color: '#0f172a', fontSize: 13 }}>
-                  {formatCurrency(activeTotals.total)}
                 </td>
               </tr>
             </tfoot>

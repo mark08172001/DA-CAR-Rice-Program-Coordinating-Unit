@@ -91,9 +91,9 @@ export const DEFAULT_WEEKLY_OBLIGATION_DATA: WeeklyObligationDataset = {
     {
       code: 'PSS',
       name: 'PSS RICE',
-      currentRate: 39.1,
-      continuingRate: 60.9,
-      sharePercent: 32.55,
+      currentRate: 100.0,
+      continuingRate: 155.6,
+      sharePercent: 26.87,
       currentAmount: 3736800.0,
       continuingAmount: 5815000.0,
       totalAllotment: 9551800.0,
@@ -102,9 +102,9 @@ export const DEFAULT_WEEKLY_OBLIGATION_DATA: WeeklyObligationDataset = {
     {
       code: 'ESETS',
       name: 'ESETS RICE',
-      currentRate: 97.1,
-      continuingRate: 2.9,
-      sharePercent: 46.33,
+      currentRate: 100.0,
+      continuingRate: 3.0,
+      sharePercent: 38.25,
       currentAmount: 13202735.38,
       continuingAmount: 394495.0,
       totalAllotment: 13597230.38,
@@ -125,23 +125,23 @@ export const DEFAULT_WEEKLY_OBLIGATION_DATA: WeeklyObligationDataset = {
       code: 'INS',
       name: 'INS RICE',
       currentRate: 100.0,
-      continuingRate: 0.0,
-      sharePercent: 21.13,
+      continuingRate: 100.0,
+      sharePercent: 34.88,
       currentAmount: 6200000.0,
-      continuingAmount: 0.0,
-      totalAllotment: 6200000.0,
-      allotFormatted: '₱6.20M',
+      continuingAmount: 6200000.0,
+      totalAllotment: 12400000.0,
+      allotFormatted: '₱12.40M',
     },
     {
       code: 'TOTAL',
       name: 'TOTAL',
-      currentRate: 78.8,
-      continuingRate: 21.2,
+      currentRate: 100.0,
+      continuingRate: 53.6,
       sharePercent: 100.0,
       currentAmount: 23139535.38,
-      continuingAmount: 6209495.0,
-      totalAllotment: 29349030.38,
-      allotFormatted: '₱29.35M',
+      continuingAmount: 12409495.0,
+      totalAllotment: 35549030.38,
+      allotFormatted: '₱35.55M',
     },
   ],
   'Dec Week 1': createBlankWeekData(),
@@ -222,7 +222,7 @@ export default function ObligationAmountDashboardChart({
 }: Props) {
   const [selectedWeek, setSelectedWeek] = useState<WeekKey>('Nov 4th Week');
   const [scopeFilter, setScopeFilter] = useState<ScopeMode>('COMPARE');
-  const [includeTotalBenchmark, setIncludeTotalBenchmark] = useState<boolean>(true);
+  const [includeTotalBenchmark, setIncludeTotalBenchmark] = useState<boolean>(false);
   const [viewMode, setViewMode] = useState<ViewMode>('BAR_BREAKDOWN');
 
   // Crisp hover tooltip state
@@ -261,10 +261,32 @@ export default function ObligationAmountDashboardChart({
 
   const DBM_BENCHMARK = 80.0;
   const chartHeight = 250;
-  const maxScale = 100;
+
+  const maxScale = useMemo(() => {
+    let maxVal = 100;
+    for (const item of activeWeekItems) {
+      if (scopeFilter === 'COMPARE') {
+        maxVal = Math.max(maxVal, item.currentRate, item.continuingRate);
+      } else if (scopeFilter === 'CURRENT') {
+        maxVal = Math.max(maxVal, item.currentRate);
+      } else if (scopeFilter === 'CONTINUING') {
+        maxVal = Math.max(maxVal, item.continuingRate);
+      }
+    }
+    if (maxVal <= 100) return 100;
+    return Math.ceil(maxVal / 25) * 25;
+  }, [activeWeekItems, scopeFilter]);
+
+  const yAxisTicks = useMemo(() => {
+    const ticks: number[] = [];
+    for (let val = maxScale; val >= 0; val -= 25) {
+      ticks.push(val);
+    }
+    return ticks;
+  }, [maxScale]);
 
   const getColumnHeight = (rateVal: number) => {
-    const clamped = Math.min(100, Math.max(0, rateVal));
+    const clamped = Math.min(maxScale, Math.max(0, rateVal));
     return Math.max(6, (clamped / maxScale) * (chartHeight - 40));
   };
 
@@ -496,7 +518,7 @@ export default function ObligationAmountDashboardChart({
                     pointerEvents: 'none',
                   }}
                 >
-                  {[100, 75, 50, 25, 0].map((pct) => {
+                  {yAxisTicks.map((pct) => {
                     const btm = (pct / maxScale) * (chartHeight - 40);
                     return (
                       <div
@@ -902,9 +924,11 @@ function AnimatedColumnFooter({
         {isTotal ? totalBadgeLabel() : `${animShare.toFixed(2)}% Total`}
       </span>
 
-      <span style={{ fontSize: 11, color: '#64748B', fontWeight: 500 }}>
-        Allot: {formatShort(animAllot)}
-      </span>
+      {!isTotal && (
+        <span style={{ fontSize: 11, color: '#64748B', fontWeight: 500 }}>
+          Allot: {formatShort(animAllot)}
+        </span>
+      )}
     </div>
   );
 }

@@ -212,10 +212,10 @@ export const FALLBACK_OBLIGATION_ITEMS: ObligationListItem[] = [
     pap: 'INS',
     currentDetails: 'Pump and Engine Set',
     currentAmt: 4900000.0,
-    continuingDetails: '-',
-    continuingAmt: 0.0,
-    rowTotal: 4900000.0,
-    statusType: 'current',
+    continuingDetails: 'Pump and Engine Set',
+    continuingAmt: 4900000.0,
+    rowTotal: 9800000.0,
+    statusType: 'both',
   },
   {
     id: 'obl-17',
@@ -223,10 +223,10 @@ export const FALLBACK_OBLIGATION_ITEMS: ObligationListItem[] = [
     pap: 'INS',
     currentDetails: 'EAO',
     currentAmt: 1300000.0,
-    continuingDetails: '-',
-    continuingAmt: 0.0,
-    rowTotal: 1300000.0,
-    statusType: 'current',
+    continuingDetails: 'EAO',
+    continuingAmt: 1300000.0,
+    rowTotal: 2600000.0,
+    statusType: 'both',
   },
 ];
 
@@ -280,7 +280,7 @@ function parseCSV(text: string): string[][] {
 }
 
 const DISK_CACHE_PATH = path.join(process.cwd(), 'data', 'obligation_list_cache.json');
-const CACHE_TTL_MS = 10 * 1000; // 10 seconds for live Google Sheets updates
+const CACHE_TTL_MS = 5 * 1000; // 5 seconds for fast live Google Sheets sync
 
 const gGlobal = globalThis as unknown as {
   __daObligationListCache?: { data: ObligationListResult; timestamp: number };
@@ -440,46 +440,27 @@ export async function fetchObligationListSheet(forceRefresh = false): Promise<Ob
   }
   const cached = gGlobal.__daObligationListCache;
 
-  // 1. Fresh cache
+  // 1. Fresh cache within TTL
   if (!forceRefresh && cached && now - cached.timestamp < CACHE_TTL_MS) {
     return cached.data;
   }
 
-  // 2. Stale cache: return stale and revalidate
-  if (!forceRefresh && cached) {
-    if (!gGlobal.__daObligationListInflight) {
-      gGlobal.__daObligationListInflight = doFetchFromGoogleSheet()
-        .then((fresh) => {
-          if (fresh.items.length > 0) {
-            const entry = { data: fresh, timestamp: Date.now() };
-            gGlobal.__daObligationListCache = entry;
-            saveDiskCache(entry);
-          }
-          return fresh;
-        })
-        .catch(() => cached.data)
-        .finally(() => {
-          gGlobal.__daObligationListInflight = null;
-        });
-    }
-    return cached.data;
-  }
-
-  // 3. Cold start
-  if (gGlobal.__daObligationListInflight) {
-    return gGlobal.__daObligationListInflight;
-  }
-
-  gGlobal.__daObligationListInflight = doFetchFromGoogleSheet()
-    .then((fresh) => {
+  // 2. Fetch fresh live data directly from Google Sheets
+  try {
+    const fresh = await doFetchFromGoogleSheet();
+    if (fresh.items.length > 0) {
       const entry = { data: fresh, timestamp: Date.now() };
       gGlobal.__daObligationListCache = entry;
       saveDiskCache(entry);
       return fresh;
-    })
-    .finally(() => {
-      gGlobal.__daObligationListInflight = null;
-    });
+    }
+  } catch (err) {
+    console.warn('[ObligationList] Live fetch error, falling back to cache:', err);
+  }
 
-  return gGlobal.__daObligationListInflight;
+  if (cached?.data) {
+    return cached.data;
+  }
+
+  return compileSummary(FALLBACK_OBLIGATION_ITEMS, new Date().toISOString());
 }
