@@ -512,7 +512,9 @@ export default function SummaryOfSuppliesClient({ initialData }: Props) {
                 <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" vertical={false} />
                 <XAxis
                   dataKey="province"
-                  tick={{ fontSize: 12, fill: '#334155', fontWeight: 600 }}
+                  interval={0}
+                  tick={{ fontSize: 11, fill: '#334155', fontWeight: 600 }}
+                  tickFormatter={(v: string) => (v === 'Mountain Province' ? 'Mt. Prov.' : v)}
                   axisLine={{ stroke: '#cbd5e1' }}
                 />
                 <YAxis
@@ -521,6 +523,7 @@ export default function SummaryOfSuppliesClient({ initialData }: Props) {
                   tickFormatter={(v: number) => (v >= 1000 ? `${(v / 1000).toFixed(0)}k` : String(v))}
                 />
                 <Tooltip
+                  allowEscapeViewBox={{ x: false, y: true }}
                   contentStyle={{
                     backgroundColor: '#ffffff',
                     borderColor: '#e2e8f0',
@@ -551,7 +554,7 @@ export default function SummaryOfSuppliesClient({ initialData }: Props) {
                       fill={CATEGORY_COLORS[cat]}
                       stroke="#ffffff"
                       strokeWidth={1}
-                      barSize={52}
+                      maxBarSize={52}
                       style={{ cursor: 'pointer' }}
                     />
                   )
@@ -660,8 +663,8 @@ export default function SummaryOfSuppliesClient({ initialData }: Props) {
           <div
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
-              gap: '6px 12px',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(210px, 1fr))',
+              gap: '4px 10px',
               marginTop: 8,
               paddingTop: 10,
               borderTop: '1px solid #f1f5f9',
@@ -704,9 +707,7 @@ export default function SummaryOfSuppliesClient({ initialData }: Props) {
                       style={{
                         fontWeight: isSelected ? 700 : 500,
                         color: '#334155',
-                        overflow: 'hidden',
-                        textOverflow: 'ellipsis',
-                        whiteSpace: 'nowrap',
+                        lineHeight: 1.25,
                       }}
                       title={fs.fundSource}
                     >

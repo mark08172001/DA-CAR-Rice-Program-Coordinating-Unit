@@ -1,13 +1,13 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { Maximize2, Minimize2 } from 'lucide-react';
 import {
   Map as LeafletMap,
   TileLayer,
   Marker,
   CircleMarker,
   Polygon,
-  LatLngBounds,
   divIcon,
 } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -50,6 +50,22 @@ const CAR_BOUNDARY_COORDS: [number, number][] = [
   [18.18, 120.72],
 ];
 
+const CAR_PROVINCES = new Set([
+  'Abra',
+  'Apayao',
+  'Benguet',
+  'Ifugao',
+  'Kalinga',
+  'Mountain Province',
+]);
+
+const isWithinCAR = (site: MappedDeliverySite): boolean =>
+  CAR_PROVINCES.has(site.province) &&
+  site.lat >= 16.05 &&
+  site.lat <= 18.70 &&
+  site.lng >= 120.25 &&
+  site.lng <= 121.85;
+
 const PROVINCE_COLORS: Record<string, string> = {
   Abra: '#0284c7',
   Apayao: '#16a34a',
@@ -67,24 +83,44 @@ export default function CarDeliveryMap({
   selectedSiteKey,
   onSelectSite,
 }: CarDeliveryMapProps) {
+  const wrapperRef = useRef<HTMLDivElement | null>(null);
   const mapContainerRef = useRef<HTMLDivElement | null>(null);
   const mapInstanceRef = useRef<LeafletMap | null>(null);
   const markersRef = useRef<Map<string, Marker>>(new Map());
   const layersRef = useRef<(Marker | CircleMarker)[]>([]);
+  const [isFullscreen, setIsFullscreen] = useState(false);
 
-  // Initialize Leaflet Map locked strictly to Cordillera Administrative Region (CAR)
+  useEffect(() => {
+    const handleFsChange = () => {
+      const active = document.fullscreenElement === wrapperRef.current;
+      setIsFullscreen(active);
+      setTimeout(() => {
+        mapInstanceRef.current?.invalidateSize();
+      }, 120);
+    };
+    document.addEventListener('fullscreenchange', handleFsChange);
+    return () => document.removeEventListener('fullscreenchange', handleFsChange);
+  }, []);
+
+  const handleToggleFullscreen = async () => {
+    try {
+      if (!document.fullscreenElement && wrapperRef.current) {
+        await wrapperRef.current.requestFullscreen();
+      } else if (document.fullscreenElement) {
+        await document.exitFullscreen();
+      }
+    } catch {
+      // Fallback if browser blocks fullscreen
+    }
+  };
+
+  // Initialize Leaflet Map centered on Cordillera Administrative Region (unlocked panning/zooming)
   useEffect(() => {
     if (!mapContainerRef.current || mapInstanceRef.current) return;
-
-    const carBounds = new LatLngBounds([16.05, 120.25], [18.70, 121.85]);
 
     const map = new LeafletMap(mapContainerRef.current, {
       center: [17.32, 121.02],
       zoom: 8,
-      minZoom: 8,
-      maxZoom: 15,
-      maxBounds: carBounds,
-      maxBoundsViscosity: 1.0,
       zoomControl: true,
     });
 
@@ -122,9 +158,11 @@ export default function CarDeliveryMap({
     layersRef.current = [];
     markersRef.current.clear();
 
-    const maxUnits = Math.max(1, ...sites.map((s) => s.totalUnits));
+    // Only plot delivery sites within the Cordillera Administrative Region (CAR)
+    const carSites = sites.filter(isWithinCAR);
+    const maxUnits = Math.max(1, ...carSites.map((s) => s.totalUnits));
 
-    sites.forEach((site) => {
+    carSites.forEach((site) => {
       const color = PROVINCE_COLORS[site.province] || '#166534';
       const ratio = site.totalUnits / maxUnits;
       const radius = Math.max(8, Math.min(28, 8 + Math.sqrt(ratio) * 20));
@@ -233,15 +271,23 @@ export default function CarDeliveryMap({
   };
 
   return (
-    <div style={{ position: 'relative', width: '100%', height: '100%' }}>
+    <div
+      ref={wrapperRef}
+      style={{
+        position: 'relative',
+        width: '100%',
+        height: isFullscreen ? '100vh' : '100%',
+        background: '#ffffff',
+      }}
+    >
       <div
         ref={mapContainerRef}
         id="map"
         style={{
           width: '100%',
-          height: 500,
-          borderRadius: 10,
-          border: '1px solid #cbd5e1',
+          height: isFullscreen ? '100vh' : 500,
+          borderRadius: isFullscreen ? 0 : 10,
+          border: isFullscreen ? 'none' : '1px solid #cbd5e1',
           zIndex: 1,
         }}
       />
@@ -256,20 +302,6 @@ export default function CarDeliveryMap({
           gap: 8,
         }}
       >
-        <span
-          style={{
-            background: 'rgba(255, 255, 255, 0.94)',
-            border: '1px solid #cbd5e1',
-            borderRadius: 6,
-            padding: '5px 10px',
-            fontSize: 11,
-            fontWeight: 700,
-            color: '#14532d',
-            boxShadow: '0 1px 4px rgba(0,0,0,0.08)',
-          }}
-        >
-          Locked: Cordillera Administrative Region (CAR)
-        </span>
         <button
           type="button"
           onClick={handleResetView}
@@ -286,6 +318,28 @@ export default function CarDeliveryMap({
           }}
         >
           Reset Map
+        </button>
+        <button
+          type="button"
+          onClick={handleToggleFullscreen}
+          title={isFullscreen ? 'Exit Full Screen' : 'Full Screen'}
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: 5,
+            background: '#ffffff',
+            color: '#0f172a',
+            border: '1px solid #cbd5e1',
+            borderRadius: 6,
+            padding: '5px 10px',
+            fontSize: 11,
+            fontWeight: 700,
+            cursor: 'pointer',
+            boxShadow: '0 1px 4px rgba(0,0,0,0.10)',
+          }}
+        >
+          {isFullscreen ? <Minimize2 size={13} /> : <Maximize2 size={13} />}
+          <span>{isFullscreen ? 'Exit' : 'Full Screen'}</span>
         </button>
       </div>
     </div>
