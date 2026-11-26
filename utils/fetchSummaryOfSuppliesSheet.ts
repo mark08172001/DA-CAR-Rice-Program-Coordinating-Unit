@@ -366,9 +366,13 @@ function parseSummaryOfSuppliesCSV(csvText: string, fetchedAt: string): SummaryO
     }
 
     // Delivery Site Item: has a valid CAR Province and positive site quantity
-    const province = normalizeProvince(rawProvince);
+    let province = normalizeProvince(rawProvince);
+    const municipality = normalizeMunicipality(rawMun);
+    // Correct sheet typos where Ifugao municipalities (Alfonso Lista, Lamut) are mislabeled under another province
+    if (municipality === 'Alfonso Lista' || municipality === 'Lamut') {
+      province = 'Ifugao';
+    }
     if (province && siteQty > 0) {
-      const municipality = normalizeMunicipality(rawMun);
       const fundSource = currentFundSource || 'Unclassified';
       deliveries.push({
         row: sheetRowNum,

@@ -70,8 +70,6 @@ const CAR_SITE_COORDS: Record<string, [number, number]> = {
   'Kalinga|Tabuk': [17.4500, 121.4500],
   'Kalinga|Rizal': [17.4950, 121.5850],
   'Kalinga|Rizal (DS)': [17.5030, 121.5920],
-  'Kalinga|Alfonso Lista': [16.9320, 121.4650],
-  'Kalinga|Lamut': [16.6560, 121.2230],
   'Kalinga|Kalinga': [17.4450, 121.4420],
   'Kalinga|Provincial / OPAG Drop-off': [17.4550, 121.4580],
   'Mountain Province|Bauko': [16.9789, 120.8692],
