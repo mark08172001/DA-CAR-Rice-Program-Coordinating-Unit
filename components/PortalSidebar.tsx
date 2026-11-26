@@ -219,15 +219,15 @@ export default function PortalSidebar({
       icon: Coins,
       subItems: [
         {
-          label: 'Obligation Dashboard',
+          label: 'Allotment vs Obligation',
           href: '/rice/balances',
-          icon: BarChart3,
+          icon: Coins,
           isSubItem: true,
         },
         {
-          label: 'Allotment vs Obligation',
-          href: '/rice/balances/registry',
-          icon: Coins,
+          label: 'Obligation Dashboard',
+          href: '/rice/balances/dashboard',
+          icon: BarChart3,
           isSubItem: true,
         },
       ],

@@ -33,14 +33,11 @@ export default function RiceHeroHeader() {
     heading = 'Commodity Claims Dashboard';
     description =
       'Certified RSBSA farmer beneficiary transactions, subsidy redemptions, and regional distribution totals for hybrid palay seeds and fertilizers.';
-  } else if (pathname === '/rice/balances') {
+  } else if (pathname.startsWith('/rice/balances/dashboard')) {
     heading = 'Dashboard';
-    description = '';
-  } else if (pathname.startsWith('/rice/balances/registry')) {
-    heading = 'Allotment vs Obligation';
     description = '';
   } else if (pathname.startsWith('/rice/balances')) {
-    heading = 'Dashboard';
+    heading = 'Allotment vs Obligation';
     description = '';
   } else if (pathname.startsWith('/rice/disbursement')) {
     heading = 'Disbursement Records';

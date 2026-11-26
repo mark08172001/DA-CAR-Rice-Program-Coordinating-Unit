@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useCallback, useMemo } from 'react';
+import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import Link from 'next/link';
 import {
   RefreshCw,
@@ -43,7 +43,7 @@ interface ObligationBudgetClientProps {
 
 const DEFAULT_TOTAL_BANNER_RICE: ObligationCategoryItem = {
   id: 'total_rice',
-  name: 'TOTAL BANNER RICE',
+  name: 'TOTAL',
   // Allotment: Current (H61), Continuing (I61), Total (J61)
   allocation: 645448159.0,
   continuingAlloc: 66896760.38,
@@ -1018,19 +1018,296 @@ function PillarBudgetCard({
   );
 }
 
+// Smooth animated number hook using requestAnimationFrame & easeOutCubic
+function useAnimatedNumber(target: number, duration: number = 550) {
+  const [val, setVal] = useState(target);
+  const valRef = useRef(target);
+
+  useEffect(() => {
+    let frameId: number;
+    const startVal = valRef.current;
+    const diff = target - startVal;
+    if (Math.abs(diff) < 0.001) {
+      valRef.current = target;
+      setVal(target);
+      return;
+    }
+    const startTime = performance.now();
+
+    const tick = (now: number) => {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const ease = 1 - Math.pow(1 - progress, 3);
+      const current = startVal + diff * ease;
+      valRef.current = current;
+      setVal(current);
+      if (progress < 1) {
+        frameId = requestAnimationFrame(tick);
+      } else {
+        valRef.current = target;
+        setVal(target);
+      }
+    };
+
+    frameId = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(frameId);
+  }, [target, duration]);
+
+  return val;
+}
+
+function AnimatedBenchmarkBarColumn({
+  cat,
+  scopeFilter,
+  isFilteredOut,
+  getColumnHeight,
+  onSelect,
+}: {
+  cat: ObligationCategoryItem;
+  scopeFilter: 'COMPARE' | 'CURRENT' | 'CONTINUING' | 'TOTAL';
+  isFilteredOut: boolean;
+  getColumnHeight: (val: number) => number;
+  onSelect?: () => void;
+}) {
+  const currentRate = cat.rate || 0;
+  const continuingRate = cat.rateContinuing || 0;
+  const totalRate = cat.rateTotal || 0;
+
+  const animCurrentRate = useAnimatedNumber(currentRate, 550);
+  const animContinuingRate = useAnimatedNumber(continuingRate, 550);
+  const animTotalRate = useAnimatedNumber(totalRate, 550);
+
+  return (
+    <div
+      onClick={onSelect}
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        height: '100%',
+        justifyContent: 'flex-end',
+        padding: '0 4px',
+        opacity: isFilteredOut ? 0.25 : 1,
+        transition: 'opacity 0.4s ease',
+        cursor: onSelect ? 'pointer' : 'default',
+      }}
+    >
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'flex-end',
+          gap: 4,
+          width: '75%',
+          maxWidth: 88,
+          height: '100%',
+          justifyContent: 'center',
+        }}
+      >
+        {/* Bar 1 (Green): CURRENT (Col Q) */}
+        {(scopeFilter === 'COMPARE' || scopeFilter === 'CURRENT') && (
+          <div
+            style={{
+              flex: 1,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              height: '100%',
+              justifyContent: 'flex-end',
+            }}
+          >
+            <span
+              style={{
+                fontSize: 10,
+                fontWeight: 700,
+                color: '#136c38',
+                marginBottom: 4,
+                whiteSpace: 'nowrap',
+              }}
+            >
+              {animCurrentRate.toFixed(1)}%
+            </span>
+            <div
+              style={{
+                width: '100%',
+                height: getColumnHeight(animCurrentRate),
+                backgroundColor: '#136c38',
+                border: '1px solid #0f522a',
+                borderRadius: '4px 4px 0 0',
+                transition: 'height 0.15s linear',
+              }}
+              title={`${cat.name} Current: ${animCurrentRate.toFixed(2)}%`}
+            />
+          </div>
+        )}
+
+        {/* Bar 2 (Yellow): CONTINUING (Col R) */}
+        {(scopeFilter === 'COMPARE' || scopeFilter === 'CONTINUING') && (
+          <div
+            style={{
+              flex: 1,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              height: '100%',
+              justifyContent: 'flex-end',
+            }}
+          >
+            <span
+              style={{
+                fontSize: 10,
+                fontWeight: 700,
+                color: '#a16207',
+                marginBottom: 4,
+                whiteSpace: 'nowrap',
+              }}
+            >
+              {animContinuingRate.toFixed(1)}%
+            </span>
+            <div
+              style={{
+                width: '100%',
+                height: getColumnHeight(animContinuingRate),
+                backgroundColor: '#eab308',
+                border: '1px solid #ca8a04',
+                borderRadius: '4px 4px 0 0',
+                transition: 'height 0.15s linear',
+              }}
+              title={`${cat.name} Continuing: ${animContinuingRate.toFixed(2)}%`}
+            />
+          </div>
+        )}
+
+        {/* Bar 3 (Blue): TOTAL (Col S) */}
+        {scopeFilter === 'TOTAL' && (
+          <div
+            style={{
+              flex: 1,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              height: '100%',
+              justifyContent: 'flex-end',
+            }}
+          >
+            <span
+              style={{
+                fontSize: 10,
+                fontWeight: 700,
+                color: '#0284c7',
+                marginBottom: 4,
+                whiteSpace: 'nowrap',
+              }}
+            >
+              {animTotalRate.toFixed(1)}%
+            </span>
+            <div
+              style={{
+                width: '100%',
+                height: getColumnHeight(animTotalRate),
+                backgroundColor: '#0284c7',
+                border: '1px solid #0369a1',
+                borderRadius: '4px 4px 0 0',
+                transition: 'height 0.15s linear',
+              }}
+              title={`${cat.name} Total: ${animTotalRate.toFixed(2)}%`}
+            />
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function AnimatedBenchmarkLabelColumn({
+  cat,
+  isTotal,
+  isFilteredOut,
+  onSelect,
+}: {
+  cat: ObligationCategoryItem;
+  isTotal: boolean;
+  isFilteredOut: boolean;
+  onSelect?: () => void;
+}) {
+  const totalRate = cat.rateTotal || 0;
+  const alloc = cat.totalAlloc || cat.allocation || 0;
+
+  const animTotalRate = useAnimatedNumber(totalRate, 550);
+  const animAlloc = useAnimatedNumber(alloc, 550);
+
+  return (
+    <div
+      onClick={onSelect}
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        gap: 3,
+        backgroundColor: isTotal ? '#f0fdf4' : 'transparent',
+        padding: isTotal ? '6px 4px' : '4px',
+        borderRadius: 6,
+        border: isTotal ? '1px solid #bbf7d0' : 'none',
+        opacity: isFilteredOut ? 0.25 : 1,
+        transition: 'all 0.4s ease',
+        cursor: onSelect ? 'pointer' : 'default',
+      }}
+    >
+      <span
+        style={{
+          fontSize: 12.5,
+          fontWeight: 800,
+          color: isTotal ? '#14532d' : '#0f172a',
+          letterSpacing: '-0.1px',
+        }}
+      >
+        {cat.name}
+      </span>
+
+      <span
+        style={{
+          fontSize: 11,
+          fontWeight: 700,
+          color: animTotalRate >= 80 ? '#065f46' : '#92400e',
+          backgroundColor: animTotalRate >= 80 ? '#ecfdf5' : '#fffbeb',
+          padding: '1px 8px',
+          borderRadius: 6,
+          border: animTotalRate >= 80 ? '1px solid #a7f3d0' : '1px solid #fde68a',
+          transition: 'all 0.3s ease',
+        }}
+      >
+        {animTotalRate.toFixed(2)}% Total
+      </span>
+
+      <span style={{ fontSize: 11, color: '#64748b' }}>
+        Allot: {formatShortMoney(animAlloc)}
+      </span>
+    </div>
+  );
+}
+
 // -------------------------------------------------------------
 // 2. % OBLIGATION VERSUS ALLOTMENT (BENCHMARK ANALYSIS GRAPH)
 // Mapping SAAODB Google Sheet cells Q61:S66
 // Programs: PSS, ESETS, RD, and INS Rice (plus Banner Rice Benchmark)
 // -------------------------------------------------------------
-function ObligationRateAllotmentGraph({
+export function ObligationRateAllotmentGraph({
   categories,
   totalBannerRice,
   initialScope = 'COMPARE',
+  title = '% Obligation versus Allotment',
+  subtitle,
+  cardStyle,
+  activePapFilter,
+  onSelectPap,
 }: {
   categories: ObligationCategoryItem[];
   totalBannerRice?: ObligationCategoryItem;
   initialScope?: 'COMPARE' | 'CURRENT' | 'CONTINUING' | 'TOTAL';
+  title?: string;
+  subtitle?: string;
+  cardStyle?: React.CSSProperties;
+  activePapFilter?: string;
+  onSelectPap?: (pap: string) => void;
 }) {
   const [scopeFilter, setScopeFilter] = useState<'COMPARE' | 'CURRENT' | 'CONTINUING' | 'TOTAL'>(initialScope);
   const [includeTotalBenchmark, setIncludeTotalBenchmark] = useState(true);
@@ -1075,6 +1352,7 @@ function ObligationRateAllotmentGraph({
         display: 'flex',
         flexDirection: 'column',
         gap: 20,
+        ...cardStyle,
       }}
     >
       {/* Top Header & Executive Controls */}
@@ -1091,30 +1369,6 @@ function ObligationRateAllotmentGraph({
         }}
       >
         <div style={{ flex: '1 1 360px', minWidth: 280 }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap', marginBottom: 4 }}>
-            <span
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: 5,
-                backgroundColor: '#f0fdf4',
-                color: '#166534',
-                border: '1px solid #bbf7d0',
-                padding: '2px 8px',
-                borderRadius: 6,
-                fontSize: 11,
-                fontWeight: 700,
-                letterSpacing: '0.2px',
-              }}
-            >
-              <BarChart2 size={12} />
-            </span>
-
-            <span style={{ fontSize: 11.5, color: '#64748b' }}>
-              Registry of Allotments & Obligations
-            </span>
-          </div>
-
           <h2
             style={{
               fontSize: 20,
@@ -1124,12 +1378,20 @@ function ObligationRateAllotmentGraph({
               letterSpacing: '-0.2px',
             }}
           >
-            % Obligation versus Allotment
+            {title}
           </h2>
 
-          <p style={{ fontSize: 13, color: '#64748b', margin: 0, lineHeight: 1.5 }}>
-            Comparative fund utilization performance across Current, Continuing Appropriations, and Total Obligations.
-          </p>
+          {subtitle !== undefined ? (
+            subtitle ? (
+              <p style={{ fontSize: 13, color: '#64748b', margin: 0, lineHeight: 1.5 }}>
+                {subtitle}
+              </p>
+            ) : null
+          ) : (
+            <p style={{ fontSize: 13, color: '#64748b', margin: 0, lineHeight: 1.5 }}>
+              Comparative fund utilization performance across Current, Continuing Appropriations, and Total Obligations.
+            </p>
+          )}
         </div>
 
         {/* Right Action Controls: Scope Filter, Include Benchmark */}
@@ -1161,7 +1423,6 @@ function ObligationRateAllotmentGraph({
               { id: 'COMPARE', label: 'Current vs Continuing' },
               { id: 'CURRENT', label: 'Current' },
               { id: 'CONTINUING', label: 'Continuing' },
-              { id: 'TOTAL', label: 'Total Utilized' },
             ].map((tab) => {
               const isSel = scopeFilter === tab.id;
               return (
@@ -1206,7 +1467,7 @@ function ObligationRateAllotmentGraph({
                 onChange={(e) => setIncludeTotalBenchmark(e.target.checked)}
                 style={{ cursor: 'pointer', accentColor: '#136c38' }}
               />
-              <span>Include Banner Total Benchmark</span>
+              <span>Total</span>
             </label>
           </div>
         </div>
@@ -1393,148 +1654,31 @@ function ObligationRateAllotmentGraph({
             }}
           >
             {targetPrograms.map((cat) => {
-              const currentRate = cat.rate || 0;
-              const continuingRate = cat.rateContinuing || 0;
-              const totalRate = cat.rateTotal || 0;
+              const isFilteredOut = Boolean(
+                activePapFilter &&
+                activePapFilter !== 'All' &&
+                !cat.name.toUpperCase().includes(activePapFilter.toUpperCase()) &&
+                cat.id !== 'total_rice'
+              );
+
+              const getPapCode = (name: string, id: string) => {
+                const up = (name + ' ' + id).toUpperCase();
+                if (up.includes('PSS')) return 'PSS';
+                if (up.includes('ESETS')) return 'ESETS';
+                if (up.includes('RD')) return 'RD';
+                if (up.includes('INS')) return 'INS';
+                return 'All';
+              };
 
               return (
-                <div
+                <AnimatedBenchmarkBarColumn
                   key={cat.id}
-                  style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    height: '100%',
-                    justifyContent: 'flex-end',
-                    padding: '0 4px',
-                  }}
-                >
-                  <div
-                    style={{
-                      display: 'flex',
-                      alignItems: 'flex-end',
-                      gap: 4,
-                      width: '75%',
-                      maxWidth: 88,
-                      height: '100%',
-                      justifyContent: 'center',
-                    }}
-                  >
-                    {/* Bar 1 (Green): CURRENT (Col Q) */}
-                    {(scopeFilter === 'COMPARE' || scopeFilter === 'CURRENT') && (
-                      <div
-                        style={{
-                          flex: 1,
-                          display: 'flex',
-                          flexDirection: 'column',
-                          alignItems: 'center',
-                          height: '100%',
-                          justifyContent: 'flex-end',
-                        }}
-                      >
-                        <span
-                          style={{
-                            fontSize: 10,
-                            fontWeight: 700,
-                            color: '#136c38',
-                            marginBottom: 4,
-                            whiteSpace: 'nowrap',
-                          }}
-                        >
-                          {currentRate.toFixed(1)}%
-                        </span>
-                        <div
-                          style={{
-                            width: '100%',
-                            height: getColumnHeight(currentRate),
-                            backgroundColor: '#136c38',
-                            border: '1px solid #0f522a',
-                            borderRadius: '4px 4px 0 0',
-                            transition: 'height 0.6s ease',
-                            cursor: 'pointer',
-                          }}
-                          title={`${cat.name} Current (Col Q): ${currentRate.toFixed(2)}%`}
-                        />
-                      </div>
-                    )}
-
-                    {/* Bar 2 (Yellow): CONTINUING (Col R) */}
-                    {(scopeFilter === 'COMPARE' || scopeFilter === 'CONTINUING') && (
-                      <div
-                        style={{
-                          flex: 1,
-                          display: 'flex',
-                          flexDirection: 'column',
-                          alignItems: 'center',
-                          height: '100%',
-                          justifyContent: 'flex-end',
-                        }}
-                      >
-                        <span
-                          style={{
-                            fontSize: 10,
-                            fontWeight: 700,
-                            color: '#a16207',
-                            marginBottom: 4,
-                            whiteSpace: 'nowrap',
-                          }}
-                        >
-                          {continuingRate.toFixed(1)}%
-                        </span>
-                        <div
-                          style={{
-                            width: '100%',
-                            height: getColumnHeight(continuingRate),
-                            backgroundColor: '#eab308',
-                            border: '1px solid #ca8a04',
-                            borderRadius: '4px 4px 0 0',
-                            transition: 'height 0.6s ease',
-                            cursor: 'pointer',
-                          }}
-                          title={`${cat.name} Continuing (Col R): ${continuingRate.toFixed(2)}%`}
-                        />
-                      </div>
-                    )}
-
-                    {/* Bar 3 (Blue): TOTAL (Col S) */}
-                    {scopeFilter === 'TOTAL' && (
-                      <div
-                        style={{
-                          flex: 1,
-                          display: 'flex',
-                          flexDirection: 'column',
-                          alignItems: 'center',
-                          height: '100%',
-                          justifyContent: 'flex-end',
-                        }}
-                      >
-                        <span
-                          style={{
-                            fontSize: 10,
-                            fontWeight: 700,
-                            color: '#0284c7',
-                            marginBottom: 4,
-                            whiteSpace: 'nowrap',
-                          }}
-                        >
-                          {totalRate.toFixed(1)}%
-                        </span>
-                        <div
-                          style={{
-                            width: '100%',
-                            height: getColumnHeight(totalRate),
-                            backgroundColor: '#0284c7',
-                            border: '1px solid #0369a1',
-                            borderRadius: '4px 4px 0 0',
-                            transition: 'height 0.6s ease',
-                            cursor: 'pointer',
-                          }}
-                          title={`${cat.name} Total Rate (Col S): ${totalRate.toFixed(2)}%`}
-                        />
-                      </div>
-                    )}
-                  </div>
-                </div>
+                  cat={cat}
+                  scopeFilter={scopeFilter}
+                  isFilteredOut={isFilteredOut}
+                  getColumnHeight={getColumnHeight}
+                  onSelect={onSelectPap ? () => onSelectPap(getPapCode(cat.name, cat.id)) : undefined}
+                />
               );
             })}
           </div>
@@ -1554,51 +1698,30 @@ function ObligationRateAllotmentGraph({
         >
           {targetPrograms.map((cat) => {
             const isTotal = cat.id === 'total_rice';
-            const totalRate = cat.rateTotal || 0;
+            const isFilteredOut = Boolean(
+              activePapFilter &&
+              activePapFilter !== 'All' &&
+              !cat.name.toUpperCase().includes(activePapFilter.toUpperCase()) &&
+              cat.id !== 'total_rice'
+            );
+
+            const getPapCode = (name: string, id: string) => {
+              const up = (name + ' ' + id).toUpperCase();
+              if (up.includes('PSS')) return 'PSS';
+              if (up.includes('ESETS')) return 'ESETS';
+              if (up.includes('RD')) return 'RD';
+              if (up.includes('INS')) return 'INS';
+              return 'All';
+            };
 
             return (
-              <div
+              <AnimatedBenchmarkLabelColumn
                 key={cat.id}
-                style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  gap: 3,
-                  backgroundColor: isTotal ? '#f0fdf4' : 'transparent',
-                  padding: isTotal ? '6px 4px' : '4px',
-                  borderRadius: 6,
-                  border: isTotal ? '1px solid #bbf7d0' : 'none',
-                }}
-              >
-                <span
-                  style={{
-                    fontSize: 12.5,
-                    fontWeight: 800,
-                    color: isTotal ? '#14532d' : '#0f172a',
-                    letterSpacing: '-0.1px',
-                  }}
-                >
-                  {cat.name}
-                </span>
-
-                <span
-                  style={{
-                    fontSize: 11,
-                    fontWeight: 700,
-                    color: totalRate >= 80 ? '#065f46' : '#92400e',
-                    backgroundColor: totalRate >= 80 ? '#ecfdf5' : '#fffbeb',
-                    padding: '1px 8px',
-                    borderRadius: 6,
-                    border: totalRate >= 80 ? '1px solid #a7f3d0' : '1px solid #fde68a',
-                  }}
-                >
-                  {totalRate.toFixed(2)}% Total
-                </span>
-
-                <span style={{ fontSize: 11, color: '#64748b' }}>
-                  Allot: {formatShortMoney(cat.totalAlloc || cat.allocation || 0)}
-                </span>
-              </div>
+                cat={cat}
+                isTotal={isTotal}
+                isFilteredOut={isFilteredOut}
+                onSelect={onSelectPap ? () => onSelectPap(getPapCode(cat.name, cat.id)) : undefined}
+              />
             );
           })}
         </div>
