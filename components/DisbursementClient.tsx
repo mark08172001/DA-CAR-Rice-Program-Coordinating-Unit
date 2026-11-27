@@ -121,6 +121,7 @@ export default function DisbursementClient({
   const [endUserFilter, setEndUserFilter] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState('');
   const deferredSearch = useDeferredValue(searchQuery);
+  const [visibleLimit, setVisibleLimit] = useState(100);
   const [sortField, setSortField] = useState<'payee' | 'status' | 'endUser' | 'totalObligation' | 'grossAmount' | 'unpaidObligation' | 'rate'>('totalObligation');
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('desc');
 
@@ -354,6 +355,21 @@ export default function DisbursementClient({
     }
   };
 
+  useEffect(() => {
+    setVisibleLimit(100);
+  }, [selectedView, papFilter, statusFilter, endUserFilter, deferredSearch]);
+
+  const searchIndex = useMemo(() => {
+    const map = new Map<string, string>();
+    for (const r of records) {
+      map.set(
+        r.id,
+        `${getDisplayPayee(r)} ${r.particulars || ''} ${r.orsNumber || ''} ${r.ppaCode || ''} ${r.status || ''} ${r.endUser || ''}`.toLowerCase()
+      );
+    }
+    return map;
+  }, [records, getDisplayPayee]);
+
   const filteredRecords = useMemo(() => {
     let list = records;
     if (papFilter !== 'all') {
@@ -374,17 +390,7 @@ export default function DisbursementClient({
     }
     if (deferredSearch.trim()) {
       const q = deferredSearch.toLowerCase().trim();
-      list = list.filter((r) => {
-        const payeeText = getDisplayPayee(r).toLowerCase();
-        return (
-          payeeText.includes(q) ||
-          (r.particulars && r.particulars.toLowerCase().includes(q)) ||
-          (r.orsNumber && r.orsNumber.toLowerCase().includes(q)) ||
-          (r.ppaCode && r.ppaCode.toLowerCase().includes(q)) ||
-          (r.status && r.status.toLowerCase().includes(q)) ||
-          (r.endUser && r.endUser.toLowerCase().includes(q))
-        );
-      });
+      list = list.filter((r) => (searchIndex.get(r.id) || '').includes(q));
     }
 
     return [...list].sort((a, b) => {
@@ -982,7 +988,8 @@ export default function DisbursementClient({
                     </td>
                   </tr>
                 ) : (
-                  filteredRecords.map((item, idx) => (
+                  <>
+                  {filteredRecords.slice(0, visibleLimit).map((item, idx) => (
                     <tr
                       key={item.id}
                       style={{
@@ -1096,7 +1103,51 @@ export default function DisbursementClient({
                         })()}
                       </td>
                     </tr>
-                  ))
+                  ))}
+                  {filteredRecords.length > visibleLimit && (
+                    <tr>
+                      <td colSpan={8} style={{ padding: '12px 16px', textAlign: 'center', background: '#f8fafc', borderBottom: '1px solid #e2e8f0' }}>
+                        <div style={{ display: 'inline-flex', alignItems: 'center', gap: 10, flexWrap: 'wrap', justifyContent: 'center' }}>
+                          <span style={{ fontSize: 12, color: '#64748b' }}>
+                            Showing {visibleLimit} of {filteredRecords.length} records
+                          </span>
+                          <button
+                            type="button"
+                            onClick={() => setVisibleLimit((prev) => prev + 100)}
+                            style={{
+                              padding: '5px 12px',
+                              fontSize: 12,
+                              fontWeight: 700,
+                              borderRadius: 6,
+                              border: '1px solid #166534',
+                              background: '#166534',
+                              color: '#ffffff',
+                              cursor: 'pointer',
+                            }}
+                          >
+                            Load 100 More
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => setVisibleLimit(filteredRecords.length)}
+                            style={{
+                              padding: '5px 12px',
+                              fontSize: 12,
+                              fontWeight: 600,
+                              borderRadius: 6,
+                              border: '1px solid #cbd5e1',
+                              background: '#ffffff',
+                              color: '#334155',
+                              cursor: 'pointer',
+                            }}
+                          >
+                            Show All ({filteredRecords.length})
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  )}
+                  </>
                 )}
               </tbody>
               {/* Table Footer with Summary Column Totals */}
@@ -1107,20 +1158,18 @@ export default function DisbursementClient({
                       SUMMARY TOTAL ({filteredRecords.length} items)
                     </td>
                     <td style={{ padding: '10px 10px', textAlign: 'right', color: '#0f172a', fontVariantNumeric: 'tabular-nums', background: '#f8fafc', fontSize: 12, whiteSpace: 'nowrap' }}>
-                      {formatCurrency(filteredRecords.reduce((sum, r) => sum + r.totalObligation, 0))}
+                      {formatCurrency(displayTotals.totalObligation)}
                     </td>
                     <td style={{ padding: '10px 10px', textAlign: 'right', color: '#15803d', fontVariantNumeric: 'tabular-nums', background: '#f8fafc', fontSize: 12, whiteSpace: 'nowrap' }}>
-                      {formatCurrency(filteredRecords.reduce((sum, r) => sum + r.grossAmount, 0))}
+                      {formatCurrency(displayTotals.grossAmount)}
                     </td>
                     <td style={{ padding: '10px 10px', textAlign: 'right', color: '#b45309', fontVariantNumeric: 'tabular-nums', background: '#f8fafc', fontSize: 12, whiteSpace: 'nowrap' }}>
-                      {formatCurrency(filteredRecords.reduce((sum, r) => sum + r.unpaidObligation, 0))}
+                      {formatCurrency(displayTotals.unpaidObligation)}
                     </td>
                     <td style={{ padding: '10px 10px', textAlign: 'right', color: '#059669', fontVariantNumeric: 'tabular-nums', background: '#f8fafc', fontWeight: 800, fontSize: 12, whiteSpace: 'nowrap' }}>
-                      {(() => {
-                        const sumTot = filteredRecords.reduce((sum, r) => sum + r.totalObligation, 0);
-                        const sumPaid = filteredRecords.reduce((sum, r) => sum + r.grossAmount, 0);
-                        return sumTot > 0 ? `${((sumPaid / sumTot) * 100).toFixed(2)}%` : '0.00%';
-                      })()}
+                      {displayTotals.totalObligation > 0
+                        ? `${((displayTotals.grossAmount / displayTotals.totalObligation) * 100).toFixed(2)}%`
+                        : '0.00%'}
                     </td>
                   </tr>
                 </tfoot>
