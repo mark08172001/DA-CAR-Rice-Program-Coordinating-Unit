@@ -183,6 +183,39 @@ function normalizeProvince(raw: string): Exclude<ProvinceName, 'All Provinces'> 
   return '';
 }
 
+const CAR_MUNICIPALITY_PROVINCE: Array<[string, Exclude<ProvinceName, 'All Provinces'>]> = [
+  ['BANGUED', 'Abra'], ['BOLINEY', 'Abra'], ['BUCAY', 'Abra'], ['BUCLOC', 'Abra'],
+  ['DAGUIOMAN', 'Abra'], ['DANGLAS', 'Abra'], ['DOLORES', 'Abra'], ['LA PAZ', 'Abra'],
+  ['LACUB', 'Abra'], ['LAGANGILANG', 'Abra'], ['LAGAYAN', 'Abra'], ['LANGIDEN', 'Abra'],
+  ['LICUAN-BAAY', 'Abra'], ['LUBA', 'Abra'], ['MALIBCONG', 'Abra'], ['MANABO', 'Abra'],
+  ['PENARRUBIA', 'Abra'], ['PEÑARRUBIA', 'Abra'], ['PIDIGAN', 'Abra'], ['PILAR', 'Abra'],
+  ['SALLAPADAN', 'Abra'], ['SAN ISIDRO', 'Abra'], ['SAN JUAN', 'Abra'], ['SAN QUINTIN', 'Abra'],
+  ['TAYUM', 'Abra'], ['TINEG', 'Abra'], ['TUBO', 'Abra'], ['VILLAVICIOSA', 'Abra'],
+  ['CALANASAN', 'Apayao'], ['CONNER', 'Apayao'], ['FLORA', 'Apayao'], ['KABUGAO', 'Apayao'],
+  ['LUNA', 'Apayao'], ['PUDTOL', 'Apayao'], ['STA. MARCELA', 'Apayao'], ['SANTA MARCELA', 'Apayao'],
+  ['ATOK', 'Benguet'], ['BAGUIO', 'Benguet'], ['BAKUN', 'Benguet'], ['BOKOD', 'Benguet'],
+  ['BUGUIAS', 'Benguet'], ['ITOGON', 'Benguet'], ['KABAYAN', 'Benguet'], ['KAPANGAN', 'Benguet'],
+  ['KIBUNGAN', 'Benguet'], ['LA TRINIDAD', 'Benguet'], ['MANKAYAN', 'Benguet'], ['SABLAN', 'Benguet'],
+  ['TUBA', 'Benguet'], ['TUBLAY', 'Benguet'],
+  ['AGUINALDO', 'Ifugao'], ['ALFONSO LISTA', 'Ifugao'], ['ASIPULO', 'Ifugao'], ['BANAUE', 'Ifugao'],
+  ['HINGYON', 'Ifugao'], ['HUNGDUAN', 'Ifugao'], ['KIANGAN', 'Ifugao'], ['LAGAWE', 'Ifugao'],
+  ['LAMUT', 'Ifugao'], ['MAYOYAO', 'Ifugao'], ['TINOC', 'Ifugao'],
+  ['BALBALAN', 'Kalinga'], ['LUBUAGAN', 'Kalinga'], ['PASIL', 'Kalinga'], ['PINUKPUK', 'Kalinga'],
+  ['RIZAL', 'Kalinga'], ['TABUK', 'Kalinga'], ['TANUDAN', 'Kalinga'], ['TINGLAYAN', 'Kalinga'],
+  ['BARLIG', 'Mountain Province'], ['BAUKO', 'Mountain Province'], ['BESAO', 'Mountain Province'],
+  ['BONTOC', 'Mountain Province'], ['NATONIN', 'Mountain Province'], ['PARACELIS', 'Mountain Province'],
+  ['SABANGAN', 'Mountain Province'], ['SADANGA', 'Mountain Province'], ['SAGADA', 'Mountain Province'],
+  ['TADIAN', 'Mountain Province'],
+];
+
+function inferProvinceFromMunicipality(municipality: string): Exclude<ProvinceName, 'All Provinces'> | '' {
+  const u = municipality.toUpperCase();
+  for (const [mun, prov] of CAR_MUNICIPALITY_PROVINCE) {
+    if (u.includes(mun)) return prov;
+  }
+  return '';
+}
+
 function normalizeMunicipality(raw: string): string {
   const s = raw.replace(/\s+/g, ' ').trim();
   if (!s) return 'Provincial / OPAG Drop-off';
@@ -369,6 +402,9 @@ function parseSummaryOfSuppliesCSV(csvText: string, fetchedAt: string): SummaryO
     // Delivery Site Item: has a valid CAR Province and positive site quantity
     let province = normalizeProvince(rawProvince);
     const municipality = normalizeMunicipality(rawMun);
+    if (!province) {
+      province = inferProvinceFromMunicipality(municipality);
+    }
     // Correct sheet typos where Ifugao municipalities (Alfonso Lista, Lamut) are mislabeled under another province
     if (municipality === 'Alfonso Lista' || municipality === 'Lamut') {
       province = 'Ifugao';
