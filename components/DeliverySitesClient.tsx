@@ -118,6 +118,12 @@ const CATEGORIES: Exclude<InputCategoryName, 'All Categories'>[] = [
 const formatNumber = (num: number) =>
   new Intl.NumberFormat('en-PH', { maximumFractionDigits: 0 }).format(num);
 
+const formatCompact = (num: number) => {
+  if (num >= 1_000_000) return `${(num / 1_000_000).toFixed(1)}M`;
+  if (num >= 1_000) return `${(num / 1_000).toFixed(1)}k`;
+  return formatNumber(num);
+};
+
 interface Props {
   initialData: SummaryOfSuppliesResult;
 }
@@ -138,6 +144,12 @@ export default function DeliverySitesClient({ initialData }: Props) {
   const [sortAsc, setSortAsc] = useState(false);
 
   const [breakdownTab, setBreakdownTab] = useState<'fundSource' | 'season' | 'drops'>('fundSource');
+  const [dropsSearch, setDropsSearch] = useState<string>('');
+  const deferredDropsSearch = useDeferredValue(dropsSearch);
+  const [dropsProvince, setDropsProvince] = useState<ProvinceName>('All Provinces');
+  const [dropsFundSource, setDropsFundSource] = useState<FundSourceName>('All Fund Sources');
+  const [dropsSeason, setDropsSeason] = useState<SeasonName>('All Seasons');
+  const [dropsCategory, setDropsCategory] = useState<InputCategoryName>('All Categories');
 
   useEffect(() => {
     setData(initialData);
@@ -314,7 +326,72 @@ export default function DeliverySitesClient({ initialData }: Props) {
     return totals;
   }, [filteredDeliveries]);
 
+  const fundSourceMaxCell = useMemo(() => {
+    let max = 0;
+    fundSourceMatrix.forEach((row) => {
+      PROVINCE_LIST.forEach((p) => {
+        if ((row.counts[p] || 0) > max) max = row.counts[p] || 0;
+      });
+    });
+    return max;
+  }, [fundSourceMatrix]);
+
+  const seasonMaxCell = useMemo(() => {
+    let max = 0;
+    seasonMatrix.forEach((row) => {
+      PROVINCE_LIST.forEach((p) => {
+        if ((row.counts[p] || 0) > max) max = row.counts[p] || 0;
+      });
+    });
+    return max;
+  }, [seasonMatrix]);
+
+  const getHeatmapCellStyle = (value: number, maxVal: number): React.CSSProperties => {
+    if (!value || maxVal <= 0) {
+      return {
+        color: '#cbd5e1',
+        fontWeight: 400,
+      };
+    }
+    const ratio = Math.min(1, Math.max(0, value / maxVal));
+    const intensity = Math.pow(ratio, 0.72);
+    if (intensity >= 0.65) {
+      const alpha = 0.62 + (intensity - 0.65) * 0.65;
+      return {
+        background: `rgba(22, 101, 52, ${alpha.toFixed(2)})`,
+        color: '#ffffff',
+        fontWeight: 700,
+      };
+    }
+    const alpha = 0.08 + intensity * 0.5;
+    return {
+      background: `rgba(22, 163, 74, ${alpha.toFixed(2)})`,
+      color: '#0f291e',
+      fontWeight: intensity > 0.35 ? 700 : 600,
+    };
+  };
+
   const totalUnits = provinceColumnTotals.total;
+
+  const filteredDrops = useMemo(() => {
+    const q = deferredDropsSearch.trim().toLowerCase();
+    return filteredDeliveries.filter((d) => {
+      if (dropsProvince !== 'All Provinces' && d.province !== dropsProvince) return false;
+      if (dropsFundSource !== 'All Fund Sources' && d.fundSource !== dropsFundSource) return false;
+      if (dropsSeason !== 'All Seasons' && d.season !== dropsSeason) return false;
+      if (dropsCategory !== 'All Categories' && d.category !== dropsCategory) return false;
+      if (q) {
+        const hit =
+          d.municipality.toLowerCase().includes(q) ||
+          d.province.toLowerCase().includes(q) ||
+          d.product.toLowerCase().includes(q) ||
+          d.fundSource.toLowerCase().includes(q) ||
+          d.supplier.toLowerCase().includes(q);
+        if (!hit) return false;
+      }
+      return true;
+    });
+  }, [filteredDeliveries, deferredDropsSearch, dropsProvince, dropsFundSource, dropsSeason, dropsCategory]);
 
   const hasFilters =
     selectedProvince !== 'All Provinces' ||
@@ -647,32 +724,18 @@ export default function DeliverySitesClient({ initialData }: Props) {
                 <tr style={{ background: '#f1f5f9', borderBottom: '1px solid #e2e8f0', color: '#475569' }}>
                   <th
                     onClick={() => toggleSort('municipality')}
-                    style={{ padding: '9px 12px', fontWeight: 700, cursor: 'pointer' }}
+                    style={{ padding: '9px 14px', fontWeight: 700, cursor: 'pointer' }}
                   >
                     <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4 }}>
-                      Site <ArrowUpDown size={11} />
+                      Site &amp; Province <ArrowUpDown size={11} />
                     </span>
-                  </th>
-                  <th
-                    onClick={() => toggleSort('province')}
-                    style={{ padding: '9px 10px', fontWeight: 700, cursor: 'pointer' }}
-                  >
-                    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4 }}>
-                      Province <ArrowUpDown size={11} />
-                    </span>
-                  </th>
-                  <th
-                    onClick={() => toggleSort('dropCount')}
-                    style={{ padding: '9px 10px', fontWeight: 700, textAlign: 'right', cursor: 'pointer' }}
-                  >
-                    Drops
                   </th>
                   <th
                     onClick={() => toggleSort('totalUnits')}
-                    style={{ padding: '9px 12px', fontWeight: 700, textAlign: 'right', cursor: 'pointer' }}
+                    style={{ padding: '9px 14px', fontWeight: 700, textAlign: 'right', cursor: 'pointer', width: 150 }}
                   >
                     <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4 }}>
-                      Units <ArrowUpDown size={11} />
+                      Volume <ArrowUpDown size={11} />
                     </span>
                   </th>
                 </tr>
@@ -680,36 +743,63 @@ export default function DeliverySitesClient({ initialData }: Props) {
               <tbody>
                 {mappedSites.length === 0 ? (
                   <tr>
-                    <td colSpan={4} style={{ padding: 28, textAlign: 'center', color: '#64748b' }}>
+                    <td colSpan={2} style={{ padding: 28, textAlign: 'center', color: '#64748b' }}>
                       No delivery sites match your filters.
                     </td>
                   </tr>
                 ) : (
-                  mappedSites.map((s) => {
-                    const isSelected = selectedSiteKey === s.key;
-                    return (
-                      <tr
-                        key={s.key}
-                        onClick={() => setSelectedSiteKey(isSelected ? null : s.key)}
-                        style={{
-                          borderBottom: '1px solid #f1f5f9',
-                          background: isSelected ? '#f0fdf4' : '#ffffff',
-                          cursor: 'pointer',
-                        }}
-                      >
-                        <td style={{ padding: '9px 12px', fontWeight: 700, color: '#0f172a' }}>
-                          {s.municipality}
-                        </td>
-                        <td style={{ padding: '9px 10px', color: '#475569' }}>{s.province}</td>
-                        <td style={{ padding: '9px 10px', textAlign: 'right', color: '#64748b' }}>
-                          {s.dropCount}
-                        </td>
-                        <td style={{ padding: '9px 12px', textAlign: 'right', fontWeight: 700, color: '#166534' }}>
-                          {formatNumber(s.totalUnits)}
-                        </td>
-                      </tr>
-                    );
-                  })
+                  (() => {
+                    const maxSiteUnits = mappedSites.reduce((m, x) => Math.max(m, x.totalUnits), 0) || 1;
+                    return mappedSites.map((s) => {
+                      const isSelected = selectedSiteKey === s.key;
+                      const barPct = Math.max(4, Math.round((s.totalUnits / maxSiteUnits) * 100));
+                      return (
+                        <tr
+                          key={s.key}
+                          onClick={() => setSelectedSiteKey(isSelected ? null : s.key)}
+                          title={`${s.municipality}, ${s.province} — ${formatNumber(s.totalUnits)} units (${s.dropCount} drops)`}
+                          style={{
+                            borderBottom: '1px solid #f1f5f9',
+                            background: isSelected ? '#f0fdf4' : '#ffffff',
+                            cursor: 'pointer',
+                          }}
+                        >
+                          <td style={{ padding: '9px 14px' }}>
+                            <div style={{ fontWeight: 700, color: '#0f172a', lineHeight: 1.25 }}>
+                              {s.municipality}
+                            </div>
+                            <div style={{ fontSize: 11, color: '#64748b', marginTop: 2 }}>
+                              {s.province} · {s.dropCount} {s.dropCount === 1 ? 'drop' : 'drops'}
+                            </div>
+                          </td>
+                          <td style={{ padding: '9px 14px', textAlign: 'right', verticalAlign: 'middle' }}>
+                            <div style={{ fontWeight: 700, color: '#166534', fontSize: 12.5 }}>
+                              {formatCompact(s.totalUnits)}
+                            </div>
+                            <div
+                              style={{
+                                width: '100%',
+                                height: 5,
+                                borderRadius: 99,
+                                background: '#e2e8f0',
+                                overflow: 'hidden',
+                                marginTop: 4,
+                              }}
+                            >
+                              <div
+                                style={{
+                                  width: `${barPct}%`,
+                                  height: '100%',
+                                  borderRadius: 99,
+                                  background: isSelected ? '#15803d' : '#22c55e',
+                                }}
+                              />
+                            </div>
+                          </td>
+                        </tr>
+                      );
+                    });
+                  })()
                 )}
               </tbody>
             </table>
@@ -743,16 +833,35 @@ export default function DeliverySitesClient({ initialData }: Props) {
             <h3 style={{ fontSize: 15, fontWeight: 700, color: '#0f172a', margin: 0 }}>
               Supply Distribution Breakdown (Per Province, Fund Source &amp; Season)
             </h3>
-            <p style={{ fontSize: 12, color: '#64748b', margin: '2px 0 0' }}>
-              Cross-tabulated summary of units delivered across all 6 CAR provinces
-            </p>
+            <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 12, marginTop: 3 }}>
+              <p style={{ fontSize: 12, color: '#64748b', margin: 0 }}>
+                Cross-tabulated summary of units delivered across all 6 CAR provinces
+              </p>
+              {(breakdownTab === 'fundSource' || breakdownTab === 'season') && (
+                <div style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 11, color: '#475569', fontWeight: 600 }}>
+                  <span>Low</span>
+                  <span
+                    aria-hidden="true"
+                    style={{
+                      width: 68,
+                      height: 8,
+                      borderRadius: 99,
+                      background: 'linear-gradient(90deg, rgba(22,163,74,0.12) 0%, rgba(22,163,74,0.45) 55%, rgba(22,101,52,0.88) 100%)',
+                      border: '1px solid #cbd5e1',
+                      display: 'inline-block',
+                    }}
+                  />
+                  <span>High</span>
+                </div>
+              )}
+            </div>
           </div>
 
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
             {[
               { id: 'fundSource', label: 'By Province & Fund Source' },
               { id: 'season', label: 'By Province & Season' },
-              { id: 'drops', label: `All Delivery Drops (${filteredDeliveries.length})` },
+              { id: 'drops', label: `All Delivery Drops (${filteredDrops.length})` },
             ].map((tab) => {
               const active = breakdownTab === tab.id;
               return (
@@ -810,18 +919,23 @@ export default function DeliverySitesClient({ initialData }: Props) {
                     {PROVINCE_LIST.map((p) => (
                       <td
                         key={p}
+                        title={row.counts[p] ? `${p}: ${formatNumber(row.counts[p])} units` : undefined}
                         style={{
                           padding: '10px 12px',
                           textAlign: 'right',
-                          color: row.counts[p] ? '#1e293b' : '#cbd5e1',
-                          fontWeight: row.counts[p] ? 600 : 400,
+                          borderLeft: '1px solid rgba(226, 232, 240, 0.5)',
+                          transition: 'background-color 0.2s ease',
+                          ...getHeatmapCellStyle(row.counts[p] || 0, fundSourceMaxCell),
                         }}
                       >
-                        {row.counts[p] ? formatNumber(row.counts[p]) : '—'}
+                        {row.counts[p] ? formatCompact(row.counts[p]) : '—'}
                       </td>
                     ))}
-                    <td style={{ padding: '10px 14px', textAlign: 'right', fontWeight: 800, color: '#166534' }}>
-                      {formatNumber(row.counts.total)}
+                    <td
+                      title={`${formatNumber(row.counts.total)} units`}
+                      style={{ padding: '10px 14px', textAlign: 'right', fontWeight: 800, color: '#166534' }}
+                    >
+                      {formatCompact(row.counts.total)}
                     </td>
                   </tr>
                 ))}
@@ -872,18 +986,23 @@ export default function DeliverySitesClient({ initialData }: Props) {
                     {PROVINCE_LIST.map((p) => (
                       <td
                         key={p}
+                        title={row.counts[p] ? `${p}: ${formatNumber(row.counts[p])} units` : undefined}
                         style={{
                           padding: '10px 12px',
                           textAlign: 'right',
-                          color: row.counts[p] ? '#1e293b' : '#cbd5e1',
-                          fontWeight: row.counts[p] ? 600 : 400,
+                          borderLeft: '1px solid rgba(226, 232, 240, 0.5)',
+                          transition: 'background-color 0.2s ease',
+                          ...getHeatmapCellStyle(row.counts[p] || 0, seasonMaxCell),
                         }}
                       >
-                        {row.counts[p] ? formatNumber(row.counts[p]) : '—'}
+                        {row.counts[p] ? formatCompact(row.counts[p]) : '—'}
                       </td>
                     ))}
-                    <td style={{ padding: '10px 14px', textAlign: 'right', fontWeight: 800, color: '#166534' }}>
-                      {formatNumber(row.counts.total)}
+                    <td
+                      title={`${formatNumber(row.counts.total)} units`}
+                      style={{ padding: '10px 14px', textAlign: 'right', fontWeight: 800, color: '#166534' }}
+                    >
+                      {formatCompact(row.counts.total)}
                     </td>
                   </tr>
                 ))}
@@ -905,19 +1024,143 @@ export default function DeliverySitesClient({ initialData }: Props) {
           )}
 
           {breakdownTab === 'drops' && (
-            <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: 12 }}>
-              <thead style={{ position: 'sticky', top: 0, zIndex: 5 }}>
-                <tr style={{ background: '#f1f5f9', borderBottom: '1px solid #e2e8f0', color: '#475569' }}>
-                  <th style={{ padding: '10px 14px', fontWeight: 700 }}>Province</th>
-                  <th style={{ padding: '10px 14px', fontWeight: 700 }}>Municipality / Site</th>
-                  <th style={{ padding: '10px 14px', fontWeight: 700 }}>Fund Source</th>
-                  <th style={{ padding: '10px 14px', fontWeight: 700 }}>Season</th>
-                  <th style={{ padding: '10px 14px', fontWeight: 700 }}>Product</th>
-                  <th style={{ padding: '10px 14px', fontWeight: 700, textAlign: 'right' }}>Quantity</th>
-                </tr>
-              </thead>
-              <tbody>
-                {filteredDeliveries.map((d, idx) => (
+            <>
+              {/* Filter Bar for All Delivery Drops */}
+              <div
+                style={{
+                  padding: '12px 16px',
+                  background: '#ffffff',
+                  borderBottom: '1px solid #e2e8f0',
+                  display: 'flex',
+                  flexWrap: 'wrap',
+                  alignItems: 'center',
+                  gap: 8,
+                }}
+              >
+                <div style={{ position: 'relative', flex: '1 1 220px', minWidth: 'min(100%, 200px)' }}>
+                  <Search
+                    size={13}
+                    style={{
+                      position: 'absolute',
+                      left: 10,
+                      top: '50%',
+                      transform: 'translateY(-50%)',
+                      color: '#94a3b8',
+                    }}
+                  />
+                  <input
+                    type="text"
+                    value={dropsSearch}
+                    onChange={(e) => setDropsSearch(e.target.value)}
+                    placeholder="Filter drops by site, product, supplier..."
+                    style={{
+                      width: '100%',
+                      padding: '6px 10px 6px 28px',
+                      fontSize: 12,
+                      borderRadius: 6,
+                      border: '1px solid #cbd5e1',
+                      outline: 'none',
+                    }}
+                  />
+                </div>
+
+                <select
+                  value={dropsProvince}
+                  onChange={(e) => setDropsProvince(e.target.value as ProvinceName)}
+                  style={{ padding: '6px 8px', fontSize: 12, fontWeight: 600, borderRadius: 6, border: '1px solid #cbd5e1', background: '#ffffff' }}
+                >
+                  <option value="All Provinces">All Provinces</option>
+                  {PROVINCE_LIST.map((p) => (
+                    <option key={p} value={p}>{p}</option>
+                  ))}
+                </select>
+
+                <select
+                  value={dropsFundSource}
+                  onChange={(e) => setDropsFundSource(e.target.value as FundSourceName)}
+                  style={{ padding: '6px 8px', fontSize: 12, fontWeight: 600, borderRadius: 6, border: '1px solid #cbd5e1', background: '#ffffff' }}
+                >
+                  <option value="All Fund Sources">All Fund Sources</option>
+                  {allFundSources.map((fs) => (
+                    <option key={fs} value={fs}>{fs}</option>
+                  ))}
+                </select>
+
+                <select
+                  value={dropsSeason}
+                  onChange={(e) => setDropsSeason(e.target.value as SeasonName)}
+                  style={{ padding: '6px 8px', fontSize: 12, fontWeight: 600, borderRadius: 6, border: '1px solid #cbd5e1', background: '#ffffff' }}
+                >
+                  <option value="All Seasons">All Seasons</option>
+                  {SEASON_LIST.map((s) => (
+                    <option key={s} value={s}>{s}</option>
+                  ))}
+                </select>
+
+                <select
+                  value={dropsCategory}
+                  onChange={(e) => setDropsCategory(e.target.value as InputCategoryName)}
+                  style={{ padding: '6px 8px', fontSize: 12, fontWeight: 600, borderRadius: 6, border: '1px solid #cbd5e1', background: '#ffffff' }}
+                >
+                  <option value="All Categories">All Categories</option>
+                  {CATEGORIES.map((c) => (
+                    <option key={c} value={c}>{c}</option>
+                  ))}
+                </select>
+
+                {(dropsSearch.trim() !== '' ||
+                  dropsProvince !== 'All Provinces' ||
+                  dropsFundSource !== 'All Fund Sources' ||
+                  dropsSeason !== 'All Seasons' ||
+                  dropsCategory !== 'All Categories') && (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setDropsSearch('');
+                      setDropsProvince('All Provinces');
+                      setDropsFundSource('All Fund Sources');
+                      setDropsSeason('All Seasons');
+                      setDropsCategory('All Categories');
+                    }}
+                    style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: 4,
+                      padding: '6px 10px',
+                      fontSize: 11.5,
+                      fontWeight: 700,
+                      borderRadius: 6,
+                      border: '1px solid #fca5a5',
+                      background: '#fef2f2',
+                      color: '#b91c1c',
+                      cursor: 'pointer',
+                    }}
+                  >
+                    <RotateCcw size={12} /> Clear
+                  </button>
+                )}
+              </div>
+
+              <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: 12 }}>
+                <thead style={{ position: 'sticky', top: 0, zIndex: 5 }}>
+                  <tr style={{ background: '#f1f5f9', borderBottom: '1px solid #e2e8f0', color: '#475569' }}>
+                    <th style={{ padding: '10px 14px', fontWeight: 700 }}>Province</th>
+                    <th style={{ padding: '10px 14px', fontWeight: 700 }}>Municipality / Site</th>
+                    <th style={{ padding: '10px 14px', fontWeight: 700 }}>Fund Source</th>
+                    <th style={{ padding: '10px 14px', fontWeight: 700 }}>Season</th>
+                    <th style={{ padding: '10px 14px', fontWeight: 700 }}>Product</th>
+                    <th style={{ padding: '10px 14px', fontWeight: 700, textAlign: 'right' }}>Quantity</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {filteredDrops.length === 0 ? (
+                    <tr>
+                      <td colSpan={6} style={{ padding: 28, textAlign: 'center', color: '#64748b' }}>
+                        No delivery drops match your filters.
+                      </td>
+                    </tr>
+                  ) : (
+                    filteredDrops.map((d, idx) => (
                   <tr
                     key={`${d.row}-${d.province}-${d.municipality}-${d.product}-${idx}`}
                     style={{
@@ -949,9 +1192,11 @@ export default function DeliverySitesClient({ initialData }: Props) {
                       {formatNumber(d.quantity)} <span style={{ color: '#64748b', fontWeight: 400 }}>{d.unit}</span>
                     </td>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                ))
+                  )}
+                </tbody>
+              </table>
+            </>
           )}
         </div>
       </div>
