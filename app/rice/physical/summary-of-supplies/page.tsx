@@ -65,7 +65,7 @@ export default async function SummaryOfSuppliesPage() {
     );
   }
 
-  const result = await fetchSummaryOfSuppliesSheet(true);
+  const result = await fetchSummaryOfSuppliesSheet(false);
 
   return (
     <section className="content-section" style={{ padding: '16px 0 60px' }}>

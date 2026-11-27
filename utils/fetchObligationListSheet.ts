@@ -280,7 +280,7 @@ function parseCSV(text: string): string[][] {
 }
 
 const DISK_CACHE_PATH = path.join(process.cwd(), 'data', 'obligation_list_cache.json');
-const CACHE_TTL_MS = 0; // Always fetch live updates from Google Sheets
+const CACHE_TTL_MS = 30 * 1000; // 30s fresh TTL + instant stale-while-revalidate
 
 const gGlobal = globalThis as unknown as {
   __daObligationListCache?: { data: ObligationListResult; timestamp: number };
@@ -433,6 +433,27 @@ async function doFetchFromGoogleSheet(): Promise<ObligationListResult> {
   }
 }
 
+async function refreshObligationInBackground(): Promise<ObligationListResult> {
+  if (gGlobal.__daObligationListInflight) {
+    return gGlobal.__daObligationListInflight;
+  }
+  const promise = (async () => {
+    try {
+      const fresh = await doFetchFromGoogleSheet();
+      if (fresh.items.length > 0) {
+        const entry = { data: fresh, timestamp: Date.now() };
+        gGlobal.__daObligationListCache = entry;
+        saveDiskCache(entry);
+      }
+      return fresh;
+    } finally {
+      gGlobal.__daObligationListInflight = null;
+    }
+  })();
+  gGlobal.__daObligationListInflight = promise;
+  return promise;
+}
+
 export async function fetchObligationListSheet(forceRefresh = false): Promise<ObligationListResult> {
   const now = Date.now();
   if (gGlobal.__daObligationListCache === undefined) {
@@ -445,13 +466,16 @@ export async function fetchObligationListSheet(forceRefresh = false): Promise<Ob
     return cached.data;
   }
 
-  // 2. Fetch fresh live data directly from Google Sheets
+  // 2. Stale-while-revalidate: return cached data immediately and refresh in background
+  if (!forceRefresh && cached?.data) {
+    void refreshObligationInBackground().catch(() => {});
+    return cached.data;
+  }
+
+  // 3. No cache or forced refresh: await deduplicated fetch
   try {
-    const fresh = await doFetchFromGoogleSheet();
+    const fresh = await refreshObligationInBackground();
     if (fresh.items.length > 0) {
-      const entry = { data: fresh, timestamp: Date.now() };
-      gGlobal.__daObligationListCache = entry;
-      saveDiskCache(entry);
       return fresh;
     }
   } catch (err) {

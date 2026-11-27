@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo, useEffect, useRef } from 'react';
 import {
   PackageCheck,
   MapPin,
@@ -90,6 +90,52 @@ const formatCompactCurrency = (num: number): string => {
   return formatCurrency(num);
 };
 
+const AnimatedValue = React.memo(function AnimatedValue({
+  value,
+  format,
+  duration = 550,
+}: {
+  value: number;
+  format: (n: number) => string;
+  duration?: number;
+}) {
+  const [display, setDisplay] = useState(value);
+  const currentRef = useRef(value);
+
+  useEffect(() => {
+    const startVal = currentRef.current;
+    const diff = value - startVal;
+    if (Math.abs(diff) < 0.01) {
+      currentRef.current = value;
+      setDisplay(value);
+      return;
+    }
+
+    let rafId = 0;
+    const startTime = performance.now();
+
+    const step = (now: number) => {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const nextVal = startVal + diff * eased;
+      currentRef.current = nextVal;
+      setDisplay(nextVal);
+      if (progress < 1) {
+        rafId = requestAnimationFrame(step);
+      } else {
+        currentRef.current = value;
+        setDisplay(value);
+      }
+    };
+
+    rafId = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(rafId);
+  }, [value, duration]);
+
+  return <>{format(display)}</>;
+});
+
 interface Props {
   initialData: SummaryOfSuppliesResult;
 }
@@ -101,29 +147,36 @@ export default function SummaryOfSuppliesClient({ initialData }: Props) {
     setData(initialData);
   }, [initialData]);
 
-  // Background polling (every 20s and on window focus) for live Google Sheet updates
+  // Background polling (every 60s when tab is visible) for live Google Sheet updates
   useEffect(() => {
     let isMounted = true;
     const fetchLatest = async () => {
+      if (typeof document !== 'undefined' && document.hidden) return;
       try {
-        const res = await fetch('/api/rice/summary-of-supplies');
+        const res = await fetch('/api/rice/summary-of-supplies?refresh=false');
         if (!res.ok) return;
         const fresh = await res.json();
         if (fresh && Array.isArray(fresh.contracts) && Array.isArray(fresh.deliveries) && isMounted) {
-          setData(fresh);
+          setData((prev) => {
+            if (
+              prev.contracts.length === fresh.contracts.length &&
+              prev.deliveries.length === fresh.deliveries.length &&
+              prev.fetchedAt === fresh.fetchedAt
+            ) {
+              return prev;
+            }
+            return fresh;
+          });
         }
       } catch {
         // Silently ignore background polling errors
       }
     };
 
-    const interval = setInterval(fetchLatest, 20000);
-    const handleFocus = () => fetchLatest();
-    window.addEventListener('focus', handleFocus);
+    const interval = setInterval(fetchLatest, 60000);
     return () => {
       isMounted = false;
       clearInterval(interval);
-      window.removeEventListener('focus', handleFocus);
     };
   }, []);
 
@@ -135,6 +188,9 @@ export default function SummaryOfSuppliesClient({ initialData }: Props) {
   const [selectedFundSource, setSelectedFundSource] = useState<FundSourceName>('All Fund Sources');
   const [selectedSeason, setSelectedSeason] = useState<SeasonName>('All Seasons');
   const [selectedCategory, setSelectedCategory] = useState<InputCategoryName>('All Categories');
+  const [selectedPapKey, setSelectedPapKey] = useState<
+    'All' | 'regWS2026' | 'regDS2026_2027' | 'mfWS2026' | 'mfDS2026_2027'
+  >('All');
   const [searchQuery, setSearchQuery] = useState<string>('');
 
   // Clean 2-view table toggle: Delivery Sites vs Contracts
@@ -160,6 +216,7 @@ export default function SummaryOfSuppliesClient({ initialData }: Props) {
     selectedFundSource !== 'All Fund Sources' ||
     selectedSeason !== 'All Seasons' ||
     selectedCategory !== 'All Categories' ||
+    selectedPapKey !== 'All' ||
     searchQuery.trim() !== '';
 
   const handleResetFilters = () => {
@@ -167,12 +224,13 @@ export default function SummaryOfSuppliesClient({ initialData }: Props) {
     setSelectedFundSource('All Fund Sources');
     setSelectedSeason('All Seasons');
     setSelectedCategory('All Categories');
+    setSelectedPapKey('All');
     setSearchQuery('');
     setPage(1);
   };
 
-  // Filtered Deliveries
-  const filteredDeliveries = useMemo(() => {
+  // Base filtered deliveries (before P/A/P slice filter so the P/A/P donut keeps all slices)
+  const baseFilteredDeliveries = useMemo(() => {
     const q = searchQuery.trim().toLowerCase();
     return deliveries.filter((d) => {
       if (selectedProvince !== 'All Provinces' && d.province !== selectedProvince) return false;
@@ -192,6 +250,15 @@ export default function SummaryOfSuppliesClient({ initialData }: Props) {
     });
   }, [deliveries, selectedProvince, selectedFundSource, selectedSeason, selectedCategory, searchQuery]);
 
+  // Filtered Deliveries (including P/A/P slice selection)
+  const filteredDeliveries = useMemo(() => {
+    if (selectedPapKey === 'All') return baseFilteredDeliveries;
+    return baseFilteredDeliveries.filter((d) => (d[selectedPapKey] || 0) > 0);
+  }, [baseFilteredDeliveries, selectedPapKey]);
+
+  const getDisplayQty = (d: (typeof deliveries)[number]) =>
+    selectedPapKey === 'All' ? d.quantity : d[selectedPapKey] || 0;
+
   // Filtered Contracts
   const filteredContracts = useMemo(() => {
     const q = searchQuery.trim().toLowerCase();
@@ -202,7 +269,7 @@ export default function SummaryOfSuppliesClient({ initialData }: Props) {
     return contracts.filter((c) => {
       if (selectedFundSource !== 'All Fund Sources' && c.fundSource !== selectedFundSource) return false;
       if (selectedCategory !== 'All Categories' && c.category !== selectedCategory) return false;
-      if (selectedProvince !== 'All Provinces') {
+      if (selectedProvince !== 'All Provinces' || selectedPapKey !== 'All' || selectedSeason !== 'All Seasons') {
         const key = `${c.fundSource}||${c.ibNo}||${c.supplier}||${c.category}`;
         if (!matchingKeys.has(key)) return false;
       }
@@ -217,17 +284,20 @@ export default function SummaryOfSuppliesClient({ initialData }: Props) {
       }
       return true;
     });
-  }, [contracts, filteredDeliveries, selectedProvince, selectedFundSource, selectedCategory, searchQuery]);
+  }, [contracts, filteredDeliveries, selectedProvince, selectedFundSource, selectedSeason, selectedCategory, selectedPapKey, searchQuery]);
 
   // Totals
   const totals = useMemo(() => {
     const contractAmount = filteredContracts.reduce((s, c) => s + c.amount, 0);
     const ntpQty = filteredContracts.reduce((s, c) => s + c.ntpQty, 0);
-    const siteUnits = filteredDeliveries.reduce((s, d) => s + d.quantity, 0);
+    const siteUnits = filteredDeliveries.reduce(
+      (s, d) => s + (selectedPapKey === 'All' ? d.quantity : d[selectedPapKey] || 0),
+      0
+    );
     const suppliers = new Set(filteredContracts.map((c) => c.supplier)).size;
     const provinces = new Set(filteredDeliveries.map((d) => d.province)).size;
     return { contractAmount, ntpQty, siteUnits, suppliers, provinces };
-  }, [filteredContracts, filteredDeliveries]);
+  }, [filteredContracts, filteredDeliveries, selectedPapKey]);
 
   // Chart: Units Delivered by Province
   const provinceChartData = useMemo(() => {
@@ -243,36 +313,56 @@ export default function SummaryOfSuppliesClient({ initialData }: Props) {
         'Inbred / Seed Reserve': 0,
       };
       rows.forEach((r) => {
-        cats[r.category] = (cats[r.category] || 0) + r.quantity;
+        const qty = selectedPapKey === 'All' ? r.quantity : r[selectedPapKey] || 0;
+        cats[r.category] = (cats[r.category] || 0) + qty;
       });
       return {
         province: prov,
-        total: rows.reduce((s, r) => s + r.quantity, 0),
+        total: rows.reduce(
+          (s, r) => s + (selectedPapKey === 'All' ? r.quantity : r[selectedPapKey] || 0),
+          0
+        ),
         ...cats,
       };
     });
-  }, [filteredDeliveries]);
+  }, [filteredDeliveries, selectedPapKey]);
 
-  // Fund Source Breakdown
-  const fundSourceBreakdown = useMemo(() => {
-    const map: Record<string, { fundSource: string; amount: number; count: number }> = {};
-    filteredContracts.forEach((c) => {
-      if (!map[c.fundSource]) map[c.fundSource] = { fundSource: c.fundSource, amount: 0, count: 0 };
-      map[c.fundSource].amount += c.amount;
-      map[c.fundSource].count += 1;
+  // Quantity Distribution by P/A/P (Columns N-Q, computed from baseFilteredDeliveries)
+  const papDistributionBreakdown = useMemo(() => {
+    let regWS = 0;
+    let regDS = 0;
+    let mfWS = 0;
+    let mfDS = 0;
+    baseFilteredDeliveries.forEach((d) => {
+      regWS += d.regWS2026 || 0;
+      regDS += d.regDS2026_2027 || 0;
+      mfWS += d.mfWS2026 || 0;
+      mfDS += d.mfDS2026_2027 || 0;
     });
-    const list = Object.values(map).sort((a, b) => b.amount - a.amount);
-    const maxAmt = list[0]?.amount || 1;
-    return list.map((item) => ({
-      ...item,
-      barPct: Math.max(4, Math.round((item.amount / maxAmt) * 100)),
-      sharePct: totals.contractAmount > 0 ? (item.amount / totals.contractAmount) * 100 : 0,
-    }));
-  }, [filteredContracts, totals.contractAmount]);
+    const totalPap = regWS + regDS + mfWS + mfDS;
+    const items = [
+      { key: 'regWS2026' as const, label: 'Regular WS 2026', units: regWS, color: '#166534' },
+      { key: 'regDS2026_2027' as const, label: 'Regular DS 2026-2027', units: regDS, color: '#d97706' },
+      { key: 'mfWS2026' as const, label: 'Model Farm WS 2026', units: mfWS, color: '#0d9488' },
+      { key: 'mfDS2026_2027' as const, label: 'Model Farm DS 2026-2027', units: mfDS, color: '#0284c7' },
+    ];
+    return {
+      totalPap,
+      items: items.map((it) => ({
+        ...it,
+        sharePct: totalPap > 0 ? (it.units / totalPap) * 100 : 0,
+      })),
+    };
+  }, [baseFilteredDeliveries]);
 
   // Sorted Table Rows
   const sortedDeliveries = useMemo(() => {
     return [...filteredDeliveries].sort((a, b) => {
+      if (deliverySortField === 'quantity') {
+        const vA = selectedPapKey === 'All' ? a.quantity : a[selectedPapKey] || 0;
+        const vB = selectedPapKey === 'All' ? b.quantity : b[selectedPapKey] || 0;
+        return deliverySortAsc ? vA - vB : vB - vA;
+      }
       const vA = a[deliverySortField];
       const vB = b[deliverySortField];
       if (typeof vA === 'string' && typeof vB === 'string') {
@@ -280,7 +370,7 @@ export default function SummaryOfSuppliesClient({ initialData }: Props) {
       }
       return deliverySortAsc ? Number(vA) - Number(vB) : Number(vB) - Number(vA);
     });
-  }, [filteredDeliveries, deliverySortField, deliverySortAsc]);
+  }, [filteredDeliveries, deliverySortField, deliverySortAsc, selectedPapKey]);
 
   const sortedContracts = useMemo(() => {
     return [...filteredContracts].sort((a, b) => {
@@ -372,7 +462,7 @@ export default function SummaryOfSuppliesClient({ initialData }: Props) {
               Total Contracted Amount ({filteredContracts.length} Contracts):
             </div>
             <div style={{ fontSize: 22, fontWeight: 800, color: '#0f172a', marginTop: 2 }}>
-              {formatCurrency(totals.contractAmount)}
+              <AnimatedValue value={totals.contractAmount} format={formatCurrency} />
             </div>
           </div>
         </div>
@@ -409,7 +499,7 @@ export default function SummaryOfSuppliesClient({ initialData }: Props) {
               Total Units Distributed ({filteredDeliveries.length} Site Drops):
             </div>
             <div style={{ fontSize: 22, fontWeight: 800, color: '#0f172a', marginTop: 2 }}>
-              {formatNumber(totals.siteUnits)}{' '}
+              <AnimatedValue value={totals.siteUnits} format={formatNumber} />{' '}
               <span style={{ fontSize: 13, fontWeight: 600, color: '#64748b' }}>units</span>
             </div>
           </div>
@@ -465,35 +555,57 @@ export default function SummaryOfSuppliesClient({ initialData }: Props) {
             boxShadow: '0 1px 4px rgba(0,0,0,0.04)',
           }}
         >
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 14 }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 14, flexWrap: 'wrap', gap: 8 }}>
             <div>
               <h3 style={{ fontSize: 15, fontWeight: 700, color: '#0f172a', margin: 0 }}>
                 Units Delivered by Province
               </h3>
               <p style={{ fontSize: 12, color: '#64748b', margin: '2px 0 0' }}>
-                Click any province bar to filter the table below
+                Click any colored bar segment or legend item to filter
               </p>
             </div>
-            {selectedProvince !== 'All Provinces' && (
-              <button
-                onClick={() => {
-                  setSelectedProvince('All Provinces');
-                  setPage(1);
-                }}
-                style={{
-                  fontSize: 11.5,
-                  fontWeight: 600,
-                  color: '#166534',
-                  background: '#f0fdf4',
-                  border: '1px solid #bbf7d0',
-                  borderRadius: 6,
-                  padding: '4px 10px',
-                  cursor: 'pointer',
-                }}
-              >
-                Showing: {selectedProvince} ×
-              </button>
-            )}
+            <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexWrap: 'wrap' }}>
+              {selectedProvince !== 'All Provinces' && (
+                <button
+                  onClick={() => {
+                    setSelectedProvince('All Provinces');
+                    setPage(1);
+                  }}
+                  style={{
+                    fontSize: 11.5,
+                    fontWeight: 600,
+                    color: '#166534',
+                    background: '#f0fdf4',
+                    border: '1px solid #bbf7d0',
+                    borderRadius: 6,
+                    padding: '4px 10px',
+                    cursor: 'pointer',
+                  }}
+                >
+                  Province: {selectedProvince} ×
+                </button>
+              )}
+              {selectedCategory !== 'All Categories' && (
+                <button
+                  onClick={() => {
+                    setSelectedCategory('All Categories');
+                    setPage(1);
+                  }}
+                  style={{
+                    fontSize: 11.5,
+                    fontWeight: 600,
+                    color: '#92400e',
+                    background: '#fffbeb',
+                    border: '1px solid #fde68a',
+                    borderRadius: 6,
+                    padding: '4px 10px',
+                    cursor: 'pointer',
+                  }}
+                >
+                  Category: {selectedCategory} ×
+                </button>
+              )}
+            </div>
           </div>
 
           <div style={{ height: 340, width: '100%' }}>
@@ -537,13 +649,63 @@ export default function SummaryOfSuppliesClient({ initialData }: Props) {
                   layout="vertical"
                   verticalAlign="top"
                   align="right"
-                  iconType="square"
-                  iconSize={8}
-                  wrapperStyle={{
-                    fontSize: 10,
-                    lineHeight: '17px',
-                    paddingLeft: 8,
-                  }}
+                  content={() => (
+                    <div
+                      style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: 4,
+                        paddingLeft: 10,
+                      }}
+                    >
+                      {(
+                        Object.keys(CATEGORY_COLORS) as Exclude<InputCategoryName, 'All Categories'>[]
+                      ).map((cat) => {
+                        const isSelected = selectedCategory === cat;
+                        return (
+                          <button
+                            key={cat}
+                            type="button"
+                            onClick={() => {
+                              setSelectedCategory((prev) =>
+                                prev === cat ? 'All Categories' : cat
+                              );
+                              setPage(1);
+                            }}
+                            style={{
+                              display: 'flex',
+                              alignItems: 'center',
+                              gap: 7,
+                              padding: '4px 8px',
+                              borderRadius: 6,
+                              border: isSelected
+                                ? '1px solid #166534'
+                                : '1px solid transparent',
+                              background: isSelected ? '#f0fdf4' : 'transparent',
+                              color: isSelected ? '#14532d' : '#334155',
+                              fontSize: 11,
+                              fontWeight: isSelected ? 700 : 500,
+                              cursor: 'pointer',
+                              textAlign: 'left',
+                              whiteSpace: 'nowrap',
+                              transition: 'all 0.15s',
+                            }}
+                          >
+                            <span
+                              style={{
+                                width: 10,
+                                height: 10,
+                                borderRadius: 2,
+                                backgroundColor: CATEGORY_COLORS[cat],
+                                flexShrink: 0,
+                              }}
+                            />
+                            <span>{cat}</span>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  )}
                 />
                 {(Object.keys(CATEGORY_COLORS) as Exclude<InputCategoryName, 'All Categories'>[]).map(
                   (cat) => (
@@ -555,6 +717,28 @@ export default function SummaryOfSuppliesClient({ initialData }: Props) {
                       stroke="#ffffff"
                       strokeWidth={1}
                       maxBarSize={52}
+                      isAnimationActive={true}
+                      animationDuration={600}
+                      animationEasing="ease-out"
+                      onClick={(barData: any, _idx: number, e: any) => {
+                        if (e && typeof e.stopPropagation === 'function') {
+                          e.stopPropagation();
+                        }
+                        const clickedProv = (barData?.province ||
+                          barData?.payload?.province) as Exclude<ProvinceName, 'All Provinces'> | undefined;
+                        if (clickedProv) {
+                          if (selectedProvince === clickedProv && selectedCategory === cat) {
+                            setSelectedProvince('All Provinces');
+                            setSelectedCategory('All Categories');
+                          } else {
+                            setSelectedProvince(clickedProv);
+                            setSelectedCategory(cat);
+                          }
+                        } else {
+                          setSelectedCategory((prev) => (prev === cat ? 'All Categories' : cat));
+                        }
+                        setPage(1);
+                      }}
                       style={{ cursor: 'pointer' }}
                     />
                   )
@@ -564,7 +748,7 @@ export default function SummaryOfSuppliesClient({ initialData }: Props) {
           </div>
         </div>
 
-        {/* Right: Contract Amount by Fund Source (Seamless Donut Chart) */}
+        {/* Right: Quantity Distribution by P/A/P (Seamless Donut Chart) */}
         <div
           style={{
             background: '#ffffff',
@@ -580,16 +764,16 @@ export default function SummaryOfSuppliesClient({ initialData }: Props) {
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
             <div>
               <h3 style={{ fontSize: 15, fontWeight: 700, color: '#0f172a', margin: 0 }}>
-                Allocation by Fund Source
+                Quantity Distribution by P/A/P
               </h3>
               <p style={{ fontSize: 12, color: '#64748b', margin: '2px 0 0' }}>
-                Click a slice or item to filter contracts and deliveries
+                {formatNumber(papDistributionBreakdown.totalPap)} total P/A/P units • Click to filter
               </p>
             </div>
-            {selectedFundSource !== 'All Fund Sources' && (
+            {selectedPapKey !== 'All' && (
               <button
                 onClick={() => {
-                  setSelectedFundSource('All Fund Sources');
+                  setSelectedPapKey('All');
                   setPage(1);
                 }}
                 style={{
@@ -609,113 +793,128 @@ export default function SummaryOfSuppliesClient({ initialData }: Props) {
           </div>
 
           <div style={{ height: 220, width: '100%' }}>
-            <ResponsiveContainer width="100%" height="100%">
-              <PieChart>
-                <Pie
-                  data={fundSourceBreakdown}
-                  dataKey="amount"
-                  nameKey="fundSource"
-                  cx="50%"
-                  cy="50%"
-                  innerRadius={52}
-                  outerRadius={98}
-                  paddingAngle={0}
-                  stroke="none"
-                  startAngle={90}
-                  endAngle={-270}
-                  onClick={(entry: any) => {
-                    if (entry && entry.fundSource) {
-                      setSelectedFundSource((prev) =>
-                        prev === entry.fundSource ? 'All Fund Sources' : (entry.fundSource as FundSourceName)
-                      );
-                      setPage(1);
-                    }
-                  }}
-                  style={{ cursor: 'pointer', outline: 'none' }}
-                >
-                  {fundSourceBreakdown.map((entry, idx) => (
-                    <Cell
-                      key={entry.fundSource}
-                      fill={DONUT_COLORS[idx % DONUT_COLORS.length]}
-                      opacity={
-                        selectedFundSource === 'All Fund Sources' ||
-                        selectedFundSource === entry.fundSource
-                          ? 1
-                          : 0.35
+            {papDistributionBreakdown.totalPap === 0 ? (
+              <div
+                style={{
+                  height: '100%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: '#94a3b8',
+                  fontSize: 12.5,
+                  textAlign: 'center',
+                  padding: '0 16px',
+                }}
+              >
+                No P/A/P seasonal quantity breakdown recorded for the current filter selection.
+              </div>
+            ) : (
+              <ResponsiveContainer width="100%" height="100%">
+                <PieChart>
+                  <Pie
+                    data={papDistributionBreakdown.items.filter((i) => i.units > 0)}
+                    dataKey="units"
+                    nameKey="label"
+                    cx="50%"
+                    cy="50%"
+                    innerRadius={52}
+                    outerRadius={98}
+                    paddingAngle={0}
+                    stroke="none"
+                    startAngle={90}
+                    endAngle={-270}
+                    isAnimationActive={true}
+                    animationDuration={600}
+                    animationEasing="ease-out"
+                    onClick={(entry: any) => {
+                      if (entry && entry.key) {
+                        setSelectedPapKey((prev) => (prev === entry.key ? 'All' : entry.key));
+                        setPage(1);
                       }
-                    />
-                  ))}
-                </Pie>
-                <Tooltip
-                  formatter={(value: any) => formatCurrency(Number(value || 0))}
-                  contentStyle={{
-                    backgroundColor: '#ffffff',
-                    borderColor: '#e2e8f0',
-                    borderRadius: 8,
-                    fontSize: 12,
-                    boxShadow: '0 4px 12px rgba(0,0,0,0.08)',
-                  }}
-                />
-              </PieChart>
-            </ResponsiveContainer>
+                    }}
+                    style={{ cursor: 'pointer', outline: 'none' }}
+                  >
+                    {papDistributionBreakdown.items
+                      .filter((i) => i.units > 0)
+                      .map((entry) => (
+                        <Cell
+                          key={entry.key}
+                          fill={entry.color}
+                          opacity={
+                            selectedPapKey === 'All' || selectedPapKey === entry.key ? 1 : 0.35
+                          }
+                        />
+                      ))}
+                  </Pie>
+                  <Tooltip
+                    formatter={(value: any) => `${formatNumber(Number(value || 0))} units`}
+                    contentStyle={{
+                      backgroundColor: '#ffffff',
+                      borderColor: '#e2e8f0',
+                      borderRadius: 8,
+                      fontSize: 12,
+                      boxShadow: '0 4px 12px rgba(0,0,0,0.08)',
+                    }}
+                  />
+                </PieChart>
+              </ResponsiveContainer>
+            )}
           </div>
 
           <div
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(210px, 1fr))',
-              gap: '4px 10px',
+              gridTemplateColumns: '1fr',
+              gap: 4,
               marginTop: 8,
               paddingTop: 10,
               borderTop: '1px solid #f1f5f9',
             }}
           >
-            {fundSourceBreakdown.map((fs, idx) => {
-              const isSelected = selectedFundSource === fs.fundSource;
-              const sliceColor = DONUT_COLORS[idx % DONUT_COLORS.length];
+            {papDistributionBreakdown.items.map((item) => {
+              const isSelected = selectedPapKey === item.key;
               return (
                 <div
-                  key={fs.fundSource}
+                  key={item.key}
                   onClick={() => {
-                    setSelectedFundSource(isSelected ? 'All Fund Sources' : (fs.fundSource as FundSourceName));
-                    setPage(1);
+                    if (item.units > 0 || isSelected) {
+                      setSelectedPapKey(isSelected ? 'All' : item.key);
+                      setPage(1);
+                    }
                   }}
                   style={{
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between',
-                    gap: 6,
-                    fontSize: 11,
-                    padding: '4px 6px',
+                    gap: 8,
+                    fontSize: 11.5,
+                    padding: '5px 8px',
                     borderRadius: 6,
-                    cursor: 'pointer',
+                    cursor: item.units > 0 || isSelected ? 'pointer' : 'default',
                     background: isSelected ? '#f0fdf4' : 'transparent',
                     border: isSelected ? '1px solid #bbf7d0' : '1px solid transparent',
+                    opacity: item.units > 0 ? 1 : 0.55,
                   }}
                 >
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 6, minWidth: 0 }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                     <span
                       style={{
-                        width: 9,
-                        height: 9,
+                        width: 10,
+                        height: 10,
                         borderRadius: '50%',
                         flexShrink: 0,
-                        backgroundColor: sliceColor,
+                        backgroundColor: item.color,
                       }}
                     />
-                    <span
-                      style={{
-                        fontWeight: isSelected ? 700 : 500,
-                        color: '#334155',
-                        lineHeight: 1.25,
-                      }}
-                      title={fs.fundSource}
-                    >
-                      {fs.fundSource}
+                    <span style={{ fontWeight: isSelected ? 700 : 500, color: '#334155' }}>
+                      {item.label}
                     </span>
                   </div>
                   <span style={{ fontWeight: 700, color: '#0f172a', flexShrink: 0 }}>
-                    {fs.sharePct.toFixed(1)}%
+                    {formatNumber(item.units)} units{' '}
+                    <span style={{ color: '#64748b', fontWeight: 500 }}>
+                      ({item.sharePct.toFixed(1)}%)
+                    </span>
                   </span>
                 </div>
               );
@@ -1044,7 +1243,7 @@ export default function SummaryOfSuppliesClient({ initialData }: Props) {
                         </span>
                       </td>
                       <td style={{ padding: '10px 14px', textAlign: 'right', fontWeight: 700, color: '#0f172a' }}>
-                        {formatNumber(d.quantity)}
+                        {formatNumber(getDisplayQty(d))}
                       </td>
                       <td style={{ padding: '10px 14px', color: '#64748b' }}>{d.unit}</td>
                     </tr>

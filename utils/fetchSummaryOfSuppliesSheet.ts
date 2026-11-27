@@ -83,10 +83,11 @@ export const SUMMARY_OF_SUPPLIES_SHEET_URL =
   'https://docs.google.com/spreadsheets/d/14yYevFb_7qQ2RGiLTD4FbxAiN_l94krxXH78KbcG9kE/export?format=csv&gid=1578812300';
 
 const CACHE_FILE = path.join(process.cwd(), 'data', 'summary_of_supplies_cache.json');
-const CACHE_TTL_MS = 0; // Always fetch live updates from Google Sheets
+const CACHE_TTL_MS = 30 * 1000; // 30s fresh TTL + instant stale-while-revalidate
 
 const gGlobal = globalThis as unknown as {
   __daSummaryOfSuppliesCache?: { data: SummaryOfSuppliesResult; timestamp: number };
+  __daSummaryOfSuppliesInflight?: Promise<SummaryOfSuppliesResult> | null;
 };
 
 function parseNumber(val: unknown): number {
@@ -424,6 +425,25 @@ async function doFetchFromGoogleSheet(): Promise<SummaryOfSuppliesResult> {
   return parsed;
 }
 
+async function refreshSummaryInBackground(): Promise<SummaryOfSuppliesResult> {
+  if (gGlobal.__daSummaryOfSuppliesInflight) {
+    return gGlobal.__daSummaryOfSuppliesInflight;
+  }
+  const promise = (async () => {
+    try {
+      const fresh = await doFetchFromGoogleSheet();
+      const entry = { data: fresh, timestamp: Date.now() };
+      gGlobal.__daSummaryOfSuppliesCache = entry;
+      saveDiskCache(entry);
+      return fresh;
+    } finally {
+      gGlobal.__daSummaryOfSuppliesInflight = null;
+    }
+  })();
+  gGlobal.__daSummaryOfSuppliesInflight = promise;
+  return promise;
+}
+
 export async function fetchSummaryOfSuppliesSheet(
   forceRefresh = false
 ): Promise<SummaryOfSuppliesResult> {
@@ -433,16 +453,20 @@ export async function fetchSummaryOfSuppliesSheet(
   }
   const cached = gGlobal.__daSummaryOfSuppliesCache;
 
+  // 1. Fresh cache within TTL -> return immediately
   if (!forceRefresh && cached && now - cached.timestamp < CACHE_TTL_MS) {
     return cached.data;
   }
 
+  // 2. Stale-while-revalidate: return cached data immediately and refresh in background
+  if (!forceRefresh && cached?.data) {
+    void refreshSummaryInBackground().catch(() => {});
+    return cached.data;
+  }
+
+  // 3. No cache or forced refresh: await deduplicated fetch
   try {
-    const fresh = await doFetchFromGoogleSheet();
-    const entry = { data: fresh, timestamp: Date.now() };
-    gGlobal.__daSummaryOfSuppliesCache = entry;
-    saveDiskCache(entry);
-    return fresh;
+    return await refreshSummaryInBackground();
   } catch (err) {
     console.warn('[SummaryOfSupplies] Live fetch error, falling back to cache:', err);
   }

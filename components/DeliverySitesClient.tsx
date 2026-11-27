@@ -139,27 +139,34 @@ export default function DeliverySitesClient({ initialData }: Props) {
     setData(initialData);
   }, [initialData]);
 
-  // Background polling for live sheet updates
+  // Background polling (every 60s when tab is visible) for live sheet updates
   useEffect(() => {
     let isMounted = true;
     const fetchLatest = async () => {
+      if (typeof document !== 'undefined' && document.hidden) return;
       try {
-        const res = await fetch('/api/rice/summary-of-supplies');
+        const res = await fetch('/api/rice/summary-of-supplies?refresh=false');
         if (!res.ok) return;
         const fresh = await res.json();
         if (fresh && Array.isArray(fresh.deliveries) && isMounted) {
-          setData(fresh);
+          setData((prev) => {
+            if (
+              prev.deliveries.length === fresh.deliveries.length &&
+              prev.fetchedAt === fresh.fetchedAt
+            ) {
+              return prev;
+            }
+            return fresh;
+          });
         }
       } catch {
         // Ignore background errors
       }
     };
-    const interval = setInterval(fetchLatest, 20000);
-    window.addEventListener('focus', fetchLatest);
+    const interval = setInterval(fetchLatest, 60000);
     return () => {
       isMounted = false;
       clearInterval(interval);
-      window.removeEventListener('focus', fetchLatest);
     };
   }, []);
 

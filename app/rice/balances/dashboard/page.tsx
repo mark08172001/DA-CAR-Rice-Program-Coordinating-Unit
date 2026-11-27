@@ -68,9 +68,8 @@ export default async function RiceBalancesDashboardPage({
     );
   }
 
-  // Fetch exclusively from the 2026 List for obligation Google Sheet (RICE banner only)
-  // Always fetch fresh live data so the page automatically reflects Google Sheet updates
-  const result = await fetchObligationListSheet(true);
+  // Instant stale-while-revalidate Google Sheet fetch (refreshes in background when stale)
+  const result = await fetchObligationListSheet(forceRefresh);
 
   return (
     <section className="content-section" style={{ padding: '16px 0 60px' }}>
