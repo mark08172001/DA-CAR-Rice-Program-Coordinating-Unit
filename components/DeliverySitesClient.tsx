@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo, useEffect, useDeferredValue, useCallback } from 'react';
 import dynamic from 'next/dynamic';
 import {
   MapPin,
@@ -129,7 +129,11 @@ export default function DeliverySitesClient({ initialData }: Props) {
   const [selectedSeason, setSelectedSeason] = useState<SeasonName>('All Seasons');
   const [selectedCategory, setSelectedCategory] = useState<InputCategoryName>('All Categories');
   const [searchQuery, setSearchQuery] = useState<string>('');
+  const deferredSearch = useDeferredValue(searchQuery);
   const [selectedSiteKey, setSelectedSiteKey] = useState<string | null>(null);
+  const handleSelectSite = useCallback((key: string | null) => {
+    setSelectedSiteKey(key);
+  }, []);
   const [sortField, setSortField] = useState<'totalUnits' | 'dropCount' | 'province' | 'municipality'>('totalUnits');
   const [sortAsc, setSortAsc] = useState(false);
 
@@ -176,7 +180,7 @@ export default function DeliverySitesClient({ initialData }: Props) {
   }, [data.deliveries]);
 
   const filteredDeliveries = useMemo(() => {
-    const q = searchQuery.trim().toLowerCase();
+    const q = deferredSearch.trim().toLowerCase();
     return data.deliveries.filter((d) => {
       if (selectedProvince !== 'All Provinces' && d.province !== selectedProvince) return false;
       if (selectedFundSource !== 'All Fund Sources' && d.fundSource !== selectedFundSource) return false;
@@ -193,7 +197,7 @@ export default function DeliverySitesClient({ initialData }: Props) {
       }
       return true;
     });
-  }, [data.deliveries, selectedProvince, selectedFundSource, selectedSeason, selectedCategory, searchQuery]);
+  }, [data.deliveries, selectedProvince, selectedFundSource, selectedSeason, selectedCategory, deferredSearch]);
 
   // Aggregate into unique mapped CAR delivery sites
   const mappedSites = useMemo<MappedDeliverySite[]>(() => {
@@ -463,7 +467,7 @@ export default function DeliverySitesClient({ initialData }: Props) {
           <CarDeliveryMap
             sites={mappedSites}
             selectedSiteKey={selectedSiteKey}
-            onSelectSite={setSelectedSiteKey}
+            onSelectSite={handleSelectSite}
           />
         </div>
 
@@ -489,7 +493,7 @@ export default function DeliverySitesClient({ initialData }: Props) {
               gap: 8,
             }}
           >
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 8 }}>
               <h3 style={{ fontSize: 14.5, fontWeight: 700, color: '#0f172a', margin: 0 }}>
                 Delivery Sites ({mappedSites.length})
               </h3>

@@ -78,7 +78,7 @@ const PROVINCE_COLORS: Record<string, string> = {
 const formatNumber = (n: number) =>
   new Intl.NumberFormat('en-PH', { maximumFractionDigits: 0 }).format(n);
 
-export default function CarDeliveryMap({
+export default React.memo(function CarDeliveryMap({
   sites,
   selectedSiteKey,
   onSelectSite,
@@ -88,18 +88,36 @@ export default function CarDeliveryMap({
   const mapInstanceRef = useRef<LeafletMap | null>(null);
   const markersRef = useRef<Map<string, Marker>>(new Map());
   const layersRef = useRef<(Marker | CircleMarker)[]>([]);
+  const onSelectSiteRef = useRef(onSelectSite);
+  onSelectSiteRef.current = onSelectSite;
   const [isFullscreen, setIsFullscreen] = useState(false);
 
   useEffect(() => {
     const handleFsChange = () => {
       const active = document.fullscreenElement === wrapperRef.current;
       setIsFullscreen(active);
+      requestAnimationFrame(() => {
+        mapInstanceRef.current?.invalidateSize({ animate: false });
+      });
       setTimeout(() => {
-        mapInstanceRef.current?.invalidateSize();
-      }, 120);
+        mapInstanceRef.current?.invalidateSize({ animate: false });
+      }, 200);
     };
     document.addEventListener('fullscreenchange', handleFsChange);
-    return () => document.removeEventListener('fullscreenchange', handleFsChange);
+
+    const el = mapContainerRef.current;
+    let ro: ResizeObserver | null = null;
+    if (el && typeof ResizeObserver !== 'undefined') {
+      ro = new ResizeObserver(() => {
+        mapInstanceRef.current?.invalidateSize({ animate: false });
+      });
+      ro.observe(el);
+    }
+
+    return () => {
+      document.removeEventListener('fullscreenchange', handleFsChange);
+      ro?.disconnect();
+    };
   }, []);
 
   const handleToggleFullscreen = async () => {
@@ -122,6 +140,7 @@ export default function CarDeliveryMap({
       center: [17.32, 121.02],
       zoom: 8,
       zoomControl: true,
+      preferCanvas: true,
     });
 
     new TileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -238,17 +257,17 @@ export default function CarDeliveryMap({
         .bindPopup(popupHtml);
 
       marker.on('click', () => {
-        onSelectSite(site.key);
+        onSelectSiteRef.current(site.key);
       });
       circle.on('click', () => {
-        onSelectSite(site.key);
+        onSelectSiteRef.current(site.key);
         marker.openPopup();
       });
 
       layersRef.current.push(circle, marker);
       markersRef.current.set(site.key, marker);
     });
-  }, [sites, onSelectSite]);
+  }, [sites]);
 
   // Pan & open popup when a site is selected from the sidebar/table
   useEffect(() => {
@@ -258,7 +277,7 @@ export default function CarDeliveryMap({
     const targetSite = sites.find((s) => s.key === selectedSiteKey);
     const marker = markersRef.current.get(selectedSiteKey);
     if (targetSite && marker) {
-      map.flyTo([targetSite.lat, targetSite.lng], 11, { duration: 0.6 });
+      map.flyTo([targetSite.lat, targetSite.lng], 11, { duration: 0.35 });
       marker.openPopup();
     }
   }, [selectedSiteKey, sites]);
@@ -266,38 +285,43 @@ export default function CarDeliveryMap({
   const handleResetView = () => {
     const map = mapInstanceRef.current;
     if (!map) return;
-    onSelectSite(null);
-    map.flyTo([17.32, 121.02], 8, { duration: 0.5 });
+    onSelectSiteRef.current(null);
+    map.flyTo([17.32, 121.02], 8, { duration: 0.35 });
   };
 
   return (
-    <div
-      ref={wrapperRef}
-      style={{
-        position: 'relative',
-        width: '100%',
-        height: isFullscreen ? '100vh' : '100%',
-        background: '#ffffff',
-      }}
-    >
+    <div ref={wrapperRef} className="car-map-wrap">
       <style>{`
-        .car-map-el { height: 500px; }
+        .car-map-wrap {
+          position: relative;
+          width: 100%;
+          background: #ffffff;
+          overflow: hidden;
+          border-radius: 10px;
+        }
+        .car-map-el {
+          width: 100%;
+          height: 500px;
+          border-radius: 10px;
+          border: 1px solid #cbd5e1;
+          z-index: 1;
+        }
+        .car-map-wrap:fullscreen {
+          width: 100vw !important;
+          height: 100vh !important;
+          border-radius: 0 !important;
+        }
+        .car-map-wrap:fullscreen .car-map-el {
+          width: 100vw !important;
+          height: 100vh !important;
+          border-radius: 0 !important;
+          border: none !important;
+        }
         @media (max-width: 640px) {
           .car-map-el { height: 340px; }
         }
       `}</style>
-      <div
-        ref={mapContainerRef}
-        id="map"
-        className={isFullscreen ? undefined : 'car-map-el'}
-        style={{
-          width: '100%',
-          height: isFullscreen ? '100vh' : undefined,
-          borderRadius: isFullscreen ? 0 : 10,
-          border: isFullscreen ? 'none' : '1px solid #cbd5e1',
-          zIndex: 1,
-        }}
-      />
+      <div ref={mapContainerRef} id="map" className="car-map-el" />
       <div
         style={{
           position: 'absolute',
@@ -351,4 +375,4 @@ export default function CarDeliveryMap({
       </div>
     </div>
   );
-}
+});
