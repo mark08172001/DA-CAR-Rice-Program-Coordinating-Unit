@@ -356,6 +356,10 @@ export default function DeliverySitesClient({ initialData }: Props) {
           .ds-kpi-grid { grid-template-columns: 1fr; }
           .ds-main-grid { grid-template-columns: 1fr; }
         }
+        @media (max-width: 640px) {
+          .ds-kpi-grid { gap: 10px; margin-bottom: 16px; }
+          .ds-main-grid { gap: 14px; margin-bottom: 16px; }
+        }
       `}</style>
 
       {/* 1. TOP KPI CARDS */}

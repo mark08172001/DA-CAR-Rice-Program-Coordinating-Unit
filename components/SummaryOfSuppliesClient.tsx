@@ -142,6 +142,15 @@ interface Props {
 
 export default function SummaryOfSuppliesClient({ initialData }: Props) {
   const [data, setData] = useState<SummaryOfSuppliesResult>(initialData);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 640px)');
+    const update = () => setIsMobile(mq.matches);
+    update();
+    mq.addEventListener('change', update);
+    return () => mq.removeEventListener('change', update);
+  }, []);
 
   useEffect(() => {
     setData(initialData);
@@ -426,6 +435,14 @@ export default function SummaryOfSuppliesClient({ initialData }: Props) {
           .sos-clean-kpi-grid { grid-template-columns: 1fr; }
           .sos-clean-charts-grid { grid-template-columns: 1fr; }
         }
+        @media (max-width: 640px) {
+          .sos-clean-kpi-grid { gap: 10px; margin-bottom: 16px; }
+          .sos-clean-charts-grid { gap: 14px; margin-bottom: 16px; }
+          .sos-chart-card { padding: 14px !important; }
+          .sos-filter-bar-inner { padding: 12px 14px !important; }
+          .sos-filter-group { width: 100%; }
+          .sos-filter-group > * { flex: 1 1 100%; width: 100% !important; }
+        }
       `}</style>
 
       {/* 1. TOP KPI CARDS (Matches Obligation Dashboard Style) */}
@@ -547,6 +564,7 @@ export default function SummaryOfSuppliesClient({ initialData }: Props) {
       <div className="sos-clean-charts-grid">
         {/* Left: Units Delivered by Province */}
         <div
+          className="sos-chart-card"
           style={{
             background: '#ffffff',
             border: '1px solid #e2e8f0',
@@ -608,11 +626,15 @@ export default function SummaryOfSuppliesClient({ initialData }: Props) {
             </div>
           </div>
 
-          <div style={{ height: 340, width: '100%' }}>
+          <div style={{ height: isMobile ? 320 : 340, width: '100%' }}>
             <ResponsiveContainer width="100%" height="100%">
               <BarChart
                 data={provinceChartData}
-                margin={{ top: 10, right: 6, left: -12, bottom: 5 }}
+                margin={
+                  isMobile
+                    ? { top: 8, right: 6, left: -18, bottom: 8 }
+                    : { top: 10, right: 6, left: -12, bottom: 5 }
+                }
                 onClick={(state: any) => {
                   if (state && state.activeLabel) {
                     const clicked = state.activeLabel as Exclude<ProvinceName, 'All Provinces'>;
@@ -625,16 +647,17 @@ export default function SummaryOfSuppliesClient({ initialData }: Props) {
                 <XAxis
                   dataKey="province"
                   interval={0}
-                  angle={-22}
+                  angle={isMobile ? -32 : -22}
                   textAnchor="end"
-                  height={48}
+                  height={isMobile ? 52 : 48}
                   dy={4}
-                  tick={{ fontSize: 11, fill: '#334155', fontWeight: 600 }}
+                  tick={{ fontSize: isMobile ? 10 : 11, fill: '#334155', fontWeight: 600 }}
                   tickFormatter={(v: string) => (v === 'Mountain Province' ? 'Mt. Prov.' : v)}
                   axisLine={{ stroke: '#cbd5e1' }}
                 />
                 <YAxis
-                  tick={{ fontSize: 11, fill: '#64748b' }}
+                  tick={{ fontSize: isMobile ? 10 : 11, fill: '#64748b' }}
+                  width={isMobile ? 42 : 52}
                   axisLine={false}
                   tickFormatter={(v: number) => (v >= 1000 ? `${(v / 1000).toFixed(0)}k` : String(v))}
                 />
@@ -650,19 +673,29 @@ export default function SummaryOfSuppliesClient({ initialData }: Props) {
                   formatter={(value: any, name: any) => [formatNumber(Number(value || 0)) + ' units', String(name)]}
                 />
                 <Legend
-                  layout="vertical"
-                  verticalAlign="top"
-                  align="right"
+                  layout={isMobile ? 'horizontal' : 'vertical'}
+                  verticalAlign={isMobile ? 'bottom' : 'top'}
+                  align={isMobile ? 'center' : 'right'}
                   content={() => (
-                      <div
-                        style={{
-                          display: 'flex',
-                          flexDirection: 'column',
-                          gap: 3,
-                          paddingLeft: 8,
-                          maxWidth: 165,
-                        }}
-                      >
+                    <div
+                      style={
+                        isMobile
+                          ? {
+                              display: 'flex',
+                              flexWrap: 'wrap',
+                              justifyContent: 'center',
+                              gap: '4px 6px',
+                              paddingTop: 10,
+                            }
+                          : {
+                              display: 'flex',
+                              flexDirection: 'column',
+                              gap: 3,
+                              paddingLeft: 8,
+                              maxWidth: 165,
+                            }
+                      }
+                    >
                       {(
                         Object.keys(CATEGORY_COLORS) as Exclude<InputCategoryName, 'All Categories'>[]
                       ).map((cat) => {
@@ -680,7 +713,7 @@ export default function SummaryOfSuppliesClient({ initialData }: Props) {
                             style={{
                               display: 'flex',
                               alignItems: 'center',
-                              gap: 6,
+                              gap: 5,
                               padding: '3px 6px',
                               borderRadius: 6,
                               border: isSelected
@@ -688,7 +721,7 @@ export default function SummaryOfSuppliesClient({ initialData }: Props) {
                                 : '1px solid transparent',
                               background: isSelected ? '#f0fdf4' : 'transparent',
                               color: isSelected ? '#14532d' : '#334155',
-                              fontSize: 10.5,
+                              fontSize: isMobile ? 10 : 10.5,
                               lineHeight: 1.25,
                               fontWeight: isSelected ? 700 : 500,
                               cursor: 'pointer',
@@ -698,8 +731,8 @@ export default function SummaryOfSuppliesClient({ initialData }: Props) {
                           >
                             <span
                               style={{
-                                width: 10,
-                                height: 10,
+                                width: 9,
+                                height: 9,
                                 borderRadius: 2,
                                 backgroundColor: CATEGORY_COLORS[cat],
                                 flexShrink: 0,
@@ -721,7 +754,7 @@ export default function SummaryOfSuppliesClient({ initialData }: Props) {
                       fill={CATEGORY_COLORS[cat]}
                       stroke="#ffffff"
                       strokeWidth={1}
-                      maxBarSize={52}
+                      maxBarSize={isMobile ? 34 : 52}
                       isAnimationActive={true}
                       animationDuration={600}
                       animationEasing="ease-out"
@@ -755,6 +788,7 @@ export default function SummaryOfSuppliesClient({ initialData }: Props) {
 
         {/* Right: Quantity Distribution by P/A/P (Seamless Donut Chart) */}
         <div
+          className="sos-chart-card"
           style={{
             background: '#ffffff',
             border: '1px solid #e2e8f0',
@@ -797,7 +831,7 @@ export default function SummaryOfSuppliesClient({ initialData }: Props) {
             )}
           </div>
 
-          <div style={{ height: 220, width: '100%' }}>
+          <div style={{ height: isMobile ? 185 : 220, width: '100%' }}>
             {papDistributionBreakdown.totalPap === 0 ? (
               <div
                 style={{
@@ -822,8 +856,8 @@ export default function SummaryOfSuppliesClient({ initialData }: Props) {
                     nameKey="label"
                     cx="50%"
                     cy="50%"
-                    innerRadius={52}
-                    outerRadius={98}
+                    innerRadius={isMobile ? 42 : 52}
+                    outerRadius={isMobile ? 78 : 98}
                     paddingAngle={0}
                     stroke="none"
                     startAngle={90}
@@ -940,6 +974,7 @@ export default function SummaryOfSuppliesClient({ initialData }: Props) {
       >
         {/* Table Header & Inline Filters */}
         <div
+          className="sos-filter-bar-inner"
           style={{
             padding: '16px 20px',
             borderBottom: '1px solid #e2e8f0',
@@ -998,7 +1033,7 @@ export default function SummaryOfSuppliesClient({ initialData }: Props) {
           </div>
 
           {/* Right: Compact Filters */}
-          <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 8 }}>
+          <div className="sos-filter-group" style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 8 }}>
             <div style={{ position: 'relative' }}>
               <Search
                 size={14}

@@ -280,12 +280,19 @@ export default function CarDeliveryMap({
         background: '#ffffff',
       }}
     >
+      <style>{`
+        .car-map-el { height: 500px; }
+        @media (max-width: 640px) {
+          .car-map-el { height: 340px; }
+        }
+      `}</style>
       <div
         ref={mapContainerRef}
         id="map"
+        className={isFullscreen ? undefined : 'car-map-el'}
         style={{
           width: '100%',
-          height: isFullscreen ? '100vh' : 500,
+          height: isFullscreen ? '100vh' : undefined,
           borderRadius: isFullscreen ? 0 : 10,
           border: isFullscreen ? 'none' : '1px solid #cbd5e1',
           zIndex: 1,
