@@ -625,6 +625,10 @@ export default function SummaryOfSuppliesClient({ initialData }: Props) {
                 <XAxis
                   dataKey="province"
                   interval={0}
+                  angle={-22}
+                  textAnchor="end"
+                  height={48}
+                  dy={4}
                   tick={{ fontSize: 11, fill: '#334155', fontWeight: 600 }}
                   tickFormatter={(v: string) => (v === 'Mountain Province' ? 'Mt. Prov.' : v)}
                   axisLine={{ stroke: '#cbd5e1' }}
@@ -650,14 +654,15 @@ export default function SummaryOfSuppliesClient({ initialData }: Props) {
                   verticalAlign="top"
                   align="right"
                   content={() => (
-                    <div
-                      style={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        gap: 4,
-                        paddingLeft: 10,
-                      }}
-                    >
+                      <div
+                        style={{
+                          display: 'flex',
+                          flexDirection: 'column',
+                          gap: 3,
+                          paddingLeft: 8,
+                          maxWidth: 165,
+                        }}
+                      >
                       {(
                         Object.keys(CATEGORY_COLORS) as Exclude<InputCategoryName, 'All Categories'>[]
                       ).map((cat) => {
@@ -675,19 +680,19 @@ export default function SummaryOfSuppliesClient({ initialData }: Props) {
                             style={{
                               display: 'flex',
                               alignItems: 'center',
-                              gap: 7,
-                              padding: '4px 8px',
+                              gap: 6,
+                              padding: '3px 6px',
                               borderRadius: 6,
                               border: isSelected
                                 ? '1px solid #166534'
                                 : '1px solid transparent',
                               background: isSelected ? '#f0fdf4' : 'transparent',
                               color: isSelected ? '#14532d' : '#334155',
-                              fontSize: 11,
+                              fontSize: 10.5,
+                              lineHeight: 1.25,
                               fontWeight: isSelected ? 700 : 500,
                               cursor: 'pointer',
                               textAlign: 'left',
-                              whiteSpace: 'nowrap',
                               transition: 'all 0.15s',
                             }}
                           >
