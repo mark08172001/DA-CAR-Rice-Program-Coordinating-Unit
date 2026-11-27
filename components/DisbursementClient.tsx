@@ -704,8 +704,8 @@ export default function DisbursementClient({
               borderTop: '3px solid #059669',
             }}
           >
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}>
-              <div style={{ fontSize: 12, fontWeight: 600, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8, flexWrap: 'wrap' }}>
+              <div style={{ fontSize: 11.5, fontWeight: 600, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.04em', whiteSpace: 'nowrap' }}>
                 Disbursement Rate (%)
               </div>
               {activeAllotment > 0 && (
@@ -716,8 +716,10 @@ export default function DisbursementClient({
                     color: '#0369a1',
                     background: '#f0f9ff',
                     border: '1px solid #bae6fd',
-                    padding: '1px 6px',
+                    padding: '2px 7px',
                     borderRadius: 4,
+                    whiteSpace: 'nowrap',
+                    flexShrink: 0,
                   }}
                   title={`Total Allotment: ${formatCurrency(activeAllotment)}`}
                 >
@@ -729,7 +731,7 @@ export default function DisbursementClient({
             <div
               style={{
                 display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 140px), 1fr))',
+                gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
                 gap: 12,
                 marginTop: 8,
                 alignItems: 'baseline',
