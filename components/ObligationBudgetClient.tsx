@@ -1786,6 +1786,7 @@ export default function ObligationBudgetClient({
 
   // Separated Pillars state
   const [activePillarTab, setActivePillarTab] = useState<'ALL' | PillarType>('ALL');
+  const [showUnobligated, setShowUnobligated] = useState(false);
   const [allotmentScope, setAllotmentScope] = useState<ScopeType>('CURRENT');
   const [obligationScope, setObligationScope] = useState<ScopeType>('CURRENT');
   const [unobligatedScope, setUnobligatedScope] = useState<ScopeType>('CURRENT');
@@ -1869,114 +1870,6 @@ export default function ObligationBudgetClient({
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
-        {/* 3 Pillars Separator Bar */}
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            flexWrap: 'wrap',
-            gap: 12,
-            backgroundColor: '#ffffff',
-            border: '1px solid #e2e8f0',
-            borderRadius: 10,
-            padding: '10px 16px',
-            boxShadow: '0 1px 3px rgba(0,0,0,0.02)',
-          }}
-        >
-          <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
-            <span style={{ fontSize: 11, fontWeight: 800, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.4px' }}>
-              Filter:
-            </span>
-
-            <div style={{ position: 'relative', display: 'inline-flex', alignItems: 'center' }}>
-              <select
-                id="pillar-filter-dropdown"
-                value={activePillarTab}
-                onChange={(e) => setActivePillarTab(e.target.value as any)}
-                style={{
-                  appearance: 'none',
-                  WebkitAppearance: 'none',
-                  backgroundColor:
-                    activePillarTab === 'ALLOTMENT_OBLIGATION'
-                      ? '#136c38'
-                      : activePillarTab === 'UNOBLIGATED'
-                        ? '#1d4ed8'
-                        : '#0f291e',
-                  color: '#ffffff',
-                  border: '1px solid rgba(0, 0, 0, 0.08)',
-                  borderRadius: 8,
-                  padding: '7px 34px 7px 14px',
-                  fontSize: 12.5,
-                  fontWeight: 700,
-                  cursor: 'pointer',
-                  outline: 'none',
-                  boxShadow: '0 2px 5px rgba(0,0,0,0.08)',
-                  transition: 'all 0.15s ease',
-                }}
-              >
-                <option value="ALL" style={{ color: '#0f172a', backgroundColor: '#ffffff' }}>
-                  All
-                </option>
-                <option value="ALLOTMENT_OBLIGATION" style={{ color: '#0f172a', backgroundColor: '#ffffff' }}>
-                  Allotment & Obligation
-                </option>
-                <option value="UNOBLIGATED" style={{ color: '#0f172a', backgroundColor: '#ffffff' }}>
-                  Unobligated
-                </option>
-              </select>
-              <ChevronDown
-                size={14}
-                style={{
-                  position: 'absolute',
-                  right: 12,
-                  pointerEvents: 'none',
-                  color: '#ffffff',
-                }}
-              />
-            </div>
-          </div>
-
-          {/* Quick Global Scope Controller */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 11.5 }}>
-            <span style={{ fontWeight: 700, color: '#64748b' }}>QUICK SCOPE:</span>
-            <div
-              style={{
-                display: 'inline-flex',
-                backgroundColor: '#f1f5f9',
-                borderRadius: 6,
-                padding: 2,
-                gap: 2,
-              }}
-            >
-              {[
-                { id: 'TOTAL', label: 'Total' },
-                { id: 'CURRENT', label: 'Current' },
-                { id: 'CONTINUING', label: 'Continuing' },
-              ].map((s) => (
-                <button
-                  key={s.id}
-                  type="button"
-                  onClick={() => setGlobalScope(s.id as ScopeType)}
-                  style={{
-                    padding: '3px 8px',
-                    fontSize: 11,
-                    fontWeight: 600,
-                    borderRadius: 4,
-                    border: 'none',
-                    backgroundColor: '#ffffff',
-                    color: '#334155',
-                    cursor: 'pointer',
-                  }}
-                  title={`Set all pillars to ${s.label}`}
-                >
-                  {s.label}
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
-
         {/* Combined Pillar 1 & 2: ALLOTMENT & OBLIGATION */}
         {(activePillarTab === 'ALL' || activePillarTab === 'ALLOTMENT_OBLIGATION') && (
           <PillarBudgetCard
@@ -1990,17 +1883,71 @@ export default function ObligationBudgetClient({
           />
         )}
 
-        {/* Pillar 3: UNOBLIGATED ALLOTMENT */}
+        {/* Arrow Indicator Toggle for Unobligated Balances */}
+        {activePillarTab === 'ALL' && (
+          <div style={{ display: 'flex', justifyContent: 'center', margin: '-2px 0' }}>
+            <button
+              type="button"
+              onClick={() => setShowUnobligated((prev) => !prev)}
+              aria-expanded={showUnobligated}
+              aria-controls="unobligated-slide-panel"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 8,
+                padding: '6px 18px',
+                borderRadius: 99,
+                border: '1px solid #bfdbfe',
+                background: showUnobligated ? '#eff6ff' : '#ffffff',
+                color: '#1d4ed8',
+                fontSize: 12,
+                fontWeight: 700,
+                cursor: 'pointer',
+                boxShadow: '0 1px 4px rgba(30, 64, 175, 0.08)',
+                transition: 'background-color 0.2s ease, box-shadow 0.2s ease',
+              }}
+              title={showUnobligated ? 'Hide Unobligated Balances' : 'Show Unobligated Balances'}
+            >
+              <span>{showUnobligated ? 'Hide Unobligated Balances' : 'Show Unobligated Balances'}</span>
+              <ChevronDown
+                size={15}
+                style={{
+                  transform: showUnobligated ? 'rotate(180deg)' : 'rotate(0deg)',
+                  transition: 'transform 0.28s cubic-bezier(0.4, 0, 0.2, 1)',
+                }}
+              />
+            </button>
+          </div>
+        )}
+
+        {/* Pillar 3: UNOBLIGATED ALLOTMENT (Slides down when arrow is clicked or when filtered directly) */}
         {(activePillarTab === 'ALL' || activePillarTab === 'UNOBLIGATED') && (
-          <PillarBudgetCard
-            id="unobligated-budget"
-            pillar="UNOBLIGATED"
-            title="Unobligated Balances"
-            subtitle="Remaining uncommitted budget balance (Current vs Continuing vs Total)"
-            categories={bannerCats}
-            scope={unobligatedScope}
-            onScopeChange={setUnobligatedScope}
-          />
+          <div
+            id="unobligated-slide-panel"
+            style={{
+              overflow: 'hidden',
+              maxHeight: activePillarTab === 'UNOBLIGATED' || showUnobligated ? '1400px' : '0px',
+              opacity: activePillarTab === 'UNOBLIGATED' || showUnobligated ? 1 : 0,
+              transform:
+                activePillarTab === 'UNOBLIGATED' || showUnobligated
+                  ? 'translateY(0)'
+                  : 'translateY(-10px)',
+              pointerEvents:
+                activePillarTab === 'UNOBLIGATED' || showUnobligated ? 'auto' : 'none',
+              transition:
+                'max-height 0.38s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.28s ease, transform 0.32s cubic-bezier(0.4, 0, 0.2, 1)',
+            }}
+          >
+            <PillarBudgetCard
+              id="unobligated-budget"
+              pillar="UNOBLIGATED"
+              title="Unobligated Balances"
+              subtitle="Remaining uncommitted budget balance (Current vs Continuing vs Total)"
+              categories={bannerCats}
+              scope={unobligatedScope}
+              onScopeChange={setUnobligatedScope}
+            />
+          </div>
         )}
       </div>
 
