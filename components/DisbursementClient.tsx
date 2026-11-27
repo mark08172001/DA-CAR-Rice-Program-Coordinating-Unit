@@ -118,6 +118,7 @@ export default function DisbursementClient({
   const [selectedView, setSelectedView] = useState<DisbursementView>('current');
   const [papFilter, setPapFilter] = useState<string>('all');
   const [statusFilter, setStatusFilter] = useState<DisbursementStatusCategory | 'all'>('all');
+  const [endUserFilter, setEndUserFilter] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState('');
   const deferredSearch = useDeferredValue(searchQuery);
   const [sortField, setSortField] = useState<'payee' | 'status' | 'endUser' | 'totalObligation' | 'grossAmount' | 'unpaidObligation' | 'rate'>('totalObligation');
@@ -305,8 +306,29 @@ export default function DisbursementClient({
     setSelectedView(newView);
     setPapFilter('all');
     setStatusFilter('all');
+    setEndUserFilter('all');
     setSearchQuery('');
   };
+
+  const endUserOptions = useMemo(() => {
+    const counts = new Map<string, number>();
+    let unassignedCount = 0;
+    for (const r of records) {
+      const eu = (r.endUser || '').trim();
+      if (!eu || eu === '-') {
+        unassignedCount++;
+      } else {
+        counts.set(eu, (counts.get(eu) || 0) + 1);
+      }
+    }
+    const sorted = Array.from(counts.entries())
+      .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+      .map(([name, count]) => ({ value: name, label: `${name} (${count})` }));
+    if (unassignedCount > 0) {
+      sorted.push({ value: '__unassigned__', label: `Unspecified / Blank (${unassignedCount})` });
+    }
+    return sorted;
+  }, [records]);
 
   const handlePapChange = (newPap: string) => {
     setPapFilter(newPap);
@@ -339,6 +361,16 @@ export default function DisbursementClient({
     }
     if (statusFilter !== 'all') {
       list = list.filter((r) => getStatusCategory(r.status) === statusFilter);
+    }
+    if (endUserFilter !== 'all') {
+      if (endUserFilter === '__unassigned__') {
+        list = list.filter((r) => {
+          const eu = (r.endUser || '').trim();
+          return !eu || eu === '-';
+        });
+      } else {
+        list = list.filter((r) => (r.endUser || '').trim() === endUserFilter);
+      }
     }
     if (deferredSearch.trim()) {
       const q = deferredSearch.toLowerCase().trim();
@@ -387,10 +419,10 @@ export default function DisbursementClient({
       const valB = b[sortField];
       return sortDirection === 'asc' ? valA - valB : valB - valA;
     });
-  }, [records, papFilter, statusFilter, deferredSearch, sortField, sortDirection, getDisplayPayee]);
+  }, [records, papFilter, statusFilter, endUserFilter, deferredSearch, sortField, sortDirection, getDisplayPayee]);
 
   const displayTotals = useMemo(() => {
-    if (papFilter === 'all' && statusFilter === 'all' && !deferredSearch.trim()) {
+    if (papFilter === 'all' && statusFilter === 'all' && endUserFilter === 'all' && !deferredSearch.trim()) {
       return totals;
     }
     return {
@@ -399,7 +431,7 @@ export default function DisbursementClient({
       unpaidObligation: filteredRecords.reduce((sum, r) => sum + r.unpaidObligation, 0),
       count: filteredRecords.length,
     };
-  }, [papFilter, statusFilter, deferredSearch, totals, filteredRecords]);
+  }, [papFilter, statusFilter, endUserFilter, deferredSearch, totals, filteredRecords]);
 
   const toggleSort = (field: 'payee' | 'status' | 'endUser' | 'totalObligation' | 'grossAmount' | 'unpaidObligation' | 'rate') => {
     if (sortField === field) {
@@ -804,33 +836,61 @@ export default function DisbursementClient({
               </span>
             </div>
 
-            {/* Search Bar */}
-            <div style={{ position: 'relative', width: '100%', maxWidth: 320 }}>
-              <Search
-                size={14}
+            {/* End User Filter + Search Bar */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap', width: '100%', maxWidth: 560, justifyContent: 'flex-end' }}>
+              <select
+                aria-label="Filter by End User"
+                value={endUserFilter}
+                onChange={(e) => setEndUserFilter(e.target.value)}
                 style={{
-                  position: 'absolute',
-                  left: 10,
-                  top: '50%',
-                  transform: 'translateY(-50%)',
-                  color: '#94a3b8',
-                }}
-              />
-              <input
-                type="text"
-                placeholder="Search by Payee, Particulars..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                style={{
-                  width: '100%',
-                  padding: '6px 12px 6px 32px',
+                  padding: '6px 10px',
                   fontSize: 12,
+                  fontWeight: 600,
                   border: '1px solid #cbd5e1',
                   borderRadius: 6,
-                  outline: 'none',
                   background: '#ffffff',
+                  color: '#1e293b',
+                  outline: 'none',
+                  minWidth: 'min(100%, 190px)',
+                  maxWidth: 240,
+                  cursor: 'pointer',
                 }}
-              />
+              >
+                <option value="all">All End Users ({records.length})</option>
+                {endUserOptions.map((opt) => (
+                  <option key={opt.value} value={opt.value}>
+                    {opt.label}
+                  </option>
+                ))}
+              </select>
+
+              <div style={{ position: 'relative', flex: '1 1 220px', maxWidth: 300 }}>
+                <Search
+                  size={14}
+                  style={{
+                    position: 'absolute',
+                    left: 10,
+                    top: '50%',
+                    transform: 'translateY(-50%)',
+                    color: '#94a3b8',
+                  }}
+                />
+                <input
+                  type="text"
+                  placeholder="Search by Payee, Particulars..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  style={{
+                    width: '100%',
+                    padding: '6px 12px 6px 32px',
+                    fontSize: 12,
+                    border: '1px solid #cbd5e1',
+                    borderRadius: 6,
+                    outline: 'none',
+                    background: '#ffffff',
+                  }}
+                />
+              </div>
             </div>
           </div>
 
