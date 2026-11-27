@@ -27,7 +27,6 @@ import {
   AlertCircle,
   Lock,
 } from 'lucide-react';
-import * as XLSX from 'xlsx';
 import { createClient } from '@/utils/supabase/client';
 
 export interface FarmerTransaction {
@@ -521,6 +520,7 @@ export default function FarmersClient({
           exportRows = [{ 'Message': 'No records currently on this page.' }];
         }
 
+        const XLSX = await import('xlsx');
         const wb = XLSX.utils.book_new();
         const ws = XLSX.utils.json_to_sheet(exportRows);
 
@@ -767,7 +767,7 @@ export default function FarmersClient({
             gap: 12,
           }}
         >
-          <div className="field record-search-field" style={{ flex: '1 1 320px', minWidth: 260 }}>
+          <div className="field record-search-field" style={{ flex: '1 1 280px', minWidth: 'min(100%, 260px)' }}>
             <label htmlFor="farmer-search">Search Beneficiaries</label>
             <input
               className="input"
@@ -1860,7 +1860,7 @@ export default function FarmersClient({
               <label style={{ display: 'block', fontSize: 12, fontWeight: 700, color: 'var(--green-950)', marginBottom: 8 }}>
                 1. Choose File Format
               </label>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, marginBottom: 20 }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 200px), 1fr))', gap: 12, marginBottom: 20 }}>
                 {/* Excel Option */}
                 <div
                   onClick={() => setExportFormat('xlsx')}

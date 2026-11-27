@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useMemo, useEffect, useRef } from 'react';
+import React, { useState, useMemo, useEffect, useRef, useDeferredValue } from 'react';
 import {
   PackageCheck,
   MapPin,
@@ -201,6 +201,7 @@ export default function SummaryOfSuppliesClient({ initialData }: Props) {
     'All' | 'regWS2026' | 'regDS2026_2027' | 'mfWS2026' | 'mfDS2026_2027'
   >('All');
   const [searchQuery, setSearchQuery] = useState<string>('');
+  const deferredSearch = useDeferredValue(searchQuery);
 
   // Clean 2-view table toggle: Delivery Sites vs Contracts
   const [tableView, setTableView] = useState<'deliveries' | 'contracts'>('deliveries');
@@ -240,7 +241,7 @@ export default function SummaryOfSuppliesClient({ initialData }: Props) {
 
   // Base filtered deliveries (before P/A/P slice filter so the P/A/P donut keeps all slices)
   const baseFilteredDeliveries = useMemo(() => {
-    const q = searchQuery.trim().toLowerCase();
+    const q = deferredSearch.trim().toLowerCase();
     return deliveries.filter((d) => {
       if (selectedProvince !== 'All Provinces' && d.province !== selectedProvince) return false;
       if (selectedFundSource !== 'All Fund Sources' && d.fundSource !== selectedFundSource) return false;
@@ -257,7 +258,7 @@ export default function SummaryOfSuppliesClient({ initialData }: Props) {
       }
       return true;
     });
-  }, [deliveries, selectedProvince, selectedFundSource, selectedSeason, selectedCategory, searchQuery]);
+  }, [deliveries, selectedProvince, selectedFundSource, selectedSeason, selectedCategory, deferredSearch]);
 
   // Filtered Deliveries (including P/A/P slice selection)
   const filteredDeliveries = useMemo(() => {
@@ -270,7 +271,7 @@ export default function SummaryOfSuppliesClient({ initialData }: Props) {
 
   // Filtered Contracts
   const filteredContracts = useMemo(() => {
-    const q = searchQuery.trim().toLowerCase();
+    const q = deferredSearch.trim().toLowerCase();
     const matchingKeys = new Set(
       filteredDeliveries.map((d) => `${d.fundSource}||${d.ibNo}||${d.supplier}||${d.category}`)
     );
@@ -293,7 +294,7 @@ export default function SummaryOfSuppliesClient({ initialData }: Props) {
       }
       return true;
     });
-  }, [contracts, filteredDeliveries, selectedProvince, selectedFundSource, selectedSeason, selectedCategory, selectedPapKey, searchQuery]);
+  }, [contracts, filteredDeliveries, selectedProvince, selectedFundSource, selectedSeason, selectedCategory, selectedPapKey, deferredSearch]);
 
   // Totals
   const totals = useMemo(() => {

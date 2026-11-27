@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo, useEffect, useDeferredValue } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import {
@@ -213,6 +213,7 @@ export default function ActivityCalendar({
   const [selectedProvince, setSelectedProvince] = useState<string>('All Provinces');
   const [statusFilter, setStatusFilter] = useState<'all' | 'ongoing' | 'upcoming' | 'completed'>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
+  const deferredSearch = useDeferredValue(searchQuery);
 
   // Current calendar month view - dynamic to current year/month
   const [viewDate, setViewDate] = useState(() => {
@@ -373,8 +374,8 @@ export default function ActivityCalendar({
   const filteredActivities = useMemo(() => {
     return normalizedActivities.filter((act) => {
       // Search query filtering
-      if (searchQuery.trim()) {
-        const q = searchQuery.toLowerCase().trim();
+      if (deferredSearch.trim()) {
+        const q = deferredSearch.toLowerCase().trim();
         const matches =
           (act.title || '').toLowerCase().includes(q) ||
           (act.description || '').toLowerCase().includes(q) ||
@@ -418,7 +419,7 @@ export default function ActivityCalendar({
     }).sort((a, b) => {
       return (a.start_date || '').localeCompare(b.start_date || '');
     });
-  }, [normalizedActivities, selectedProvince, statusFilter, selectedDate, searchQuery]);
+  }, [normalizedActivities, selectedProvince, statusFilter, selectedDate, deferredSearch]);
 
   // Calendar calculations
   const year = viewDate.getFullYear();

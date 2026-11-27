@@ -27,18 +27,11 @@
   }
 }
 
-/* Apply physical blur filter to the entire website background when loading */
+/* Dim page interaction cleanly during route transitions without GPU-heavy full-DOM blur */
 .portal-shell.is-page-loading .portal-main-wrapper,
 .portal-shell.is-page-loading .portal-sidebar {
-  filter: blur(10px) brightness(0.88);
   pointer-events: none;
   user-select: none;
-  transition: filter 0.18s cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-
-.portal-shell .portal-main-wrapper,
-.portal-shell .portal-sidebar {
-  transition: filter 0.25s ease-out;
 }
 
 .circle-loading-overlay {
@@ -49,12 +42,21 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: rgba(6, 26, 20, 0.38);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  animation: circleOverlayFadeIn 180ms ease-out;
+  background: rgba(6, 26, 20, 0.52);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  animation: circleOverlayFadeIn 150ms ease-out;
   user-select: none;
   pointer-events: all;
+}
+
+@media (max-width: 768px), (prefers-reduced-motion: reduce) {
+  .circle-loading-overlay,
+  .circle-loading-inline {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgba(6, 26, 20, 0.68);
+  }
 }
 
 /* Fallback for when placed inside page stream directly */

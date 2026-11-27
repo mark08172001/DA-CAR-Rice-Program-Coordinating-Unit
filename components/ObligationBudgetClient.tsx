@@ -435,7 +435,7 @@ function PillarBudgetCard({
       <div
         style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(4, minmax(0, 1fr))',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 210px), 1fr))',
           gap: 12,
         }}
         className="obligation-budget-grid"
@@ -1368,7 +1368,7 @@ export function ObligationRateAllotmentGraph({
           paddingBottom: 16,
         }}
       >
-        <div style={{ flex: '1 1 360px', minWidth: 280 }}>
+        <div style={{ flex: '1 1 360px', minWidth: 'min(100%, 280px)' }}>
           <h2
             style={{
               fontSize: 20,

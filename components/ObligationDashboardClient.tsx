@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useMemo, useEffect, useRef } from 'react';
+import React, { useState, useMemo, useEffect, useRef, useDeferredValue } from 'react';
 import {
   Wallet,
   DollarSign,
@@ -213,6 +213,7 @@ export default function ObligationDashboardClient({
 
   const [papFilter, setPapFilter] = useState<string>('All');
   const [searchQuery, setSearchQuery] = useState<string>('');
+  const deferredSearch = useDeferredValue(searchQuery);
   const [sortField, setSortField] = useState<'pap' | 'currentAmt' | 'continuingAmt' | 'rowTotal'>('rowTotal');
   const [sortAsc, setSortAsc] = useState<boolean>(false);
 
@@ -224,8 +225,8 @@ export default function ObligationDashboardClient({
       list = list.filter((r) => r.pap.toUpperCase() === papFilter.toUpperCase());
     }
 
-    if (searchQuery.trim()) {
-      const q = searchQuery.toLowerCase().trim();
+    if (deferredSearch.trim()) {
+      const q = deferredSearch.toLowerCase().trim();
       list = list.filter((r) => {
         return (
           r.currentDetails.toLowerCase().includes(q) ||
@@ -248,7 +249,7 @@ export default function ObligationDashboardClient({
       }
       return sortAsc ? valA - valB : valB - valA;
     });
-  }, [data.items, papFilter, searchQuery, sortField, sortAsc]);
+  }, [data.items, papFilter, deferredSearch, sortField, sortAsc]);
 
   // Dynamic totals for active filter
   const activeTotals = useMemo(() => {

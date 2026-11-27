@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo, useEffect, useCallback } from 'react';
+import { useState, useMemo, useEffect, useCallback, useDeferredValue } from 'react';
 import {
   CreditCard,
   Filter,
@@ -119,6 +119,7 @@ export default function DisbursementClient({
   const [papFilter, setPapFilter] = useState<string>('all');
   const [statusFilter, setStatusFilter] = useState<DisbursementStatusCategory | 'all'>('all');
   const [searchQuery, setSearchQuery] = useState('');
+  const deferredSearch = useDeferredValue(searchQuery);
   const [sortField, setSortField] = useState<'payee' | 'status' | 'endUser' | 'totalObligation' | 'grossAmount' | 'unpaidObligation' | 'rate'>('totalObligation');
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('desc');
 
@@ -339,8 +340,8 @@ export default function DisbursementClient({
     if (statusFilter !== 'all') {
       list = list.filter((r) => getStatusCategory(r.status) === statusFilter);
     }
-    if (searchQuery.trim()) {
-      const q = searchQuery.toLowerCase().trim();
+    if (deferredSearch.trim()) {
+      const q = deferredSearch.toLowerCase().trim();
       list = list.filter((r) => {
         const payeeText = getDisplayPayee(r).toLowerCase();
         return (
@@ -386,10 +387,10 @@ export default function DisbursementClient({
       const valB = b[sortField];
       return sortDirection === 'asc' ? valA - valB : valB - valA;
     });
-  }, [records, papFilter, statusFilter, searchQuery, sortField, sortDirection, getDisplayPayee]);
+  }, [records, papFilter, statusFilter, deferredSearch, sortField, sortDirection, getDisplayPayee]);
 
   const displayTotals = useMemo(() => {
-    if (papFilter === 'all' && statusFilter === 'all' && !searchQuery.trim()) {
+    if (papFilter === 'all' && statusFilter === 'all' && !deferredSearch.trim()) {
       return totals;
     }
     return {
@@ -398,7 +399,7 @@ export default function DisbursementClient({
       unpaidObligation: filteredRecords.reduce((sum, r) => sum + r.unpaidObligation, 0),
       count: filteredRecords.length,
     };
-  }, [papFilter, statusFilter, searchQuery, totals, filteredRecords]);
+  }, [papFilter, statusFilter, deferredSearch, totals, filteredRecords]);
 
   const toggleSort = (field: 'payee' | 'status' | 'endUser' | 'totalObligation' | 'grossAmount' | 'unpaidObligation' | 'rate') => {
     if (sortField === field) {
@@ -728,7 +729,7 @@ export default function DisbursementClient({
             <div
               style={{
                 display: 'grid',
-                gridTemplateColumns: '1fr 1fr',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 140px), 1fr))',
                 gap: 12,
                 marginTop: 8,
                 alignItems: 'baseline',

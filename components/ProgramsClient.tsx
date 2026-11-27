@@ -1345,7 +1345,7 @@ export default function ProgramsClient({
             <div
               style={{
                 display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fill, minmax(360px, 1fr))',
+                gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 300px), 1fr))',
                 gap: 18,
               }}
             >
@@ -2046,7 +2046,7 @@ export default function ProgramsClient({
               </div>
 
               {/* 5. Row with Allotment Class, Status, Coverage */}
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 12, marginBottom: 24 }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 140px), 1fr))', gap: 12, marginBottom: 24 }}>
                 <div>
                   <label style={{ display: 'block', fontSize: 12, fontWeight: 700, color: '#475569', marginBottom: 6 }}>
                     Allotment Class
@@ -2132,7 +2132,7 @@ export default function ProgramsClient({
                   </span>
                 </div>
 
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 10 }}>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 140px), 1fr))', gap: 10 }}>
                   <div>
                     <label style={{ display: 'block', fontSize: 11, fontWeight: 600, color: '#64748b', marginBottom: 3 }}>
                       Start Date

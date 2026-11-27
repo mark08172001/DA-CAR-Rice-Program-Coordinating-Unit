@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useDeferredValue } from 'react';
 import {
   DrySeasonSheetData,
   CategoryData,
@@ -563,6 +563,7 @@ export default function DrySeasonClient({ initialData }: Props) {
   const [data, setData] = useState<DrySeasonSheetData>(initialData);
   const [activeTab, setActiveTab] = useState<'total' | 'hybrid-seeds' | 'fert-hybrid' | 'fert-inbred' | 'biofert-asa'>('total');
   const [searchTerm, setSearchTerm] = useState('');
+  const deferredSearchTerm = useDeferredValue(searchTerm);
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [expandedProvinces, setExpandedProvinces] = useState<Record<string, boolean>>({});
   const [expandedCell, setExpandedCell] = useState<{
@@ -686,10 +687,10 @@ export default function DrySeasonClient({ initialData }: Props) {
 
   // Filtered Province Totals
   const filteredProvinceTotals = useMemo(() => {
-    if (!searchTerm.trim()) return data.provinceTotals;
-    const term = searchTerm.toLowerCase().trim();
+    if (!deferredSearchTerm.trim()) return data.provinceTotals;
+    const term = deferredSearchTerm.toLowerCase().trim();
     return data.provinceTotals.filter((p) => p.province.toLowerCase().includes(term));
-  }, [data.provinceTotals, searchTerm]);
+  }, [data.provinceTotals, deferredSearchTerm]);
 
   // Active Category Data (when viewing a specific intervention)
   const activeCategory = useMemo<CategoryData | undefined>(() => {
@@ -699,14 +700,14 @@ export default function DrySeasonClient({ initialData }: Props) {
 
   const filteredCategoryProvinces = useMemo<ProvinceInterventionData[]>(() => {
     if (!activeCategory) return [];
-    if (!searchTerm.trim()) return activeCategory.provinces;
-    const term = searchTerm.toLowerCase().trim();
+    if (!deferredSearchTerm.trim()) return activeCategory.provinces;
+    const term = deferredSearchTerm.toLowerCase().trim();
     return activeCategory.provinces.filter((p) => {
       const matchProv = p.province.toLowerCase().includes(term);
       const matchInterv = p.interventions.some((i) => i.name.toLowerCase().includes(term));
       return matchProv || matchInterv;
     });
-  }, [activeCategory, searchTerm]);
+  }, [activeCategory, deferredSearchTerm]);
 
   // Drawer data calculations
   const drawerCategory = useMemo(() => {
@@ -1481,7 +1482,7 @@ export default function DrySeasonClient({ initialData }: Props) {
             <div
               style={{
                 display: 'grid',
-                gridTemplateColumns: 'repeat(4, minmax(0, 1fr))',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 130px), 1fr))',
                 gap: 6,
                 padding: '12px 24px',
                 background: '#f8fafc',

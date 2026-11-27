@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useMemo, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useMemo, useCallback, useRef, useDeferredValue } from 'react';
 import {
   ChevronDown,
   ChevronUp,
@@ -85,6 +85,7 @@ export default function EarmarkedRegistryTable({
   const [earmarkRows, setEarmarkRows] = useState<EarmarkedActiveRow[]>([]);
   const [selectedObjectCode, setSelectedObjectCode] = useState<string>('ALL');
   const [searchQuery, setSearchQuery] = useState<string>('');
+  const deferredSearch = useDeferredValue(searchQuery);
   const [viewMode, setViewMode] = useState<'financial' | 'prLog'>('financial');
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [expandedRc, setExpandedRc] = useState<string | null>(null);
@@ -348,8 +349,8 @@ export default function EarmarkedRegistryTable({
         };
       });
 
-      if (searchQuery) {
-        const q = searchQuery.toLowerCase();
+      if (deferredSearch) {
+        const q = deferredSearch.toLowerCase();
         return list.filter((item) => item.title.toLowerCase().includes(q));
       }
       return list;
@@ -460,8 +461,8 @@ export default function EarmarkedRegistryTable({
       };
     });
 
-    if (searchQuery) {
-      const q = searchQuery.toLowerCase();
+    if (deferredSearch) {
+      const q = deferredSearch.toLowerCase();
       result = result.filter(
         (item) =>
           item.title.toLowerCase().includes(q) ||
@@ -476,7 +477,7 @@ export default function EarmarkedRegistryTable({
     targetBudgetRows,
     categoryObjectCodes,
     targetEarmarkRows,
-    searchQuery,
+    deferredSearch,
     activeCategory,
   ]);
 
@@ -512,8 +513,8 @@ export default function EarmarkedRegistryTable({
           return false;
         }
       }
-      if (searchQuery) {
-        const q = searchQuery.toLowerCase();
+      if (deferredSearch) {
+        const q = deferredSearch.toLowerCase();
         return (
           r.prNo.toLowerCase().includes(q) ||
           r.earmarkNo.toLowerCase().includes(q) ||
@@ -524,7 +525,7 @@ export default function EarmarkedRegistryTable({
       }
       return true;
     });
-  }, [targetEarmarkRows, selectedObjectCode, searchQuery]);
+  }, [targetEarmarkRows, selectedObjectCode, deferredSearch]);
 
   return (
     <div style={{ marginTop: 24, width: '100%' }}>
