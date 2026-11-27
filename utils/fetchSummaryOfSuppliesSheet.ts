@@ -83,7 +83,7 @@ export const SUMMARY_OF_SUPPLIES_SHEET_URL =
   'https://docs.google.com/spreadsheets/d/14yYevFb_7qQ2RGiLTD4FbxAiN_l94krxXH78KbcG9kE/export?format=csv&gid=1578812300';
 
 const CACHE_FILE = path.join(process.cwd(), 'data', 'summary_of_supplies_cache.json');
-const CACHE_TTL_MS = 30 * 1000; // 30s fresh TTL + instant stale-while-revalidate
+const CACHE_TTL_MS = 15 * 1000; // 15s fresh TTL + instant stale-while-revalidate
 
 const gGlobal = globalThis as unknown as {
   __daSummaryOfSuppliesCache?: { data: SummaryOfSuppliesResult; timestamp: number };

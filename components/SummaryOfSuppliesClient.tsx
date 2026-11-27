@@ -156,7 +156,7 @@ export default function SummaryOfSuppliesClient({ initialData }: Props) {
     setData(initialData);
   }, [initialData]);
 
-  // Background polling (every 60s when tab is visible) for live Google Sheet updates
+  // Background polling (every 15s when tab is visible) for live Google Sheet updates
   useEffect(() => {
     let isMounted = true;
     const fetchLatest = async () => {
@@ -182,7 +182,7 @@ export default function SummaryOfSuppliesClient({ initialData }: Props) {
       }
     };
 
-    const interval = setInterval(fetchLatest, 60000);
+    const interval = setInterval(fetchLatest, 15000);
     return () => {
       isMounted = false;
       clearInterval(interval);

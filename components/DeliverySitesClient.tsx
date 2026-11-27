@@ -143,7 +143,7 @@ export default function DeliverySitesClient({ initialData }: Props) {
     setData(initialData);
   }, [initialData]);
 
-  // Background polling (every 60s when tab is visible) for live sheet updates
+  // Background polling (every 15s when tab is visible) for live sheet updates
   useEffect(() => {
     let isMounted = true;
     const fetchLatest = async () => {
@@ -167,7 +167,7 @@ export default function DeliverySitesClient({ initialData }: Props) {
         // Ignore background errors
       }
     };
-    const interval = setInterval(fetchLatest, 60000);
+    const interval = setInterval(fetchLatest, 15000);
     return () => {
       isMounted = false;
       clearInterval(interval);
